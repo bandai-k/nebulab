@@ -21,8 +21,8 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", as: Component = "button", ...props }, ref) => {
     const variants = {
-      primary: "bg-white text-neutral-900 hover:bg-neutral-100",
-      secondary: "border border-white/15 bg-white/5 text-white hover:bg-white/10",
+      primary: "bg-[#b87333] text-white hover:bg-[#a0622b] shadow-sm",
+      secondary: "border-2 border-[#8b7355] bg-transparent text-[#5c4d3c] hover:bg-[#8b7355]/10",
     };
 
     const sizes = {

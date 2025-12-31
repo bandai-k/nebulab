@@ -18,8 +18,8 @@ export default function Projects() {
   return (
     <section id="projects" className="mx-auto w-full max-w-5xl px-6 pb-16">
       <div className="flex items-end justify-between gap-4">
-        <h2 className="text-lg font-semibold">今やっていること</h2>
-        <span className="text-xs text-neutral-400">順次公開</span>
+        <h2 className="text-lg font-semibold text-[#3d2f24]">今やっていること</h2>
+        <span className="text-xs text-[#8b7355]">順次公開</span>
       </div>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -27,11 +27,11 @@ export default function Projects() {
           <Card key={project.title} className="p-5">
             <div className="flex items-center justify-between">
               <div className="text-sm font-semibold">{project.title}</div>
-              <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-neutral-200">
+              <span className="rounded-full border border-[#ddc9a3] bg-[#fef3d9] px-2 py-0.5 text-[11px] text-[#5c4d3c]">
                 {project.tag}
               </span>
             </div>
-            <p className="mt-2 text-sm leading-6 text-neutral-200">
+            <p className="mt-2 text-sm leading-6 text-[#5c4d3c]">
               {project.desc}
             </p>
           </Card>

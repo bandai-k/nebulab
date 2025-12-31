@@ -6,7 +6,7 @@ import Contact from "@/components/sections/Contact";
 
 export default function HomePage() {
   return (
-    <main className="min-h-dvh bg-neutral-950 text-neutral-50">
+    <main className="min-h-dvh bg-[#fff8e7] text-[#3d2f24]">
       <Background />
       <Hero />
       <Services />

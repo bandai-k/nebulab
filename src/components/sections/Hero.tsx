@@ -17,9 +17,9 @@ export default function Hero() {
         そして、循環させる。
       </h1>
 
-      <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-neutral-200 sm:text-lg">
+      <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-[#5c4d3c] sm:text-lg">
         NEBULAB(ネビュラボ)は、プロダクト開発を軸に、
-        <span className="text-white">「働く場所」や「学びの場」</span>
+        <span className="font-semibold text-[#3d2f24]">「働く場所」や「学びの場」</span>
         も含めた環境づくりを行う小さなラボです。
         拠点(NRT-LOFT)運営をはじめ、集まる・試す・改善する――その循環を設計します。
       </p>

@@ -13,9 +13,9 @@ export default function Card({
 }: CardProps) {
   const variants = {
     default:
-      "rounded-2xl border border-white/10 bg-white/5",
+      "rounded-2xl border border-[#ddc9a3] bg-white/60 backdrop-blur-sm",
     highlight:
-      "rounded-2xl border border-white/10 bg-white/5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]",
+      "rounded-2xl border border-[#d4a574] bg-white/70 backdrop-blur-sm shadow-sm",
   };
 
   return (

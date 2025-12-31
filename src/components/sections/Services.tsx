@@ -23,7 +23,7 @@ export default function Services() {
         {services.map((service) => (
           <Card key={service.title} variant="highlight" className="p-5">
             <div className="text-sm font-semibold">{service.title}</div>
-            <p className="mt-2 text-sm leading-6 text-neutral-200">
+            <p className="mt-2 text-sm leading-6 text-[#5c4d3c]">
               {service.desc}
             </p>
           </Card>

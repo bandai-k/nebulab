@@ -3,7 +3,19 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
+  /* Cosmic Latte パレット */
+  --cosmic-latte: #fff8e7;
+  --cosmic-cream: #fef3d9;
+  --cosmic-beige: #f5e6cb;
+  --cosmic-tan: #ddc9a3;
+  --cosmic-brown: #8b7355;
+  --cosmic-dark: #5c4d3c;
+  --cosmic-darker: #3d2f24;
+
+  /* アクセントカラー */
+  --accent-gold: #d4a574;
+  --accent-amber: #e8b86d;
+  --accent-rust: #b87333;
 }
 
 html,

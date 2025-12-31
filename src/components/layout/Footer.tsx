@@ -11,16 +11,16 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-black/10 bg-white">
+    <footer className="border-t border-[#ddc9a3] bg-[#fef3d9]">
       <div className="mx-auto max-w-6xl px-5 py-10">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="space-y-3">
-            <div className="text-sm font-semibold tracking-[0.14em]">
+            <div className="text-sm font-semibold tracking-[0.14em] text-[#3d2f24]">
               NEBULAB
             </div>
-            <p className="max-w-md text-sm leading-relaxed text-black/60">
+            <p className="max-w-md text-sm leading-relaxed text-[#5c4d3c]">
               小さくはじめて、確かに積み上げる。プロダクト開発・Web制作・運用改善。
-              そして、成田の拠点運営（NRT LOFT）へつながる活動も。
+              そして、成田の拠点運営(NRT LOFT)へつながる活動も。
             </p>
           </div>
 
@@ -29,7 +29,7 @@ export default function Footer() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-black/70 transition hover:text-black"
+                className="text-[#5c4d3c] transition hover:text-[#3d2f24]"
               >
                 {l.label}
               </Link>
@@ -37,13 +37,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-black/10 pt-6 text-xs text-black/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-[#ddc9a3] pt-6 text-xs text-[#8b7355] md:flex-row md:items-center md:justify-between">
           <div>© {year} NEBULAB</div>
           <div className="flex items-center gap-4">
-            <Link className="hover:text-black" href="/privacy">
+            <Link className="hover:text-[#3d2f24]" href="/privacy">
               Privacy
             </Link>
-            <Link className="hover:text-black" href="/terms">
+            <Link className="hover:text-[#3d2f24]" href="/terms">
               Terms
             </Link>
           </div>

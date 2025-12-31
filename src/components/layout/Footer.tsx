@@ -1,10 +1,30 @@
 import Link from "next/link";
 
-const links = [
-  { href: "/#about", label: "About" },
-  { href: "/#services", label: "Services" },
-  { href: "/#works", label: "Works" },
-  { href: "/#contact", label: "Contact" },
+const footerSections = [
+  {
+    title: "サービス",
+    links: [
+      { href: "/#services", label: "事業内容" },
+      { href: "/#projects", label: "取り組み" },
+      { href: "https://nrt-loft.jp", label: "NRT-LOFT", external: true },
+    ],
+  },
+  {
+    title: "企業情報",
+    links: [
+      { href: "/about", label: "会社概要" },
+      { href: "/news", label: "お知らせ" },
+      { href: "/#contact", label: "お問い合わせ" },
+    ],
+  },
+  {
+    title: "その他",
+    links: [
+      { href: "/sitemap", label: "サイトマップ" },
+      { href: "/privacy", label: "プライバシーポリシー" },
+      { href: "/terms", label: "利用規約" },
+    ],
+  },
 ];
 
 export default function Footer() {
@@ -13,39 +33,54 @@ export default function Footer() {
   return (
     <footer className="border-t border-[#ddc9a3] bg-[#fef3d9]">
       <div className="mx-auto max-w-6xl px-5 py-10">
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          <div className="space-y-3">
+        <div className="grid gap-8 md:grid-cols-4">
+          {/* ブランド情報 */}
+          <div className="space-y-3 md:col-span-1">
             <div className="text-sm font-semibold tracking-[0.14em] text-[#3d2f24]">
               NEBULAB
             </div>
-            <p className="max-w-md text-sm leading-relaxed text-[#5c4d3c]">
-              小さくはじめて、確かに積み上げる。プロダクト開発・Web制作・運用改善。
-              そして、成田の拠点運営(NRT LOFT)へつながる活動も。
+            <p className="text-sm leading-relaxed text-[#5c4d3c]">
+              小さくはじめて、確かに積み上げる。
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-10 gap-y-3 text-sm md:grid-cols-1">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="text-[#5c4d3c] transition hover:text-[#3d2f24]"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
+          {/* リンクセクション */}
+          {footerSections.map((section) => (
+            <div key={section.title} className="space-y-3">
+              <h3 className="text-sm font-semibold text-[#3d2f24]">
+                {section.title}
+              </h3>
+              <ul className="space-y-2 text-sm">
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-[#5c4d3c] transition hover:text-[#3d2f24]"
+                      {...(link.external && {
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                      })}
+                    >
+                      {link.label}
+                      {link.external && " ↗"}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
+        {/* コピーライト */}
         <div className="mt-10 flex flex-col gap-3 border-t border-[#ddc9a3] pt-6 text-xs text-[#8b7355] md:flex-row md:items-center md:justify-between">
-          <div>© {year} NEBULAB</div>
+          <div>© {year} NEBULAB. All rights reserved.</div>
           <div className="flex items-center gap-4">
-            <Link className="hover:text-[#3d2f24]" href="/privacy">
-              Privacy
-            </Link>
-            <Link className="hover:text-[#3d2f24]" href="/terms">
-              Terms
-            </Link>
+            <a
+              href="mailto:hello@nebulab.jp"
+              className="hover:text-[#3d2f24]"
+            >
+              hello@nebulab.jp
+            </a>
           </div>
         </div>
       </div>

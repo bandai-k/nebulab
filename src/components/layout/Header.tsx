@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const nav = [
-  { href: "/#about", label: "About" },
-  { href: "/#services", label: "Services" },
-  { href: "/#works", label: "Works" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/about", label: "会社概要" },
+  { href: "/#services", label: "事業内容" },
+  { href: "/news", label: "お知らせ" },
+  { href: "/#contact", label: "お問い合わせ" },
 ];
 
 export default function Header() {

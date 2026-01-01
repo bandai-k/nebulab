@@ -20,17 +20,15 @@ const aboutSubmenu: SubItem[] = [
 ];
 
 const servicesSubmenu: SubItem[] = [
-  { href: "/#services", label: "提供サービス（概要）" },
-  { href: "/services", label: "事業内容ページ" },
-  { href: "/#projects", label: "今やっていること" },
+  { href: "/services", label: "事業内容" },
 ];
 
 const projectsSubmenu: SubItem[] = [
-  { href: "/projects", label: "取り組み一覧" },
-  { href: "/experiments", label: "実験ログ" },
+  { href: "/projects", label: "プロダクト" },
+  { href: "/experiments", label: "取り組み" },
 ];
 
-const newsSubmenu: SubItem[] = [{ href: "/news", label: "お知らせ一覧" }];
+const newsSubmenu: SubItem[] = [{ href: "/news", label: "お知らせ" }];
 
 const NAV: NavItem[] = [
   { key: "about", href: "/about", label: "About", submenu: aboutSubmenu },

@@ -16,3 +16,8 @@ export interface NewsItem {
   title: string;
   excerpt?: string;
 }
+
+export interface News {
+  title: string;
+  desc: string;
+}

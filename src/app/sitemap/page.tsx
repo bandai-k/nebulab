@@ -17,10 +17,10 @@ const sitemapSections: { title: string; links: SitemapLink[] }[] = [
     title: "トップページ",
     links: [
       { href: "/", label: "ホーム" },
-      { href: "/#about", label: "NEBULABについて" },
-      { href: "/#services", label: "事業内容" },
-      { href: "/#projects", label: "取り組み" },
-      { href: "/#contact", label: "お問い合わせ" },
+      { href: "/about", label: "NEBULABについて" },
+      { href: "/services", label: "事業内容" },
+      { href: "/projects", label: "取り組み" },
+      { href: "/contact", label: "お問い合わせ" },
     ],
   },
   {

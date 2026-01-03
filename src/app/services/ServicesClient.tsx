@@ -89,7 +89,7 @@ export default function ServicesClient() {
                     </Reveal>
 
                     <Reveal className="order-1 lg:order-2" delayMs={120}>
-                        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-[#ddc9a3] bg-white/60">
+                        <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-[#ddc9a3] bg-white/60">
                             <Image
                                 src="/images/services-hero.png"
                                 alt="NEBULABの作業風景"
@@ -99,7 +99,7 @@ export default function ServicesClient() {
                                 sizes="(max-width: 1024px) 100vw, 50vw"
                             />
                             {/* うっすらグラデで文字側と馴染ませる（リッチ感） */}
-                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-transparent" />
+                            <div className="pointer-events-none absolute inset-0 bg-linear-to-tr from-black/10 via-transparent to-transparent" />
                         </div>
                     </Reveal>
                 </div>
@@ -118,7 +118,7 @@ export default function ServicesClient() {
                     {highlights.map((h, i) => (
                         <Reveal key={h.title} delayMs={80 * i}>
                             <Card className="overflow-hidden p-0">
-                                <div className="relative aspect-[16/10] w-full">
+                                <div className="relative aspect-16/10 w-full">
                                     <Image
                                         src={h.image}
                                         alt={h.title}

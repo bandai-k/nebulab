@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import MobileNav from "@/components/layout/MobileNav";
+import Image from "next/image";
 
 type SubItem = { href: string; label: string };
 type NavItem = {
@@ -19,9 +20,7 @@ const aboutSubmenu: SubItem[] = [
   { href: "/philosophy", label: "思想" },
 ];
 
-const servicesSubmenu: SubItem[] = [
-  { href: "/services", label: "事業内容" },
-];
+const servicesSubmenu: SubItem[] = [{ href: "/services", label: "事業内容" }];
 
 const projectsSubmenu: SubItem[] = [
   { href: "/projects", label: "プロダクト" },
@@ -52,11 +51,6 @@ export default function Header() {
     closeTimerRef.current = null;
   };
 
-  const openItem = useMemo(
-    () => NAV.find((n) => n.key === openKey && n.submenu?.length),
-    [openKey]
-  );
-
   // モバイル用（フラットに展開）
   const mobileNav = useMemo(() => {
     const flat: Array<{ href: string; label: string; external?: boolean }> = [
@@ -83,12 +77,7 @@ export default function Header() {
   }, []);
 
   return (
-    <div
-      className="sticky top-0 z-50"
-      data-submenu-root
-      onMouseEnter={cancelClose}
-      onMouseLeave={() => scheduleClose(160)}
-    >
+    <div className="sticky top-0 z-50" data-nav-root>
       <header className="border-b border-[#ddc9a3] bg-[#fff8e7]/90 backdrop-blur">
         {/* 上段：お問い合わせ */}
         <div className="border-b border-[#ddc9a3]">
@@ -106,19 +95,25 @@ export default function Header() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           {/* ブランド */}
           <Link href="/" className="group inline-flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#ddc9a3] bg-white text-sm font-semibold tracking-tight text-[#3d2f24]">
-              N
-            </span>
+            <Image
+              src="/logo.svg"
+              alt="NEBULAB"
+              width={160}
+              height={40}
+              priority
+              className="h-9 w-auto"
+            />
 
-            <span className="flex flex-col leading-tight">
-              <span className="text-xl font-semibold tracking-[0.16em] text-[#3d2f24]">
-                NEBULAB
-              </span>
+            {/* サブコピー */}
+            <span className="hidden flex-col leading-tight sm:flex">
+              <span className="text-xl font-semibold tracking-[0.16em] text-[#3d2f24]">NEBULAB</span>
               <span className="text-xs text-[#8b7355]">Product &amp; Place Lab</span>
             </span>
           </Link>
 
-          {/* PCナビ */}
+
+
+          {/* PCナビ（ドロップダウン） */}
           <nav className="hidden items-center gap-6 md:flex" aria-label="Global navigation">
             {NAV.map((item) => {
               const hasSub = !!item.submenu?.length;
@@ -154,15 +149,18 @@ export default function Header() {
                     cancelClose();
                     if (hasSub) setOpenKey(item.key);
                   }}
+                  onMouseLeave={() => scheduleClose(160)}
                 >
+                  {/* 親リンク */}
                   <Link
                     href={item.href}
                     onFocus={() => {
                       cancelClose();
                       if (hasSub) setOpenKey(item.key);
                     }}
+                    onBlur={() => scheduleClose(140)}
                     className={[
-                      "text-sm transition",
+                      "inline-flex items-center gap-1 text-sm transition",
                       isOpen
                         ? "text-[#3d2f24] underline decoration-[#3d2f24] underline-offset-4"
                         : "text-[#5c4d3c] hover:text-[#3d2f24]",
@@ -171,7 +169,61 @@ export default function Header() {
                     aria-expanded={hasSub ? isOpen : undefined}
                   >
                     {item.label}
+                    {hasSub && (
+                      <svg
+                        className={[
+                          "h-4 w-4 transition-transform",
+                          isOpen ? "rotate-180" : "rotate-0",
+                        ].join(" ")}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    )}
                   </Link>
+
+                  {/* ドロップダウン */}
+                  {hasSub && (
+                    <div
+                      className={[
+                        "absolute left-1/2 top-full mt-3 w-56 -translate-x-1/2",
+                        "rounded-xl border border-[#ddc9a3] bg-white shadow-[0_12px_30px_rgba(0,0,0,0.08)]",
+                        "transition duration-200 ease-out",
+                        isOpen
+                          ? "pointer-events-auto opacity-100 translate-y-0"
+                          : "pointer-events-none opacity-0 -translate-y-1",
+                      ].join(" ")}
+                      role="menu"
+                      aria-label={`${item.label} submenu`}
+                      onMouseEnter={cancelClose}
+                      onMouseLeave={() => scheduleClose(140)}
+                    >
+                      <div className="p-2">
+                        {item.submenu!.map((sub) => (
+                          <Link
+                            key={`${item.key}-${sub.href}`}
+                            href={sub.href}
+                            role="menuitem"
+                            className={[
+                              "flex items-center justify-between rounded-lg px-3 py-2",
+                              "text-sm text-[#3d2f24] transition",
+                              "hover:bg-[#fff8e7] hover:text-[#b87333]",
+                              "focus:outline-none focus:ring-2 focus:ring-[#b87333]/30",
+                            ].join(" ")}
+                            onClick={() => setOpenKey(null)}
+                          >
+                            <span>{sub.label}</span>
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -183,52 +235,6 @@ export default function Header() {
           </div>
         </div>
       </header>
-
-      {/* submenu（PC）：max-heightで滑らかに */}
-      <div
-        className={[
-          "hidden md:block border-b border-[#ddc9a3] bg-white",
-          "transition-[max-height,opacity,transform] duration-300 ease-out",
-          openItem ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2",
-        ].join(" ")}
-        style={{
-          maxHeight: openItem ? 140 : 0, // ここが “ぬるっ” と効く
-          overflow: "hidden",
-        }}
-        onMouseEnter={cancelClose}
-        onMouseLeave={() => scheduleClose(140)}
-      >
-        {openItem && (
-          <div className="mx-auto max-w-6xl px-5" data-submenu={openItem.key}>
-            <div className="flex items-center">
-              {/* 左ラベル */}
-              <div className="mr-4 flex items-center gap-2 py-5 text-sm text-[#8b7355]">
-                <span className="font-medium text-[#3d2f24]">{openItem.label}</span>
-                <span aria-hidden="true">→</span>
-              </div>
-
-              {/* 右：submenu */}
-              <div className="flex flex-1 items-stretch overflow-x-auto">
-                {openItem.submenu!.map((subItem, index) => (
-                  <div key={`${openItem.key}-${subItem.href}-${index}`} className="flex items-center">
-                    {index > 0 && <span className="h-9 w-px bg-[#ddc9a3]" aria-hidden="true" />}
-                    <Link
-                      href={subItem.href}
-                      className="flex items-center gap-1 px-5 py-6 text-sm text-[#3d2f24] transition hover:text-[#b87333]"
-                      onClick={() => setOpenKey(null)}
-                    >
-                      {subItem.label}
-                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
     </div>
   );
 }

@@ -1,11 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
-  <g stroke="#FFF8E7" stroke-width="18" stroke-linecap="square" stroke-linejoin="miter">
-    <!-- outer frame -->
-    <rect x="36" y="36" width="184" height="184" rx="18"/>
-    <!-- N motif (three strokes) -->
-    <path d="M78 188V92"/>
-    <path d="M78 188L178 188"/>
-    <path d="M78 92L178 168"/>
-    <path d="M178 68V168"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="
+      M 32 448
+      L 256 32
+      L 256 320
+      L 320 320
+      L 320 160
+      L 480 448
+      Z
+    "
+    fill="#000000"
+    stroke="none"
+  />
 </svg>

@@ -55,7 +55,7 @@ export default function ContactForm() {
                     value={form.name}
                     onChange={onChange("name")}
                     className="w-full rounded-xl border border-[#3D2F24]/20 bg-[#FFF8E7] px-4 py-3 text-sm outline-none focus:border-[#3D2F24]/50"
-                    placeholder="例）萬代 晃生"
+                    placeholder="例）田中 太郎"
                 />
             </Field>
 
@@ -73,7 +73,6 @@ export default function ContactForm() {
                     value={form.company}
                     onChange={onChange("company")}
                     className="w-full rounded-xl border border-[#3D2F24]/20 bg-[#FFF8E7] px-4 py-3 text-sm outline-none focus:border-[#3D2F24]/50"
-                    placeholder="例）NEBULAB Inc."
                 />
             </Field>
 

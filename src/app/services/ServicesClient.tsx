@@ -24,17 +24,17 @@ const highlights: Highlight[] = [
     {
         title: "Web / App 開発",
         desc: "要件の言語化から設計・実装・運用まで。小さく出して学び、次の改善につなげます。",
-        image: "/images/service-dev.png",
+        image: "/images/service-dev.jpg",
     },
     {
         title: "プロダクト改善・内製化支援",
         desc: "仕様整理、UI/UX、開発フロー設計。現場で回る形に整え、継続できる体制へ。",
-        image: "/images/service-improve.png",
+        image: "/images/service-improve.jpg",
     },
     {
         title: "Place / Work Design",
         desc: "拠点（NRT-LOFT）での実践知をベースに、働き方・環境設計の意思決定を支援。",
-        image: "/images/service-place.png",
+        image: "/images/service-place.jpg",
     },
 ];
 

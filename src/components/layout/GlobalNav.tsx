@@ -3,7 +3,7 @@ import Link from "next/link";
 const nav = [
   { href: "/about", label: "会社概要" },
   { href: "/#services", label: "事業内容" },
-  { href: "/experiments", label: "取り組み・実験" },
+  { href: "/insights", label: "判断の記録" },
   { href: "/philosophy", label: "思想" },
   { href: "/news", label: "お知らせ" },
 ];

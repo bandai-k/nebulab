@@ -27,8 +27,8 @@ const aboutSubmenu: SubItem[] = [
 const servicesSubmenu: SubItem[] = [{ href: "/services", label: "事業内容" }];
 
 const projectsSubmenu: SubItem[] = [
-  { href: "/projects", label: "プロダクト" },
-  { href: "/experiments", label: "取り組み" },
+  { href: "/projects", label: "Projects" },
+  { href: "/insights", label: "Insights" },
 ];
 
 const newsSubmenu: SubItem[] = [{ href: "/news", label: "お知らせ" }];

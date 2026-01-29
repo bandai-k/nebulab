@@ -45,17 +45,10 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "004",
-    date: "2024-11-15",
-    category: "イベント",
-    title: "NRT-LOFTオープンのお知らせ",
-    excerpt: "成田に新しい拠点「NRT-LOFT」をオープンしました。",
-  },
-  {
-    id: "005",
     date: "2024-10-01",
     category: "お知らせ",
-    title: "NEBULAB 始動",
-    excerpt: "プロダクト開発と拠点づくりを行うNEBULABを始動しました。",
+    title: "NEBULAB 構想開始",
+    excerpt: "プロダクト開発と拠点づくりを行うNEBULABの構想を開始しました。",
   },
 ];
 

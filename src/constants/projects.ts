@@ -88,6 +88,23 @@ export const PROJECTS: Project[] = [
     ],
     links: [{ href: "/insights", label: "取り組みを見る" }],
   },
+  {
+    slug: "narita-guide",
+    title: "Narita Guide",
+    catchphrase: "成田の情報を、もっと手軽に。",
+    description:
+      "成田エリアの情報を集約・発信するWebメディア。地域の魅力や暮らしに役立つ情報を、試験運用しながら育てています。",
+    status: "Beta",
+    tags: ["Media", "Local", "Narita"],
+    highlights: [
+      "成田エリアの情報を集約",
+      "ローカル視点での発信",
+      "フィードバックを受けながら改善中",
+    ],
+    links: [
+      { href: "https://narita-guide.com/", label: "Narita Guide", external: true },
+    ],
+  },
 ];
 
 /** トップページ用：表示するプロジェクト（最大2件） */

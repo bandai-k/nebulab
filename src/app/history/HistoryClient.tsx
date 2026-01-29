@@ -15,8 +15,8 @@ type TimelineItem = {
 const timeline: TimelineItem[] = [
     {
         year: "2024",
-        label: "START",
-        title: "NEBULAB 立ち上げ",
+        label: "ORIGIN",
+        title: "NEBULAB 構想",
         desc: "プロダクト開発と拠点づくり（Place）を両輪として、小さく始める。",
         bullets: ["小さく早く試す開発スタイルを定義", "成田を起点に、実験の場を育てる構想を開始"],
     },
@@ -137,7 +137,7 @@ export default function HistoryClient() {
                             className="mt-4 grid gap-3 sm:grid-cols-3"
                         >
                             {[
-                                { k: "START", year: "2024", text: "立ち上げと方向づけ" },
+                                { k: "ORIGIN", year: "2024", text: "構想と方向づけ" },
                                 { k: "NOW", year: "2025", text: "循環の設計へ" },
                                 { k: "NEXT", year: "Future", text: "仕組みを育てる" },
                             ].map((c) => (

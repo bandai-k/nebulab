@@ -153,7 +153,7 @@ export default function AboutClient() {
                                 <div className="grid gap-2 py-4 md:grid-cols-4 md:gap-6">
                                     <dt className="text-sm font-semibold text-[#3d2f24]">活動開始</dt>
                                     <dd className="text-sm text-[#5c4d3c] md:col-span-3">
-                                        2024年
+                                        2025年7月
                                     </dd>
                                 </div>
 

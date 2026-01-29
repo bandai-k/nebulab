@@ -1,33 +1,6 @@
 import Link from "next/link";
 import Card from "@/components/ui/Card";
-
-type NewsItem = {
-    date: string; // YYYY-MM-DD
-    title: string;
-    href: string;
-    tag?: "Release" | "Update" | "Note";
-};
-
-const news: NewsItem[] = [
-    {
-        date: "2026-01-01",
-        title: "NEBULAB コーポレートサイトを公開しました。",
-        href: "/news",
-        tag: "Release",
-    },
-    {
-        date: "2025-12-28",
-        title: "Orbital Steel をブランドサブカラーとして採用しました。",
-        href: "/news",
-        tag: "Update",
-    },
-    {
-        date: "2025-12-20",
-        title: "NRT-LOFT の取り組みを事業ページに追記しました。",
-        href: "/news",
-        tag: "Note",
-    },
-];
+import { getRecentNews, type NewsItem } from "@/constants/news";
 
 const Tag = ({ tag }: { tag?: NewsItem["tag"] }) => {
     if (!tag) return null;
@@ -39,6 +12,8 @@ const Tag = ({ tag }: { tag?: NewsItem["tag"] }) => {
 };
 
 export default function News() {
+    const recentNews = getRecentNews(3);
+
     return (
         <section id="news" className="mx-auto w-full max-w-5xl px-6 pb-16">
             <div className="flex items-end justify-between gap-4">
@@ -58,8 +33,8 @@ export default function News() {
             </div>
 
             <div className="mt-6 grid gap-3">
-                {news.map((item) => (
-                    <Link key={`${item.date}-${item.title}`} href={item.href}>
+                {recentNews.map((item) => (
+                    <Link key={`${item.date}-${item.title}`} href="/news">
                         <Card
                             variant="default"
                             className="p-4 hover:-translate-y-[1px] hover:shadow-sm transition"

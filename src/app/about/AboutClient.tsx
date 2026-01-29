@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
+import { BRAND } from "@/constants/brand";
+import { SLOGAN, MISSION, MISSION_SUPPLEMENT } from "@/constants/mvv";
 
 export default function AboutClient() {
     return (
@@ -127,7 +129,7 @@ export default function AboutClient() {
                                 <div className="grid gap-2 py-4 md:grid-cols-4 md:gap-6">
                                     <dt className="text-sm font-semibold text-[#3d2f24]">屋号</dt>
                                     <dd className="text-sm text-[#5c4d3c] md:col-span-3">
-                                        NEBULAB（ネビュラボ）
+                                        {BRAND.name}（{BRAND.nameKana}）
                                     </dd>
                                 </div>
 
@@ -194,10 +196,10 @@ export default function AboutClient() {
                                     <dt className="text-sm font-semibold text-[#3d2f24]">お問い合わせ</dt>
                                     <dd className="text-sm text-[#5c4d3c] md:col-span-3">
                                         <a
-                                            href="mailto:hello@nebulab.jp"
+                                            href={BRAND.emailMailto}
                                             className="font-medium text-[#b87333] hover:underline"
                                         >
-                                            hello@nebulab.jp
+                                            {BRAND.email}
                                         </a>
                                         <div className="mt-2 text-xs text-[#8b7355]">
                                             または{" "}
@@ -218,12 +220,12 @@ export default function AboutClient() {
                             <section className="rounded-3xl border border-[#ddc9a3] bg-white/60 p-7">
                                 <h2 className="text-lg font-semibold text-[#3d2f24]">理念</h2>
                                 <p className="mt-3 leading-relaxed text-[#5c4d3c]">
-                                    小さくはじめて、確かに積み上げる。
+                                    {SLOGAN}
                                     <br />
-                                    プロダクト開発を軸に、「働く場所」や「学びの場」も含めた環境づくりを行う小さなラボです。
+                                    {MISSION}
                                     <br />
                                     <br />
-                                    成田の拠点（NRT-LOFT）運営をはじめ、集まる・試す・改善する――その循環を設計します。
+                                    {MISSION_SUPPLEMENT}
                                 </p>
 
                                 <div className="mt-5">

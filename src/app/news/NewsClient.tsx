@@ -2,45 +2,13 @@
 
 import Link from "next/link";
 import MotionSection from "@/components/ui/MotionSection";
-import type { NewsItem } from "@/types";
-
-const newsItems: NewsItem[] = [
-    {
-        id: "001",
-        date: "2026-01-03",
-        category: "お知らせ",
-        title: "Webサイトを公開しました",
-        excerpt: "NEBULABの公式サイトをリニューアルしました。",
-    },
-    {
-        id: "002",
-        date: "2024-11-15",
-        category: "イベント",
-        title: "NRT-LOFTオープンのお知らせ",
-        excerpt: "成田に新しい拠点「NRT-LOFT」をオープンしました。",
-    },
-    {
-        id: "003",
-        date: "2024-10-01",
-        category: "お知らせ",
-        title: "NEBULAB 始動",
-        excerpt: "プロダクト開発と拠点づくりを行うNEBULABを始動しました。",
-    },
-];
-
-const categoryColors: Record<string, string> = {
-    お知らせ: "bg-[#e8b86d] text-[#3d2f24]",
-    プレスリリース: "bg-[#d4a574] text-white",
-    イベント: "bg-[#b87333] text-white",
-    メディア: "bg-[#8b7355] text-white",
-};
-
-const categoryHelp: Record<string, string> = {
-    お知らせ: "更新情報・告知",
-    プレスリリース: "対外発表・正式情報",
-    イベント: "開催・参加募集",
-    メディア: "掲載・取材など",
-};
+import { BRAND } from "@/constants/brand";
+import {
+    NEWS_ITEMS,
+    CATEGORY_COLORS,
+    CATEGORY_HELP,
+    type NewsCategory,
+} from "@/constants/news";
 
 function formatDate(dateStr: string) {
     // "YYYY-MM-DD" → "YYYY.MM.DD"
@@ -48,7 +16,7 @@ function formatDate(dateStr: string) {
 }
 
 export default function NewsClient() {
-    const count = newsItems.length;
+    const count = NEWS_ITEMS.length;
 
     return (
         <main className="min-h-dvh bg-[#fff8e7] text-[#3d2f24]">
@@ -60,7 +28,7 @@ export default function NewsClient() {
                         お知らせ
                     </h1>
                     <p className="mt-4 text-sm leading-7 text-[#5c4d3c] sm:text-base">
-                        NEBULABからの最新情報をお届けします。
+                        {BRAND.name}からの最新情報をお届けします。
                     </p>
 
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -93,17 +61,17 @@ export default function NewsClient() {
                             CATEGORIES
                         </div>
                         <div className="mt-3 flex flex-wrap gap-2">
-                            {Object.keys(categoryHelp).map((k) => (
+                            {(Object.keys(CATEGORY_HELP) as NewsCategory[]).map((k) => (
                                 <span
                                     key={k}
                                     className={[
                                         "inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium",
-                                        categoryColors[k] ?? "bg-[#ddd] text-[#3d2f24]",
+                                        CATEGORY_COLORS[k] ?? "bg-[#ddd] text-[#3d2f24]",
                                     ].join(" ")}
-                                    title={categoryHelp[k]}
+                                    title={CATEGORY_HELP[k]}
                                 >
                                     {k}
-                                    <span className="text-[11px] opacity-80">・{categoryHelp[k]}</span>
+                                    <span className="text-[11px] opacity-80">・{CATEGORY_HELP[k]}</span>
                                 </span>
                             ))}
                         </div>
@@ -115,7 +83,7 @@ export default function NewsClient() {
             <MotionSection>
                 <section className="mx-auto w-full max-w-4xl px-6 pb-16">
                     <div className="space-y-4">
-                        {newsItems.map((item) => (
+                        {NEWS_ITEMS.map((item) => (
                             <article
                                 key={item.id}
                                 className="rounded-2xl border border-[#ddc9a3] bg-white/60 p-6 transition hover:bg-white/80"
@@ -125,7 +93,7 @@ export default function NewsClient() {
                                     <span
                                         className={[
                                             "rounded-full px-3 py-1 text-xs font-medium",
-                                            categoryColors[item.category] ?? "bg-[#ddd] text-[#3d2f24]",
+                                            CATEGORY_COLORS[item.category] ?? "bg-[#ddd] text-[#3d2f24]",
                                         ].join(" ")}
                                     >
                                         {item.category}
@@ -141,16 +109,12 @@ export default function NewsClient() {
                                     <p className="mt-2 text-sm leading-7 text-[#5c4d3c]">{item.excerpt}</p>
                                 )}
 
-                                {/* 将来的に詳細ページへ繋げやすい */}
-                                <div className="mt-4 flex items-center justify-between">
-                                    <p className="text-xs text-[#8b7355]">
-                                        ※ 詳細ページは準備中（必要に応じて公開します）
-                                    </p>
+                                <div className="mt-4 flex items-center justify-end">
                                     <Link
                                         href="/contact"
                                         className="text-sm font-medium text-[#b87333] hover:underline"
                                     >
-                                        話を聞く →
+                                        詳しく聞く →
                                     </Link>
                                 </div>
                             </article>

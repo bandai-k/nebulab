@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { BRAND } from "@/constants/brand";
 
 type FormState = {
     name: string;
@@ -44,8 +45,7 @@ export default function ContactForm() {
                 form.message,
             ].join("\n")
         );
-        // ここをあなたの受信先に変える
-        return `mailto:info@nebulab.jp?subject=${subject}&body=${body}`;
+        return `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
     }, [form]);
 
     return (
@@ -100,7 +100,7 @@ export default function ContactForm() {
                 </a>
 
                 <p className="text-xs text-[#5C4D3C]">
-                    ※送信ボタンでメールアプリが起動します（バックエンド不要の暫定運用）
+                    ※ボタンを押すとメールアプリが起動します
                 </p>
             </div>
         </form>

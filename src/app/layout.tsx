@@ -3,11 +3,12 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
+import { BRAND } from "@/constants/brand";
+import { MISSION } from "@/constants/mvv";
 
 export const metadata: Metadata = {
-  title: "NEBULAB - Product & Place Lab",
-  description:
-    "プロダクト開発を軸に、「働く場所」や「学びの場」も含めた環境づくりを行う小さなラボです。",
+  title: `${BRAND.name} - ${BRAND.tagline}`,
+  description: MISSION,
 };
 
 export default function RootLayout({

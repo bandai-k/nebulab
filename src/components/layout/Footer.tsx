@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { BRAND } from "@/constants/brand";
+import { SLOGAN } from "@/constants/mvv";
 
 const footerSections = [
   {
@@ -6,7 +8,7 @@ const footerSections = [
     links: [
       { href: "/#services", label: "事業内容" },
       { href: "/#projects", label: "取り組み" },
-      { href: "https://nrt-loft.jp", label: "NRT-LOFT", external: true },
+      { href: BRAND.nrtLoftUrl, label: "NRT-LOFT", external: true },
     ],
   },
   {
@@ -37,10 +39,10 @@ export default function Footer() {
           {/* ブランド情報 */}
           <div className="space-y-3 md:col-span-1">
             <div className="text-sm font-semibold tracking-[0.14em] text-[#3d2f24]">
-              NEBULAB
+              {BRAND.name}
             </div>
             <p className="text-sm leading-relaxed text-[#5c4d3c]">
-              小さくはじめて、確かに積み上げる。
+              {SLOGAN}
             </p>
           </div>
 
@@ -73,13 +75,13 @@ export default function Footer() {
 
         {/* コピーライト */}
         <div className="mt-10 flex flex-col gap-3 border-t border-[#ddc9a3] pt-6 text-xs text-[#8b7355] md:flex-row md:items-center md:justify-between">
-          <div>© {year} NEBULAB. All rights reserved.</div>
+          <div>© {year} {BRAND.name}. All rights reserved.</div>
           <div className="flex items-center gap-4">
             <a
-              href="mailto:hello@nebulab.jp"
+              href={BRAND.emailMailto}
               className="hover:text-[#3d2f24]"
             >
-              hello@nebulab.jp
+              {BRAND.email}
             </a>
           </div>
         </div>

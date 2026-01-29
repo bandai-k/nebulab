@@ -2,7 +2,8 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Pill from "@/components/ui/Pill";
 import { motion } from "framer-motion";
-
+import { BRAND } from "@/constants/brand";
+import { VISION_TAGLINE } from "@/constants/mvv";
 
 export default function Hero() {
   return (
@@ -16,13 +17,13 @@ export default function Hero() {
       <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:items-center">
         <div>
           <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-            つくる。整える。
+            {VISION_TAGLINE.split("。").slice(0, 2).join("。")}。
             <br className="hidden sm:block" />
-            そして、循環させる。
+            {VISION_TAGLINE.split("。").slice(2).join("。")}
           </h1>
 
           <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-[#5c4d3c] sm:text-lg">
-            NEBULAB(ネビュラボ)は、プロダクト開発を軸に、
+            {BRAND.name}({BRAND.nameKana})は、プロダクト開発を軸に、
             <span className="font-semibold text-[#3d2f24]">「働く場所」や「学びの場」</span>
             も含めた環境づくりを行う小さなラボです。
             拠点(NRT-LOFT)運営をはじめ、集まる・試す・改善する――その循環を設計します。
@@ -33,7 +34,7 @@ export default function Hero() {
               相談する
             </Button>
 
-            <Button as="a" href="https://nrt-loft.jp" variant="secondary">
+            <Button as="a" href={BRAND.nrtLoftUrl} variant="secondary">
               NRT-LOFTを見る
             </Button>
           </div>

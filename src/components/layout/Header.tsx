@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import MobileNav from "@/components/layout/MobileNav";
+import { BRAND } from "@/constants/brand";
 
 type SubItem = { href: string; label: string };
 type NavItem = {
@@ -38,7 +39,7 @@ const NAV: NavItem[] = [
   { key: "services", href: "/services", label: "Services", submenu: servicesSubmenu },
   { key: "projects", href: "/projects", label: "Projects", submenu: projectsSubmenu },
   { key: "news", href: "/news", label: "News", submenu: newsSubmenu },
-  { key: "nrt-loft", href: "https://nrt-loft.jp", label: "NRT-LOFT", external: true },
+  { key: "nrt-loft", href: BRAND.nrtLoftUrl, label: "NRT-LOFT", external: true },
 ];
 
 export default function Header() {
@@ -155,10 +156,10 @@ export default function Header() {
             {/* 文字：モバイルでも会社名は表示 */}
             <span className="flex flex-col leading-tight">
               <span className="text-base font-semibold tracking-[0.16em] text-[#3d2f24] sm:text-xl">
-                NEBULAB
+                {BRAND.name}
               </span>
               <span className="hidden text-xs text-[#8b7355] sm:block">
-                Product &amp; Place Lab
+                {BRAND.tagline}
               </span>
             </span>
           </Link>

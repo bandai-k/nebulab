@@ -1,5 +1,6 @@
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
+import { BRAND } from "@/constants/brand";
 
 export default function Contact() {
   return (
@@ -14,11 +15,11 @@ export default function Contact() {
         </p>
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-          <Button as="a" href="mailto:hello@nebulab.jp" variant="primary">
-            hello@nebulab.jp にメール
+          <Button as="a" href={BRAND.emailMailto} variant="primary">
+            {BRAND.email} にメール
           </Button>
-          <Button as="a" href="#" variant="secondary">
-            (準備中)問い合わせフォーム
+          <Button as="a" href="/contact" variant="secondary">
+            フォームから相談する
           </Button>
         </div>
       </Card>

@@ -5,6 +5,9 @@
 
 export type ProjectStatus = "Active" | "Beta" | "Draft" | "Done";
 
+/** 分類用 kind（情報設計の整理用） */
+export type ProjectKind = "place" | "process" | "product" | "media" | "insight";
+
 export type Project = {
   slug: string;
   title: string;
@@ -14,6 +17,8 @@ export type Project = {
   description: string;
   /** ステータス */
   status: ProjectStatus;
+  /** 分類（place / process / product / media / insight） */
+  kind: ProjectKind;
   /** タグ（複数可） */
   tags: string[];
   /** ハイライト項目 */
@@ -33,6 +38,7 @@ export const PROJECTS: Project[] = [
     description:
       "生活リズムと集中を守るための運用設計。場のルール、導線、居心地、継続性を「仕組み」として整えています。",
     status: "Active",
+    kind: "place",
     tags: ["Place", "Ops", "Community"],
     highlights: [
       "紹介制に近い運用",
@@ -50,6 +56,7 @@ export const PROJECTS: Project[] = [
     description:
       "案件・プロダクトで得た知見を、再利用できるテンプレートとして整備。仕様整理、運用手順、改善サイクルの型を作ります。",
     status: "Active",
+    kind: "process",
     tags: ["Product", "Docs", "Process"],
     highlights: [
       "仕様整理の型",
@@ -63,10 +70,12 @@ export const PROJECTS: Project[] = [
     title: "小さなプロダクト群",
     catchphrase: "小さく出して、育てる。",
     description:
-      "公開可能な形に整い次第、順次リリース予定。学びを蓄積し、次の改善につなげます。",
+      "公開可能な形に整い次第、順次リリース予定。CaptureBox（開発中）など、学びを蓄積し次の改善につなげます。",
     status: "Draft",
+    kind: "product",
     tags: ["Product", "Prototype", "Iterate"],
     highlights: [
+      "CaptureBox: 思考を素早く溜めるためのツール（開発中）",
       "小さく公開 → 反応で改善",
       "運用コストを意識した設計",
       "積み上げて資産化",
@@ -80,6 +89,7 @@ export const PROJECTS: Project[] = [
     description:
       "試行錯誤のログを残し、どこで何を学んだかを可視化。失敗も含めて、次の判断材料にします。",
     status: "Beta",
+    kind: "insight",
     tags: ["Insights", "Learning", "Log"],
     highlights: [
       "検証→学び→型化",
@@ -95,6 +105,7 @@ export const PROJECTS: Project[] = [
     description:
       "成田エリアの情報を集約・発信するWebメディア。地域の魅力や暮らしに役立つ情報を、試験運用しながら育てています。",
     status: "Beta",
+    kind: "media",
     tags: ["Media", "Local", "Narita"],
     highlights: [
       "成田エリアの情報を集約",
@@ -112,6 +123,18 @@ export const getTopProjects = (count = 2): Project[] => {
   // Activeのものを優先して取得
   const active = PROJECTS.filter((p) => p.status === "Active");
   return active.slice(0, count);
+};
+
+/** Products ページ用：product / process / media を取得 */
+export const getProductItems = (): Project[] => {
+  return PROJECTS.filter(
+    (p) => p.kind === "product" || p.kind === "process" || p.kind === "media"
+  );
+};
+
+/** kind でフィルタする汎用 helper */
+export const getProjectsByKind = (kinds: ProjectKind[]): Project[] => {
+  return PROJECTS.filter((p) => kinds.includes(p.kind));
 };
 
 /** ステータスバッジの定義 */

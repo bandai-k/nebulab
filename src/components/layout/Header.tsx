@@ -5,42 +5,11 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import MobileNav from "@/components/layout/MobileNav";
 import { BRAND } from "@/constants/brand";
-
-type SubItem = { href: string; label: string };
-type NavItem = {
-  key: string;
-  href: string;
-  label: string;
-  external?: boolean;
-  submenu?: SubItem[];
-};
+import { HEADER_NAV } from "@/constants/navigation";
 
 const CONTACT_HREF = "/contact";
 const CLOSE_DELAY_MS = 140;
 const HOVER_CLOSE_DELAY_MS = 160;
-
-const aboutSubmenu: SubItem[] = [
-  { href: "/about", label: "会社概要" },
-  { href: "/history", label: "歩み" },
-  { href: "/philosophy", label: "思想" },
-];
-
-const servicesSubmenu: SubItem[] = [{ href: "/services", label: "事業内容" }];
-
-const projectsSubmenu: SubItem[] = [
-  { href: "/projects", label: "Projects" },
-  { href: "/insights", label: "Insights" },
-];
-
-const newsSubmenu: SubItem[] = [{ href: "/news", label: "お知らせ" }];
-
-const NAV: NavItem[] = [
-  { key: "about", href: "/about", label: "About", submenu: aboutSubmenu },
-  { key: "services", href: "/services", label: "Services", submenu: servicesSubmenu },
-  { key: "projects", href: "/projects", label: "Projects", submenu: projectsSubmenu },
-  { key: "news", href: "/news", label: "News", submenu: newsSubmenu },
-  { key: "nrt-loft", href: BRAND.nrtLoftUrl, label: "NRT-LOFT", external: true },
-];
 
 export default function Header() {
   const [openKey, setOpenKey] = useState<string | null>(null);
@@ -65,7 +34,7 @@ export default function Header() {
   const mobileNav = useMemo(() => {
     const flat: Array<{ href: string; label: string; external?: boolean }> = [];
 
-    for (const item of NAV) {
+    for (const item of HEADER_NAV) {
       if (item.submenu?.length) {
         flat.push({ href: item.href, label: item.label });
         for (const sub of item.submenu) {
@@ -166,7 +135,7 @@ export default function Header() {
 
           {/* PCナビ（ドロップダウン） */}
           <nav className="hidden items-center gap-6 md:flex" aria-label="Global navigation">
-            {NAV.map((item) => {
+            {HEADER_NAV.map((item) => {
               const hasSub = !!item.submenu?.length;
               const isOpen = openKey === item.key && hasSub;
 

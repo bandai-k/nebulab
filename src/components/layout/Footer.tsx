@@ -1,33 +1,7 @@
 import Link from "next/link";
 import { BRAND } from "@/constants/brand";
 import { SLOGAN } from "@/constants/mvv";
-
-const footerSections = [
-  {
-    title: "サービス",
-    links: [
-      { href: "/#services", label: "事業内容" },
-      { href: "/#projects", label: "取り組み" },
-      { href: BRAND.nrtLoftUrl, label: "NRT-LOFT", external: true },
-    ],
-  },
-  {
-    title: "企業情報",
-    links: [
-      { href: "/about", label: "会社概要" },
-      { href: "/news", label: "お知らせ" },
-      { href: "/#contact", label: "お問い合わせ" },
-    ],
-  },
-  {
-    title: "その他",
-    links: [
-      { href: "/sitemap", label: "サイトマップ" },
-      { href: "/privacy", label: "プライバシーポリシー" },
-      { href: "/terms", label: "利用規約" },
-    ],
-  },
-];
+import { FOOTER_SECTIONS } from "@/constants/navigation";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -47,7 +21,7 @@ export default function Footer() {
           </div>
 
           {/* リンクセクション */}
-          {footerSections.map((section) => (
+          {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="space-y-3">
               <h3 className="text-sm font-semibold text-[#3d2f24]">
                 {section.title}

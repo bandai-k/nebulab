@@ -1,50 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SITEMAP_SECTIONS } from "@/constants/navigation";
 
 export const metadata: Metadata = {
   title: "サイトマップ - NEBULAB",
   description: "NEBULABのサイトマップです。",
 };
-
-type SitemapLink = {
-  href: string;
-  label: string;
-  external?: boolean;
-};
-
-const sitemapSections: { title: string; links: SitemapLink[] }[] = [
-  {
-    title: "トップページ",
-    links: [
-      { href: "/", label: "ホーム" },
-      { href: "/about", label: "NEBULABについて" },
-      { href: "/services", label: "事業内容" },
-      { href: "/projects", label: "取り組み" },
-      { href: "/contact", label: "お問い合わせ" },
-    ],
-  },
-  {
-    title: "企業情報",
-    links: [
-      { href: "/about", label: "会社概要" },
-      { href: "/news", label: "お知らせ" },
-    ],
-  },
-  {
-    title: "サービス・プロジェクト",
-    links: [
-      { href: "https://nrt-loft.jp", label: "NRT-LOFT", external: true },
-    ],
-  },
-  {
-    title: "法的情報",
-    links: [
-      { href: "/privacy", label: "プライバシーポリシー" },
-      { href: "/terms", label: "利用規約" },
-      { href: "/sitemap", label: "サイトマップ" },
-    ],
-  },
-];
 
 export default function SitemapPage() {
   return (
@@ -56,7 +17,7 @@ export default function SitemapPage() {
         </p>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">
-          {sitemapSections.map((section) => (
+          {SITEMAP_SECTIONS.map((section) => (
             <section
               key={section.title}
               className="rounded-2xl border border-[#ddc9a3] bg-white/60 p-6"

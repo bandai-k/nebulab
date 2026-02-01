@@ -39,7 +39,7 @@ export default function ProjectsClient() {
                     </div>
 
                     <div className="mt-5 space-y-4">
-                        {PROJECTS.map((p) => (
+                        {PROJECTS.filter((p) => p.kind === "place" || p.kind === "insight").map((p) => (
                             <div
                                 key={p.slug}
                                 className="rounded-2xl border border-[#ddc9a3] bg-white/60 p-7"

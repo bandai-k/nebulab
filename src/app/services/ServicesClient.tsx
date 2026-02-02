@@ -22,18 +22,23 @@ type Step = {
 
 const highlights: Highlight[] = [
     {
-        title: "Web / App 開発",
-        desc: "要件の言語化から設計・実装・運用まで。小さく出して学び、次の改善につなげます。",
-        image: "/images/service-dev.jpg",
-    },
-    {
-        title: "プロダクト改善・内製化支援",
-        desc: "仕様整理、UI/UX、開発フロー設計。現場で回る形に整え、継続できる体制へ。",
+        title: "集客・導線の整備",
+        desc: "見つかる→選ばれる→行動される導線を整えます。Googleマップ（GBP）やサイトの入口改善まで。",
         image: "/images/service-improve.jpg",
     },
     {
+        title: "運用が回る仕組み化",
+        desc: "手順・更新の型・役割を整え、継続できる運用へ。内製化支援も含みます。",
+        image: "/images/service-place.jpg",
+    },
+    {
+        title: "必要な分だけ実装",
+        desc: "開発は手段。目的と制約に合わせて、最小構成で小さく実装します。",
+        image: "/images/service-dev.jpg",
+    },
+    {
         title: "Place / Work Design",
-        desc: "拠点（NRT-LOFT）での実践知をベースに、働き方・環境設計の意思決定を支援。",
+        desc: "拠点（NRT-LOFT）の実践知をベースに、働き方・環境設計の意思決定を支援します。",
         image: "/images/service-place.jpg",
     },
 ];
@@ -109,12 +114,12 @@ export default function ServicesClient() {
             <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-12">
                 <Reveal>
                     <div className="flex items-end justify-between gap-4">
-                        <h2 className="text-lg font-semibold text-[#3d2f24]">提供領域</h2>
-                        <span className="text-xs text-[#8b7355]">必要なところから柔軟に</span>
+                        <h2 className="text-lg font-semibold text-[#3d2f24]">支援の軸</h2>
+                        <span className="text-xs text-[#8b7355]">目的 → 手段の順で整理</span>
                     </div>
                 </Reveal>
 
-                <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {highlights.map((h, i) => (
                         <Reveal key={h.title} delayMs={80 * i}>
                             <Card className="overflow-hidden p-0">
@@ -137,12 +142,12 @@ export default function ServicesClient() {
                 </div>
             </section>
 
-            {/* 専門サービス */}
+            {/* まずはここから */}
             <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-8">
                 <Reveal>
                     <div className="flex items-end justify-between gap-4">
-                        <h2 className="text-lg font-semibold text-[#3d2f24]">専門サービス</h2>
-                        <span className="text-xs text-[#8b7355]">特化型の支援</span>
+                        <h2 className="text-lg font-semibold text-[#3d2f24]">まずはここから</h2>
+                        <span className="text-xs text-[#8b7355]">最短で効く、導線の整備</span>
                     </div>
                 </Reveal>
 
@@ -160,9 +165,15 @@ export default function ServicesClient() {
                                     Googleビジネスプロフィールの整備・運用・導線改善で、電話・経路・予約につなげます。
                                     順位保証ではなく「行動導線」を改善するアプローチ。
                                 </p>
+                                <Link
+                                    href="/contact?topic=meo"
+                                    className="mt-2 inline-block text-sm text-[#b87333] underline underline-offset-2 hover:text-[#a0622b]"
+                                >
+                                    → 今すぐ無料診断を申し込む
+                                </Link>
                             </div>
                             <Button as="a" href="/services/meo" variant="primary" className="shrink-0">
-                                詳しく見る
+                                無料診断の内容を見る
                             </Button>
                         </div>
                     </Card>

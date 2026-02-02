@@ -9,21 +9,27 @@ type ServiceEx = Service & {
 
 const services: ServiceEx[] = [
   {
-    title: "Web / App 開発",
-    desc: "Next.js / React / TypeScript を中心に、設計から実装、運用まで。要件に向き合い、最短距離でプロダクトを形にします。",
-    points: ["要件整理〜設計", "実装・レビュー", "運用/改善ループ"],
+    title: "集客・導線の整備（Googleマップ / Web）",
+    desc: "見つかる→選ばれる→行動される導線を整えます。Googleビジネスプロフィールの最適化や、サイト/予約/問い合わせの入口改善まで。",
+    points: ["現状診断（15分）", "導線の改善案＋実装", "運用テンプレ（投稿/返信）"],
     featured: true,
     label: "Core",
   },
   {
     title: "プロダクト改善・内製化支援",
-    desc: "仕様整理、UI/UX、開発フロー設計まで含めた改善支援。小さく試し、継続的に回せる体制づくりを支えます。",
-    points: ["仕様の棚卸し", "UI/UX改善", "開発フロー最適化"],
+    desc: "仕様整理、UI/UX、運用設計まで含めた改善支援。小さく試し、継続的に回せる体制づくりを支えます。",
+    points: ["仕様の棚卸し", "UI/UX改善", "運用が回る手順化"],
     label: "Improve",
   },
   {
+    title: "必要な分だけ実装（Web / App）",
+    desc: "開発は手段。目的と制約に合わせて、最小構成で実装します。小さく出して学び、改善につなげます。",
+    points: ["最小構成で実装", "品質担保（レビュー/設計）", "改善サイクルに接続"],
+    label: "Build",
+  },
+  {
     title: "Place / Work Design",
-    desc: "実拠点（NRT-LOFT）での実践を通じて得た、働き方・環境設計の知見を、チームや現場に還元します。",
+    desc: "拠点（NRT-LOFT）の実践知をベースに、働き方・環境設計の意思決定を支援します。",
     points: ["場の設計/運営", "学びの導線づくり", "コミュニティ支援"],
     label: "Place",
   },
@@ -47,19 +53,19 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="mt-5 grid gap-4 sm:grid-cols-3">
+      <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((s) => (
           <Card
             key={s.title}
             variant="highlight"
             className={[
-              "relative p-6",
+              "relative overflow-visible p-6",
               s.featured ? "ring-1 ring-[#b87333]/30" : "",
             ].join(" ")}
           >
-            {/* ラベル */}
+            {/* ラベル（コーナーバッジ） */}
             {s.label && (
-              <span className="absolute right-4 top-4 rounded-full border border-[#ddc9a3] bg-[#fff8e7] px-3 py-1 text-[11px] font-semibold text-[#8b7355]">
+              <span className="absolute right-3 top-0 -translate-y-1/2 z-10 rounded-full border border-[#ddc9a3] bg-[#fff8e7] px-3 py-1 text-[11px] font-semibold text-[#8b7355] shadow-sm">
                 {s.label}
               </span>
             )}

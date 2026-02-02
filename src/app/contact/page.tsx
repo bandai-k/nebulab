@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ContactForm from "@/components/pages/ContactForm";
 
 export const metadata = {
@@ -15,7 +16,9 @@ export default function ContactPage() {
                 </p>
 
                 <div className="mt-8">
-                    <ContactForm />
+                    <Suspense fallback={<div className="text-sm text-[#8b7355]">読み込み中...</div>}>
+                        <ContactForm />
+                    </Suspense>
                 </div>
             </div>
         </main>

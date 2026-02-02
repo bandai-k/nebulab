@@ -49,6 +49,7 @@ const aboutSubmenu: NavSubItem[] = [
 
 const servicesSubmenu: NavSubItem[] = [
   { href: "/services", label: "事業内容" },
+  { href: "/services/meo", label: "Googleマップ集客" },
 ];
 
 const projectsSubmenu: NavSubItem[] = [
@@ -80,6 +81,7 @@ export const FOOTER_SECTIONS: NavSection[] = [
     title: "サービス",
     links: [
       { href: "/#services", label: "事業内容" },
+      { href: "/services/meo", label: "Googleマップ集客" },
       { href: "/#projects", label: "取り組み" },
       { href: "/products", label: "Products" },
       { href: BRAND.nrtLoftUrl, label: "NRT-LOFT", external: true },
@@ -115,6 +117,7 @@ export const SITEMAP_SECTIONS: NavSection[] = [
       { href: "/", label: "ホーム" },
       { href: "/about", label: "会社概要" },
       { href: "/services", label: "事業内容" },
+      { href: "/services/meo", label: "Googleマップ集客" },
       { href: "/projects", label: "取り組み" },
       { href: "/contact", label: "お問い合わせ" },
     ],

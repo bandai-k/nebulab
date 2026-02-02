@@ -137,6 +137,38 @@ export default function ServicesClient() {
                 </div>
             </section>
 
+            {/* 専門サービス */}
+            <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-8">
+                <Reveal>
+                    <div className="flex items-end justify-between gap-4">
+                        <h2 className="text-lg font-semibold text-[#3d2f24]">専門サービス</h2>
+                        <span className="text-xs text-[#8b7355]">特化型の支援</span>
+                    </div>
+                </Reveal>
+
+                <Reveal delayMs={80}>
+                    <Card variant="highlight" className="mt-5 p-6">
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <span className="text-sm font-semibold text-[#3d2f24]">
+                                        Googleマップ集客（MEO）
+                                    </span>
+                                    <Pill>NEW</Pill>
+                                </div>
+                                <p className="mt-2 max-w-xl text-sm leading-6 text-[#5c4d3c]">
+                                    Googleビジネスプロフィールの整備・運用・導線改善で、電話・経路・予約につなげます。
+                                    順位保証ではなく「行動導線」を改善するアプローチ。
+                                </p>
+                            </div>
+                            <Button as="a" href="/services/meo" variant="primary" className="shrink-0">
+                                詳しく見る
+                            </Button>
+                        </div>
+                    </Card>
+                </Reveal>
+            </section>
+
             {/* 既存 Services セクション */}
             <Reveal>
                 <Services />

@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { BRAND } from "@/constants/brand";
 
 type FormState = {
@@ -17,8 +18,37 @@ const initial: FormState = {
     message: "",
 };
 
+/** topic に応じたプリフィル設定 */
+const TOPIC_PREFILLS: Record<string, { subject: string; message: string }> = {
+    meo: {
+        subject: "【無料診断】Googleマップ集客（MEO）の相談",
+        message: `以下を分かる範囲で教えてください。
+
+・店舗名/屋号：
+・住所（任意）：
+・GoogleマップURL（任意）：
+・WebサイトURL（任意）：
+・目的（電話/経路/予約/問い合わせ）：
+・現状の悩み：
+・希望（初期整備のみ / 初期整備＋運用）：
+`,
+    },
+};
+
 export default function ContactForm() {
+    const searchParams = useSearchParams();
+    const topic = searchParams.get("topic");
+    const prefill = topic ? TOPIC_PREFILLS[topic] : null;
+
     const [form, setForm] = useState<FormState>(initial);
+
+    // topic に応じてメッセージをプリフィル
+    useEffect(() => {
+        if (prefill && !form.message) {
+            setForm((prev) => ({ ...prev, message: prefill.message }));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [prefill]);
 
     const canSend = useMemo(() => {
         if (!form.name.trim()) return false;
@@ -34,7 +64,8 @@ export default function ContactForm() {
             };
 
     const mailtoHref = useMemo(() => {
-        const subject = encodeURIComponent("【NEBULAB】お問い合わせ");
+        const subjectText = prefill?.subject ?? "【NEBULAB】お問い合わせ";
+        const subject = encodeURIComponent(subjectText);
         const body = encodeURIComponent(
             [
                 `お名前：${form.name}`,
@@ -46,7 +77,7 @@ export default function ContactForm() {
             ].join("\n")
         );
         return `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
-    }, [form]);
+    }, [form, prefill]);
 
     return (
         <form className="grid gap-4">

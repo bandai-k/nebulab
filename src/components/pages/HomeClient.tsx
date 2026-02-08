@@ -5,12 +5,13 @@ import { useCallback, useEffect, useState } from "react";
 
 import Background from "@/components/ui/Background";
 import Hero from "@/components/sections/Hero";
+import PainPoints from "@/components/sections/PainPoints";
 import Services from "@/components/sections/Services";
-import Projects from "@/components/sections/Projects";
-import News from "@/components/sections/News";
-import About from "@/components/sections/About";
+import Process from "@/components/sections/Process";
+import Promises from "@/components/sections/Promises";
+import NrtLoftIntro from "@/components/sections/NrtLoftIntro";
+import BottomCta from "@/components/sections/BottomCta";
 import MotionSection from "@/components/ui/MotionSection";
-// Contact はトップから外す
 
 const IntroOverlay = dynamic(() => import("@/components/ui/IntroOverlay"), {
     ssr: false,
@@ -48,7 +49,7 @@ export default function HomeClient() {
             </MotionSection>
 
             <MotionSection delay={0.05}>
-                <About />
+                <PainPoints />
             </MotionSection>
 
             <MotionSection delay={0.05}>
@@ -56,14 +57,20 @@ export default function HomeClient() {
             </MotionSection>
 
             <MotionSection delay={0.05}>
-                <Projects />
+                <Process />
             </MotionSection>
 
             <MotionSection delay={0.05}>
-                <News />
+                <Promises />
             </MotionSection>
 
+            <MotionSection delay={0.05}>
+                <NrtLoftIntro />
+            </MotionSection>
 
+            <MotionSection delay={0.05}>
+                <BottomCta />
+            </MotionSection>
         </main>
     );
 }

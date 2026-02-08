@@ -41,34 +41,17 @@ export type NavSection = {
 // Header 用
 // ============================================================
 
-const aboutSubmenu: NavSubItem[] = [
-  { href: "/about", label: "会社概要" },
-  { href: "/history", label: "歩み" },
-  { href: "/philosophy", label: "思想" },
-];
-
 const servicesSubmenu: NavSubItem[] = [
-  { href: "/services", label: "事業内容" },
+  { href: "/services", label: "サービス一覧" },
   { href: "/services/meo", label: "Googleマップ集客" },
-];
-
-const projectsSubmenu: NavSubItem[] = [
-  { href: "/projects", label: "Projects" },
-  { href: "/products", label: "Products" },
-  { href: "/insights", label: "Insights" },
-];
-
-const newsSubmenu: NavSubItem[] = [
-  { href: "/news", label: "お知らせ" },
 ];
 
 /** Header 用ナビゲーション */
 export const HEADER_NAV: HeaderNavItem[] = [
-  { key: "about", href: "/about", label: "About", submenu: aboutSubmenu },
-  { key: "services", href: "/services", label: "Services", submenu: servicesSubmenu },
-  { key: "projects", href: "/projects", label: "Projects", submenu: projectsSubmenu },
-  { key: "news", href: "/news", label: "News", submenu: newsSubmenu },
-  { key: "nrt-loft", href: BRAND.nrtLoftUrl, label: "NRT-LOFT", external: true },
+  { key: "services", href: "/services", label: "サービス", submenu: servicesSubmenu },
+  { key: "about", href: "/about", label: "NEBULABについて" },
+  { key: "nrt-loft", href: "/nrt-loft", label: "NRT LOFT" },
+  { key: "news", href: "/news", label: "お知らせ" },
 ];
 
 // ============================================================
@@ -80,25 +63,22 @@ export const FOOTER_SECTIONS: NavSection[] = [
   {
     title: "サービス",
     links: [
-      { href: "/#services", label: "事業内容" },
+      { href: "/services", label: "サービス一覧" },
       { href: "/services/meo", label: "Googleマップ集客" },
-      { href: "/#projects", label: "取り組み" },
-      { href: "/products", label: "Products" },
-      { href: BRAND.nrtLoftUrl, label: "NRT-LOFT", external: true },
     ],
   },
   {
     title: "企業情報",
     links: [
-      { href: "/about", label: "会社概要" },
+      { href: "/about", label: "NEBULABについて" },
+      { href: "/nrt-loft", label: "NRT LOFT" },
       { href: "/news", label: "お知らせ" },
-      { href: "/contact", label: "お問い合わせ" },
     ],
   },
   {
     title: "その他",
     links: [
-      { href: "/sitemap", label: "サイトマップ" },
+      { href: "/contact", label: "お問い合わせ" },
       { href: "/privacy", label: "プライバシーポリシー" },
       { href: "/terms", label: "利用規約" },
     ],
@@ -109,34 +89,24 @@ export const FOOTER_SECTIONS: NavSection[] = [
 // Sitemap 用
 // ============================================================
 
-/** Sitemap 用セクション（欠損ページ追加済み） */
+/** Sitemap 用セクション */
 export const SITEMAP_SECTIONS: NavSection[] = [
   {
     title: "メインページ",
     links: [
       { href: "/", label: "ホーム" },
-      { href: "/about", label: "会社概要" },
-      { href: "/services", label: "事業内容" },
+      { href: "/services", label: "サービス一覧" },
       { href: "/services/meo", label: "Googleマップ集客" },
-      { href: "/projects", label: "取り組み" },
       { href: "/contact", label: "お問い合わせ" },
     ],
   },
   {
     title: "企業情報",
     links: [
-      { href: "/history", label: "歩み" },
-      { href: "/philosophy", label: "思想" },
+      { href: "/about", label: "NEBULABについて" },
+      { href: "/nrt-loft", label: "NRT LOFT" },
+      { href: BRAND.nrtLoftUrl, label: "NRT-LOFT 公式サイト", external: true },
       { href: "/news", label: "お知らせ" },
-      { href: "/recruit", label: "採用情報" },
-    ],
-  },
-  {
-    title: "コンテンツ",
-    links: [
-      { href: "/products", label: "Products" },
-      { href: "/insights", label: "Insights" },
-      { href: BRAND.nrtLoftUrl, label: "NRT-LOFT", external: true },
     ],
   },
   {

@@ -19,6 +19,7 @@ type Feature = {
 type Plan = {
     name: string;
     price: string;
+    priceNote: string;
     desc: string;
     features: string[];
     recommended?: boolean;
@@ -36,30 +37,30 @@ type Faq = {
 
 const features: Feature[] = [
     {
-        title: "Googleビジネスプロフィール整備",
-        desc: "検索結果で選ばれるために、情報の質と鮮度を整えます。",
+        title: "Googleビジネスプロフィールの整備",
+        desc: "お店の情報を正しく、魅力的に整えます。",
         points: [
-            "基本情報・カテゴリの最適化",
-            "写真・投稿の定期更新",
-            "口コミ返信の運用設計",
+            "営業時間・住所・電話番号の最適化",
+            "メニュー・写真のアップロード",
+            "カテゴリ設定の見直し",
         ],
     },
     {
         title: "運用サポート・改善提案",
-        desc: "数値を見ながら、次のアクションを一緒に考えます。",
+        desc: "数字を見ながら、次にやることを一緒に考えます。",
         points: [
-            "月次レポート（検索/閲覧/行動）",
-            "競合分析と改善提案",
-            "投稿・写真の運用代行",
+            "毎月の閲覧数・来店数レポート",
+            "口コミへの返信テンプレート作成",
+            "投稿・写真の定期更新サポート",
         ],
     },
     {
-        title: "導線整備・予約連携",
-        desc: "見つけてもらった後、行動につなげる導線を整えます。",
+        title: "予約・問い合わせにつなげる導線",
+        desc: "見つけてもらった後に、電話や予約につなげます。",
         points: [
-            "予約ボタン・メニュー連携",
+            "予約ボタン・メニューリンクの設置",
+            "電話・経路ボタンの最適な配置",
             "WebサイトやSNSとの接続",
-            "電話/経路ボタンの最適配置",
         ],
     },
 ];
@@ -67,31 +68,34 @@ const features: Feature[] = [
 const plans: Plan[] = [
     {
         name: "ライト",
-        price: "9,800",
-        desc: "まずは整備だけ。自分で運用したい方向け。",
+        price: "5,000",
+        priceNote: "円/月",
+        desc: "まずは情報を整えたい方向け。",
         features: [
-            "初期整備（1回）",
-            "基本情報・カテゴリ最適化",
+            "Googleビジネスプロフィール初期整備",
+            "基本情報・カテゴリの最適化",
             "写真アップロード（10枚まで）",
-            "運用マニュアル提供",
+            "口コミ返信テンプレート提供",
         ],
     },
     {
         name: "スタンダード",
-        price: "29,800",
-        desc: "整備＋月次レポートで改善サイクルを回す。",
+        price: "10,000",
+        priceNote: "円/月",
+        desc: "整備＋毎月の改善サポート。",
         features: [
             "ライトの内容すべて",
-            "月次レポート（検索/閲覧/行動）",
+            "毎月の閲覧数・来店数レポート",
             "改善提案（月1回）",
-            "口コミ返信テンプレート作成",
+            "投稿・写真の更新サポート",
         ],
         recommended: true,
     },
     {
         name: "プロ",
-        price: "49,800",
-        desc: "投稿・写真の運用代行まで。手離れしたい方向け。",
+        price: "15,000",
+        priceNote: "円/月",
+        desc: "投稿・更新もおまかせしたい方向け。",
         features: [
             "スタンダードの内容すべて",
             "投稿代行（月4回）",
@@ -103,43 +107,43 @@ const plans: Plan[] = [
 
 const steps: Step[] = [
     {
-        title: "無料診断",
-        desc: "現状のGoogleビジネスプロフィールを15分で診断。改善ポイントをお伝えします。",
+        title: "お問い合わせ",
+        desc: "フォームからお気軽にご連絡ください。現状のお悩みを教えてください。",
     },
     {
-        title: "プラン提案",
-        desc: "目的と予算に合わせて、最適なプランをご提案します。",
+        title: "無料ヒアリング",
+        desc: "お店にお伺いして、Googleマップの現状を一緒に確認します。",
+    },
+    {
+        title: "ご提案・お見積り",
+        desc: "お店に合ったプランを分かりやすくご説明します。",
     },
     {
         title: "整備・運用開始",
-        desc: "初期整備を実施し、運用をスタート。最短1週間で公開できます。",
-    },
-    {
-        title: "改善サイクル",
-        desc: "月次レポートをもとに、次の改善アクションを一緒に決めます。",
+        desc: "初期整備を実施し、運用をスタート。最短1週間で反映されます。",
     },
 ];
 
 const faqs: Faq[] = [
     {
-        q: "順位保証はありますか？",
-        a: "順位保証はしていません。Googleのアルゴリズムは公開されておらず、順位を確約することは不可能です。代わりに「検索→閲覧→行動」の導線全体を改善し、電話・経路・予約などの成果につなげます。",
+        q: "「Googleマップで上位に表示される」って保証できるの？",
+        a: "表示順位の保証はできません。Googleの仕組み上、順位を確約することは誰にもできません。代わりに、お店の情報を正しく整えて、見つけてもらいやすく・選ばれやすくすることをお手伝いします。",
     },
     {
         q: "どのくらいで効果が出ますか？",
-        a: "業種や競合状況によりますが、整備後1〜3ヶ月で検索表示回数や閲覧数の変化が見えてくることが多いです。行動（電話・経路）への影響はさらに時間がかかる場合があります。",
+        a: "業種や競合の状況によりますが、整備後1〜3ヶ月で検索表示回数やお店の閲覧数に変化が見えてくることが多いです。",
     },
     {
-        q: "口コミを増やす施策はありますか？",
-        a: "口コミ依頼の仕組みづくり（声かけのタイミング、QRコード設置など）をご提案します。ただし、口コミの購入や不正なレビュー誘導は行いません。",
+        q: "口コミを増やしたいのですが…",
+        a: "口コミをお願いする声かけのタイミングや、QRコードの設置など、自然に口コミが集まる仕組みづくりをご提案します。口コミの購入や不正な方法は一切行いません。",
     },
     {
-        q: "複数店舗でも対応できますか？",
-        a: "はい、対応可能です。店舗数に応じたボリュームディスカウントもご用意しています。まずは1店舗から始めて、効果を見てから拡大することをおすすめします。",
+        q: "パソコンが苦手でも大丈夫？",
+        a: "もちろん大丈夫です。初期整備から運用まで、すべてこちらで対応できます。お店では普段通りのお仕事に集中してください。",
     },
     {
-        q: "契約期間の縛りはありますか？",
-        a: "ライトプランは単発、スタンダード・プロは月額契約（最低3ヶ月〜）です。3ヶ月以降はいつでも解約可能です。",
+        q: "契約の縛りはある？",
+        a: "最低契約期間は3ヶ月です。3ヶ月以降はいつでも解約可能です。まずは3ヶ月試してみて、効果を確認してから継続するかお決めいただけます。",
     },
     {
         q: "営業電話はかかってきますか？",
@@ -158,31 +162,32 @@ export default function MeoClient() {
             <section className="mx-auto w-full max-w-6xl px-6 pt-12">
                 <Reveal>
                     <div className="flex flex-wrap gap-2">
-                        <Pill>MEO対策</Pill>
                         <Pill>Googleマップ集客</Pill>
-                        <Pill>導線整備</Pill>
+                        <Pill>成田エリア対応</Pill>
+                        <Pill>月額5,000円〜</Pill>
                     </div>
                 </Reveal>
 
                 <Reveal delayMs={60}>
                     <div className="mt-6">
                         <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                            Googleマップ集客（MEO）と導線整備で、
+                            「成田 ランチ」で検索された時に、
                             <br className="hidden sm:block" />
-                            電話・経路・予約につなげる
+                            お店が見つかるようにします
                         </h1>
 
                         <p className="mt-5 max-w-2xl text-pretty text-sm leading-7 text-[#5c4d3c] sm:text-base">
-                            「検索で見つかる」だけでは不十分。
+                            Googleマップでお店を検索した時に上位に表示されるよう、
                             <span className="font-semibold text-[#3D2F24]">
-                                見つけてもらった後に「行動してもらう」導線
+                                お店の情報を整えて、見つけてもらいやすく
                             </span>
-                            まで整えることで、問い合わせや来店につなげます。
+                            します。
+                            さらに、電話・経路案内・予約につなげる導線も整備します。
                         </p>
 
                         <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                             <Button as="a" href="/contact?topic=meo" variant="primary">
-                                無料診断（15分）を申し込む
+                                無料で相談する
                             </Button>
                             <Button as="a" href="#plans" variant="secondary">
                                 料金プランを見る
@@ -191,7 +196,7 @@ export default function MeoClient() {
 
                         <div className="mt-6 space-y-1 text-xs text-[#8b7355]">
                             <p>※ 営業電話はしません</p>
-                            <p>※ 順位保証ではなく「行動導線」を改善します</p>
+                            <p>※ 順位保証ではなく、お店の情報を正しく整えるサービスです</p>
                         </div>
                     </div>
                 </Reveal>
@@ -200,10 +205,7 @@ export default function MeoClient() {
             {/* Features */}
             <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-16">
                 <Reveal>
-                    <div className="flex items-end justify-between gap-4">
-                        <h2 className="text-lg font-semibold text-[#3d2f24]">できること</h2>
-                        <span className="text-xs text-[#8b7355]">整備・運用・導線の3本柱</span>
-                    </div>
+                    <h2 className="text-lg font-semibold text-[#3d2f24]">できること</h2>
                 </Reveal>
 
                 <div className="mt-5 grid gap-4 sm:grid-cols-3">
@@ -234,7 +236,7 @@ export default function MeoClient() {
                 <Reveal>
                     <div className="flex items-end justify-between gap-4">
                         <h2 className="text-lg font-semibold text-[#3d2f24]">料金プラン</h2>
-                        <span className="text-xs text-[#8b7355]">税別・初期費用込み</span>
+                        <span className="text-xs text-[#8b7355]">税別</span>
                     </div>
                 </Reveal>
 
@@ -257,7 +259,7 @@ export default function MeoClient() {
                                 <div className="text-sm font-semibold text-[#3d2f24]">{plan.name}</div>
                                 <div className="mt-2">
                                     <span className="text-2xl font-bold text-[#3d2f24]">¥{plan.price}</span>
-                                    <span className="text-sm text-[#8b7355]">/月</span>
+                                    <span className="text-sm text-[#8b7355]">/{plan.priceNote.replace("円/月", "月")}</span>
                                 </div>
                                 <p className="mt-2 text-sm leading-6 text-[#5c4d3c]">{plan.desc}</p>
 
@@ -278,7 +280,7 @@ export default function MeoClient() {
 
                 <Reveal delayMs={120}>
                     <p className="mt-4 text-center text-xs text-[#8b7355]">
-                        ※ ライトプランは初期整備のみ（単発）。スタンダード・プロは月額契約（最低3ヶ月〜）です。
+                        ※ 最低契約期間は3ヶ月です。3ヶ月以降はいつでも解約可能です。
                     </p>
                 </Reveal>
             </section>
@@ -286,10 +288,7 @@ export default function MeoClient() {
             {/* Steps */}
             <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-12">
                 <Reveal>
-                    <div className="flex items-end justify-between gap-4">
-                        <h2 className="text-lg font-semibold text-[#3d2f24]">進め方</h2>
-                        <span className="text-xs text-[#8b7355]">まずは無料診断から</span>
-                    </div>
+                    <h2 className="text-lg font-semibold text-[#3d2f24]">ご依頼の流れ</h2>
                 </Reveal>
 
                 <div className="mt-5 grid gap-4 sm:grid-cols-4">
@@ -302,7 +301,12 @@ export default function MeoClient() {
                                     </span>
                                     <div className="text-sm font-semibold">{s.title}</div>
                                 </div>
-                                <p className="mt-3 text-sm leading-6 text-[#5c4d3c]">{s.desc}</p>
+                                {i < 3 && (
+                                    <span className="mt-2 inline-block rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
+                                        無料
+                                    </span>
+                                )}
+                                <p className="mt-2 text-sm leading-6 text-[#5c4d3c]">{s.desc}</p>
                             </Card>
                         </Reveal>
                     ))}
@@ -312,10 +316,7 @@ export default function MeoClient() {
             {/* FAQ */}
             <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-12">
                 <Reveal>
-                    <div className="flex items-end justify-between gap-4">
-                        <h2 className="text-lg font-semibold text-[#3d2f24]">よくある質問</h2>
-                        <span className="text-xs text-[#8b7355]">FAQ</span>
-                    </div>
+                    <h2 className="text-lg font-semibold text-[#3d2f24]">よくある質問</h2>
                 </Reveal>
 
                 <div className="mt-5 grid gap-4">
@@ -333,30 +334,25 @@ export default function MeoClient() {
             {/* CTA */}
             <section className="mx-auto w-full max-w-6xl px-6 pb-16 pt-12">
                 <Reveal>
-                    <Card className="p-6 sm:p-8">
-                        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-                            <div>
-                                <div className="text-sm font-semibold">
-                                    まずは無料診断（15分）から
-                                </div>
-                                <p className="mt-2 text-sm leading-6 text-[#5c4d3c]">
-                                    現状のGoogleビジネスプロフィールを診断し、改善ポイントをお伝えします。
-                                    <br className="hidden sm:block" />
-                                    営業電話はしません。お気軽にどうぞ。
-                                </p>
-                            </div>
-
-                            <div className="flex gap-3">
-                                <Button as="a" href="/contact?topic=meo" variant="primary">
-                                    無料診断を申し込む
-                                </Button>
-                                <Link
-                                    href="/services"
-                                    className="inline-flex h-10 items-center justify-center rounded-full border border-[#ddc9a3] bg-white px-5 text-sm font-medium text-[#3d2f24] transition hover:bg-[#fef3d9]"
-                                >
-                                    サービス一覧へ
-                                </Link>
-                            </div>
+                    <Card className="p-6 text-center sm:p-8">
+                        <div className="text-lg font-semibold">
+                            まずはお気軽にご相談ください
+                        </div>
+                        <p className="mt-3 text-sm leading-6 text-[#5c4d3c]">
+                            お店のGoogleマップの現状を確認して、改善ポイントをお伝えします。
+                            <br className="hidden sm:block" />
+                            営業電話はしません。お気軽にどうぞ。
+                        </p>
+                        <div className="mt-6 flex justify-center gap-3">
+                            <Button as="a" href="/contact?topic=meo" variant="primary">
+                                無料で相談する
+                            </Button>
+                            <Link
+                                href="/services"
+                                className="inline-flex h-10 items-center justify-center rounded-full border border-[#ddc9a3] bg-white px-5 text-sm font-medium text-[#3d2f24] transition hover:bg-[#fef3d9]"
+                            >
+                                サービス一覧へ
+                            </Link>
                         </div>
                     </Card>
                 </Reveal>

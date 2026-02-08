@@ -3,12 +3,11 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
-import { BRAND } from "@/constants/brand";
-import { MISSION } from "@/constants/mvv";
 
 export const metadata: Metadata = {
-  title: `${BRAND.name} - ${BRAND.tagline}`,
-  description: MISSION,
+  title: "NEBULAB | 成田エリアのお店のIT・Web支援",
+  description:
+    "成田エリアの飲食店・小売店・個人事業主向けのIT支援。Googleマップ集客、ホームページ制作、AI業務効率化。難しい専門用語は使いません。",
 };
 
 export default function RootLayout({

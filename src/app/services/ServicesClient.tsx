@@ -1,54 +1,128 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-
-import Services from "@/components/sections/Services";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Pill from "@/components/ui/Pill";
 import Reveal from "@/components/ui/Reveal";
 
-type Highlight = {
+// ============================================================
+// データ定義
+// ============================================================
+
+type Plan = {
+    label: string;
+    labelColor: string;
+    accentBorder: string;
     title: string;
-    desc: string;
-    image: string;
+    price: string;
+    priceNote: string;
+    description: string;
+    includes: string[];
+    href: string;
 };
 
 type Step = {
     title: string;
     desc: string;
+    free?: boolean;
 };
 
-const highlights: Highlight[] = [
+type Faq = {
+    q: string;
+    a: string;
+};
+
+const plans: Plan[] = [
     {
-        title: "集客・導線の整備",
-        desc: "見つかる→選ばれる→行動される導線を整えます。Googleマップ（GBP）やサイトの入口改善まで。",
-        image: "/images/service-improve.jpg",
+        label: "まずはここから",
+        labelColor: "bg-emerald-600 text-white",
+        accentBorder: "border-t-emerald-600",
+        title: "Googleマップ集客サポート",
+        price: "5,000〜15,000",
+        priceNote: "円/月",
+        description:
+            "スマホで「成田 ランチ」と検索した時に、お店が上位に表示されるようにします。",
+        includes: [
+            "Googleビジネスプロフィールの初期設定・最適化",
+            "営業時間・メニュー・写真の定期更新",
+            "口コミへの返信テンプレート作成",
+            "毎月の閲覧数・来店数レポート",
+        ],
+        href: "/services/meo",
     },
     {
-        title: "運用が回る仕組み化",
-        desc: "手順・更新の型・役割を整え、継続できる運用へ。内製化支援も含みます。",
-        image: "/images/service-place.jpg",
+        label: "一番人気",
+        labelColor: "bg-[#b87333] text-white",
+        accentBorder: "border-t-[#b87333]",
+        title: "お店のホームページ制作",
+        price: "50,000〜150,000",
+        priceNote: "円",
+        description:
+            "メニュー・アクセス・予約がスマホ1画面で完結する、シンプルで速いサイトを作ります。",
+        includes: [
+            "スマホ対応の1ページ完結サイト",
+            "LINE・電話・予約フォームとの連携",
+            "メニュー表・ギャラリー付き",
+            "外国人向け多言語対応もOK（英・中・韓）",
+            "公開後1ヶ月の修正対応つき",
+        ],
+        href: "/contact",
     },
     {
-        title: "必要な分だけ実装",
-        desc: "開発は手段。目的と制約に合わせて、最小構成で小さく実装します。",
-        image: "/images/service-dev.jpg",
-    },
-    {
-        title: "Place / Work Design",
-        desc: "拠点（NRT-LOFT）の実践知をベースに、働き方・環境設計の意思決定を支援します。",
-        image: "/images/service-place.jpg",
+        label: "おまかせ効率化",
+        labelColor: "bg-blue-600 text-white",
+        accentBorder: "border-t-blue-600",
+        title: "AI活用のお店の業務かんたん化",
+        price: "30,000〜100,000",
+        priceNote: "円/スポット",
+        description:
+            "「手作業でめんどくさい」を、AIとITの力で自動化・時短します。",
+        includes: [
+            "SNS投稿の下書きをAIが自動作成",
+            "売上管理・在庫管理のかんたんシステム構築",
+            "外国人対応の翻訳ツール導入",
+            "予約・問い合わせの自動応答",
+            "お店に合わせたカスタマイズ提案",
+        ],
+        href: "/contact",
     },
 ];
 
 const steps: Step[] = [
-    { title: "ヒアリング", desc: "現状・制約・目的を整理し、最短ルートを定義します。" },
-    { title: "小さく試作", desc: "最小単位で形にして、仮説を早く検証します。" },
-    { title: "運用に落とす", desc: "継続できる手順・仕組み・役割に整えます。" },
-    { title: "改善を循環", desc: "学びを次へ。再現性のある改善サイクルを作ります。" },
+    { title: "お問い合わせ", desc: "フォームまたはメールからお気軽にご連絡ください。", free: true },
+    { title: "ヒアリング", desc: "お店にお伺いして、困りごとを聞かせてください。", free: true },
+    { title: "ご提案・お見積り", desc: "必要なことだけを分かりやすくご説明します。", free: true },
+    { title: "作業開始", desc: "ご納得いただいてからスタートします。" },
+    { title: "納品・サポート", desc: "使い方が分からなければいつでも聞いてください。" },
 ];
+
+const faqs: Faq[] = [
+    {
+        q: "ITのことが全く分からないのですが、大丈夫ですか？",
+        a: "もちろん大丈夫です。専門用語は一切使わず、かんたんな言葉でご説明します。パソコンが苦手な方でも安心してご利用いただけます。",
+    },
+    {
+        q: "相談は無料ですか？",
+        a: "はい、お問い合わせ・ヒアリング・ご提案まで完全無料です。ご納得いただいてから作業を開始します。",
+    },
+    {
+        q: "成田エリア以外でも対応していますか？",
+        a: "オンラインでの対応は全国可能です。直接お伺いできるのは成田エリアが中心ですが、近隣エリアもご相談ください。",
+    },
+    {
+        q: "契約期間の縛りはありますか？",
+        a: "Googleマップ集客サポートは月額契約ですが、いつでも解約可能です。ホームページ制作・業務効率化はスポット対応です。",
+    },
+    {
+        q: "営業電話はかかってきますか？",
+        a: "営業電話はしません。お問い合わせいただいた内容に対して、メールまたはご希望の方法でご連絡します。",
+    },
+];
+
+// ============================================================
+// コンポーネント
+// ============================================================
 
 export default function ServicesClient() {
     return (
@@ -57,84 +131,107 @@ export default function ServicesClient() {
             <section className="mx-auto w-full max-w-6xl px-6 pt-12">
                 <Reveal>
                     <div className="flex flex-wrap gap-2">
-                        <Pill>小さく作る</Pill>
-                        <Pill>早く試す</Pill>
-                        <Pill>継続して育てる</Pill>
+                        <Pill>成田エリア対応</Pill>
+                        <Pill>飲食店・小売店向け</Pill>
+                        <Pill>無料相談あり</Pill>
                     </div>
                 </Reveal>
 
-                <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
-                    <Reveal className="order-2 lg:order-1">
-                        <div>
-                            <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                                事業内容
-                                <br />
-                                プロダクトと場づくりの両輪で、前に進める。
-                            </h1>
+                <Reveal delayMs={60}>
+                    <div className="mt-6">
+                        <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+                            お店に合わせたサービスを、
+                            <br className="hidden sm:block" />
+                            必要な分だけ。
+                        </h1>
 
-                            <p className="mt-5 max-w-xl text-pretty text-sm leading-7 text-[#5c4d3c] sm:text-base">
-                                NEBULABは、要件の手前から一緒に考え、最小の一歩を確実に積み上げます。
-                                <span className="font-semibold text-[#3D2F24]">「作る」だけでなく「整える」まで。</span>
-                                現場に残る仕組みを設計し、改善が回る状態をつくります。
-                            </p>
+                        <p className="mt-5 max-w-xl text-pretty text-sm leading-7 text-[#5c4d3c] sm:text-base">
+                            Googleマップ集客、ホームページ制作、AI活用の業務効率化。
+                            <br className="hidden sm:block" />
+                            <span className="font-semibold text-[#3D2F24]">
+                                難しい専門用語は使いません。
+                            </span>
+                            お店の状況に合わせてご提案します。
+                        </p>
 
-                            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                                <Button as="a" href="/contact" variant="primary">
-                                    相談する
-                                </Button>
-                                <Button as="a" href="/#projects" variant="secondary">
-                                    取り組みを見る
-                                </Button>
-                            </div>
-
-                            <div className="mt-6 text-xs text-[#8b7355]">
-                                ※ まずは短い壁打ちからでもOK。状況に合わせて提案します。
-                            </div>
+                        <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                            <Button as="a" href="/contact" variant="primary">
+                                無料で相談する
+                            </Button>
+                            <Button as="a" href="#plans" variant="secondary">
+                                料金プランを見る
+                            </Button>
                         </div>
-                    </Reveal>
-
-                    <Reveal className="order-1 lg:order-2" delayMs={120}>
-                        <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-[#ddc9a3] bg-white/60">
-                            <Image
-                                src="/images/services-hero.png"
-                                alt="NEBULABの作業風景"
-                                fill
-                                priority
-                                className="object-cover"
-                                sizes="(max-width: 1024px) 100vw, 50vw"
-                            />
-                            {/* うっすらグラデで文字側と馴染ませる（リッチ感） */}
-                            <div className="pointer-events-none absolute inset-0 bg-linear-to-tr from-black/10 via-transparent to-transparent" />
-                        </div>
-                    </Reveal>
-                </div>
+                    </div>
+                </Reveal>
             </section>
 
-            {/* Highlights */}
-            <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-12">
+            {/* Plans */}
+            <section id="plans" className="mx-auto w-full max-w-6xl px-6 pb-4 pt-16">
                 <Reveal>
                     <div className="flex items-end justify-between gap-4">
-                        <h2 className="text-lg font-semibold text-[#3d2f24]">支援の軸</h2>
-                        <span className="text-xs text-[#8b7355]">目的 → 手段の順で整理</span>
+                        <h2 className="text-lg font-semibold text-[#3d2f24]">サービス・料金</h2>
+                        <span className="text-xs text-[#8b7355]">税別</span>
                     </div>
                 </Reveal>
 
-                <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    {highlights.map((h, i) => (
-                        <Reveal key={h.title} delayMs={80 * i}>
-                            <Card className="overflow-hidden p-0">
-                                <div className="relative aspect-16/10 w-full">
-                                    <Image
-                                        src={h.image}
-                                        alt={h.title}
-                                        fill
-                                        className="object-cover"
-                                        sizes="(max-width: 640px) 100vw, 33vw"
-                                    />
+                <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                    {plans.map((plan, i) => (
+                        <Reveal key={plan.title} delayMs={80 * i}>
+                            <Card
+                                variant="highlight"
+                                className={[
+                                    "relative flex h-full flex-col overflow-visible border-t-4 p-6",
+                                    plan.accentBorder,
+                                ].join(" ")}
+                            >
+                                <span
+                                    className={[
+                                        "absolute right-3 top-0 -translate-y-1/2 z-10 rounded-full px-3 py-1 text-[11px] font-semibold shadow-sm",
+                                        plan.labelColor,
+                                    ].join(" ")}
+                                >
+                                    {plan.label}
+                                </span>
+
+                                <div className="text-sm font-semibold text-[#3d2f24]">
+                                    {plan.title}
                                 </div>
-                                <div className="p-6">
-                                    <div className="text-sm font-semibold">{h.title}</div>
-                                    <p className="mt-2 text-sm leading-6 text-[#5c4d3c]">{h.desc}</p>
+
+                                <div className="mt-3">
+                                    <span className="text-2xl font-bold text-[#3d2f24]">
+                                        {plan.price}
+                                    </span>
+                                    <span className="ml-1 text-sm text-[#8b7355]">
+                                        {plan.priceNote}
+                                    </span>
+                                </div>
+
+                                <p className="mt-3 text-sm leading-6 text-[#5c4d3c]">
+                                    {plan.description}
+                                </p>
+
+                                <div className="mt-4 flex-1 rounded-xl border border-[#f0e1c0] bg-[#fff8e7] p-4">
+                                    <div className="text-xs font-semibold tracking-[0.14em] text-[#8b7355]">
+                                        含まれるもの
+                                    </div>
+                                    <ul className="mt-3 space-y-2 text-sm text-[#5c4d3c]">
+                                        {plan.includes.map((item) => (
+                                            <li key={item} className="flex items-start gap-2">
+                                                <span className="mt-[3px] h-2 w-2 shrink-0 rounded-full bg-[#b87333]" />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <div className="mt-5">
+                                    <Link
+                                        href={plan.href}
+                                        className="inline-flex h-10 w-full items-center justify-center rounded-full border border-[#b87333] bg-[#b87333] px-5 text-sm font-medium text-white transition hover:bg-[#a0622b]"
+                                    >
+                                        相談する
+                                    </Link>
                                 </div>
                             </Card>
                         </Reveal>
@@ -142,98 +239,66 @@ export default function ServicesClient() {
                 </div>
             </section>
 
-            {/* まずはここから */}
-            <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-8">
-                <Reveal>
-                    <div className="flex items-end justify-between gap-4">
-                        <h2 className="text-lg font-semibold text-[#3d2f24]">まずはここから</h2>
-                        <span className="text-xs text-[#8b7355]">最短で効く、導線の整備</span>
-                    </div>
-                </Reveal>
-
-                <Reveal delayMs={80}>
-                    <Card variant="highlight" className="mt-5 p-6">
-                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                                <div className="flex flex-wrap items-center gap-2">
-                                    <span className="text-sm font-semibold text-[#3d2f24]">
-                                        Googleマップ集客（MEO）
-                                    </span>
-                                    <Pill>NEW</Pill>
-                                </div>
-                                <p className="mt-2 max-w-xl text-sm leading-6 text-[#5c4d3c]">
-                                    Googleビジネスプロフィールの整備・運用・導線改善で、電話・経路・予約につなげます。
-                                    順位保証ではなく「行動導線」を改善するアプローチ。
-                                </p>
-                                <Link
-                                    href="/contact?topic=meo"
-                                    className="mt-2 inline-block text-sm text-[#b87333] underline underline-offset-2 hover:text-[#a0622b]"
-                                >
-                                    → 今すぐ無料診断を申し込む
-                                </Link>
-                            </div>
-                            <Button as="a" href="/services/meo" variant="primary" className="shrink-0">
-                                無料診断の内容を見る
-                            </Button>
-                        </div>
-                    </Card>
-                </Reveal>
-            </section>
-
-            {/* 既存 Services セクション */}
-            <Reveal>
-                <Services />
-            </Reveal>
-
             {/* Process */}
-            <section className="mx-auto w-full max-w-6xl px-6 pb-16 pt-2">
+            <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-12">
                 <Reveal>
-                    <div className="flex items-end justify-between gap-4">
-                        <h2 className="text-lg font-semibold text-[#3d2f24]">進め方</h2>
-                        <span className="text-xs text-[#8b7355]">小さく、確実に</span>
-                    </div>
+                    <h2 className="text-lg font-semibold text-[#3d2f24]">ご依頼の流れ</h2>
                 </Reveal>
 
-                <div className="mt-5 grid gap-4 sm:grid-cols-4">
+                <div className="mt-5 grid gap-4 sm:grid-cols-5">
                     {steps.map((s, i) => (
                         <Reveal key={s.title} delayMs={60 * i}>
-                            <Card className="p-5">
+                            <Card className="h-full p-5">
                                 <div className="flex items-center gap-2">
                                     <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#ddc9a3] bg-[#fef3d9] text-xs font-semibold text-[#3d2f24]">
                                         {i + 1}
                                     </span>
                                     <div className="text-sm font-semibold">{s.title}</div>
                                 </div>
-                                <p className="mt-3 text-sm leading-6 text-[#5c4d3c]">{s.desc}</p>
+                                {s.free && (
+                                    <span className="mt-2 inline-block rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
+                                        無料
+                                    </span>
+                                )}
+                                <p className="mt-2 text-sm leading-6 text-[#5c4d3c]">{s.desc}</p>
                             </Card>
                         </Reveal>
                     ))}
                 </div>
+            </section>
 
-                {/* CTA */}
-                <Reveal delayMs={120}>
-                    <Card className="mt-6 p-6 sm:p-8">
-                        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-                            <div>
-                                <div className="text-sm font-semibold">まずは状況を聞かせてください</div>
-                                <p className="mt-2 text-sm leading-6 text-[#5c4d3c]">
-                                    目的と制約が分かれば、最短の一手を提案できます。
-                                    <br className="hidden sm:block" />
-                                    「これって相談していい？」も歓迎です。
-                                </p>
-                            </div>
+            {/* FAQ */}
+            <section className="mx-auto w-full max-w-6xl px-6 pb-4 pt-12">
+                <Reveal>
+                    <h2 className="text-lg font-semibold text-[#3d2f24]">よくある質問</h2>
+                </Reveal>
 
-                            <div className="flex gap-3">
-                                <Button as="a" href="/contact" variant="primary">
-                                    お問い合わせ
-                                </Button>
-                                <Link
-                                    href="/news"
-                                    className="inline-flex h-10 items-center justify-center rounded-full border border-[#ddc9a3] bg-white px-5 text-sm font-medium text-[#3d2f24] transition hover:bg-[#fef3d9]"
-                                >
-                                    お知らせを見る
-                                </Link>
-                            </div>
+                <div className="mt-5 grid gap-4">
+                    {faqs.map((faq, i) => (
+                        <Reveal key={faq.q} delayMs={40 * i}>
+                            <Card className="p-5">
+                                <div className="text-sm font-semibold text-[#3d2f24]">Q. {faq.q}</div>
+                                <p className="mt-2 text-sm leading-6 text-[#5c4d3c]">{faq.a}</p>
+                            </Card>
+                        </Reveal>
+                    ))}
+                </div>
+            </section>
+
+            {/* CTA */}
+            <section className="mx-auto w-full max-w-6xl px-6 pb-16 pt-12">
+                <Reveal>
+                    <Card className="p-6 text-center sm:p-8">
+                        <div className="text-lg font-semibold">
+                            まずはお気軽にご連絡ください
+                        </div>
+                        <p className="mt-3 text-sm leading-6 text-[#5c4d3c]">
+                            「こんなこと聞いていいのかな？」も大歓迎です。
+                        </p>
+                        <div className="mt-6 flex justify-center gap-3">
+                            <Button as="a" href="/contact" variant="primary">
+                                無料で相談する
+                            </Button>
                         </div>
                     </Card>
                 </Reveal>

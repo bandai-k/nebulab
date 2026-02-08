@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import MeoClient from "./MeoClient";
 
 export const metadata: Metadata = {
-    title: "Googleマップ集客（MEO） - NEBULAB",
+    title: "Googleマップ集客サポート | NEBULAB - 成田エリアのお店のIT・Web支援",
     description:
-        "Googleマップ集客（MEO）と導線整備で、電話・経路・予約につなげる。順位保証ではなく「行動導線」を改善します。",
+        "スマホで「成田 ランチ」と検索した時にお店が上位に表示されるようにします。Googleビジネスプロフィールの整備・運用・改善をサポート。",
 };
 
 export default function MeoPage() {

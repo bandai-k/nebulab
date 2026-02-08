@@ -7,30 +7,28 @@ import { BRAND } from "@/constants/brand";
 type FormState = {
     name: string;
     email: string;
-    company: string;
+    shopName: string;
     message: string;
 };
 
 const initial: FormState = {
     name: "",
     email: "",
-    company: "",
+    shopName: "",
     message: "",
 };
 
 /** topic に応じたプリフィル設定 */
 const TOPIC_PREFILLS: Record<string, { subject: string; message: string }> = {
     meo: {
-        subject: "【無料診断】Googleマップ集客（MEO）の相談",
+        subject: "【無料相談】Googleマップ集客について",
         message: `以下を分かる範囲で教えてください。
 
-・店舗名/屋号：
+・お店の名前：
 ・住所（任意）：
-・GoogleマップURL（任意）：
-・WebサイトURL（任意）：
-・目的（電話/経路/予約/問い合わせ）：
-・現状の悩み：
-・希望（初期整備のみ / 初期整備＋運用）：
+・GoogleマップのURL（任意）：
+・現状のお悩み：
+・その他、気になること：
 `,
     },
 };
@@ -69,10 +67,10 @@ export default function ContactForm() {
         const body = encodeURIComponent(
             [
                 `お名前：${form.name}`,
-                `会社名：${form.company}`,
-                `メール：${form.email}`,
+                `お店の名前：${form.shopName}`,
+                `メール/電話番号：${form.email}`,
                 "",
-                "▼お問い合わせ内容",
+                "▼ご相談内容",
                 form.message,
             ].join("\n")
         );
@@ -90,30 +88,31 @@ export default function ContactForm() {
                 />
             </Field>
 
-            <Field label="メールアドレス *">
+            <Field label="メールアドレス or 電話番号 *">
                 <input
                     value={form.email}
                     onChange={onChange("email")}
                     className="w-full rounded-xl border border-[#3D2F24]/20 bg-[#FFF8E7] px-4 py-3 text-sm outline-none focus:border-[#3D2F24]/50"
-                    placeholder="example@example.com"
+                    placeholder="example@example.com / 090-1234-5678"
                 />
             </Field>
 
-            <Field label="会社名（任意）">
+            <Field label="お店の名前（任意）">
                 <input
-                    value={form.company}
-                    onChange={onChange("company")}
+                    value={form.shopName}
+                    onChange={onChange("shopName")}
                     className="w-full rounded-xl border border-[#3D2F24]/20 bg-[#FFF8E7] px-4 py-3 text-sm outline-none focus:border-[#3D2F24]/50"
+                    placeholder="例）成田食堂"
                 />
             </Field>
 
-            <Field label="お問い合わせ内容 *">
+            <Field label="ご相談内容 *">
                 <textarea
                     value={form.message}
                     onChange={onChange("message")}
                     rows={6}
                     className="w-full resize-none rounded-xl border border-[#3D2F24]/20 bg-[#FFF8E7] px-4 py-3 text-sm outline-none focus:border-[#3D2F24]/50"
-                    placeholder="例）Webサイト制作の相談をしたい。要件は…"
+                    placeholder="例）Googleマップに載っている情報が古いので更新したい"
                 />
             </Field>
 

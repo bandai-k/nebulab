@@ -6,7 +6,7 @@
 export const BRAND = {
   name: "NEBULAB",
   nameKana: "ネビュラボ",
-  tagline: "Product & Place Lab",
+  tagline: "成田エリアのお店のIT・Web支援",
 
   // 連絡先（統一: hello@nebulab.jp）
   email: "hello@nebulab.jp",

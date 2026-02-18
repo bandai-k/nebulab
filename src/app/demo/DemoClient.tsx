@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function DemoClient() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-24 sm:px-10">
+    <main className="mx-auto max-w-5xl px-5 py-24 md:px-10">
       <motion.div
         className="status-text mb-10"
         initial={{ opacity: 0 }}
@@ -18,7 +18,7 @@ export default function DemoClient() {
       </motion.div>
 
       <motion.h1
-        className="font-display text-3xl font-normal tracking-wide sm:text-4xl"
+        className="font-display text-3xl font-normal tracking-wide md:text-4xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.4 }}

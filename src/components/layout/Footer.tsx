@@ -4,7 +4,7 @@ import { BRAND } from "@/constants/brand";
 export default function Footer() {
   return (
     <footer className="border-t border-cyber-border-dim">
-      <div className="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-8 sm:px-10">
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-4 px-5 py-8 md:flex-row md:justify-between md:px-10">
         <span className="text-xs text-cyber-text-muted">
           &copy; {new Date().getFullYear()} {BRAND.name}
         </span>

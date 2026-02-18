@@ -6,7 +6,7 @@ import { VISION, MISSION, VALUES } from "@/constants/mvv";
 
 export default function AboutClient() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-24 sm:px-10">
+    <main className="mx-auto max-w-5xl px-5 py-24 md:px-10">
       <motion.div
         className="status-text mb-10"
         initial={{ opacity: 0 }}
@@ -18,7 +18,7 @@ export default function AboutClient() {
       </motion.div>
 
       <motion.h1
-        className="font-display text-3xl font-normal leading-[1.3] tracking-wide sm:text-4xl lg:text-5xl"
+        className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.4 }}
@@ -27,7 +27,7 @@ export default function AboutClient() {
       </motion.h1>
 
       <motion.p
-        className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary sm:text-base"
+        className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.7 }}
@@ -51,7 +51,7 @@ export default function AboutClient() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-16 sm:grid-cols-2">
+        <div className="grid gap-16 md:grid-cols-2">
           <ScrollReveal>
             <div>
               <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-cyber-accent">
@@ -85,7 +85,7 @@ export default function AboutClient() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {VALUES.map((value, i) => (
             <ScrollReveal key={value.code} delay={i * 0.1}>
               <div className="glass-card corner-accent h-full p-8">

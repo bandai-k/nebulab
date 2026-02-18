@@ -27,7 +27,7 @@ const SERVICES = [
 
 export default function ServiceClient() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-24 sm:px-10">
+    <main className="mx-auto max-w-5xl px-5 py-24 md:px-10">
       <motion.div
         className="status-text mb-10"
         initial={{ opacity: 0 }}
@@ -39,7 +39,7 @@ export default function ServiceClient() {
       </motion.div>
 
       <motion.h1
-        className="font-display text-3xl font-normal leading-[1.3] tracking-wide sm:text-4xl lg:text-5xl"
+        className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.4 }}
@@ -48,7 +48,7 @@ export default function ServiceClient() {
       </motion.h1>
 
       <motion.p
-        className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary sm:text-base"
+        className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.7 }}
@@ -72,7 +72,7 @@ export default function ServiceClient() {
         <div className="grid gap-6">
           {SERVICES.map((service, i) => (
             <ScrollReveal key={service.code} delay={i * 0.12}>
-              <div className="glass-card corner-accent p-10">
+              <div className="glass-card corner-accent p-6 md:p-10">
                 <div className="flex items-center gap-4">
                   <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-cyber-accent">
                     {service.code}

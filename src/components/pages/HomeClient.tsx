@@ -10,7 +10,7 @@ export default function HomeClient() {
   return (
     <main>
       {/* ── Hero: full-screen ── */}
-      <section className="relative flex min-h-[100dvh] flex-col justify-end px-6 pb-20 pt-40 sm:px-10">
+      <section className="relative flex min-h-[100dvh] flex-col justify-end px-5 pb-20 pt-40 md:px-10">
         <div className="mx-auto w-full max-w-5xl">
           <motion.div
             className="status-text mb-10 flex flex-wrap gap-x-4 gap-y-1"
@@ -27,7 +27,7 @@ export default function HomeClient() {
           </motion.div>
 
           <motion.h1
-            className="font-display text-4xl font-normal leading-[1.3] tracking-wide sm:text-5xl lg:text-6xl"
+            className="font-display text-4xl font-normal leading-[1.3] tracking-wide md:text-5xl lg:text-6xl"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -38,7 +38,7 @@ export default function HomeClient() {
           </motion.h1>
 
           <motion.p
-            className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary sm:text-base"
+            className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
@@ -49,7 +49,7 @@ export default function HomeClient() {
           </motion.p>
 
           <motion.div
-            className="mt-12 flex items-center gap-6"
+            className="mt-12 flex flex-wrap items-center gap-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
@@ -80,8 +80,8 @@ export default function HomeClient() {
       </section>
 
       {/* ── Mission / Vision ── */}
-      <section className="mx-auto max-w-5xl px-6 py-32 sm:px-10">
-        <div className="grid gap-20 md:grid-cols-2">
+      <section className="mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
+        <div className="grid gap-16 md:grid-cols-2 md:gap-20">
           <ScrollReveal>
             <div>
               <div className="section-eyebrow-line">
@@ -89,7 +89,7 @@ export default function HomeClient() {
                   Mission
                 </span>
               </div>
-              <p className="mt-8 text-xl leading-10 text-cyber-text sm:text-2xl">
+              <p className="mt-8 text-xl leading-10 text-cyber-text md:text-2xl">
                 {MISSION}
               </p>
             </div>
@@ -101,7 +101,7 @@ export default function HomeClient() {
                   Vision
                 </span>
               </div>
-              <p className="mt-8 text-xl leading-10 text-cyber-text sm:text-2xl">
+              <p className="mt-8 text-xl leading-10 text-cyber-text md:text-2xl">
                 {VISION}
               </p>
             </div>
@@ -111,7 +111,7 @@ export default function HomeClient() {
 
       {/* ── Values ── */}
       <section className="border-y border-cyber-border-dim">
-        <div className="mx-auto max-w-5xl px-6 py-32 sm:px-10">
+        <div className="mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
           <ScrollReveal>
             <div className="section-eyebrow-line mb-14">
               <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
@@ -120,10 +120,10 @@ export default function HomeClient() {
             </div>
           </ScrollReveal>
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3">
             {VALUES.map((value, i) => (
               <ScrollReveal key={value.code} delay={i * 0.12}>
-                <div className="glass-card corner-accent h-full p-8">
+                <div className="glass-card corner-accent h-full p-6 md:p-8">
                   <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-cyber-accent">
                     {value.code}
                   </span>
@@ -141,7 +141,7 @@ export default function HomeClient() {
       </section>
 
       {/* ── Products ── */}
-      <section className="mx-auto max-w-5xl px-6 py-32 sm:px-10" id="products">
+      <section className="mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32" id="products">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-14">
             <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
@@ -150,10 +150,10 @@ export default function HomeClient() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           {/* Navi — flagship */}
           <ScrollReveal delay={0.1}>
-            <div className="glass-card corner-accent h-full p-10">
+            <div className="glass-card corner-accent h-full p-6 md:p-10">
               <div className="flex items-center gap-3">
                 <span className="pulse-dot" />
                 <span className="font-display text-lg tracking-wider text-cyber-accent">
@@ -188,7 +188,7 @@ export default function HomeClient() {
 
           {/* NebulaPlace — teaser */}
           <ScrollReveal delay={0.2}>
-            <div className="glass-card h-full p-10" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+            <div className="glass-card h-full p-6 md:p-10" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-3">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyber-text-muted" />
                 <span className="font-display text-lg tracking-wider text-cyber-text-muted">
@@ -210,15 +210,15 @@ export default function HomeClient() {
 
       {/* ── Status ── */}
       <section className="border-t border-cyber-border-dim">
-        <div className="mx-auto max-w-5xl px-6 py-32 sm:px-10">
+        <div className="mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
           <ScrollReveal>
             <div className="section-eyebrow-line mb-10">
               <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
                 Status
               </span>
             </div>
-            <div className="glass-card corner-accent p-10">
-              <p className="text-base leading-8 text-cyber-text-secondary sm:text-lg">
+            <div className="glass-card corner-accent p-6 md:p-10">
+              <p className="text-base leading-8 text-cyber-text-secondary md:text-lg">
                 Nebulabは現在、複数のAIプロダクトを同時に開発・検証しています。
                 <br />
                 小さく作り、試し、壊し、また作る。このサイクルを高速で回しています。
@@ -232,9 +232,9 @@ export default function HomeClient() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="px-6 py-24 text-center sm:px-10">
+      <section className="px-5 py-16 text-center md:px-10 md:py-24">
         <ScrollReveal>
-          <div className="relative mx-auto inline-block max-w-lg rounded-sm px-12 py-16 sm:px-20">
+          <div className="relative mx-auto inline-block max-w-lg rounded-sm px-5 py-8 md:px-20 md:py-16">
             {/* gradient border overlay */}
             <div
               className="pointer-events-none absolute inset-0 rounded-sm"
@@ -249,7 +249,7 @@ export default function HomeClient() {
               <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
                 Contact
               </span>
-              <p className="mt-6 font-display text-2xl tracking-wide text-cyber-text sm:text-3xl">
+              <p className="mt-6 font-display text-2xl tracking-wide text-cyber-text md:text-3xl">
                 お問い合わせ
               </p>
               <p className="mt-6 text-sm leading-8 text-cyber-text-secondary">

@@ -2,12 +2,17 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import BackToTop from "@/components/ui/BackToTop";
+import FloatingWindows from "@/components/ui/FloatingWindows";
+import ColorCycler from "@/components/ui/ColorCycler";
+import IntroOverlay from "@/components/ui/IntroOverlay";
 
 export const metadata: Metadata = {
-  title: "NEBULAB | 成田エリアのお店のIT・Web支援",
+  title: "Nebulab",
   description:
-    "成田エリアの飲食店・小売店・個人事業主向けのIT支援。Googleマップ集客、ホームページ制作、AI業務効率化。難しい専門用語は使いません。",
+    "Nebulab は「思考と行動の間」を埋めるAIプロダクトを開発するラボです。",
+  icons: {
+    icon: "/nebulab-symbol-dark.svg",
+  },
 };
 
 export default function RootLayout({
@@ -17,11 +22,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="min-h-dvh bg-[#fff8e7] text-[#3d2f24] antialiased">
+      <body className="min-h-dvh bg-cyber-bg text-cyber-text antialiased">
+        <IntroOverlay />
+        <ColorCycler />
+        <FloatingWindows />
+        {/* Nebula glow blobs — color driven by CSS variable */}
+        <div
+          className="nebula-glow"
+          style={{ width: 600, height: 600, top: -100, left: -150 }}
+        />
+        <div
+          className="nebula-glow"
+          style={{
+            width: 400,
+            height: 400,
+            top: 600,
+            right: -100,
+            opacity: 0.7,
+          }}
+        />
+
         <Header />
-        {children}
-        <BackToTop mobileOnly showAfter={240} />
-        <Footer />
+        <div className="relative z-[1]">
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

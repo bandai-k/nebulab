@@ -1,60 +1,57 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
-type Props = {
-  minDurationMs?: number;
-  fadeOutMs?: number;
-  onFinish: () => void;
-};
-
-export default function IntroOverlay({
-  minDurationMs = 1400,
-  fadeOutMs = 600,
-  onFinish,
-}: Props) {
-  const [phase, setPhase] = useState<"show" | "fade">("show");
-
-  // 文章はここに固定（SSR/CSR差異を生まない）
-  const line = useMemo(() => "思考は、まだ途中だ。", []);
+export default function IntroOverlay() {
+  const [phase, setPhase] = useState<"check" | "in" | "hold" | "out" | "done">("check");
 
   useEffect(() => {
-    // まず最低表示時間
-    const t1 = window.setTimeout(() => setPhase("fade"), minDurationMs);
+    // Only show once per session
+    if (sessionStorage.getItem("intro_seen")) {
+      setPhase("done");
+      return;
+    }
 
-    // フェードアウト完了後に閉じる
-    const t2 = window.setTimeout(() => onFinish(), minDurationMs + fadeOutMs);
+    setPhase("in");
+
+    const t1 = setTimeout(() => setPhase("hold"), 100); // trigger fade-in
+    const t2 = setTimeout(() => setPhase("out"), 2600); // start exit
+    const t3 = setTimeout(() => {
+      setPhase("done");
+      sessionStorage.setItem("intro_seen", "1");
+    }, 3800); // fully remove
 
     return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
     };
-  }, [fadeOutMs, minDurationMs, onFinish]);
+  }, []);
+
+  if (phase === "check" || phase === "done") return null;
 
   return (
     <div
-      className={[
-        "fixed inset-0 z-50 grid place-items-center",
-        // 背景は Cosmic Latte を活かしたまま、少しだけ宇宙演出（暗幕）を足す
-        "bg-[#FFF8E7]",
-        "transition-opacity",
-      ].join(" ")}
-      style={{
-        // Cosmic Latte を壊さず「宇宙へフォーカス」するための薄い暗転
-        // phase=fade で透明へ
-        opacity: phase === "fade" ? 0 : 1,
-        transitionDuration: `${fadeOutMs}ms`,
-      }}
-      aria-label="intro"
+      className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black transition-opacity duration-1000 ease-out"
+      style={{ opacity: phase === "out" ? 0 : 1 }}
     >
-      <div className="text-center px-6">
-        <p className="text-[clamp(20px,3vw,34px)] font-medium tracking-tight">
-          {line}
-        </p>
-        <p className="mt-3 text-sm opacity-70">
-          NEBULAB / Cosmic Latte
-        </p>
-      </div>
+      <p
+        className="font-display text-3xl tracking-wide text-white transition-all duration-1000 ease-out sm:text-5xl"
+        style={{
+          opacity: phase === "in" ? 0 : 1,
+          transform: phase === "in" ? "translateY(16px)" : "translateY(0)",
+        }}
+      >
+        思考と行動の間を、設計する。
+      </p>
+      <p
+        className="mt-5 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted transition-all delay-500 duration-1000 ease-out"
+        style={{
+          opacity: phase === "in" ? 0 : 1,
+        }}
+      >
+        NEBULAB
+      </p>
     </div>
   );
 }

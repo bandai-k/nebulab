@@ -1,0 +1,35 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <clipPath id="hexClip">
+      <polygon points="32,8 54,20 54,44 32,56 10,44 10,20" />
+    </clipPath>
+  </defs>
+
+  <!-- Hex outline -->
+  <polygon points="32,8 54,20 54,44 32,56 10,44 10,20" stroke="url(#hexGrad)" stroke-width="1.5" fill="none" opacity="0.8" />
+  <!-- Inner hex -->
+  <polygon points="32,15 47,23.5 47,40.5 32,49 17,40.5 17,23.5" stroke="url(#hexGrad)" stroke-width="0.6" fill="none" opacity="0.3" />
+
+  <!-- Star cluster dots -->
+  <circle cx="32" cy="32" r="3.5" fill="url(#hexGrad)" opacity="1"   clip-path="url(#hexClip)" />
+  <circle cx="26" cy="26" r="1.5" fill="url(#hexGrad)" opacity="0.7" clip-path="url(#hexClip)" />
+  <circle cx="38" cy="27" r="2"   fill="url(#hexGrad)" opacity="0.8" clip-path="url(#hexClip)" />
+  <circle cx="27" cy="38" r="1.8" fill="url(#hexGrad)" opacity="0.6" clip-path="url(#hexClip)" />
+  <circle cx="38" cy="38" r="1.2" fill="url(#hexGrad)" opacity="0.5" clip-path="url(#hexClip)" />
+  <circle cx="32" cy="22" r="1"   fill="url(#hexGrad)" opacity="0.6" clip-path="url(#hexClip)" />
+  <circle cx="32" cy="42" r="1"   fill="url(#hexGrad)" opacity="0.5" clip-path="url(#hexClip)" />
+
+  <!-- Connection lines -->
+  <g clip-path="url(#hexClip)" stroke="#0ea5e9" stroke-width="0.5" opacity="0.4">
+    <line x1="32" y1="32" x2="26" y2="26" />
+    <line x1="32" y1="32" x2="38" y2="27" />
+    <line x1="32" y1="32" x2="27" y2="38" />
+    <line x1="32" y1="32" x2="38" y2="38" />
+    <line x1="32" y1="32" x2="32" y2="22" />
+    <line x1="26" y1="26" x2="38" y2="27" />
+  </g>
+</svg>

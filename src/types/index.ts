@@ -1,23 +1,7 @@
-export interface Service {
-  title: string;
-  desc: string;
-}
-
-export interface Project {
-  title: string;
-  desc: string;
-  tag: string;
-}
-
-export interface NewsItem {
-  id: string;
+export type LabEntry = {
   date: string;
-  category: "お知らせ" | "プレスリリース" | "イベント" | "メディア";
+  phase: string;
   title: string;
-  excerpt?: string;
-}
-
-export interface News {
-  title: string;
-  desc: string;
-}
+  body: string;
+  tags?: string[];
+};

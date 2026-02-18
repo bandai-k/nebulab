@@ -1,63 +1,32 @@
-/**
- * Mission / Vision / Values の定義
- * サイト全体で参照する理念・思想の単一ソース
- */
+export const VISION =
+  "AIが人の判断力を拡張し、誰もが最善の次の一歩を踏み出せる世界を作る。";
 
-/** メインビジョン（キャッチコピー） */
-export const VISION_TAGLINE = "お店の「困った」を、ITの力で解決します。";
-
-/** ミッション（存在意義） */
 export const MISSION =
-  "成田エリアの飲食店・小売店・個人事業主のためのWeb・IT支援サービス。難しい専門用語は使いません。";
+  "「思考と行動の間」を埋めるAIプロダクトを開発し、人間の意思決定を加速させる。";
 
-/** ミッション補足 */
-export const MISSION_SUPPLEMENT =
-  "成田の拠点「NRT-LOFT」で、相談・打ち合わせ・ワークショップを行っています。";
-
-/** スローガン */
-export const SLOGAN = "小さなお店の「IT担当」を目指します。";
-
-/** 4つの思想（Values） — aboutページで使用 */
 export type Value = {
-  no: string;
+  code: string;
   title: string;
-  subtitle: string;
   description: string;
 };
 
 export const VALUES: Value[] = [
   {
-    no: "01",
-    title: "専門用語は使いません",
-    subtitle: "Plain words, honest advice",
+    code: "V1",
+    title: "能動性",
     description:
-      "全部かんたんな言葉で説明します。必要ないものは「必要ない」と正直にお伝えします。",
+      "AIは聞かれるのを待たない。状況を観察し、先に動く。受動的なツールではなく、能動的なパートナーを作る。",
   },
   {
-    no: "02",
-    title: "小さく始めて、確かに積み上げる",
-    subtitle: "Small start, steady progress",
+    code: "V2",
+    title: "判断は人間に",
     description:
-      "完璧を目指すのではなく、まず小さく始める。そして、確実に一歩ずつ積み上げていく。この姿勢が、持続可能な成長につながると信じています。",
+      "どれだけAIが賢くなっても、最終判断は人間が行う。実行は必ず承認制。自律ではなく拡張を目指す。",
   },
   {
-    no: "03",
-    title: "現場で使える形に",
-    subtitle: "From idea to practice",
+    code: "V3",
+    title: "小さく壊して、速く学ぶ",
     description:
-      "理論や理想だけでなく、実際のお店で使える形に落とし込む。お店の声に耳を傾け、実践を通じて改善を重ねていきます。",
-  },
-  {
-    no: "04",
-    title: "お店のIT担当として",
-    subtitle: "Your IT partner",
-    description:
-      "成田エリアなら直接お伺いできます。小さなことでも気軽に相談できる「お店のIT担当」を目指します。",
+      "完璧を目指して止まるより、小さなプロトタイプを壊し続ける。検証の速度が、プロダクトの質を決める。",
   },
 ];
-
-/** WHAT WE DO（廃止 — 互換性のため空配列を維持） */
-export const WHAT_WE_DO: string[] = [];
-
-/** HOW WE THINK（廃止 — 互換性のため空配列を維持） */
-export const HOW_WE_THINK: string[] = [];

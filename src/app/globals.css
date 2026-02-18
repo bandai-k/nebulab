@@ -1,158 +1,150 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@400;500;600;700&family=Fragment+Mono&family=Noto+Sans+JP:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
-:root {
-  /* Cosmic Latte パレット */
-  --cosmic-latte: #fff8e7;
-  --cosmic-cream: #fef3d9;
-  --cosmic-beige: #f5e6cb;
-  --cosmic-tan: #ddc9a3;
-  --cosmic-brown: #8b7355;
-  --cosmic-dark: #5c4d3c;
-  --cosmic-darker: #3d2f24;
+@theme {
+  --color-cyber-bg: #000000;
+  --color-cyber-surface: #0a0a0a;
+  --color-cyber-border: rgba(255, 255, 255, 0.12);
+  --color-cyber-border-dim: rgba(255, 255, 255, 0.06);
+  --color-cyber-text: #ffffff;
+  --color-cyber-text-secondary: #999999;
+  --color-cyber-text-muted: #555555;
+  --color-cyber-accent: #1556a5;
+  --color-cyber-accent-dim: rgba(255, 255, 255, 0.16);
+  --color-cyber-glow: rgba(21, 86, 165, 0.25);
 
-  /* アクセントカラー */
-  --accent-gold: #d4a574;
-  --accent-amber: #e8b86d;
-  --accent-rust: #b87333;
-
-  --header-offset: 120px; /* 上段+下段+サブメニューの最大高さ想定 */
-} 
-
-[id]{
-  scroll-margin-top: var(--header-offset);
+  --font-display: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Fragment Mono", ui-monospace, monospace;
 }
 
-html,
-body {
-  height: 100%;
+@layer base {
+  :root {
+    --accent-r: 21;
+    --accent-g: 86;
+    --accent-b: 165;
+  }
+
+  [id] {
+    scroll-margin-top: 72px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    font-family: "Inter", "Noto Sans JP", ui-sans-serif, system-ui,
+      -apple-system, sans-serif;
+  }
+
+  ::selection {
+    background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.4);
+    color: #ffffff;
+  }
 }
 
-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
+  border-radius: 2px;
 }
 
-.nb-noise {
+/* ── Nebula glow blob ── */
+.nebula-glow {
   position: absolute;
-  inset: 0;
+  border-radius: 50%;
+  filter: blur(80px);
   pointer-events: none;
-  opacity: 0.06;
-  background-image: url("/noise.png");
-  background-repeat: repeat;
-  animation: nbNoise 10s steps(10) infinite;
-  mix-blend-mode: multiply;
+  background: radial-gradient(
+    circle,
+    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.15) 0%,
+    transparent 70%
+  );
+  transition: background 2s ease;
 }
 
-@keyframes nbNoise {
-  0% { transform: translate3d(0,0,0); }
-  100% { transform: translate3d(-2%, -2%, 0); }
+/* ── Section eyebrow + line ── */
+.section-eyebrow-line {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.section-eyebrow-line::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.2);
 }
 
-
-/* Intro Overlay */
-.nb-intro{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--cosmic-latte);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-
-.nb-intro__content{
+/* ── Glass card ── */
+.glass-card {
   position: relative;
-  z-index: 2;
-  text-align: center;
-  color: var(--orbital-steel);
+  border: 1px solid
+    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.2);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  transition: border-color 2s ease;
 }
 
-.nb-intro__copy{
-  font-size: clamp(20px, 3vw, 34px);
-  letter-spacing: 0.06em;
-  margin: 0 0 10px;
-}
-
-.nb-intro__hint{
-  font-size: 12px;
-  letter-spacing: 0.28em;
-  opacity: 0.7;
-}
-
-/* 周辺減光（宇宙っぽい“静けさ”を足す。背景色は変えない） */
-.nb-intro__veil{
+/* ── Corner accent ── */
+.corner-accent::before,
+.corner-accent::after {
+  content: "";
   position: absolute;
-  inset: -20%;
-  background:
-    radial-gradient(closest-side, rgba(47,58,69,0.00) 40%, rgba(47,58,69,0.10) 75%, rgba(47,58,69,0.18) 100%);
-  opacity: 0;
-  animation: nbFadeIn 520ms ease forwards;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  transition: border-color 2s ease;
+}
+.corner-accent::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid
+    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
+  border-left: 1px solid
+    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
+}
+.corner-accent::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid
+    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
+  border-right: 1px solid
+    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
 }
 
-/* “宇宙にフォーカスしていく” = 円形のマスクが締まる */
-.nb-intro__focus{
-  position: absolute;
-  inset: 0;
-  background: var(--cosmic-latte);
-  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 0%, #000 52%, transparent 60%);
-  mask-image: radial-gradient(circle at 50% 45%, #000 0%, #000 52%, transparent 60%);
-  animation: nbFocus 1400ms ease forwards;
-  opacity: 1;
+/* ── Vertical divider ── */
+.vertical-divider {
+  width: 1px;
+  height: 64px;
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5),
+    transparent
+  );
+  margin-left: 50%;
 }
 
-/* 終了時：すっと消える */
-.nb-intro.is-closing{
-  animation: nbOut 420ms ease forwards;
-}
-
-@keyframes nbFadeIn{
-  to { opacity: 1; }
-}
-
-@keyframes nbFocus{
-  0%{
-    -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 0%, #000 72%, transparent 80%);
-    mask-image: radial-gradient(circle at 50% 45%, #000 0%, #000 72%, transparent 80%);
-  }
-  100%{
-    -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 0%, #000 6%, transparent 14%);
-    mask-image: radial-gradient(circle at 50% 45%, #000 0%, #000 6%, transparent 14%);
-  }
-}
-
-@keyframes nbOut{
-  to { opacity: 0; pointer-events: none; }
-}
-
-/* 動きが苦手な人向け */
-@media (prefers-reduced-motion: reduce){
-  .nb-intro__veil,
-  .nb-intro__focus,
-  .nb-intro.is-closing{
-    animation: none !important;
-  }
-}
-
-/* Mobile Nav Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.mobile-nav-item {
-  animation: fadeInUp 0.3s ease-out forwards;
-}
-
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .mobile-nav-item {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

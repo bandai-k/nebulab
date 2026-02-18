@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import AboutClient from "./AboutClient";
 
 export const metadata: Metadata = {
-  title: "NEBULABについて | NEBULAB - 成田エリアのお店のIT・Web支援",
+  title: "About — Nebulab",
   description:
-    "NEBULABは成田エリアの飲食店・小売店・個人事業主のためのIT支援を行う小さな会社です。代表のKokiが1人で始めました。",
+    "Nebulabは「思考と行動の間」を埋めるAIプロダクトを開発するラボです。",
 };
 
 export default function AboutPage() {

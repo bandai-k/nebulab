@@ -9,6 +9,9 @@
     </clipPath>
   </defs>
 
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="#ffffff" />
+
   <!-- Hex outline -->
   <polygon points="32,8 54,20 54,44 32,56 10,44 10,20" stroke="url(#hexGrad)" stroke-width="1.5" fill="none" opacity="0.7" />
   <!-- Inner hex -->

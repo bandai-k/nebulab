@@ -41,6 +41,8 @@
   body {
     font-family: "Inter", "Noto Sans JP", ui-sans-serif, system-ui,
       -apple-system, sans-serif;
+    overscroll-behavior-x: none;
+    touch-action: pan-y pinch-zoom;
   }
 
   ::selection {
@@ -61,82 +63,89 @@
   border-radius: 2px;
 }
 
-/* ── Nebula glow blob ── */
-.nebula-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  background: radial-gradient(
-    circle,
-    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.15) 0%,
-    transparent 70%
-  );
-  transition: background 2s ease;
-}
+/* ── Custom component classes (in @layer so Tailwind utilities can override) ── */
+@layer components {
+  /* ── Nebula glow blob ── */
+  .nebula-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    background: radial-gradient(
+      circle,
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.15) 0%,
+      transparent 70%
+    );
+    transition: background 2s ease;
+  }
 
-/* ── Section eyebrow + line ── */
-.section-eyebrow-line {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.section-eyebrow-line::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.2);
-}
+  /* ── Section eyebrow + line ── */
+  .section-eyebrow-line {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .section-eyebrow-line::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.2);
+  }
 
-/* ── Glass card ── */
-.glass-card {
-  position: relative;
-  border: 1px solid
-    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.2);
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(8px);
-  overflow: hidden;
-  transition: border-color 2s ease;
-}
+  /* ── Glass card ── */
+  .glass-card {
+    position: relative;
+    border: 1px solid
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.2);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+    transition: border-color 2s ease;
+  }
+  @media (min-width: 768px) {
+    .glass-card {
+      backdrop-filter: blur(8px);
+    }
+  }
 
-/* ── Corner accent ── */
-.corner-accent::before,
-.corner-accent::after {
-  content: "";
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  pointer-events: none;
-  transition: border-color 2s ease;
-}
-.corner-accent::before {
-  top: 0;
-  left: 0;
-  border-top: 1px solid
-    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
-  border-left: 1px solid
-    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
-}
-.corner-accent::after {
-  bottom: 0;
-  right: 0;
-  border-bottom: 1px solid
-    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
-  border-right: 1px solid
-    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
-}
+  /* ── Corner accent ── */
+  .corner-accent::before,
+  .corner-accent::after {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    transition: border-color 2s ease;
+  }
+  .corner-accent::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
+    border-left: 1px solid
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
+  }
+  .corner-accent::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 1px solid
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
+    border-right: 1px solid
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
+  }
 
-/* ── Vertical divider ── */
-.vertical-divider {
-  width: 1px;
-  height: 64px;
-  background: linear-gradient(
-    to bottom,
-    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5),
-    transparent
-  );
-  margin-left: 50%;
+  /* ── Vertical divider ── */
+  .vertical-divider {
+    width: 1px;
+    height: 64px;
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5),
+      transparent
+    );
+    margin-inline: auto;
+  }
 }
 
 /* ── Reduced motion ── */

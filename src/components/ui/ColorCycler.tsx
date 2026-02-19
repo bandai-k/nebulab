@@ -21,6 +21,9 @@ const LIT = 0.37;
 
 export default function ColorCycler() {
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    if (!mq.matches) return;
+
     const root = document.documentElement;
 
     function update() {

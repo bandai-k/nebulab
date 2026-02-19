@@ -1,33 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BRAND } from "@/constants/brand";
 import { HEADER_NAV } from "@/constants/navigation";
-import { useIsMobile } from "@/lib/useIsMobile";
 
 export default function Header() {
-  const isMobile = useIsMobile();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  return (
-    <header className="fixed top-0 z-50 w-full bg-cyber-bg/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-6 md:px-10 md:py-8">
-        <Link href="/" className="block">
-          <Image
-            src="/nebulab-logo-dark.svg"
-            alt={BRAND.name}
-            width={180}
-            height={52}
-            priority
-          />
-        </Link>
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
-        {isMobile ? (
+  return (
+    <>
+      <header className="fixed inset-x-0 top-0 z-[60] bg-cyber-bg/90 md:backdrop-blur-md">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-6 md:px-10 md:py-8">
+          <Link href="/" className="block">
+            <Image
+              src="/nebulab-logo-dark.svg"
+              alt={BRAND.name}
+              width={180}
+              height={52}
+              priority
+            />
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-8 md:flex">
+            {HEADER_NAV.map((item) => (
+              <Link
+                key={item.key}
+                href={item.href}
+                className="text-xs font-medium tracking-wider text-cyber-text-secondary transition-colors hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Mobile hamburger */}
           <button
             type="button"
-            className="relative z-[60] flex h-10 w-10 flex-col items-center justify-center gap-1.5"
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
             aria-expanded={menuOpen}
@@ -48,24 +72,12 @@ export default function Header() {
               }`}
             />
           </button>
-        ) : (
-          <nav className="flex items-center gap-8">
-            {HEADER_NAV.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                className="text-xs font-medium tracking-wider text-cyber-text-secondary transition-colors hover:text-white"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        )}
-      </div>
+        </div>
+      </header>
 
       {/* Mobile menu overlay */}
-      {isMobile && menuOpen && (
-        <div className="fixed inset-0 z-[55] bg-cyber-bg/95 backdrop-blur-lg">
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 bg-cyber-bg/95 pt-24 md:hidden">
           <nav className="flex h-full flex-col items-center justify-center gap-10">
             {HEADER_NAV.map((item) => (
               <Link
@@ -80,6 +92,6 @@ export default function Header() {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }

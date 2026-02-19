@@ -150,7 +150,7 @@ export default function HomeClient() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-3">
           {/* Navi — flagship */}
           <ScrollReveal delay={0.1}>
             <div className="glass-card corner-accent h-full p-6 md:p-10">
@@ -183,6 +183,27 @@ export default function HomeClient() {
                   デモ →
                 </Link>
               </div>
+            </div>
+          </ScrollReveal>
+
+          {/* SuperMindMap — TBD */}
+          <ScrollReveal delay={0.15}>
+            <div className="glass-card h-full p-6 md:p-10" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+              <div className="flex items-center gap-3">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400/70" />
+                <span className="font-display text-lg tracking-wider text-cyber-text-muted">
+                  SuperMindMap
+                </span>
+              </div>
+              <div className="mt-1">
+                <span className="font-mono text-[10px] tracking-wider text-cyber-text-muted">
+                  TBD — R&amp;D
+                </span>
+              </div>
+              <p className="mt-6 text-sm leading-7 text-cyber-text-muted">
+                思考の構造をAIがリアルタイムで可視化・拡張するマインドマップ。
+                アイデアの断片から、全体像を自動で描き出す。
+              </p>
             </div>
           </ScrollReveal>
 
@@ -224,7 +245,7 @@ export default function HomeClient() {
                 小さく作り、試し、壊し、また作る。このサイクルを高速で回しています。
               </p>
               <div className="status-text mt-8">
-                NAVI:PROTOTYPE — STEALTH:R&amp;D — LAB:PUBLIC
+                NAVI:PROTOTYPE — SUPERMINDMAP:R&amp;D — LAB:PUBLIC
               </div>
             </div>
           </ScrollReveal>

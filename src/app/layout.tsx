@@ -1,10 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingWindows from "@/components/ui/FloatingWindows";
 import ColorCycler from "@/components/ui/ColorCycler";
 import IntroOverlay from "@/components/ui/IntroOverlay";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: "Nebulab",
@@ -22,17 +29,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="min-h-dvh bg-cyber-bg text-cyber-text antialiased">
+      <body className="relative min-h-dvh overflow-x-hidden bg-cyber-bg text-cyber-text antialiased">
         <IntroOverlay />
         <ColorCycler />
         <FloatingWindows />
-        {/* Nebula glow blobs — color driven by CSS variable */}
+        {/* Nebula glow blobs — hidden on mobile for performance */}
         <div
-          className="nebula-glow"
+          className="nebula-glow hidden md:block"
           style={{ width: 600, height: 600, top: -100, left: -150 }}
         />
         <div
-          className="nebula-glow"
+          className="nebula-glow hidden md:block"
           style={{
             width: 400,
             height: 400,

@@ -94,6 +94,9 @@ export default function FloatingWindows() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    if (!mq.matches) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -326,7 +329,7 @@ export default function FloatingWindows() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0"
+      className="pointer-events-none fixed inset-0 z-0 hidden md:block"
       aria-hidden="true"
     />
   );

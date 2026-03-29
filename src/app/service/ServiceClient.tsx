@@ -23,6 +23,12 @@ const SERVICES = [
     desc: "アイデアを素早く形にする。小さく作り、検証し、磨き上げるサイクルで、事業仮説を最速で検証します。",
     status: "ACTIVE",
   },
+  {
+    code: "04",
+    title: "システム開発支援",
+    desc: "Webアプリケーション・業務システムの設計・開発・運用を支援。要件定義から実装、保守まで、プロジェクトのフェーズに応じた柔軟な体制で伴走します。",
+    status: "ACTIVE",
+  },
 ];
 
 export default function ServiceClient() {

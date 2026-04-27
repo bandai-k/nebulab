@@ -42,10 +42,36 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const project = findProject(id);
-  if (!project) return { title: "Project Not Found | Nebulab合同会社" };
+  if (!project) return { title: "Project Not Found" };
+
+  const url = `/projects/${project.id}`;
+  const ogTitle = `${project.name} | Nebulab合同会社`;
+  const ogImages = project.imageUrl
+    ? [
+        {
+          url: project.imageUrl,
+          width: 1792,
+          height: 1024,
+          alt: project.name,
+        },
+      ]
+    : undefined;
+
   return {
-    title: `${project.name} | Nebulab合同会社`,
+    title: project.name,
     description: project.description,
+    alternates: { canonical: url },
+    openGraph: {
+      url,
+      title: ogTitle,
+      description: project.description,
+      images: ogImages,
+    },
+    twitter: {
+      title: ogTitle,
+      description: project.description,
+      images: project.imageUrl ? [project.imageUrl] : undefined,
+    },
   };
 }
 

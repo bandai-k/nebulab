@@ -5,9 +5,21 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { company, history } from "@/data/company";
 
 export const metadata: Metadata = {
-  title: "会社概要 | Nebulab合同会社",
+  title: "会社概要",
   description:
-    "Nebulab合同会社の会社概要、代表メッセージ、事業内容、沿革、アクセス情報。",
+    "Nebulab合同会社の会社概要、代表メッセージ、沿革、アクセス情報。",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    url: "/about",
+    title: "会社概要 | Nebulab合同会社",
+    description:
+      "Nebulab合同会社の会社概要、代表メッセージ、沿革、アクセス情報。",
+  },
+  twitter: {
+    title: "会社概要 | Nebulab合同会社",
+    description:
+      "Nebulab合同会社の会社概要、代表メッセージ、沿革、アクセス情報。",
+  },
 };
 
 const ceoMessage = [
@@ -32,9 +44,39 @@ const mapsEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
   "千葉県成田市花崎町"
 )}&output=embed`;
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: company.name,
+  alternateName: [company.nameEn, company.shortName],
+  url: company.website,
+  email: company.email,
+  founder: {
+    "@type": "Person",
+    name: company.ceo,
+    alternateName: company.ceoEn,
+  },
+  foundingDate: "2026-05-01",
+  address: {
+    "@type": "PostalAddress",
+    postalCode: company.address.zip,
+    addressCountry: "JP",
+    addressRegion: company.address.prefecture,
+    addressLocality: company.address.city,
+    streetAddress: company.address.street,
+  },
+  sameAs: ["https://www.nrt-loft.jp", "https://www.narita-guide.com"],
+};
+
 export default function AboutPage() {
   return (
     <main className="mx-auto max-w-5xl px-5 py-24 md:px-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationJsonLd),
+        }}
+      />
       {/* ── Page Header ── */}
       <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
         <div>

@@ -5,9 +5,21 @@ import HeroVisual from "@/components/HeroVisual";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "事業内容 | Nebulab合同会社",
+  title: "事業内容",
   description:
-    "Nebulab合同会社の4つの事業領域 — SES・受託開発、自社AIプロダクト、地域 × テクノロジー、オリジナルブランド。",
+    "Nebulab合同会社の4つの事業領域 — SES・受託開発、地域 × テクノロジー、オリジナルブランド「NAJIMI」、自社AIプロダクト。",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    url: "/services",
+    title: "事業内容 | Nebulab合同会社",
+    description:
+      "Nebulab合同会社の4つの事業領域 — SES・受託開発、地域 × テクノロジー、オリジナルブランド「NAJIMI」、自社AIプロダクト。",
+  },
+  twitter: {
+    title: "事業内容 | Nebulab合同会社",
+    description:
+      "Nebulab合同会社の4つの事業領域。SES・受託開発から自社AIプロダクトまで。",
+  },
 };
 
 type AreaBlock = {

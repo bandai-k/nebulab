@@ -6,9 +6,21 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { news } from "@/data/news";
 
 export const metadata: Metadata = {
-  title: "News | Nebulab合同会社",
+  title: "News",
   description:
-    "Nebulab および各プロジェクト(NRT-LOFT, NAJIMI, Navi 等)の最新情報。",
+    "Nebulab および各プロジェクトの最新情報。",
+  alternates: { canonical: "/news" },
+  openGraph: {
+    url: "/news",
+    title: "News | Nebulab合同会社",
+    description:
+      "Nebulab および各プロジェクトの最新情報。",
+  },
+  twitter: {
+    title: "News | Nebulab合同会社",
+    description:
+      "Nebulab および各プロジェクトの最新情報。",
+  },
 };
 
 export default function NewsPage() {

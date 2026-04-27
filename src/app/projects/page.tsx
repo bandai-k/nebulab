@@ -7,9 +7,21 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { projects, type Project, type ProjectStatus } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "プロジェクト一覧 | Nebulab合同会社",
+  title: "プロジェクト一覧",
   description:
     "Nebulabが運営・開発・実験している全プロジェクトの一覧。NRT-LOFT, narita-guide.com, NAJIMI, Navi, SuperMindMap など。",
+  alternates: { canonical: "/projects" },
+  openGraph: {
+    url: "/projects",
+    title: "プロジェクト一覧 | Nebulab合同会社",
+    description:
+      "Nebulabが運営・開発・実験している全プロジェクト。NRT-LOFT, narita-guide.com, NAJIMI, Navi 他。",
+  },
+  twitter: {
+    title: "プロジェクト一覧 | Nebulab合同会社",
+    description:
+      "Nebulabが運営・開発・実験している全プロジェクト。",
+  },
 };
 
 const STATUS_STYLES: Record<ProjectStatus, string> = {

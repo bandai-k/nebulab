@@ -6,9 +6,21 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { projects, type Project, type ProjectStatus } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Lab | Nebulab合同会社",
+  title: "Lab",
   description:
     "Nebulab Lab — 自社AIプロダクトのR&Dと技術的な実験・検証を行う部門。",
+  alternates: { canonical: "/lab" },
+  openGraph: {
+    url: "/lab",
+    title: "Lab | Nebulab合同会社",
+    description:
+      "Nebulab Lab — 自社AIプロダクトのR&Dと技術的な実験・検証を行う部門。",
+  },
+  twitter: {
+    title: "Lab | Nebulab合同会社",
+    description:
+      "Nebulab Lab — 自社AIプロダクトのR&Dと技術的な実験・検証を行う部門。",
+  },
 };
 
 const principles: string[] = [

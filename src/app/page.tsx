@@ -6,9 +6,7 @@ import { BRAND } from "@/constants/brand";
 import { news } from "@/data/news";
 
 export const metadata: Metadata = {
-  title: "Nebulab合同会社 | 成田を拠点とするテクノロジーカンパニー",
-  description:
-    "Nebulab合同会社は、成田を拠点にSES・受託開発、自社AIプロダクト、コワーキング(NRT-LOFT)、ECブランド(NAJIMI)を展開するテクノロジーカンパニーです。",
+  alternates: { canonical: "/" },
 };
 
 const heroSlides = [

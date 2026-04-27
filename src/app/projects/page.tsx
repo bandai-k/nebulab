@@ -121,13 +121,9 @@ export default function ProjectsPage() {
           </p>
         </div>
         <div className="hidden md:block">
-          <HeroVisual seed={37} className="h-[360px] w-[360px] lg:h-[440px] lg:w-[440px]" />
+          <HeroVisual seed={37} className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]" />
         </div>
-      </div>
-
-      <div className="vertical-divider mx-auto mt-16" />
-
-      <section className="mt-16 border-t border-cyber-border-dim pt-16">
+      </div>      <section className="mt-12 border-t border-cyber-border-dim pt-12">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, i) => (
             <ScrollReveal key={project.id} delay={(i % 3) * 0.08}>

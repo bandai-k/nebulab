@@ -92,16 +92,12 @@ export default function AboutPage() {
           </p>
         </div>
         <div className="hidden md:block">
-          <HeroVisual seed={11} className="h-[360px] w-[360px] lg:h-[440px] lg:w-[440px]" />
+          <HeroVisual seed={11} className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]" />
         </div>
-      </div>
-
-      <div className="vertical-divider mx-auto mt-16" />
-
-      {/* ── 代表メッセージ ── */}
+      </div>      {/* ── 代表メッセージ ── */}
       <section
         id="message"
-        className="mt-20 border-t border-cyber-border-dim pt-16"
+        className="mt-12 border-t border-cyber-border-dim pt-12"
       >
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
@@ -144,7 +140,7 @@ export default function AboutPage() {
       {/* ── COMPANY INFORMATION ── */}
       <section
         id="company"
-        className="mt-24 border-t border-cyber-border-dim pt-16"
+        className="mt-16 border-t border-cyber-border-dim pt-12"
       >
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
@@ -174,7 +170,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── HISTORY ── */}
-      <section className="mt-24 border-t border-cyber-border-dim pt-16">
+      <section className="mt-16 border-t border-cyber-border-dim pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
             <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
@@ -206,7 +202,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── ACCESS ── */}
-      <section className="mt-24 border-t border-cyber-border-dim pt-16">
+      <section className="mt-16 border-t border-cyber-border-dim pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
             <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">

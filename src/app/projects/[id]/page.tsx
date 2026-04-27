@@ -142,14 +142,10 @@ export default async function ProjectDetailPage({
         <div className="hidden md:block">
           <HeroVisual
             seed={hashSeed(project.id)}
-            className="h-[360px] w-[360px] lg:h-[440px] lg:w-[440px]"
+            className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]"
           />
         </div>
-      </div>
-
-      <div className="vertical-divider mx-auto mt-16" />
-
-      {/* ── Hero image ── */}
+      </div>      {/* ── Hero image ── */}
       <section className="mt-16">
         <div className="relative aspect-[16/9] overflow-hidden border border-cyber-border-dim bg-black/20">
           <ProjectImage project={project} />
@@ -158,7 +154,7 @@ export default async function ProjectDetailPage({
 
       {/* ── Body ── */}
       {project.body && project.body.length > 0 && (
-        <section className="mt-20 border-t border-cyber-border-dim pt-16">
+        <section className="mt-12 border-t border-cyber-border-dim pt-12">
           <ScrollReveal>
             <div className="section-eyebrow-line mb-12">
               <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
@@ -180,7 +176,7 @@ export default async function ProjectDetailPage({
       {project.sections?.map((section) => (
         <section
           key={section.heading}
-          className="mt-24 border-t border-cyber-border-dim pt-16"
+          className="mt-16 border-t border-cyber-border-dim pt-12"
         >
           <ScrollReveal>
             <div className="section-eyebrow-line mb-12">
@@ -237,7 +233,7 @@ export default async function ProjectDetailPage({
 
       {/* ── Links / CTA ── */}
       {(project.links?.length || project.externalUrl) && (
-        <section className="mt-24 border-t border-cyber-border-dim pt-16">
+        <section className="mt-16 border-t border-cyber-border-dim pt-12">
           <ScrollReveal>
             <div className="flex flex-wrap items-center gap-5">
               {project.links?.map((link) =>
@@ -278,7 +274,7 @@ export default async function ProjectDetailPage({
       )}
 
       {/* ── Back link ── */}
-      <section className="mt-24 border-t border-cyber-border-dim pt-16">
+      <section className="mt-16 border-t border-cyber-border-dim pt-12">
         <ScrollReveal>
           <Link
             href="/projects"

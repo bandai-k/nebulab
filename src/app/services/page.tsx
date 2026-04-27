@@ -165,13 +165,9 @@ export default function ServicesPage() {
           </p>
         </div>
         <div className="hidden md:block">
-          <HeroVisual seed={23} className="h-[360px] w-[360px] lg:h-[440px] lg:w-[440px]" />
+          <HeroVisual seed={23} className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]" />
         </div>
-      </div>
-
-      <div className="vertical-divider mx-auto mt-16" />
-
-      {/* ── 4 Business Areas ── */}
+      </div>      {/* ── 4 Business Areas ── */}
       <div className="mt-16">
         {areas.map((area, idx) => (
           <section

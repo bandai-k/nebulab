@@ -57,7 +57,7 @@ export default function DemoClient() {
 
       <ScrollReveal className="mt-16">
         <Link
-          href="/navi"
+          href="/projects/navi"
           className="font-mono text-sm tracking-wider text-cyber-text-secondary transition-colors hover:text-cyber-accent"
         >
           ← Naviについて

@@ -89,7 +89,32 @@
     content: "";
     flex: 1;
     height: 1px;
-    background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.2);
+    background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.4);
+  }
+
+  /* ── Section divider: clear visual boundary between sections ── */
+  .section-divider {
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .section-divider::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -1.5px;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px;
+    background: rgba(
+      var(--accent-r),
+      var(--accent-g),
+      var(--accent-b),
+      0.7
+    );
+    pointer-events: none;
+  }
+  .section-tinted {
+    background: rgba(255, 255, 255, 0.025);
   }
 
   /* ── Glass card ── */
@@ -146,6 +171,162 @@
     );
     margin-inline: auto;
   }
+
+  /* ── Ambient: SVG film grain (fixed, viewport-locked) ── */
+  .ambient-noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-size: 160px 160px;
+  }
+
+  /* ── Ambient: viewport-locked nebula blob with slow drift ── */
+  .nebula-fixed {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+      circle,
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.18) 0%,
+      transparent 70%
+    );
+    will-change: transform;
+    transition: background 2s ease;
+  }
+  .nebula-fixed--drift-1 {
+    animation: nebula-drift-1 28s ease-in-out infinite;
+  }
+  .nebula-fixed--drift-2 {
+    animation: nebula-drift-2 36s ease-in-out infinite;
+  }
+  .nebula-fixed--drift-3 {
+    animation: nebula-drift-3 44s ease-in-out infinite;
+  }
+}
+
+@keyframes nebula-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(60px, 40px);
+  }
+}
+@keyframes nebula-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-50px, 60px);
+  }
+}
+@keyframes nebula-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(40px, -50px);
+  }
+}
+
+/* ── HeroVisual: orbit rotation + node pulse + star twinkle ── */
+.hero-visual {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hero-orbit-rotate {
+  animation: hero-orbit 90s linear infinite;
+  transform-box: fill-box;
+}
+@keyframes hero-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-node {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.hero-node--1 {
+  animation: hero-node-pulse 3.2s ease-in-out infinite;
+}
+.hero-node--2 {
+  animation: hero-node-pulse 4s ease-in-out infinite 0.6s;
+}
+.hero-node--3 {
+  animation: hero-node-pulse 3.6s ease-in-out infinite 1.2s;
+}
+@keyframes hero-node-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.hero-star {
+  animation: hero-star-twinkle 4.8s ease-in-out infinite;
+}
+@keyframes hero-star-twinkle {
+  0%,
+  100% {
+    opacity: var(--twinkle-low, 0.2);
+  }
+  50% {
+    opacity: var(--twinkle-high, 0.7);
+  }
+}
+
+/* ── Hero carousel: full-bleed cross-fading image slides ── */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: hero-carousel-4 28s ease-in-out infinite;
+}
+@keyframes hero-carousel-4 {
+  0%,
+  22% {
+    opacity: 1;
+  }
+  28%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes hero-carousel-bg-zoom {
+  0%,
+  22% {
+    transform: scale(1.06);
+  }
+  28%,
+  100% {
+    transform: scale(1);
+  }
+}
+.hero-slide-zoom {
+  animation:
+    hero-carousel-4 28s ease-in-out infinite,
+    hero-carousel-bg-zoom 28s ease-in-out infinite;
 }
 
 /* ── Reduced motion ── */

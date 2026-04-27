@@ -1,0 +1,65 @@
+<svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1422"/>
+      <stop offset="100%" stop-color="#04080f"/>
+    </linearGradient>
+    <radialGradient id="hub-glow" cx="76%" cy="65%" r="40%">
+      <stop offset="0%" stop-color="#1556a5" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1556a5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="340" fill="url(#bg)"/>
+  <rect width="600" height="340" fill="url(#hub-glow)"/>
+
+  <!-- Distant building cluster (line silhouettes) -->
+  <g stroke="rgba(255,255,255,0.35)" stroke-width="0.7" fill="none">
+    <!-- Main central tower -->
+    <path d="M 430 280 L 430 170 L 470 170 L 470 280"/>
+    <line x1="450" y1="170" x2="450" y2="280"/>
+    <line x1="430" y1="200" x2="470" y2="200"/>
+    <line x1="430" y1="230" x2="470" y2="230"/>
+    <line x1="430" y1="260" x2="470" y2="260"/>
+
+    <!-- Left building -->
+    <path d="M 380 280 L 380 210 L 420 210 L 420 280"/>
+    <line x1="380" y1="240" x2="420" y2="240"/>
+    <line x1="380" y1="265" x2="420" y2="265"/>
+
+    <!-- Right building -->
+    <path d="M 480 280 L 480 195 L 520 195 L 520 280"/>
+    <line x1="480" y1="225" x2="520" y2="225"/>
+    <line x1="480" y1="250" x2="520" y2="250"/>
+  </g>
+
+  <!-- Ground line -->
+  <line x1="0" y1="280" x2="600" y2="280" stroke="rgba(255,255,255,0.3)" stroke-width="0.6"/>
+
+  <!-- Stars / nebula above -->
+  <g fill="rgba(255,255,255,0.6)">
+    <circle cx="300" cy="40" r="1"/>
+    <circle cx="350" cy="60" r="1.4"/>
+    <circle cx="380" cy="32" r="0.9"/>
+    <circle cx="420" cy="55" r="1.2"/>
+    <circle cx="460" cy="38" r="1"/>
+    <circle cx="490" cy="62" r="1.3"/>
+    <circle cx="520" cy="42" r="0.9"/>
+    <circle cx="550" cy="68" r="1.1"/>
+    <circle cx="475" cy="98" r="1"/>
+    <circle cx="510" cy="110" r="0.8"/>
+    <circle cx="555" cy="140" r="1"/>
+    <circle cx="335" cy="100" r="0.8"/>
+    <circle cx="365" cy="130" r="1"/>
+  </g>
+
+  <!-- Connecting orbit arc -->
+  <path d="M 320 100 Q 450 30 560 130" stroke="rgba(21,86,165,0.4)" stroke-width="0.5" fill="none" stroke-dasharray="2 5"/>
+
+  <!-- Title -->
+  <text x="40" y="180" font-family="'Cormorant Garamond', Georgia, serif" font-size="50" fill="#ffffff" font-weight="400" letter-spacing="1">Nebula Place</text>
+  <text x="40" y="210" font-family="'Fragment Mono', monospace" font-size="11" fill="rgba(255,255,255,0.55)" letter-spacing="3">地域活性化ハブ構想</text>
+
+  <!-- Mono tags -->
+  <text x="40" y="40" font-family="'Fragment Mono', monospace" font-size="10" fill="rgba(255,255,255,0.45)" letter-spacing="2">ID:NEBULA-PLACE</text>
+  <text x="560" y="324" font-family="'Fragment Mono', monospace" font-size="10" fill="rgba(255,255,255,0.35)" letter-spacing="2" text-anchor="end">CONCEPT</text>
+</svg>

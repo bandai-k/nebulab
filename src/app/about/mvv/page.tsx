@@ -8,7 +8,7 @@ import { MISSION, VISION, VALUES } from "@/constants/mvv";
 export const metadata: Metadata = {
   title: "Mission / Vision / Values",
   description:
-    "Nebulab合同会社のミッション、ビジョン、3つのバリュー(能動性 / 判断は人間に / 小さく壊して、速く学ぶ)。",
+    "Nebulab合同会社のミッション、ビジョン、3つのバリュー(先回り / 主役は人 / 小さく壊して、速く学ぶ)。",
   alternates: { canonical: "/about/mvv" },
   openGraph: {
     url: "/about/mvv",

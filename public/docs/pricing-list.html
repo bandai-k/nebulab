@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Nebulab合同会社 受託サービス価格表</title>
+<style>
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+html, body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  background: #E8E5DD;
+  color: #1A1A18;
+  line-height: 1.7;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  padding: 10mm 14mm;
+  background: #FAFAF8;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+}
+
+.page:last-child {
+  page-break-after: auto;
+}
+
+@media screen {
+  body {
+    padding: 30px 0;
+  }
+  .page {
+    margin: 0 auto 30px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+}
+
+.mono {
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  letter-spacing: 0.05em;
+}
+
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+}
+
+/* ===== ページヘッダー(共通) ===== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 3mm;
+  border-bottom: 1px solid #1A1A18;
+  margin-bottom: 5mm;
+  flex-shrink: 0;
+}
+
+.page-header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 3mm;
+}
+
+.page-logo {
+  font-size: 14pt;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.page-title-mono {
+  font-size: 8pt;
+  color: #6A6A68;
+  letter-spacing: 0.15em;
+}
+
+.page-num {
+  font-size: 8pt;
+  color: #6A6A68;
+  letter-spacing: 0.1em;
+}
+
+/* ===== ページフッター(共通) ===== */
+.page-footer {
+  margin-top: auto;
+  padding-top: 3mm;
+  border-top: 1px solid #D0CDC4;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7pt;
+  color: #6A6A68;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+/* ============================================ */
+/* ページ1: 表紙                                   */
+/* ============================================ */
+.cover {
+  justify-content: space-between;
+  padding: 0;
+}
+
+.cover-top {
+  padding: 24mm 16mm 0;
+}
+
+.cover-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 4mm;
+  margin-bottom: 40mm;
+}
+
+.cover-logo-mark {
+  font-size: 32pt;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.cover-logo-tag {
+  font-size: 9pt;
+  color: #6A6A68;
+  letter-spacing: 0.2em;
+}
+
+.cover-title-area {
+  margin-bottom: 12mm;
+}
+
+.cover-title-pre {
+  font-size: 10pt;
+  color: #6A6A68;
+  letter-spacing: 0.3em;
+  margin-bottom: 5mm;
+}
+
+.cover-title {
+  font-size: 36pt;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 6mm;
+}
+
+.cover-subtitle {
+  font-size: 13pt;
+  color: #4A4A48;
+  line-height: 1.7;
+}
+
+.cover-bottom {
+  background: #1A1A18;
+  color: #FAFAF8;
+  padding: 12mm 16mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-philosophy {
+  flex: 1;
+  font-size: 14pt;
+  font-style: italic;
+  line-height: 1.7;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+}
+
+.cover-meta {
+  text-align: right;
+  font-size: 8pt;
+  letter-spacing: 0.15em;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+/* ============================================ */
+/* ページ2: 価格設計の考え方                        */
+/* ============================================ */
+.section-heading {
+  font-size: 10pt;
+  letter-spacing: 0.3em;
+  color: #6A6A68;
+  margin-bottom: 3mm;
+  padding-bottom: 2mm;
+  border-bottom: 1px solid #1A1A18;
+}
+
+.h2-title {
+  font-size: 18pt;
+  font-weight: 500;
+  margin-bottom: 5mm;
+  line-height: 1.3;
+}
+
+.h3-title {
+  font-size: 12pt;
+  font-weight: 500;
+  margin-bottom: 3mm;
+  margin-top: 5mm;
+}
+
+.h3-title:first-child {
+  margin-top: 0;
+}
+
+.body-text {
+  font-size: 9.5pt;
+  line-height: 1.7;
+  color: #2A2A28;
+  margin-bottom: 2mm;
+}
+
+.policy-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 4mm;
+  font-size: 9pt;
+}
+
+.policy-table th,
+.policy-table td {
+  padding: 1.5mm 3mm;
+  text-align: left;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.policy-table th {
+  font-weight: 500;
+  background: #F0EDE5;
+  font-size: 9pt;
+}
+
+.policy-table tr:last-child td {
+  border-bottom: 1px solid #1A1A18;
+}
+
+.policy-table .center {
+  text-align: center;
+}
+
+.tier-diagram {
+  background: #F0EDE5;
+  padding: 4mm 5mm;
+  border: 1px solid #D0CDC4;
+  margin-bottom: 4mm;
+  font-family: "SF Mono", monospace;
+  font-size: 8.5pt;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+.tier-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.tier-label {
+  font-weight: 500;
+}
+
+.tier-price {
+  color: #4A4A48;
+}
+
+.tier-arrow {
+  text-align: center;
+  color: #8A8A88;
+  font-size: 9pt;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.tier-desc {
+  color: #6A6A68;
+  font-size: 8pt;
+  font-style: italic;
+  margin-bottom: 1mm;
+}
+
+/* ============================================ */
+/* サービスカード                                  */
+/* ============================================ */
+.service-card {
+  border: 1px solid #1A1A18;
+  background: #FFFFFF;
+  padding: 2mm 4mm;
+  margin-bottom: 1.5mm;
+  page-break-inside: avoid;
+}
+
+.service-card.featured {
+  border-width: 1.5px;
+  background: #FAFAF8;
+}
+
+.service-card.subscription {
+  border-style: dashed;
+}
+
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5mm;
+  padding-bottom: 1.5mm;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.service-name-area {
+  flex: 1;
+}
+
+.service-name {
+  font-size: 12pt;
+  font-weight: 500;
+  margin-bottom: 0.5mm;
+  line-height: 1.3;
+}
+
+.service-name .featured-mark {
+  color: #C75D3C;
+  margin-right: 2mm;
+}
+
+.service-tagline {
+  font-size: 8.5pt;
+  color: #6A6A68;
+  line-height: 1.4;
+}
+
+.service-price-area {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 4mm;
+}
+
+.service-price {
+  font-size: 14pt;
+  font-weight: 500;
+  color: #C75D3C;
+  line-height: 1;
+}
+
+.service-price-unit {
+  font-size: 8.5pt;
+  color: #6A6A68;
+  margin-top: 0.5mm;
+}
+
+.service-meta {
+  font-size: 7.5pt;
+  color: #6A6A68;
+  margin-top: 0.5mm;
+}
+
+.service-body {
+  font-size: 9pt;
+  line-height: 1.55;
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 4mm;
+  margin: 1mm 0;
+}
+
+.service-features li {
+  display: flex;
+  align-items: baseline;
+  gap: 2mm;
+  font-size: 8.5pt;
+  line-height: 1.4;
+}
+
+.service-features li::before {
+  content: "・";
+  color: #4A6B5C;
+  flex-shrink: 0;
+}
+
+.service-note {
+  background: #F0EDE5;
+  padding: 2mm 3mm;
+  margin: 2mm 0;
+  font-size: 8pt;
+  line-height: 1.55;
+  border-left: 2px solid #4A6B5C;
+}
+
+.service-recommend {
+  margin-top: 1.5mm;
+  padding-top: 1.5mm;
+  border-top: 1px solid #D0CDC4;
+  font-size: 8.5pt;
+  color: #4A6B5C;
+  font-weight: 500;
+}
+
+/* キャンペーンバナー */
+.campaign-banner {
+  background: #C75D3C;
+  color: #FAFAF8;
+  padding: 1.5mm 3mm;
+  margin: 1mm 0 2mm 0;
+  font-size: 8.5pt;
+  font-weight: 500;
+  display: inline-block;
+  letter-spacing: 0.05em;
+}
+
+/* セクション区切り */
+.section-divider {
+  text-align: center;
+  margin: 4mm 0 5mm;
+  font-size: 8.5pt;
+  letter-spacing: 0.3em;
+  color: #6A6A68;
+  position: relative;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: #D0CDC4;
+}
+
+.section-divider::before {
+  left: 0;
+}
+
+.section-divider::after {
+  right: 0;
+}
+
+/* ============================================ */
+/* ご利用の流れ                                    */
+/* ============================================ */
+.flow-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4mm;
+  margin: 3mm 0 4mm;
+}
+
+.flow-step {
+  border: 1px solid #1A1A18;
+  padding: 3mm 2mm;
+  text-align: center;
+  position: relative;
+  background: #FFFFFF;
+}
+
+.flow-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -3mm;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6A6A68;
+  font-size: 12pt;
+  background: #FAFAF8;
+  padding: 0 1mm;
+  z-index: 1;
+}
+
+.flow-num {
+  font-size: 9pt;
+  color: #6A6A68;
+  margin-bottom: 0.5mm;
+  font-family: "SF Mono", monospace;
+}
+
+.flow-text {
+  font-size: 10pt;
+  font-weight: 500;
+  margin-bottom: 0.5mm;
+}
+
+.flow-detail {
+  font-size: 7.5pt;
+  color: #6A6A68;
+  line-height: 1.4;
+}
+
+/* ============================================ */
+/* FAQ                                            */
+/* ============================================ */
+.faq-list {
+  list-style: none;
+  padding: 0;
+}
+
+.faq-item {
+  margin-bottom: 3mm;
+  padding-bottom: 3mm;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-q {
+  font-weight: 500;
+  font-size: 10pt;
+  margin-bottom: 1.5mm;
+  display: flex;
+  gap: 3mm;
+}
+
+.faq-q::before {
+  content: "Q.";
+  color: #C75D3C;
+  font-family: "SF Mono", monospace;
+  flex-shrink: 0;
+}
+
+.faq-a {
+  font-size: 9pt;
+  line-height: 1.6;
+  color: #2A2A28;
+  display: flex;
+  gap: 3mm;
+  padding-left: 2mm;
+}
+
+.faq-a::before {
+  content: "A.";
+  color: #4A6B5C;
+  font-family: "SF Mono", monospace;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.faq-a-content {
+  flex: 1;
+}
+
+/* ============================================ */
+/* 会社情報フッター                                */
+/* ============================================ */
+.company-block {
+  background: #1A1A18;
+  color: #FAFAF8;
+  padding: 6mm 8mm;
+  margin: 4mm -14mm -11mm;
+}
+
+.company-block-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5mm;
+}
+
+.company-block-left .company-name {
+  font-size: 12pt;
+  font-weight: 500;
+  margin-bottom: 2mm;
+}
+
+.company-block-left .company-info {
+  font-size: 8.5pt;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.company-block-right {
+  border-left: 1px solid rgba(250, 250, 248, 0.2);
+  padding-left: 5mm;
+}
+
+.company-block-right .label {
+  font-size: 7.5pt;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+  margin-bottom: 1.5mm;
+}
+
+.company-block-right .contact-line {
+  font-size: 9pt;
+  margin-bottom: 1.5mm;
+  font-family: "SF Mono", monospace;
+}
+
+.print-hint {
+  text-align: center;
+  color: #4A4A48;
+  font-size: 13px;
+  margin: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.print-hint h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.print-hint code {
+  background: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+@media print {
+  .print-hint {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="print-hint">
+  <h3>印刷・PDF出力の方法</h3>
+  <p>1. ブラウザで <code>Ctrl+P</code>(Windows)または <code>Cmd+P</code>(Mac)で印刷ダイアログを開く</p>
+  <p>2. 用紙サイズ「A4」、余白「なし」、「背景のグラフィック」を有効にする</p>
+  <p>3. PDFとして保存 または 直接印刷</p>
+  <p>※ 営業先への共有はPDF推奨。印刷物は両面で6ページに収まります</p>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ1: 表紙                                   -->
+<!-- ============================================ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">
+      <span class="cover-logo-mark serif">Nebulab</span>
+      <span class="cover-logo-tag mono">合同会社 / 成田市</span>
+    </div>
+
+    <div class="cover-title-area">
+      <div class="cover-title-pre mono">— SERVICES & PRICING —</div>
+      <h1 class="cover-title serif">
+        受託サービス<br>
+        価格表
+      </h1>
+      <p class="cover-subtitle">
+        成田の小規模事業者・個人事業主の方が<br>
+        無理なく投資できる価格で、ご提供します。
+      </p>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-philosophy">
+      作って終わりじゃなく、ずっと一緒に。<br>
+      お店の隣の、ITの相談係でありたい。
+    </div>
+    <div class="cover-meta mono">
+      VERSION 2026.05<br>
+      EFFECTIVE FROM<br>
+      MAY 2026<br>
+      <br>
+      35.7758°N<br>
+      140.3186°E
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ2: 価格設計の考え方                        -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— PRICING POLICY —</span>
+    </div>
+    <span class="page-num mono">P. 02 / 08</span>
+  </div>
+
+  <div class="section-heading mono">— 01. 価格設計の考え方 —</div>
+  <h2 class="h2-title">無理なく投資できる、<br>地域価格でご提供します。</h2>
+
+  <p class="body-text">
+    Nebulab合同会社は、東京の制作会社の半額〜1/3、フリーランス相場のやや下の価格帯で、品質を維持したサービスをご提供します。
+    成田で生まれ、成田で育った代表が直接対応するからこそ実現できる、地域に寄り添った価格設定です。
+  </p>
+
+  <table class="policy-table">
+    <tr>
+      <th style="width: 30%;">観点</th>
+      <th>内容</th>
+    </tr>
+    <tr>
+      <td>基本時間単価</td>
+      <td>¥6,000/h(業界標準的なフリーランス単価)</td>
+    </tr>
+    <tr>
+      <td>価格ポジション</td>
+      <td>フリーランス相場のやや下、制作会社の半額以下</td>
+    </tr>
+    <tr>
+      <td>想定顧客</td>
+      <td>成田・印西・佐倉エリアの小規模事業者・個人事業主</td>
+    </tr>
+    <tr>
+      <td>補助金活用</td>
+      <td>各種補助金の活用相談も承ります</td>
+    </tr>
+  </table>
+
+  <h3 class="h3-title">サービス階層の構造</h3>
+
+  <div class="tier-diagram">
+    <div class="tier-row">
+      <span class="tier-label">入口商品</span>
+      <span class="tier-price">¥20,000-30,000</span>
+    </div>
+    <div class="tier-desc">— お試し用、関係構築のための低価格サービス</div>
+    <div class="tier-arrow">↓</div>
+    <div class="tier-row">
+      <span class="tier-label">オープン応援サブスク</span>
+      <span class="tier-price">¥25,000/月</span>
+    </div>
+    <div class="tier-desc">— 初期費用なしで始める、月額制プラン</div>
+    <div class="tier-arrow">↓</div>
+    <div class="tier-row">
+      <span class="tier-label">HP Superlight ⭐NEW</span>
+      <span class="tier-price">¥30,000</span>
+    </div>
+    <div class="tier-desc">— 名刺代わりの最小ホームページ、お試しプラン</div>
+    <div class="tier-arrow">↓</div>
+    <div class="tier-row">
+      <span class="tier-label">主力商品</span>
+      <span class="tier-price">¥120,000-180,000</span>
+    </div>
+    <div class="tier-desc">— ホームページ制作を中心とした中核サービス</div>
+    <div class="tier-arrow">↓</div>
+    <div class="tier-row">
+      <span class="tier-label">上位商品</span>
+      <span class="tier-price">¥150,000-300,000</span>
+    </div>
+    <div class="tier-desc">— 機能拡張・複合提案</div>
+    <div class="tier-arrow">↓</div>
+    <div class="tier-row">
+      <span class="tier-label">継続商品</span>
+      <span class="tier-price">¥10,000-50,000/月</span>
+    </div>
+    <div class="tier-desc">— 運用支援・顧問契約のストック収入</div>
+  </div>
+
+  <h3 class="h3-title">ドメイン・サーバー・SSLの扱い</h3>
+
+  <p class="body-text">
+    各プランによって、ドメイン・サーバー等のインフラ費用の扱いが異なります。
+    「丸投げしたい方」と「自分でも触りたい方」、それぞれに合うプランをご用意しています。
+  </p>
+
+  <table class="policy-table">
+    <tr>
+      <th>プラン</th>
+      <th class="center">ドメイン</th>
+      <th class="center">サーバー</th>
+      <th class="center">SSL</th>
+      <th class="center">顧客名義</th>
+    </tr>
+    <tr>
+      <td><strong>オープン応援サブスク</strong></td>
+      <td class="center">込み</td>
+      <td class="center">込み</td>
+      <td class="center">込み</td>
+      <td class="center">不要</td>
+    </tr>
+    <tr>
+      <td><strong>HP Light/Standard</strong>(単発購入)</td>
+      <td class="center">顧客契約</td>
+      <td class="center">顧客契約</td>
+      <td class="center">無料SSL</td>
+      <td class="center">必要</td>
+    </tr>
+    <tr>
+      <td><strong>初期セットアップ代行</strong>(オプション)</td>
+      <td class="center">代行</td>
+      <td class="center">代行</td>
+      <td class="center">設定代行</td>
+      <td class="center">必要</td>
+    </tr>
+    <tr>
+      <td><strong>HP保守</strong>(月額)</td>
+      <td class="center">込み</td>
+      <td class="center">込み</td>
+      <td class="center">込み</td>
+      <td class="center">不要</td>
+    </tr>
+  </table>
+
+  <div class="page-footer">
+    <span>Nebulab合同会社 受託サービス価格表</span>
+    <span class="mono">EST. MAY 2026</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ3: 入口商品 + サブスク                     -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— ENTRY & SUBSCRIPTION —</span>
+    </div>
+    <span class="page-num mono">P. 03 / 08</span>
+  </div>
+
+  <div class="section-heading mono">— 02. 入口商品 —</div>
+  <p class="body-text">
+    最初の一歩として、低価格で始められるサービスです。「Nebulabに頼んでみる」を試したい方に。
+  </p>
+
+  <!-- Googleビジネスプロフィール整備 -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">Googleビジネスプロフィール整備</div>
+        <div class="service-tagline">Google検索でお店を見つけてもらう</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥30,000</div>
+        <div class="service-price-unit">税込 / 1回</div>
+        <div class="service-meta">納期: 1週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>初期登録・カテゴリ設定</li>
+        <li>写真撮影(10-15枚)</li>
+        <li>説明文の最適化(SEO対応)</li>
+        <li>営業時間・連絡先整備</li>
+      </ul>
+      <div class="service-recommend">→ Google検索で店が出てこない方</div>
+    </div>
+  </div>
+
+  <!-- HP診断 -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">ホームページ簡易診断</div>
+        <div class="service-tagline">今のサイトの課題を可視化</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥20,000</div>
+        <div class="service-price-unit">税込 / 1回</div>
+        <div class="service-meta">納期: 1週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>SEO診断</li>
+        <li>モバイル対応度チェック</li>
+        <li>表示速度測定</li>
+        <li>競合サイトとの比較・改善提案書</li>
+      </ul>
+      <div class="service-recommend">→ 今のホームページに不安がある方</div>
+    </div>
+  </div>
+
+  <!-- AI活用ヒアリング -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">生成AI活用ヒアリング</div>
+        <div class="service-tagline">業務にAIをどう取り入れるか</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥30,000</div>
+        <div class="service-price-unit">税込 / 1回</div>
+        <div class="service-meta">90分+資料</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>業務内容のヒアリング(60分)</li>
+        <li>活用提案書の作成・提出</li>
+        <li>推奨ツール一覧</li>
+        <li>導入ステップの説明</li>
+      </ul>
+      <div class="service-recommend">→ 生成AIを業務で活用したい方</div>
+    </div>
+  </div>
+
+  <div class="section-divider mono">— OPEN SUPPORT SUBSCRIPTION —</div>
+
+  <!-- オープン応援サブスク(featured) -->
+  <div class="service-card featured subscription">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name"><span class="featured-mark">★</span>Nebulab オープン応援サブスク</div>
+        <div class="service-tagline">初期費用なしで始められる月額制プラン(オールインワン)</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥25,000</div>
+        <div class="service-price-unit">税込 / 月</div>
+        <div class="service-meta">最低契約期間: 6ヶ月</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <div class="campaign-banner mono">🎉 オープン記念: 2026年5〜7月の新規契約は初月無料</div>
+
+      <p style="font-size: 8.5pt; margin-bottom: 1.5mm; font-weight: 500;">含まれるもの(初月):</p>
+      <ul class="service-features">
+        <li>HP制作(1ページ完結型)</li>
+        <li>スマホ完全対応</li>
+        <li>お問い合わせフォーム</li>
+        <li>ドメイン取得・管理(.com)</li>
+        <li>レンタルサーバー</li>
+        <li>SSL証明書(無料SSL)</li>
+        <li>メールアドレス1つ</li>
+        <li>Google マップ埋め込み</li>
+      </ul>
+
+      <p style="font-size: 8.5pt; margin: 2mm 0 1.5mm; font-weight: 500;">含まれるもの(2ヶ月目以降、毎月):</p>
+      <ul class="service-features">
+        <li>月1回の更新作業</li>
+        <li>バックアップ運用</li>
+        <li>セキュリティ監視</li>
+        <li>ドメイン・サーバー継続管理</li>
+        <li>LINE/メール相談 月3回まで</li>
+        <li>月次運用レポート</li>
+      </ul>
+
+      <div class="service-note">
+        <strong>オールインワン</strong>: ドメイン・サーバー・SSL等のインフラ費用はすべて月額に含まれています。Nebulab側ですべて管理するので、ITに詳しくない方でも安心して始められます。
+      </div>
+
+      <div class="service-recommend">→ 初期費用¥120,000がハードルな個人事業主・小規模事業者</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Nebulab合同会社 受託サービス価格表</span>
+    <span class="mono">EST. MAY 2026</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ4: HP Superlight (NEW)                  -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— HP SUPERLIGHT —</span>
+    </div>
+    <span class="page-num mono">P. 04 / 08</span>
+  </div>
+
+  <div class="section-heading mono">— 03. 入口プラン / 名刺代わりの最小ホームページ —</div>
+  <h2 class="h2-title">¥30,000で、お店の Web 上の<br>「存在」をつくります</h2>
+
+  <p class="body-text">
+    「ホームページがあるだけで十分」「名刺代わりに使えるサイトが欲しい」方向けの、
+    最小限のプランです。本格的な集客やブランディングには HP Standard 以上を推奨いたします。
+  </p>
+
+  <!-- HP Superlight -->
+  <div class="service-card featured">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name"><span class="featured-mark">★</span>HP Superlight</div>
+        <div class="service-tagline">名刺代わりの最小ホームページ・お試しプラン</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥30,000</div>
+        <div class="service-price-unit">税込 / 1サイト</div>
+        <div class="service-meta">納期: 3-5営業日</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <p style="font-size: 8.5pt; margin-bottom: 1.5mm; font-weight: 500;">含まれるもの:</p>
+      <ul class="service-features">
+        <li>1ページ完結型(超シンプル)</li>
+        <li>スマートフォン完全対応</li>
+        <li>お問い合わせフォーム1つ</li>
+        <li>Google マップ埋め込み</li>
+        <li>写真3点までの編集・配置(顧客提供)</li>
+        <li>ヒアリング30分</li>
+        <li>修正対応2回まで</li>
+      </ul>
+
+      <p style="font-size: 8.5pt; margin: 2mm 0 1.5mm; font-weight: 500;">含まれないもの(オプション・別途):</p>
+      <ul class="service-features">
+        <li>写真撮影代行(別途実費)</li>
+        <li>大幅なデザイン変更</li>
+        <li>ページ追加(¥5,000/ページ)</li>
+        <li>3回目以降の修正(¥5,000/回)</li>
+        <li>公開後のサポート(HP保守 Light で対応可)</li>
+        <li>ドメイン・サーバー実費(顧客契約)</li>
+      </ul>
+
+      <div class="service-note">
+        <strong>大切なお知らせ</strong>: HP Superlight は「とりあえず Web に存在する」を実現する最小プランです。集客特化やブランディング重視の場合は、以下のプランをご検討ください。
+        <ul style="list-style: none; padding: 0; margin-top: 2mm;">
+          <li>・集客重視 → <strong>HP Standard ¥180,000</strong>(5-7ページ、SEO対策込み)</li>
+          <li>・ブランド重視 → <strong>HP Premium ¥300,000</strong>(オリジナルデザイン)</li>
+          <li>・運用込み → <strong>オープン応援サブスク ¥25,000/月</strong>(初月無料)</li>
+        </ul>
+      </div>
+
+      <div class="service-recommend">→ 名刺・ショップカードに URL を載せたい方、最小限の Web 存在感が欲しい方</div>
+    </div>
+  </div>
+
+  <h3 class="h3-title">¥30,000を実現するための制約</h3>
+
+  <p class="body-text">
+    この価格を実現するため、以下の制約にご納得いただいた上でのご契約となります。
+  </p>
+
+  <table class="policy-table">
+    <tr>
+      <th style="width: 30%;">項目</th>
+      <th>内容</th>
+    </tr>
+    <tr>
+      <td>デザイン</td>
+      <td>テンプレートベース(完全オリジナルデザインではありません)</td>
+    </tr>
+    <tr>
+      <td>修正対応</td>
+      <td>2回まで(以降は ¥5,000/回)</td>
+    </tr>
+    <tr>
+      <td>写真</td>
+      <td>顧客ご提供のみ(撮影代行はオプション)</td>
+    </tr>
+    <tr>
+      <td>SEO対策</td>
+      <td>基本的な対応のみ(本格対応は HP Standard 以上)</td>
+    </tr>
+    <tr>
+      <td>公開後サポート</td>
+      <td>含まれず(HP保守 Light ¥10,000/月で別途対応可能)</td>
+    </tr>
+  </table>
+
+  <div class="page-footer">
+    <span>Nebulab合同会社 受託サービス価格表</span>
+    <span class="mono">EST. MAY 2026</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ5: 主力商品                                -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— MAIN SERVICES —</span>
+    </div>
+    <span class="page-num mono">P. 05 / 08</span>
+  </div>
+
+  <div class="section-heading mono">— 04. 主力商品 / ホームページ制作 —</div>
+  <p class="body-text">
+    Nebulabの中核サービスです。多くの地域事業者の方にご利用いただいています。
+  </p>
+
+  <!-- HP Light -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name"><span class="featured-mark">★</span>HP Light</div>
+        <div class="service-tagline">シンプルな1ページ完結型 / 初めての方におすすめ</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥120,000</div>
+        <div class="service-price-unit">税込 / 1サイト</div>
+        <div class="service-meta">制作期間: 2-3週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>1ページ完結型(縦長スクロール)</li>
+        <li>スマホ完全対応</li>
+        <li>お問い合わせフォーム</li>
+        <li>Google マップ埋め込み</li>
+        <li>写真5-10点の編集・配置</li>
+        <li>公開後30日間の軽微修正(無料)</li>
+      </ul>
+      <div class="service-note">
+        ドメイン・サーバーはお客様名義で契約(年間¥10,000-15,000程度の実費)。<br>
+        契約手続きが不安な方は <strong>初期セットアップ代行(¥10,000)</strong> をご利用ください。
+      </div>
+      <div class="service-recommend">→ ホームページがない、まず最小限で始めたい方</div>
+    </div>
+  </div>
+
+  <!-- HP Standard -->
+  <div class="service-card featured">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name"><span class="featured-mark">★★</span>HP Standard</div>
+        <div class="service-tagline">しっかり集客できる標準プラン / 主力商品</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥180,000</div>
+        <div class="service-price-unit">税込 / 1サイト</div>
+        <div class="service-meta">制作期間: 3-4週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>5-7ページ構成</li>
+        <li>スマホ完全対応</li>
+        <li>お問い合わせフォーム(複数)</li>
+        <li>Google マップ埋め込み</li>
+        <li>基本SEO対策</li>
+        <li>写真15-25点の編集・配置</li>
+        <li>WordPress構築(自分で更新可能)</li>
+        <li>公開後30日間の軽微修正(無料)</li>
+      </ul>
+      <div class="service-note">
+        ドメイン・サーバーはお客様名義で契約。HP保守 Light(¥10,000/月)で全管理代行可能です。
+      </div>
+      <div class="service-recommend">→ しっかり集客できるホームページが欲しい方</div>
+    </div>
+  </div>
+
+  <!-- HPリニューアル -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">HPリニューアル</div>
+        <div class="service-tagline">既存サイトを刷新</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥150,000</div>
+        <div class="service-price-unit">税込 / 1サイト</div>
+        <div class="service-meta">制作期間: 3-4週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>既存サイトの分析・課題抽出</li>
+        <li>新デザイン制作</li>
+        <li>コンテンツ移行・整理</li>
+        <li>スマホ対応</li>
+        <li>SEO改善</li>
+        <li>WordPress化(リクエストに応じ)</li>
+      </ul>
+      <div class="service-recommend">→ ホームページが古くて困っている方</div>
+    </div>
+  </div>
+
+  <!-- 予約システム導入 -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">予約システム導入</div>
+        <div class="service-tagline">電話予約をWebに置き換え</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥100,000</div>
+        <div class="service-price-unit">税込 / 1回</div>
+        <div class="service-meta">導入期間: 1-2週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>RESERVA・STORES予約等の選定・契約サポート</li>
+        <li>初期設定(料金・時間枠・スタッフ)</li>
+        <li>HP・Googleビジネスプロフィールへの設置</li>
+        <li>操作マニュアル提供</li>
+        <li>1ヶ月の運用サポート</li>
+      </ul>
+      <div class="service-recommend">→ 電話予約・紙の予約管理を効率化したい方</div>
+    </div>
+  </div>
+
+  <!-- 初期セットアップ代行 -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">初期セットアップ代行(オプション)</div>
+        <div class="service-tagline">ドメイン・サーバー契約から設定まで代行</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥10,000</div>
+        <div class="service-price-unit">税込 / 1回</div>
+        <div class="service-meta">HP制作と並行</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>ドメイン契約の代行(顧客名義)</li>
+        <li>サーバー契約の代行(顧客名義)</li>
+        <li>DNS設定・サーバー初期設定</li>
+        <li>SSL証明書設定</li>
+        <li>WordPress 初期インストール</li>
+      </ul>
+      <div class="service-recommend">→ 契約手続きが不安、設定もお願いしたい方</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Nebulab合同会社 受託サービス価格表</span>
+    <span class="mono">EST. MAY 2026</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ5: 上位商品                                -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— PREMIUM SERVICES —</span>
+    </div>
+    <span class="page-num mono">P. 06 / 08</span>
+  </div>
+
+  <div class="section-heading mono">— 05. 上位商品 / 本格的な構築 —</div>
+  <p class="body-text">
+    事業の本格的な拡大期にご利用いただくサービスです。
+  </p>
+
+  <!-- HP Premium -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">HP Premium</div>
+        <div class="service-tagline">オリジナルデザインの本格ブランドサイト</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥300,000</div>
+        <div class="service-price-unit">税込 / 1サイト</div>
+        <div class="service-meta">制作期間: 4-6週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>10ページ以上の本格構成</li>
+        <li>独自デザイン制作(テンプレート不使用)</li>
+        <li>WordPress構築</li>
+        <li>本格SEO対策</li>
+        <li>公開後60日間の軽微修正(無料)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EC Shopify -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">EC Shopify構築</div>
+        <div class="service-tagline">Shopifyで本格EC</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥250,000</div>
+        <div class="service-price-unit">税込 / 1サイト</div>
+        <div class="service-meta">構築期間: 3-5週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>Shopifyアカウント開設サポート</li>
+        <li>テーマカスタマイズ</li>
+        <li>商品20点までの登録</li>
+        <li>決済設定(複数決済対応)</li>
+        <li>配送設定</li>
+        <li>1ヶ月の運用サポート</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EC BASE -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">EC BASE / STORES構築</div>
+        <div class="service-tagline">手軽なEC構築</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥150,000</div>
+        <div class="service-price-unit">税込 / 1サイト</div>
+        <div class="service-meta">構築期間: 2-3週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>アカウント開設・初期設定</li>
+        <li>商品20点までの登録</li>
+        <li>決済・配送設定</li>
+        <li>HPとの連携</li>
+        <li>操作マニュアル提供</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- LP単発 -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">LP単発制作</div>
+        <div class="service-tagline">キャンペーン用ランディングページ</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥150,000</div>
+        <div class="service-price-unit">税込 / 1ページ</div>
+        <div class="service-meta">制作期間: 2-3週間</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>構成設計・原稿作成</li>
+        <li>デザイン制作(コンバージョン重視)</li>
+        <li>スマホ完全対応</li>
+        <li>お申込みフォーム設置</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 業務改善コンサル -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">業務改善コンサル(月次型)</div>
+        <div class="service-tagline">業務全体のIT化を6ヶ月で</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥200,000</div>
+        <div class="service-price-unit">税込 / 6ヶ月</div>
+        <div class="service-meta">月1-2回の打合せ</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>業務フロー分析(初月)</li>
+        <li>課題整理・改善提案</li>
+        <li>ツール選定サポート</li>
+        <li>段階的な導入支援</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 補助金申請サポート -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name"><span class="featured-mark">★</span>補助金申請サポート</div>
+        <div class="service-tagline">小規模事業者持続化補助金等の申請代行・サポート</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥50,000</div>
+        <div class="service-price-unit">税込 / 着手金</div>
+        <div class="service-meta">+成功報酬 補助額の10%</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>補助金の対象事業選定</li>
+        <li>申請書類の作成代行</li>
+        <li>提出サポート</li>
+        <li>採択後の実績報告サポート</li>
+      </ul>
+      <div class="service-note">
+        ※ 採択を保証するものではありません。条件を満たすか診断の上、最適な補助金をご提案します。
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Nebulab合同会社 受託サービス価格表</span>
+    <span class="mono">EST. MAY 2026</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ7: 継続商品 + ご利用の流れ                  -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— ONGOING SERVICES —</span>
+    </div>
+    <span class="page-num mono">P. 07 / 08</span>
+  </div>
+
+  <div class="section-heading mono">— 06. 継続商品 / 運用支援 —</div>
+  <p class="body-text">
+    Nebulabは「制作したら終わり」ではなく、長くお付き合いします。
+  </p>
+
+  <!-- HP保守 Light -->
+  <div class="service-card subscription">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name"><span class="featured-mark">★</span>HP保守 Light</div>
+        <div class="service-tagline">サイトを安全に最新に保つ・ドメイン/サーバー込み</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥10,000</div>
+        <div class="service-price-unit">税込 / 月</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>WordPress / プラグイン更新</li>
+        <li>バックアップ運用</li>
+        <li>セキュリティ監視</li>
+        <li>軽微な修正(月2-3時間以内)</li>
+        <li>ドメイン・サーバー管理(費用込み)</li>
+        <li>SSL証明書管理</li>
+      </ul>
+      <div class="service-recommend">→ 公開後の運用が不安、丸投げしたい方</div>
+    </div>
+  </div>
+
+  <!-- HP保守 Standard -->
+  <div class="service-card subscription">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">HP保守 Standard</div>
+        <div class="service-tagline">コンテンツ運用も含む</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥20,000</div>
+        <div class="service-price-unit">税込 / 月</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>HP保守 Lightの全機能</li>
+        <li>月1回の記事追加</li>
+        <li>SEO改善提案・実装</li>
+        <li>アクセス解析レポート</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- IT顧問 Light -->
+  <div class="service-card subscription">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name"><span class="featured-mark">★</span>IT顧問 Light</div>
+        <div class="service-tagline">気軽に相談できるIT顧問</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥30,000</div>
+        <div class="service-price-unit">税込 / 月</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>月1回の相談(対面 or オンライン、60分)</li>
+        <li>メール・LINE 相談 無制限</li>
+        <li>業務IT全般のアドバイス</li>
+        <li>ツール選定サポート</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- IT顧問 Standard -->
+  <div class="service-card subscription">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">IT顧問 Standard</div>
+        <div class="service-tagline">実作業もサポート</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥50,000</div>
+        <div class="service-price-unit">税込 / 月</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>IT顧問 Lightの全機能</li>
+        <li>月2回の相談(60分×2)</li>
+        <li>簡単な運用代行(月8時間以内)</li>
+        <li>新ツールの設定サポート</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Google広告運用 -->
+  <div class="service-card subscription">
+    <div class="service-header">
+      <div class="service-name-area">
+        <div class="service-name">Google広告運用代行</div>
+        <div class="service-tagline">Google広告で集客</div>
+      </div>
+      <div class="service-price-area">
+        <div class="service-price">¥30,000</div>
+        <div class="service-price-unit">税込 / 月 + 広告費10%</div>
+      </div>
+    </div>
+    <div class="service-body">
+      <ul class="service-features">
+        <li>キーワード戦略立案</li>
+        <li>広告文作成・改善</li>
+        <li>入札調整・予算管理</li>
+        <li>月次レポート</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-heading mono" style="margin-top: 5mm;">— 07. ご利用の流れ —</div>
+
+  <div class="flow-list">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-text">お問い合わせ</div>
+      <div class="flow-detail">電話・LINE・<br>メール</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-text">無料相談 30分</div>
+      <div class="flow-detail">NRT-LOFTへ<br>or お伺いします</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-text">お見積もり</div>
+      <div class="flow-detail">ご提案・<br>無料</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <div class="flow-text">ご契約・着手</div>
+      <div class="flow-detail">納品・<br>運用開始</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Nebulab合同会社 受託サービス価格表</span>
+    <span class="mono">EST. MAY 2026</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ8: FAQ + 会社情報                         -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— FAQ & COMPANY —</span>
+    </div>
+    <span class="page-num mono">P. 08 / 08</span>
+  </div>
+
+  <div class="section-heading mono">— 08. よくあるご質問 —</div>
+
+  <ul class="faq-list">
+    <li class="faq-item">
+      <div class="faq-q">価格はなぜこんなに安いのですか?</div>
+      <div class="faq-a">
+        <div class="faq-a-content">
+          私たちは成田で生まれ育った地元の事業者です。東京の制作会社のような大きなオフィス維持費・営業経費がかからない分、純粋な制作費でご提供しています。地域の事業者の皆様の負担にならない価格設定を心がけています。
+        </div>
+      </div>
+    </li>
+
+    <li class="faq-item">
+      <div class="faq-q">ドメインとサーバーは別途必要ですか?</div>
+      <div class="faq-a">
+        <div class="faq-a-content">
+          プランによって異なります。<br>
+          <strong>サブスク・HP保守プラン</strong>: すべて月額に含まれており、お客様側で契約は不要です<br>
+          <strong>単発購入(HP Light/Standard)</strong>: お客様名義でドメイン・サーバーを契約いただきます(年間¥10,000-15,000程度)<br>
+          <strong>契約が不安な方</strong>: 初期セットアップ代行(¥10,000)で代行いたします
+        </div>
+      </div>
+    </li>
+
+    <li class="faq-item">
+      <div class="faq-q">サブスクを解約したらサイトはどうなりますか?</div>
+      <div class="faq-a">
+        <div class="faq-a-content">
+          解約後はサイトが表示されなくなります(ドメイン・サーバーが Nebulab 管理だったため)。ただし、WordPressデータのエクスポートは無料で提供、別サーバーへの移管代行(¥30,000)も対応可能です。契約時に詳しくご説明します。
+        </div>
+      </div>
+    </li>
+
+    <li class="faq-item">
+      <div class="faq-q">個人事業主でも依頼できますか?</div>
+      <div class="faq-a">
+        <div class="faq-a-content">
+          もちろんです。Nebulabの中心顧客は、成田の個人事業主・小規模店舗の皆様です。お気軽にご相談ください。
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- 会社情報フッター -->
+  <div class="company-block">
+    <div class="company-block-grid">
+      <div class="company-block-left">
+        <div class="company-name serif">Nebulab合同会社</div>
+        <div class="company-info">
+          〒286-0033 千葉県成田市花崎町(NRT-LOFT内)<br>
+          代表社員: 萬代 晃生(Bandai Koki)<br>
+          設立: 2026年5月1日<br>
+          資本金: ¥1,000,000
+        </div>
+      </div>
+      <div class="company-block-right">
+        <div class="label mono">— CONTACT —</div>
+        <div class="contact-line">WEB nebulab.jp</div>
+        <div class="contact-line">MAIL contact@nebulab.jp</div>
+        <div class="contact-line">LINE 準備中</div>
+        <div style="margin-top: 4mm; font-size: 8pt; opacity: 0.7;">
+          まずは30分の無料相談から、<br>
+          お気軽にお声がけください。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

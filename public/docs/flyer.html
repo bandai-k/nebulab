@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Nebulab合同会社 チラシ A4両面</title>
+<style>
+/* ===== 印刷設定 ===== */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+html, body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  background: #E8E5DD;
+  color: #1A1A18;
+}
+
+/* ===== A4ページ ===== */
+.page {
+  width: 210mm;
+  height: 297mm;
+  padding: 12mm;
+  background: #FAFAF8;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+}
+
+.page:last-child {
+  page-break-after: auto;
+}
+
+@media screen {
+  body {
+    padding: 30px 0;
+  }
+  .page {
+    margin: 0 auto 30px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+}
+
+/* ===== 共通スタイル ===== */
+.mono {
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  letter-spacing: 0.05em;
+}
+
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+}
+
+.divider {
+  border-top: 1px solid #1A1A18;
+  margin: 4mm 0;
+}
+
+/* ============================================ */
+/* 表面 (Front)                                   */
+/* ============================================ */
+
+/* ヘッダー */
+.front-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5mm;
+  border-bottom: 1px solid #1A1A18;
+}
+
+.logo-area {
+  display: flex;
+  align-items: baseline;
+  gap: 3mm;
+}
+
+.logo-mark {
+  font-size: 22pt;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.logo-tag {
+  font-size: 8pt;
+  color: #4A4A48;
+  letter-spacing: 0.1em;
+}
+
+.front-header-meta {
+  text-align: right;
+  font-size: 7pt;
+  color: #4A4A48;
+  letter-spacing: 0.1em;
+}
+
+/* キャッチエリア */
+.catch-area {
+  margin-top: 8mm;
+  text-align: center;
+}
+
+.catch-pre {
+  font-size: 11pt;
+  color: #4A4A48;
+  margin-bottom: 4mm;
+}
+
+.catch-main {
+  font-size: 32pt;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 4mm;
+}
+
+.catch-main .yen {
+  color: #C75D3C;
+  font-weight: 600;
+}
+
+.catch-sub {
+  font-size: 13pt;
+  color: #4A4A48;
+  line-height: 1.7;
+}
+
+/* サブスク特典 */
+.benefit-area {
+  margin-top: 8mm;
+  background: #FFFFFF;
+  border: 1px solid #1A1A18;
+  padding: 6mm 8mm;
+}
+
+.benefit-title {
+  font-size: 9pt;
+  letter-spacing: 0.2em;
+  text-align: center;
+  color: #4A4A48;
+  margin-bottom: 4mm;
+}
+
+.benefit-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm 6mm;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: baseline;
+  gap: 3mm;
+  font-size: 11pt;
+}
+
+.benefit-check {
+  color: #4A6B5C;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* 哲学エリア */
+.philosophy-area {
+  margin-top: 6mm;
+  text-align: center;
+  padding: 4mm;
+  font-size: 12pt;
+  font-style: italic;
+  color: #4A4A48;
+  border-top: 1px solid #D0CDC4;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+/* クーポンエリア */
+.coupon-area {
+  margin-top: 6mm;
+  border: 2px dashed #1A1A18;
+  padding: 5mm 6mm;
+  position: relative;
+  background: #FFFFFF;
+}
+
+.coupon-scissors {
+  position: absolute;
+  top: -3mm;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FAFAF8;
+  padding: 0 3mm;
+  font-size: 10pt;
+}
+
+.coupon-header {
+  text-align: center;
+  font-size: 9pt;
+  letter-spacing: 0.2em;
+  color: #4A4A48;
+  margin-bottom: 3mm;
+}
+
+.coupon-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coupon-main {
+  flex: 1;
+}
+
+.coupon-amount {
+  font-size: 24pt;
+  font-weight: 500;
+  color: #C75D3C;
+  line-height: 1;
+}
+
+.coupon-bonus {
+  font-size: 11pt;
+  margin-top: 2mm;
+  font-weight: 500;
+}
+
+.coupon-detail {
+  font-size: 9pt;
+  color: #4A4A48;
+  margin-top: 2mm;
+  line-height: 1.6;
+}
+
+.coupon-validity {
+  text-align: right;
+  font-size: 8pt;
+  color: #4A4A48;
+  border-left: 1px solid #D0CDC4;
+  padding-left: 5mm;
+  margin-left: 5mm;
+}
+
+/* CTAエリア */
+.cta-area {
+  margin-top: 6mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5mm;
+  background: #1A1A18;
+  color: #FAFAF8;
+}
+
+.cta-text {
+  font-size: 13pt;
+  font-weight: 500;
+}
+
+.cta-text-sub {
+  font-size: 9pt;
+  margin-top: 1mm;
+  opacity: 0.7;
+}
+
+.cta-contacts {
+  display: flex;
+  gap: 6mm;
+  align-items: center;
+}
+
+.cta-qr {
+  width: 18mm;
+  height: 18mm;
+  background: #FAFAF8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7pt;
+  color: #1A1A18;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.cta-info {
+  font-size: 9pt;
+  line-height: 1.7;
+}
+
+.cta-info .label {
+  opacity: 0.6;
+  font-size: 7pt;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================ */
+/* 裏面 (Back)                                    */
+/* ============================================ */
+
+/* 写真エリア */
+.photo-area {
+  height: 75mm;
+  background: #D0CDC4;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 6mm;
+}
+
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #6A6A68;
+  font-size: 10pt;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.photo-placeholder .label {
+  font-size: 8pt;
+  letter-spacing: 0.2em;
+  margin-bottom: 3mm;
+  color: #8A8A88;
+}
+
+.photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: #FAFAF8;
+  padding: 8mm 6mm 5mm;
+}
+
+.photo-overlay-line {
+  font-size: 14pt;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 1mm;
+}
+
+.photo-overlay-meta {
+  font-size: 8pt;
+  letter-spacing: 0.15em;
+  opacity: 0.85;
+}
+
+/* 代表メッセージ */
+.message-area {
+  display: flex;
+  gap: 5mm;
+  align-items: flex-start;
+  margin-bottom: 6mm;
+  padding: 5mm;
+  background: #FFFFFF;
+  border: 1px solid #D0CDC4;
+}
+
+.message-portrait {
+  width: 24mm;
+  height: 24mm;
+  background: #D0CDC4;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7pt;
+  color: #6A6A68;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.message-content {
+  flex: 1;
+}
+
+.message-name {
+  font-size: 12pt;
+  font-weight: 500;
+  margin-bottom: 1mm;
+}
+
+.message-name .role {
+  font-size: 9pt;
+  color: #4A4A48;
+  font-weight: 400;
+  margin-left: 3mm;
+}
+
+.message-text {
+  font-size: 10pt;
+  line-height: 1.8;
+  color: #2A2A28;
+}
+
+/* サービス一覧 */
+.services-area {
+  margin-bottom: 6mm;
+}
+
+.section-title {
+  font-size: 9pt;
+  letter-spacing: 0.2em;
+  color: #4A4A48;
+  margin-bottom: 3mm;
+  padding-bottom: 2mm;
+  border-bottom: 1px solid #1A1A18;
+}
+
+.service-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5mm 6mm;
+}
+
+.service-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10pt;
+  padding: 1mm 0;
+}
+
+.service-name {
+  font-weight: 500;
+}
+
+.service-price {
+  color: #4A4A48;
+  font-size: 9pt;
+}
+
+/* お悩みリスト */
+.worries-area {
+  margin-bottom: 6mm;
+  padding: 5mm 6mm;
+  background: #FFFFFF;
+  border: 1px solid #D0CDC4;
+}
+
+.worries-title {
+  font-size: 11pt;
+  font-weight: 500;
+  margin-bottom: 3mm;
+}
+
+.worries-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2mm 5mm;
+}
+
+.worry-item {
+  display: flex;
+  align-items: baseline;
+  gap: 2mm;
+  font-size: 10pt;
+}
+
+.worry-checkbox {
+  color: #4A4A48;
+  flex-shrink: 0;
+}
+
+.worries-conclusion {
+  margin-top: 4mm;
+  padding-top: 3mm;
+  border-top: 1px solid #D0CDC4;
+  font-size: 10pt;
+  color: #4A6B5C;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* 利用の流れ */
+.flow-area {
+  margin-bottom: 5mm;
+}
+
+.flow-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3mm;
+  margin-top: 3mm;
+}
+
+.flow-step {
+  text-align: center;
+  position: relative;
+}
+
+.flow-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -3mm;
+  top: 7mm;
+  color: #6A6A68;
+  font-size: 10pt;
+}
+
+.flow-num {
+  font-size: 9pt;
+  color: #4A4A48;
+  margin-bottom: 1mm;
+}
+
+.flow-text {
+  font-size: 10pt;
+  font-weight: 500;
+}
+
+.flow-detail {
+  font-size: 8pt;
+  color: #4A4A48;
+  margin-top: 1mm;
+  line-height: 1.5;
+}
+
+/* 会社情報フッター */
+.company-footer {
+  margin-top: auto;
+  padding-top: 4mm;
+  border-top: 1px solid #1A1A18;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 8pt;
+  color: #4A4A48;
+  line-height: 1.6;
+}
+
+.company-info-main {
+  flex: 1;
+}
+
+.company-name {
+  font-size: 11pt;
+  font-weight: 500;
+  color: #1A1A18;
+  margin-bottom: 1mm;
+}
+
+.company-meta {
+  text-align: right;
+  font-size: 7pt;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================ */
+/* 印刷ヒントとガイド (画面表示時のみ)             */
+/* ============================================ */
+
+@media screen {
+  .print-hint {
+    text-align: center;
+    color: #4A4A48;
+    font-size: 13px;
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .print-hint h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  .print-hint code {
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+}
+
+@media print {
+  .print-hint {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="print-hint">
+  <h3>印刷・PDF出力の方法</h3>
+  <p>1. ブラウザで <code>Ctrl+P</code>(Windows)または <code>Cmd+P</code>(Mac)で印刷ダイアログを開く</p>
+  <p>2. 用紙サイズ「A4」、余白「なし」、両面印刷を選択</p>
+  <p>3. PDFとして保存 または 直接印刷</p>
+  <p>※ 印刷会社入稿時はPDFファイルとして保存してください</p>
+</div>
+
+<!-- ============================================ -->
+<!-- 表面                                          -->
+<!-- ============================================ -->
+<div class="page" id="front">
+
+  <!-- ヘッダー -->
+  <div class="front-header">
+    <div class="logo-area">
+      <span class="logo-mark serif">Nebulab</span>
+      <span class="logo-tag mono">合同会社 / 成田市</span>
+    </div>
+    <div class="front-header-meta mono">
+      EST. MAY 2026<br>
+      NRT-LOFT
+    </div>
+  </div>
+
+  <!-- キャッチ -->
+  <div class="catch-area">
+    <div class="catch-pre serif">— 成田で生まれ、成田で育った代表が、直接対応します —</div>
+    <h1 class="catch-main serif">
+      ホームページ、<br>
+      <span class="yen">¥30,000</span> から<br>
+      始められます。
+    </h1>
+    <p class="catch-sub serif">
+      お試しの単発プラン ¥30,000 / 運用込みのサブスク ¥25,000 月額。<br>
+      お店の隣の、ITの相談係でありたい。
+    </p>
+  </div>
+
+  <!-- サブスク特典 -->
+  <div class="benefit-area">
+    <div class="benefit-title mono">— OPEN SUPPORT SUBSCRIPTION —</div>
+    <div class="benefit-list">
+      <div class="benefit-item">
+        <span class="benefit-check">✓</span>
+        <span>初期費用 <strong>¥0</strong></span>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-check">✓</span>
+        <span>制作・更新・サーバー <strong>すべて込み</strong></span>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-check">✓</span>
+        <span>オープン記念 <strong>初月無料</strong></span>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-check">✓</span>
+        <span>困ったら <strong>LINEで相談</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 哲学 -->
+  <div class="philosophy-area serif">
+    地域のお店の、はじめの一歩を、軽くする。
+  </div>
+
+  <!-- クーポン -->
+  <div class="coupon-area">
+    <span class="coupon-scissors mono">✂ ─ ─ ─ ─ ─ ─</span>
+    <div class="coupon-header mono">— SPECIAL COUPON —</div>
+    <div class="coupon-body">
+      <div class="coupon-main">
+        <div class="coupon-amount serif">¥10,000 OFF</div>
+        <div class="coupon-bonus">＋ 初回コンサル無料(通常¥30,000)</div>
+        <div class="coupon-detail">
+          ホームページ制作・サブスクどちらにも使えます<br>
+          このチラシをご持参 or「チラシ見ました」とお伝えください
+        </div>
+      </div>
+      <div class="coupon-validity mono">
+        VALID UNTIL<br>
+        <strong style="font-size: 11pt; color: #1A1A18;">2026.12.31</strong><br>
+        [先着20名様限定]
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-area">
+    <div>
+      <div class="cta-text">まずは30分の無料相談から</div>
+      <div class="cta-text-sub">お気軽にお声がけください。</div>
+    </div>
+    <div class="cta-contacts">
+      <div class="cta-qr">
+        [QRコード]<br>
+        nebulab.jp
+      </div>
+      <div class="cta-info mono">
+        <div><span class="label">WEB</span> nebulab.jp</div>
+        <div><span class="label">MAIL</span> contact@nebulab.jp</div>
+        <div><span class="label">LINE</span> @nebulab(準備中)</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================ -->
+<!-- 裏面                                          -->
+<!-- ============================================ -->
+<div class="page" id="back">
+
+  <!-- 写真 -->
+  <div class="photo-area">
+    <div class="photo-placeholder">
+      <div class="label mono">— PHOTO PLACEHOLDER —</div>
+      <div>
+        ここに NRT-LOFT 外観写真を配置<br>
+        (推奨: 横長 1860 × 700px、JPG形式)<br>
+        <br>
+        印刷前に背景に画像として設定:<br>
+        <code style="font-family: monospace; font-size: 9pt;">background: url(写真ファイル名.jpg) center/cover;</code>
+      </div>
+    </div>
+    <div class="photo-overlay">
+      <div class="photo-overlay-line serif">ここに、私たちがいます。</div>
+      <div class="photo-overlay-meta mono">NRT-LOFT / 千葉県成田市花崎町</div>
+    </div>
+  </div>
+
+  <!-- 代表メッセージ -->
+  <div class="message-area">
+    <div class="message-portrait">
+      [代表者の<br>顔写真<br>または<br>シルエット]
+    </div>
+    <div class="message-content">
+      <div class="message-name">
+        萬代 晃生
+        <span class="role">/ Nebulab合同会社 代表社員</span>
+      </div>
+      <div class="message-text serif">
+        成田で生まれ、成田で育ちました。<br>
+        この街でお店や事業を続けるみなさんを、<br>
+        テクノロジーで応援したい。
+      </div>
+    </div>
+  </div>
+
+  <!-- サービス一覧 -->
+  <div class="services-area">
+    <div class="section-title mono">— SERVICES / サービス —</div>
+    <div class="service-list">
+      <div class="service-item">
+        <span class="service-name">HP Superlight(お試しプラン)</span>
+        <span class="service-price">¥30,000〜</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">ホームページ制作</span>
+        <span class="service-price">¥120,000〜</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">オープン応援サブスク</span>
+        <span class="service-price">¥25,000/月(初月無料)</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">ホームページ運用</span>
+        <span class="service-price">¥10,000/月〜</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">予約システム導入</span>
+        <span class="service-price">¥100,000〜</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">Googleマップ整備</span>
+        <span class="service-price">¥30,000</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">補助金活用のご相談</span>
+        <span class="service-price">無料</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- お悩みリスト -->
+  <div class="worries-area">
+    <div class="worries-title">こんなお悩み、ありませんか?</div>
+    <div class="worries-list">
+      <div class="worry-item">
+        <span class="worry-checkbox">□</span>
+        <span>ホームページが古い・無い</span>
+      </div>
+      <div class="worry-item">
+        <span class="worry-checkbox">□</span>
+        <span>予約・問い合わせ管理が大変</span>
+      </div>
+      <div class="worry-item">
+        <span class="worry-checkbox">□</span>
+        <span>Google マップに店が出てこない</span>
+      </div>
+      <div class="worry-item">
+        <span class="worry-checkbox">□</span>
+        <span>予約・問い合わせを Web で受けたい</span>
+      </div>
+      <div class="worry-item">
+        <span class="worry-checkbox">□</span>
+        <span>ネット販売を始めたい</span>
+      </div>
+      <div class="worry-item">
+        <span class="worry-checkbox">□</span>
+        <span>AI活用に興味があるが、わからない</span>
+      </div>
+    </div>
+    <div class="worries-conclusion serif">
+      → どれも、お店の隣のIT相談係にお任せください
+    </div>
+  </div>
+
+  <!-- 利用の流れ -->
+  <div class="flow-area">
+    <div class="section-title mono">— FLOW / ご利用の流れ —</div>
+    <div class="flow-list">
+      <div class="flow-step">
+        <div class="flow-num mono">01</div>
+        <div class="flow-text">お問い合わせ</div>
+        <div class="flow-detail">電話・LINE・<br>メール</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num mono">02</div>
+        <div class="flow-text">無料相談 30分</div>
+        <div class="flow-detail">NRT-LOFTへ<br>or お伺いします</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num mono">03</div>
+        <div class="flow-text">お見積もり</div>
+        <div class="flow-detail">ご提案・<br>無料</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num mono">04</div>
+        <div class="flow-text">ご契約・着手</div>
+        <div class="flow-detail">納品・<br>運用開始</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 会社情報 -->
+  <div class="company-footer">
+    <div class="company-info-main">
+      <div class="company-name">Nebulab合同会社</div>
+      <div>〒286-0033 千葉県成田市花崎町(NRT-LOFT内)</div>
+      <div>代表社員: 萬代 晃生 / contact@nebulab.jp / nebulab.jp</div>
+    </div>
+    <div class="company-meta mono">
+      35.7758°N<br>
+      140.3186°E<br>
+      EST. 2026
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

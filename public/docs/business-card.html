@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Nebulab合同会社 名刺デザイン</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+html, body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  background: #E8E5DD;
+  color: #1A1A18;
+}
+
+.mono {
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  letter-spacing: 0.05em;
+}
+
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+}
+
+/* ============================================ */
+/* A4 用紙レイアウト(10面付け・両面)             */
+/* ============================================ */
+.sheet {
+  width: 210mm;
+  height: 297mm;
+  background: #FAFAF8;
+  padding: 11mm 9mm;
+  page-break-after: always;
+}
+
+.sheet:last-child {
+  page-break-after: auto;
+}
+
+.sheet-label {
+  position: absolute;
+  top: 5mm;
+  left: 9mm;
+  font-size: 8pt;
+  color: #6A6A68;
+  letter-spacing: 0.2em;
+  font-family: "SF Mono", monospace;
+}
+
+@media screen {
+  body {
+    padding: 30px 0;
+  }
+  .sheet {
+    margin: 0 auto 30px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .sheet {
+    margin: 0;
+    box-shadow: none;
+  }
+  .sheet-label {
+    display: none;
+  }
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 91mm);
+  grid-template-rows: repeat(5, 55mm);
+  gap: 0;
+  justify-content: center;
+}
+
+/* ============================================ */
+/* 名刺 1枚                                       */
+/* ============================================ */
+.card {
+  width: 91mm;
+  height: 55mm;
+  position: relative;
+  overflow: hidden;
+  background: #FAFAF8;
+  border: 0.5px dashed #B0AEA4;
+}
+
+@media print {
+  .card {
+    border: none;
+  }
+}
+
+/* ============================================ */
+/* 表面デザイン                                    */
+/* ============================================ */
+.card-front {
+  display: flex;
+  flex-direction: column;
+  padding: 5mm 6mm;
+  height: 100%;
+  background: #FAFAF8;
+  position: relative;
+}
+
+.front-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 2.5mm;
+  border-bottom: 0.5px solid #1A1A18;
+  margin-bottom: 3mm;
+}
+
+.front-logo {
+  font-size: 12pt;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #1A1A18;
+}
+
+.front-logo-tag {
+  font-size: 7pt;
+  color: #6A6A68;
+  letter-spacing: 0.2em;
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  font-weight: 300;
+}
+
+.front-tagline {
+  font-size: 6.5pt;
+  color: #4A6B5C;
+  letter-spacing: 0.2em;
+  margin-bottom: auto;
+  font-style: italic;
+}
+
+.front-name-area {
+  margin-top: auto;
+  margin-bottom: 1mm;
+}
+
+.front-name-jp {
+  font-size: 16pt;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 1mm;
+  line-height: 1.1;
+}
+
+.front-name-en {
+  font-size: 8pt;
+  color: #6A6A68;
+  letter-spacing: 0.15em;
+  font-family: "SF Mono", monospace;
+}
+
+.front-role {
+  font-size: 7.5pt;
+  color: #4A4A48;
+  letter-spacing: 0.1em;
+  margin-top: 1.5mm;
+  padding-top: 1.5mm;
+  border-top: 0.5px solid #D0CDC4;
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  font-weight: 400;
+}
+
+.front-footer {
+  margin-top: 2mm;
+  padding-top: 2mm;
+  border-top: 0.5px solid #D0CDC4;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 6pt;
+  color: #6A6A68;
+}
+
+.front-address {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.front-address-label {
+  font-family: "SF Mono", monospace;
+  letter-spacing: 0.15em;
+  color: #8A8A88;
+  font-size: 5.5pt;
+}
+
+.front-est {
+  text-align: right;
+  font-family: "SF Mono", monospace;
+  letter-spacing: 0.15em;
+  color: #8A8A88;
+  font-size: 5.5pt;
+}
+
+/* ============================================ */
+/* 裏面デザイン                                    */
+/* ============================================ */
+.card-back {
+  display: flex;
+  flex-direction: column;
+  padding: 5mm 6mm;
+  height: 100%;
+  background: #1A1A18;
+  color: #FAFAF8;
+  position: relative;
+}
+
+.back-logo-area {
+  margin-bottom: auto;
+}
+
+.back-logo {
+  font-size: 18pt;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-family: "Hiragino Mincho ProN", serif;
+  color: #FAFAF8;
+  line-height: 1;
+}
+
+.back-logo-tag {
+  font-size: 6pt;
+  color: #B0AEA4;
+  letter-spacing: 0.2em;
+  margin-top: 1mm;
+  font-family: "SF Mono", monospace;
+}
+
+.back-contact-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 4mm;
+  margin-top: auto;
+}
+
+.back-contact-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9mm;
+}
+
+.back-contact-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2.5mm;
+  font-size: 7pt;
+  color: #FAFAF8;
+}
+
+.back-contact-label {
+  font-family: "SF Mono", monospace;
+  letter-spacing: 0.15em;
+  color: #B0AEA4;
+  font-size: 5.5pt;
+  width: 8mm;
+  flex-shrink: 0;
+}
+
+.back-contact-value {
+  font-family: "SF Mono", monospace;
+  letter-spacing: 0.05em;
+}
+
+.back-qr-area {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.back-qr {
+  width: 15mm;
+  height: 15mm;
+  background: #FAFAF8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5pt;
+  color: #1A1A18;
+  font-family: "SF Mono", monospace;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 1mm;
+}
+
+.back-qr-label {
+  font-size: 5pt;
+  color: #B0AEA4;
+  font-family: "SF Mono", monospace;
+  letter-spacing: 0.15em;
+}
+
+.back-coords {
+  position: absolute;
+  bottom: 5mm;
+  left: 6mm;
+  font-size: 5pt;
+  color: #6A6A68;
+  font-family: "SF Mono", monospace;
+  letter-spacing: 0.15em;
+}
+
+/* ============================================ */
+/* 印刷ヒント(画面表示時のみ)                     */
+/* ============================================ */
+.print-hint {
+  text-align: center;
+  color: #4A4A48;
+  font-size: 13px;
+  margin: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.print-hint h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.print-hint code {
+  background: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.print-hint .important {
+  color: #C75D3C;
+  font-weight: 500;
+}
+
+@media print {
+  .print-hint {
+    display: none;
+  }
+}
+
+/* ============================================ */
+/* 単体表示モード(画面用、確認用)                 */
+/* ============================================ */
+.preview-area {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 8px;
+}
+
+.preview-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #1A1A18;
+}
+
+.preview-cards {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.preview-card-wrapper {
+  text-align: center;
+}
+
+.preview-card {
+  width: 91mm;
+  height: 55mm;
+  display: inline-block;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 2mm;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.preview-label {
+  font-size: 12px;
+  color: #6A6A68;
+  font-family: monospace;
+  letter-spacing: 0.1em;
+}
+
+@media print {
+  .preview-area {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="print-hint">
+  <h3>名刺の印刷・PDF出力の方法</h3>
+  <p><strong>方法1: 家庭用プリンタで印刷</strong></p>
+  <p>1. 名刺カット済み用紙(A4・10面・55×91mm)を用意</p>
+  <p>2. <code>Ctrl+P</code>(Windows)/ <code>Cmd+P</code>(Mac)で印刷ダイアログを開く</p>
+  <p>3. 用紙サイズ「A4」、余白「なし」、両面印刷を選択</p>
+  <p>4. 表面・裏面を順番に印刷</p>
+  <p style="margin-top: 14px;"><strong>方法2: 印刷会社に発注(推奨)</strong></p>
+  <p>ラクスル・プリントパック等で「名刺・両面・マットコート紙」を発注</p>
+  <p>このHTMLからPDF保存して入稿、もしくは印刷会社のテンプレートに合わせて単体カードのデザインをコピー</p>
+  <p class="important" style="margin-top: 14px;">※ 印刷前に必ずQRコードを実物の画像に差し替えてください</p>
+</div>
+
+<!-- ============================================ -->
+<!-- プレビュー(画面確認用)                        -->
+<!-- ============================================ -->
+<div class="preview-area">
+  <div class="preview-title">名刺プレビュー(実寸)</div>
+  <div class="preview-cards">
+    <div class="preview-card-wrapper">
+      <div class="preview-card">
+        <div class="card-front">
+          <div class="front-header">
+            <span class="front-logo serif">Nebulab</span>
+            <span class="front-logo-tag">ネビュラボ</span>
+          </div>
+          <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+
+          <div class="front-name-area">
+            <div class="front-name-jp serif">萬代 晃生</div>
+            <div class="front-name-en">BANDAI KOKI</div>
+          </div>
+          <div class="front-role">代表社員 / Founder</div>
+
+          <div class="front-footer">
+            <div class="front-address">
+              <div class="front-address-label">ADDRESS</div>
+              〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="preview-label">FRONT / 表面</div>
+    </div>
+
+    <div class="preview-card-wrapper">
+      <div class="preview-card">
+        <div class="card-back">
+          <div class="back-logo-area">
+            <div class="back-logo">Nebulab</div>
+            <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+          </div>
+
+          <div class="back-contact-area">
+            <div class="back-contact-text">
+              <div class="back-contact-row">
+                <span class="back-contact-label">TEL</span>
+                <span class="back-contact-value">090-4456-8626</span>
+              </div>
+              <div class="back-contact-row">
+                <span class="back-contact-label">MAIL</span>
+                <span class="back-contact-value">contact@nebulab.jp</span>
+              </div>
+              <div class="back-contact-row">
+                <span class="back-contact-label">WEB</span>
+                <span class="back-contact-value">nebulab.jp</span>
+              </div>
+              <div class="back-contact-row">
+                <span class="back-contact-label">LINE</span>
+                <span class="back-contact-value">→ QR</span>
+              </div>
+            </div>
+            <div class="back-qr-area">
+              <div class="back-qr">
+                [LINE QR<br>コード]
+              </div>
+              <div class="back-qr-label">SCAN TO ADD</div>
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="preview-label">BACK / 裏面</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- A4印刷用シート: 表面(10面)                    -->
+<!-- ============================================ -->
+<div class="sheet">
+  <div class="sheet-label">— FRONT SHEET / 表面 (10 cards) —</div>
+  <div class="cards-grid">
+    <!-- カード1〜10 表面(同じデザインを10回繰り返し) -->
+    <!-- 1 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+    <!-- 2 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+    <!-- 3 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+    <!-- 4 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+    <!-- 5 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+    <!-- 6 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+    <!-- 7 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+    <!-- 8 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+    <!-- 9 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+    <!-- 10 -->
+    <div class="card">
+      <div class="card-front">
+        <div class="front-header">
+          <span class="front-logo serif">Nebulab</span>
+          <span class="front-logo-tag">ネビュラボ</span>
+        </div>
+        <div class="front-tagline mono">SMALL START, INFINITE REACH</div>
+        <div class="front-name-area">
+          <div class="front-name-jp serif">萬代 晃生</div>
+          <div class="front-name-en">BANDAI KOKI</div>
+        </div>
+        <div class="front-role">代表社員 / Founder</div>
+        <div class="front-footer">
+          <div class="front-address">
+            <div class="front-address-label">ADDRESS</div>
+            〒286-0033 千葉県成田市花崎町856 NRT-LOFT
+          </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- A4印刷用シート: 裏面(10面)                    -->
+<!-- ============================================ -->
+<div class="sheet">
+  <div class="sheet-label">— BACK SHEET / 裏面 (10 cards) —</div>
+  <div class="cards-grid">
+    <!-- 1 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 2 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 3 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 4 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 5 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 6 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 7 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 8 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 9 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 10 -->
+    <div class="card">
+      <div class="card-back">
+        <div class="back-logo-area">
+          <div class="back-logo">Nebulab</div>
+          <div class="back-logo-tag">— TECH × LOCAL × NARITA —</div>
+        </div>
+        <div class="back-contact-area">
+          <div class="back-contact-text">
+            <div class="back-contact-row">
+              <span class="back-contact-label">TEL</span>
+              <span class="back-contact-value">090-4456-8626</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">MAIL</span>
+              <span class="back-contact-value">contact@nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">WEB</span>
+              <span class="back-contact-value">nebulab.jp</span>
+            </div>
+            <div class="back-contact-row">
+              <span class="back-contact-label">LINE</span>
+              <span class="back-contact-value">→ QR</span>
+            </div>
+          </div>
+          <div class="back-qr-area">
+            <div class="back-qr">[LINE QR<br>コード]</div>
+            <div class="back-qr-label">SCAN TO ADD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

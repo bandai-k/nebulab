@@ -72,10 +72,10 @@ export default function TermsPage() {
           </p>
           <p className="mt-3">
             <a
-              href="mailto:hello@nebulab.jp"
+              href="mailto:contact@nebulab.jp"
               className="font-mono text-sm text-cyber-accent hover:text-white"
             >
-              hello@nebulab.jp
+              contact@nebulab.jp
             </a>
           </p>
         </section>

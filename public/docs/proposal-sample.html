@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Nebulab合同会社 ご提案書</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<style>
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+html, body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  background: #E8E5DD;
+  color: #1A1A18;
+  line-height: 1.7;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  padding: 18mm 16mm;
+  background: #FAFAF8;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+}
+
+.page:last-child {
+  page-break-after: auto;
+}
+
+@media screen {
+  body {
+    padding: 30px 0;
+  }
+  .page {
+    margin: 0 auto 30px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+}
+
+.mono {
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  letter-spacing: 0.05em;
+}
+
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+}
+
+/* ===== 編集ガイド(印刷時非表示) ===== */
+.edit-hint {
+  background: #FFF9C4;
+  border-left: 3px solid #C75D3C;
+  padding: 2mm 3mm;
+  font-size: 7pt;
+  color: #6A6A68;
+  margin: 1mm 0;
+  font-style: italic;
+}
+
+@media print {
+  .edit-hint {
+    display: none;
+  }
+}
+
+/* ===== ページヘッダー ===== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 4mm;
+  border-bottom: 1px solid #1A1A18;
+  margin-bottom: 8mm;
+  flex-shrink: 0;
+}
+
+.page-header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 3mm;
+}
+
+.page-logo {
+  font-size: 14pt;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.page-title-mono {
+  font-size: 8pt;
+  color: #6A6A68;
+  letter-spacing: 0.15em;
+}
+
+.page-num {
+  font-size: 8pt;
+  color: #6A6A68;
+  letter-spacing: 0.1em;
+}
+
+/* ===== ページフッター ===== */
+.page-footer {
+  margin-top: auto;
+  padding-top: 5mm;
+  border-top: 1px solid #D0CDC4;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7pt;
+  color: #6A6A68;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+/* ============================================ */
+/* ページ1: 表紙                                   */
+/* ============================================ */
+.cover {
+  justify-content: space-between;
+  padding: 0;
+}
+
+.cover-top {
+  padding: 30mm 16mm 0;
+}
+
+.cover-meta-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 50mm;
+  font-size: 9pt;
+  letter-spacing: 0.1em;
+  color: #6A6A68;
+}
+
+.cover-doc-type {
+  font-size: 11pt;
+  font-weight: 500;
+  color: #1A1A18;
+  letter-spacing: 0.3em;
+}
+
+.cover-title-area {
+  margin-bottom: 12mm;
+}
+
+.cover-title-pre {
+  font-size: 10pt;
+  color: #6A6A68;
+  letter-spacing: 0.3em;
+  margin-bottom: 5mm;
+}
+
+.cover-client-name {
+  font-size: 22pt;
+  font-weight: 500;
+  margin-bottom: 4mm;
+  color: #2A2A28;
+  padding-bottom: 4mm;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.cover-title {
+  font-size: 32pt;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 6mm;
+}
+
+.cover-subtitle {
+  font-size: 12pt;
+  color: #4A4A48;
+  line-height: 1.7;
+}
+
+.cover-bottom {
+  background: #1A1A18;
+  color: #FAFAF8;
+  padding: 12mm 16mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-from-label {
+  font-size: 8pt;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+  margin-bottom: 2mm;
+}
+
+.cover-from-name {
+  font-size: 16pt;
+  font-weight: 500;
+  margin-bottom: 1mm;
+  font-family: "Hiragino Mincho ProN", serif;
+}
+
+.cover-from-info {
+  font-size: 9pt;
+  opacity: 0.8;
+  line-height: 1.7;
+}
+
+.cover-meta {
+  text-align: right;
+  font-size: 8pt;
+  letter-spacing: 0.15em;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+/* ============================================ */
+/* セクション共通                                  */
+/* ============================================ */
+.section-heading {
+  font-size: 10pt;
+  letter-spacing: 0.3em;
+  color: #6A6A68;
+  margin-bottom: 4mm;
+  padding-bottom: 2mm;
+  border-bottom: 1px solid #1A1A18;
+}
+
+.h2-title {
+  font-size: 22pt;
+  font-weight: 500;
+  margin-bottom: 6mm;
+  line-height: 1.3;
+}
+
+.h3-title {
+  font-size: 13pt;
+  font-weight: 500;
+  margin-bottom: 4mm;
+  margin-top: 7mm;
+}
+
+.h3-title:first-child {
+  margin-top: 0;
+}
+
+.body-text {
+  font-size: 10pt;
+  line-height: 1.8;
+  color: #2A2A28;
+  margin-bottom: 4mm;
+}
+
+/* ============================================ */
+/* ヒアリングサマリー                              */
+/* ============================================ */
+.summary-box {
+  background: #F0EDE5;
+  border-left: 3px solid #4A6B5C;
+  padding: 5mm 6mm;
+  margin-bottom: 6mm;
+}
+
+.summary-box-label {
+  font-size: 8pt;
+  color: #6A6A68;
+  letter-spacing: 0.2em;
+  margin-bottom: 2mm;
+}
+
+.summary-box-content {
+  font-size: 11pt;
+  line-height: 1.8;
+  color: #2A2A28;
+}
+
+.client-quote {
+  background: #FFFFFF;
+  border: 1px solid #D0CDC4;
+  padding: 4mm 5mm;
+  margin: 4mm 0;
+  font-style: italic;
+  position: relative;
+  font-size: 11pt;
+  line-height: 1.7;
+  color: #2A2A28;
+}
+
+.client-quote::before {
+  content: "「";
+  font-size: 18pt;
+  color: #4A6B5C;
+  position: absolute;
+  left: 2mm;
+  top: 1mm;
+  font-family: "Hiragino Mincho ProN", serif;
+}
+
+.client-quote::after {
+  content: "」";
+  font-size: 18pt;
+  color: #4A6B5C;
+  position: absolute;
+  right: 2mm;
+  bottom: 1mm;
+  font-family: "Hiragino Mincho ProN", serif;
+}
+
+.quote-text {
+  padding: 0 6mm;
+  display: block;
+}
+
+.quote-source {
+  text-align: right;
+  font-size: 8pt;
+  color: #6A6A68;
+  margin-top: 2mm;
+  font-style: normal;
+}
+
+/* 課題リスト */
+.issue-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: issue;
+}
+
+.issue-item {
+  counter-increment: issue;
+  padding: 4mm 5mm;
+  margin-bottom: 3mm;
+  background: #FFFFFF;
+  border: 1px solid #D0CDC4;
+  display: flex;
+  gap: 4mm;
+  align-items: flex-start;
+}
+
+.issue-item::before {
+  content: counter(issue, decimal-leading-zero);
+  font-family: "SF Mono", monospace;
+  font-size: 11pt;
+  color: #C75D3C;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.issue-content {
+  flex: 1;
+}
+
+.issue-title {
+  font-size: 11pt;
+  font-weight: 500;
+  margin-bottom: 1mm;
+}
+
+.issue-detail {
+  font-size: 9pt;
+  color: #4A4A48;
+  line-height: 1.6;
+}
+
+/* ============================================ */
+/* 提案カード                                      */
+/* ============================================ */
+.proposal-card {
+  border: 1.5px solid #1A1A18;
+  background: #FFFFFF;
+  padding: 6mm 7mm;
+  margin-bottom: 5mm;
+}
+
+.proposal-card.recommended {
+  background: #FAFAF8;
+  position: relative;
+}
+
+.recommended-badge {
+  position: absolute;
+  top: -3mm;
+  left: 6mm;
+  background: #C75D3C;
+  color: #FAFAF8;
+  padding: 1mm 4mm;
+  font-size: 8pt;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+.proposal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4mm;
+  padding-bottom: 4mm;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.proposal-name-area {
+  flex: 1;
+}
+
+.proposal-plan-name {
+  font-size: 16pt;
+  font-weight: 500;
+  margin-bottom: 1mm;
+  line-height: 1.3;
+}
+
+.proposal-tagline {
+  font-size: 10pt;
+  color: #6A6A68;
+}
+
+.proposal-price-area {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 6mm;
+}
+
+.proposal-price {
+  font-size: 22pt;
+  font-weight: 500;
+  color: #C75D3C;
+  line-height: 1;
+}
+
+.proposal-price-unit {
+  font-size: 10pt;
+  color: #6A6A68;
+  margin-top: 1mm;
+}
+
+.proposal-features {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2mm 5mm;
+  margin: 3mm 0;
+}
+
+.proposal-features li {
+  display: flex;
+  align-items: baseline;
+  gap: 2mm;
+  font-size: 10pt;
+}
+
+.proposal-features li::before {
+  content: "✓";
+  color: #4A6B5C;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.proposal-reason {
+  background: #F0EDE5;
+  padding: 4mm 5mm;
+  margin-top: 4mm;
+  font-size: 10pt;
+  line-height: 1.7;
+  border-left: 3px solid #C75D3C;
+}
+
+.proposal-reason-label {
+  font-size: 8pt;
+  color: #6A6A68;
+  letter-spacing: 0.2em;
+  margin-bottom: 2mm;
+}
+
+/* ============================================ */
+/* 価格・期間・効果テーブル                        */
+/* ============================================ */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5mm;
+  font-size: 10pt;
+}
+
+.price-table th,
+.price-table td {
+  padding: 3mm 4mm;
+  text-align: left;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.price-table th {
+  font-weight: 500;
+  background: #F0EDE5;
+  font-size: 9pt;
+  letter-spacing: 0.1em;
+}
+
+.price-table tr.total {
+  background: #FAFAF8;
+}
+
+.price-table tr.total td {
+  font-weight: 500;
+  font-size: 11pt;
+  border-top: 2px solid #1A1A18;
+  border-bottom: 2px solid #1A1A18;
+}
+
+.price-table .right {
+  text-align: right;
+}
+
+.price-table .price-cell {
+  text-align: right;
+  font-weight: 500;
+  color: #C75D3C;
+}
+
+/* ============================================ */
+/* 期待効果カード                                  */
+/* ============================================ */
+.effect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4mm;
+  margin: 5mm 0;
+}
+
+.effect-card {
+  border: 1px solid #1A1A18;
+  padding: 4mm 5mm;
+  background: #FFFFFF;
+}
+
+.effect-card-label {
+  font-size: 8pt;
+  color: #6A6A68;
+  letter-spacing: 0.2em;
+  margin-bottom: 2mm;
+}
+
+.effect-card-value {
+  font-size: 18pt;
+  font-weight: 500;
+  color: #4A6B5C;
+  line-height: 1.2;
+  margin-bottom: 2mm;
+}
+
+.effect-card-detail {
+  font-size: 9pt;
+  color: #4A4A48;
+  line-height: 1.5;
+}
+
+.effect-disclaimer {
+  font-size: 8pt;
+  color: #6A6A68;
+  font-style: italic;
+  margin-top: 4mm;
+  padding: 3mm 4mm;
+  background: #F0EDE5;
+  border-radius: 0;
+}
+
+/* ============================================ */
+/* スケジュール                                    */
+/* ============================================ */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 5mm 0;
+  font-size: 10pt;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 3mm 4mm;
+  text-align: left;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.schedule-table th {
+  background: #F0EDE5;
+  font-weight: 500;
+  font-size: 9pt;
+}
+
+.schedule-table .week-cell {
+  width: 25%;
+  font-family: "SF Mono", monospace;
+  letter-spacing: 0.05em;
+  color: #6A6A68;
+}
+
+.schedule-table .task-cell {
+  width: 75%;
+  font-weight: 500;
+}
+
+.schedule-table .deliverable-cell {
+  font-size: 9pt;
+  color: #4A4A48;
+  font-weight: 400;
+}
+
+/* ============================================ */
+/* 次のアクション                                   */
+/* ============================================ */
+.next-action {
+  background: #1A1A18;
+  color: #FAFAF8;
+  padding: 8mm 10mm;
+  margin: 6mm 0;
+}
+
+.next-action-title {
+  font-size: 14pt;
+  font-weight: 500;
+  margin-bottom: 4mm;
+  font-family: "Hiragino Mincho ProN", serif;
+}
+
+.next-action-list {
+  list-style: none;
+  padding: 0;
+}
+
+.next-action-list li {
+  padding: 2mm 0;
+  display: flex;
+  align-items: baseline;
+  gap: 4mm;
+  font-size: 10pt;
+  border-bottom: 1px solid rgba(250, 250, 248, 0.15);
+}
+
+.next-action-list li:last-child {
+  border-bottom: none;
+}
+
+.next-action-num {
+  font-family: "SF Mono", monospace;
+  color: #C75D3C;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* ============================================ */
+/* 会社情報                                        */
+/* ============================================ */
+.company-block {
+  background: #1A1A18;
+  color: #FAFAF8;
+  padding: 8mm 10mm;
+  margin: 6mm -16mm -18mm;
+}
+
+.company-block-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6mm;
+}
+
+.company-name {
+  font-size: 14pt;
+  font-weight: 500;
+  margin-bottom: 3mm;
+  font-family: "Hiragino Mincho ProN", serif;
+}
+
+.company-info {
+  font-size: 9pt;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+.company-block-right {
+  border-left: 1px solid rgba(250, 250, 248, 0.2);
+  padding-left: 6mm;
+}
+
+.contact-label {
+  font-size: 8pt;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+  margin-bottom: 2mm;
+}
+
+.contact-line {
+  font-size: 10pt;
+  margin-bottom: 2mm;
+  font-family: "SF Mono", monospace;
+}
+
+/* 注意書き */
+.legal-note {
+  font-size: 7pt;
+  color: #6A6A68;
+  margin-top: 4mm;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.print-hint {
+  text-align: center;
+  color: #4A4A48;
+  font-size: 13px;
+  margin: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.print-hint h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.print-hint code {
+  background: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+@media print {
+  .print-hint {
+    display: none;
+  }
+}
+
+/* サンプルバナー */
+.sample-banner-top {
+  background: #FFF9C4;
+  border-bottom: 2px solid #C75D3C;
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #1A1A18;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.sample-banner-top p {
+  margin: 0;
+}
+.sample-banner-top a {
+  color: #C75D3C;
+  font-weight: 500;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+@media print {
+  .sample-banner-top {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- これはサンプルです、のバナー(画面表示時のみ) -->
+<div class="sample-banner-top">
+  <p>
+    📋 <strong>これは提案書のサンプルです。</strong>
+    実際のご提案はヒアリング後に個別作成いたします。
+    <a href="https://nebulab.jp/contact">お問い合わせはこちら →</a>
+  </p>
+</div>
+
+<div class="print-hint">
+  <h3>提案書テンプレートの使い方</h3>
+  <p><strong>1. ファイルをコピー</strong>: 「<code>顧客名_提案書.html</code>」のようにリネーム</p>
+  <p><strong>2. 編集</strong>: 黄色い「編集ガイド」コメントを参考に、サンプル文を顧客内容に置き換え</p>
+  <p><strong>3. PDF保存</strong>: <code>Ctrl+P</code>(Win)/<code>Cmd+P</code>(Mac) → A4・余白なし・背景印刷有効 → PDFに保存</p>
+  <p><strong>4. 商談で活用</strong>: 印刷して持参 / メール送付 / タブレット表示</p>
+  <p style="margin-top: 10px; color: #C75D3C;">※ 編集ガイド(黄色いコメント)は印刷時には自動的に非表示になります</p>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ1: 表紙                                   -->
+<!-- ============================================ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-meta-top">
+      <span class="cover-doc-type mono">PROPOSAL</span>
+      <span class="mono">2026.05.20</span>
+    </div>
+
+    <div class="cover-title-area">
+      <div class="cover-title-pre mono">— ご提案書 —</div>
+
+      <div class="cover-client-name serif">
+        カフェ・ナリタ 様
+      </div>
+      <div class="edit-hint">📝 上記を顧客名(店舗名・会社名)に変更してください</div>
+
+      <h1 class="cover-title serif">
+        ホームページ刷新と<br>
+        Web予約システムの<br>
+        導入プラン
+      </h1>
+      <div class="edit-hint">📝 上記を提案件名に変更してください(例:「ECサイト構築プラン」「業務改善コンサルティング」など)</div>
+
+      <p class="cover-subtitle">
+        集客の自動化と、お問い合わせ管理の効率化を、<br>
+        無理のないスケジュールで実現します。
+      </p>
+      <div class="edit-hint">📝 上記を提案の一行サマリーに変更してください</div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div>
+      <div class="cover-from-label mono">— FROM —</div>
+      <div class="cover-from-name">Nebulab合同会社</div>
+      <div class="cover-from-info">
+        代表社員: 萬代 晃生<br>
+        nebulab.jp / contact@nebulab.jp
+      </div>
+    </div>
+    <div class="cover-meta mono">
+      VERSION 1.0<br>
+      CONFIDENTIAL<br>
+      <br>
+      35.7758°N<br>
+      140.3186°E
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ2: ヒアリングサマリー + 課題整理            -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— SUMMARY & CHALLENGES —</span>
+    </div>
+    <span class="page-num mono">P. 02 / 06</span>
+  </div>
+
+  <div class="section-heading mono">— 01. ヒアリングのまとめ —</div>
+  <h2 class="h2-title">ご相談いただいた現状と<br>抱えている課題</h2>
+
+  <p class="body-text">
+    2026年5月15日のヒアリングでお伺いした内容を、課題として整理いたしました。
+  </p>
+  <div class="edit-hint">📝 上記の日付と内容を実際のヒアリング日に変更</div>
+
+  <!-- 顧客の言葉(引用) -->
+  <div class="summary-box">
+    <div class="summary-box-label mono">— ご相談者からのお言葉 —</div>
+    <div class="summary-box-content">
+      <div class="client-quote">
+        <span class="quote-text">
+          ホームページが10年以上前のままで、スマホで見るとレイアウトが崩れているんです。<br>
+          予約も電話だけだから、夜の時間帯は対応できなくて機会損失している気がします。<br>
+          一緒に考えてくれる人を探していました。
+        </span>
+        <div class="quote-source">— カフェ・ナリタ オーナー様(2026年5月15日 ヒアリング時)</div>
+      </div>
+    </div>
+  </div>
+  <div class="edit-hint">📝 上記の引用文と発言者情報を、実際のヒアリングでの顧客の言葉に置き換えてください。本人の言葉をそのまま使うほど提案書の説得力が上がります</div>
+
+  <!-- 課題整理 -->
+  <h3 class="h3-title">整理した課題</h3>
+
+  <ol class="issue-list">
+    <li class="issue-item">
+      <div class="issue-content">
+        <div class="issue-title">ホームページがスマホ対応していない</div>
+        <div class="issue-detail">
+          現在のホームページは2014年頃に制作されたもので、スマートフォンで閲覧した際にレイアウトが崩れている状態です。お客様の8割以上がスマホでアクセスする現代において、第一印象の機会損失が発生しています。
+        </div>
+      </div>
+    </li>
+    <li class="issue-item">
+      <div class="issue-content">
+        <div class="issue-title">予約手段が電話のみで、夜間・営業時間外の対応が不可</div>
+        <div class="issue-detail">
+          営業時間外の予約希望者は他店に流れている可能性があります。Web予約システムを導入することで、24時間予約受付が可能になります。
+        </div>
+      </div>
+    </li>
+    <li class="issue-item">
+      <div class="issue-content">
+        <div class="issue-title">Googleマップでの店舗情報が古い</div>
+        <div class="issue-detail">
+          営業時間や写真が現状を反映しておらず、新規のお客様に正しい情報が届いていません。Google ビジネスプロフィールの整備で改善できます。
+        </div>
+      </div>
+    </li>
+  </ol>
+  <div class="edit-hint">📝 上記の課題3つを、実際のヒアリング内容に基づいて変更してください。3〜5項目が目安です</div>
+
+  <div class="page-footer">
+    <span>カフェ・ナリタ様 ご提案書</span>
+    <span class="mono">PROPOSAL / Nebulab</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ3: ご提案内容                              -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— SOLUTION —</span>
+    </div>
+    <span class="page-num mono">P. 03 / 06</span>
+  </div>
+
+  <div class="section-heading mono">— 02. 解決のご提案 —</div>
+  <h2 class="h2-title">推奨プランのご提案</h2>
+
+  <p class="body-text">
+    ご相談いただいた課題に対して、以下の3つのサービスを組み合わせてご提案いたします。
+    無理なく段階的に導入することで、運用面での負担を最小限に抑えられます。
+  </p>
+
+  <!-- 推奨プラン -->
+  <div class="proposal-card recommended">
+    <div class="recommended-badge mono">— 推奨プラン —</div>
+    <div class="proposal-header">
+      <div class="proposal-name-area">
+        <div class="proposal-plan-name">HP Standard リニューアル</div>
+        <div class="proposal-tagline">5-7ページ構成・WordPress構築・スマホ完全対応</div>
+      </div>
+      <div class="proposal-price-area">
+        <div class="proposal-price">¥180,000</div>
+        <div class="proposal-price-unit">税込・3-4週間</div>
+      </div>
+    </div>
+    <ul class="proposal-features">
+      <li>スマホ・タブレット対応</li>
+      <li>お問い合わせフォーム</li>
+      <li>Googleマップ埋め込み</li>
+      <li>基本SEO対策</li>
+      <li>WordPress(自分で更新可能)</li>
+      <li>公開後30日間の修正無料</li>
+    </ul>
+    <div class="proposal-reason">
+      <div class="proposal-reason-label mono">— なぜこのプランか —</div>
+      課題1のスマホ対応を解決するために、ゼロから刷新する HP Standard が最適です。
+      WordPress構築なので、メニュー変更などはオーナー様ご自身で操作できます。
+    </div>
+  </div>
+
+  <!-- プラン2 -->
+  <div class="proposal-card">
+    <div class="proposal-header">
+      <div class="proposal-name-area">
+        <div class="proposal-plan-name">予約システム導入</div>
+        <div class="proposal-tagline">RESERVA を選定・初期設定・運用サポート</div>
+      </div>
+      <div class="proposal-price-area">
+        <div class="proposal-price">¥100,000</div>
+        <div class="proposal-price-unit">税込・1-2週間</div>
+      </div>
+    </div>
+    <ul class="proposal-features">
+      <li>予約システムの選定相談</li>
+      <li>初期設定・メニュー登録</li>
+      <li>HPへの設置</li>
+      <li>運用マニュアル提供</li>
+      <li>1ヶ月の運用サポート</li>
+      <li>キャンセル管理機能</li>
+    </ul>
+    <div class="proposal-reason">
+      <div class="proposal-reason-label mono">— なぜこのプランか —</div>
+      課題2の電話のみ予約問題を解決するため。RESERVA は飲食店での導入実績が豊富で、
+      月¥0プランから始められるため、運用負担も抑えられます。
+    </div>
+  </div>
+
+  <!-- プラン3 -->
+  <div class="proposal-card">
+    <div class="proposal-header">
+      <div class="proposal-name-area">
+        <div class="proposal-plan-name">Googleビジネスプロフィール整備</div>
+        <div class="proposal-tagline">Googleマップ最適化・写真撮影・SEO対策</div>
+      </div>
+      <div class="proposal-price-area">
+        <div class="proposal-price">¥30,000</div>
+        <div class="proposal-price-unit">税込・1週間</div>
+      </div>
+    </div>
+    <ul class="proposal-features">
+      <li>店舗情報の最新化</li>
+      <li>写真撮影・配置(10-15枚)</li>
+      <li>説明文の最適化</li>
+      <li>カテゴリ・属性の整備</li>
+      <li>口コミ対応設定</li>
+      <li>運用マニュアル提供</li>
+    </ul>
+    <div class="proposal-reason">
+      <div class="proposal-reason-label mono">— なぜこのプランか —</div>
+      課題3のGoogleマップ古い情報問題を解決するため。
+      新規顧客の入口としてGoogleマップは特に重要で、整備による集客効果が期待できます。
+    </div>
+  </div>
+  <div class="edit-hint">📝 上記3つの推奨プランを、顧客の課題に合わせて1-3個に編集してください。価格・期間も変更可能です。優先度の高いものに「推奨プラン」バッジを付けます</div>
+
+  <div class="page-footer">
+    <span>カフェ・ナリタ様 ご提案書</span>
+    <span class="mono">PROPOSAL / Nebulab</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ4: 詳細プランと価格                        -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— PRICING —</span>
+    </div>
+    <span class="page-num mono">P. 04 / 06</span>
+  </div>
+
+  <div class="section-heading mono">— 03. お見積もり —</div>
+  <h2 class="h2-title">価格の内訳とお見積もり</h2>
+
+  <p class="body-text">
+    ご提案させていただいた3つのサービスの合計お見積もりです。
+    一括ご依頼いただく場合の特典もございます。
+  </p>
+
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th style="width: 50%;">サービス</th>
+        <th style="width: 20%;">期間</th>
+        <th class="right" style="width: 30%;">金額(税込)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>HP Standard リニューアル</td>
+        <td>3-4週間</td>
+        <td class="price-cell">¥180,000</td>
+      </tr>
+      <tr>
+        <td>予約システム導入(RESERVA)</td>
+        <td>1-2週間</td>
+        <td class="price-cell">¥100,000</td>
+      </tr>
+      <tr>
+        <td>Googleビジネスプロフィール整備</td>
+        <td>1週間</td>
+        <td class="price-cell">¥30,000</td>
+      </tr>
+      <tr class="total">
+        <td>合計</td>
+        <td>同時進行で 約4週間</td>
+        <td class="price-cell">¥310,000</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="edit-hint">📝 上記のサービス・期間・金額を実際の提案内容に変更してください</div>
+
+  <h3 class="h3-title">継続支援プラン(ご希望の場合)</h3>
+
+  <p class="body-text">
+    制作後の運用面でご不安があれば、月額のサポートプランもご用意しています。
+  </p>
+
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th style="width: 50%;">プラン</th>
+        <th style="width: 20%;">頻度</th>
+        <th class="right" style="width: 30%;">月額(税込)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>HP保守 Light(おすすめ)</strong><br><span style="font-size: 9pt; color: #6A6A68;">セキュリティ・バックアップ・軽微な修正・ドメイン/サーバー込み</span></td>
+        <td>毎月</td>
+        <td class="price-cell">¥10,000</td>
+      </tr>
+      <tr>
+        <td>IT顧問 Light<br><span style="font-size: 9pt; color: #6A6A68;">月1回相談+メール/LINE相談無制限</span></td>
+        <td>毎月</td>
+        <td class="price-cell">¥30,000</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="edit-hint">📝 継続プランの選択肢を顧客のニーズに合わせて変更。不要なら削除も可</div>
+
+  <h3 class="h3-title">お支払い条件</h3>
+  <p class="body-text">
+    ・ご契約時: 着手金として50%(¥155,000)<br>
+    ・納品時: 残金50%(¥155,000)<br>
+    ・お支払い方法: 銀行振込 または クレジットカード(Stripe)<br>
+    ・継続プランは、毎月初旬に請求書を発行いたします。
+  </p>
+  <div class="edit-hint">📝 支払い条件を必要に応じて調整(分割回数、振込・カード払い等)</div>
+
+  <p class="legal-note">
+    ※ 上記は税込価格です。記載のない追加機能をご希望の場合は、別途お見積もりいたします。
+    補助金活用についてのご相談も承っておりますので、お気軽にお声がけください。
+  </p>
+
+  <div class="page-footer">
+    <span>カフェ・ナリタ様 ご提案書</span>
+    <span class="mono">PROPOSAL / Nebulab</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ5: 期待効果 + スケジュール                  -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— EXPECTATIONS & SCHEDULE —</span>
+    </div>
+    <span class="page-num mono">P. 05 / 06</span>
+  </div>
+
+  <div class="section-heading mono">— 04. 期待される効果 —</div>
+  <h2 class="h2-title">導入後の変化</h2>
+
+  <p class="body-text">
+    今回のご提案を導入いただくことで、以下のような変化が見込まれます。
+  </p>
+
+  <div class="effect-grid">
+    <div class="effect-card">
+      <div class="effect-card-label mono">— SCALE 01 —</div>
+      <div class="effect-card-value">月+5〜10件</div>
+      <div class="effect-card-detail">
+        Web予約による営業時間外の予約獲得が見込めます。電話できないタイミングのお客様を取りこぼさなくなります。
+      </div>
+    </div>
+    <div class="effect-card">
+      <div class="effect-card-label mono">— SCALE 02 —</div>
+      <div class="effect-card-value">問合せ品質UP</div>
+      <div class="effect-card-detail">
+        スマホ対応HPで第一印象が改善。予約フォームでの事前情報取得により、来店時の対応もスムーズになります。
+      </div>
+    </div>
+    <div class="effect-card">
+      <div class="effect-card-label mono">— SCALE 03 —</div>
+      <div class="effect-card-value">月-3〜5時間</div>
+      <div class="effect-card-detail">
+        電話での予約対応・確認作業が減り、本来の店舗業務に時間を充てられるようになります。
+      </div>
+    </div>
+    <div class="effect-card">
+      <div class="effect-card-label mono">— SCALE 04 —</div>
+      <div class="effect-card-value">新規顧客の認知UP</div>
+      <div class="effect-card-detail">
+        Googleマップの整備で、近隣エリアの新規顧客にお店の存在が伝わりやすくなります。
+      </div>
+    </div>
+  </div>
+  <div class="edit-hint">📝 上記の期待効果4つを、顧客の課題に合わせて変更。具体的な数字や定性的な効果を組み合わせると説得力が上がります</div>
+
+  <p class="effect-disclaimer">
+    ※ 上記は弊社の経験に基づく目安です。業種・立地・運用体制により異なる結果となる可能性があります。
+    継続的な運用とコンテンツ更新によって、効果は大きく変わります。
+  </p>
+
+  <div class="section-heading mono" style="margin-top: 8mm;">— 05. スケジュール —</div>
+  <h3 class="h3-title">作業の進め方</h3>
+
+  <table class="schedule-table">
+    <thead>
+      <tr>
+        <th class="week-cell">期間</th>
+        <th class="task-cell">作業内容と成果物</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="week-cell">第1週</td>
+        <td class="task-cell">
+          ヒアリング・コンテンツ整理・デザインラフ作成<br>
+          <span class="deliverable-cell">成果物: 構成案・デザイン案</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="week-cell">第2-3週</td>
+        <td class="task-cell">
+          HP Standard 構築・予約システム設定・GBP整備<br>
+          <span class="deliverable-cell">成果物: 開発環境での動作確認</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="week-cell">第4週</td>
+        <td class="task-cell">
+          テスト・修正・納品準備<br>
+          <span class="deliverable-cell">成果物: 確認画面・最終調整</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="week-cell">納品後</td>
+        <td class="task-cell">
+          公開作業・運用説明・30日間の修正対応<br>
+          <span class="deliverable-cell">成果物: 公開済みサイト・運用マニュアル</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="edit-hint">📝 スケジュールを実際の制作期間に合わせて変更。週次の作業内容と成果物を具体化</div>
+
+  <div class="page-footer">
+    <span>カフェ・ナリタ様 ご提案書</span>
+    <span class="mono">PROPOSAL / Nebulab</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ6: 次のアクション + 会社情報               -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— NEXT STEPS —</span>
+    </div>
+    <span class="page-num mono">P. 06 / 06</span>
+  </div>
+
+  <div class="section-heading mono">— 06. 次のステップ —</div>
+  <h2 class="h2-title">ご検討と着手まで</h2>
+
+  <p class="body-text">
+    本提案書の内容についてご検討いただき、ご質問・ご要望がございましたらお気軽にお声がけください。
+  </p>
+
+  <!-- 次のアクション -->
+  <div class="next-action">
+    <div class="next-action-title">これからの進め方</div>
+    <ol class="next-action-list">
+      <li>
+        <span class="next-action-num">01</span>
+        <span>本提案書のご検討(目安: 1週間程度)</span>
+      </li>
+      <li>
+        <span class="next-action-num">02</span>
+        <span>ご不明点があれば、メール / LINE / 電話 でお問い合わせ</span>
+      </li>
+      <li>
+        <span class="next-action-num">03</span>
+        <span>ご契約の意思確認・契約書の取り交わし</span>
+      </li>
+      <li>
+        <span class="next-action-num">04</span>
+        <span>着手金のお支払い後、制作スタート</span>
+      </li>
+      <li>
+        <span class="next-action-num">05</span>
+        <span>初回ミーティングで詳細な進め方を確認</span>
+      </li>
+    </ol>
+  </div>
+
+  <h3 class="h3-title">ご返答の目安</h3>
+  <p class="body-text">
+    可能であれば、<strong style="color: #C75D3C;">2026年6月15日まで</strong>にご返答いただけますと、
+    7月初旬の着手・8月上旬の納品が可能です。<br>
+    お急ぎの場合・先送りされたい場合も、お気軽にご相談ください。
+  </p>
+  <div class="edit-hint">📝 上記の日付を実際の希望返答日・着手予定日に変更してください</div>
+
+  <h3 class="h3-title">補助金活用について</h3>
+  <p class="body-text">
+    本提案の一部は「小規模事業者持続化補助金」等の対象になる可能性があります。
+    ご希望に応じて、申請サポート(着手金¥50,000+成功報酬10%)も承ります。
+    詳細は別途ご相談ください。
+  </p>
+
+  <h3 class="h3-title">最後に</h3>
+  <p class="body-text">
+    Nebulab合同会社は、成田で生まれ育った代表が運営する、地域密着のIT会社です。
+    制作して終わりではなく、長く地域でお店を続けていただくためのパートナーとして、
+    末長くお付き合いさせていただければと思います。<br><br>
+    ご検討のほど、よろしくお願いいたします。
+  </p>
+
+  <!-- 会社情報フッター -->
+  <div class="company-block">
+    <div class="company-block-grid">
+      <div>
+        <div class="company-name">Nebulab合同会社</div>
+        <div class="company-info">
+          〒286-0033 千葉県成田市花崎町(NRT-LOFT内)<br>
+          代表社員: 萬代 晃生(Bandai Koki)<br>
+          設立: 2026年5月1日<br>
+          資本金: ¥1,000,000
+        </div>
+      </div>
+      <div class="company-block-right">
+        <div class="contact-label mono">— CONTACT —</div>
+        <div class="contact-line">WEB nebulab.jp</div>
+        <div class="contact-line">MAIL contact@nebulab.jp</div>
+        <div class="contact-line">LINE 準備中</div>
+        <div style="margin-top: 4mm; font-size: 8pt; opacity: 0.7;">
+          ご質問・ご相談はお気軽に。<br>
+          通常24時間以内にご返信いたします。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

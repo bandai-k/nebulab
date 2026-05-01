@@ -14,7 +14,7 @@ export const company = {
   foundedDate: "2026年5月1日",
   capital: "1,000,000円",
   fiscalYear: "毎年10月1日〜翌年9月30日",
-  email: "koki.bandai@nebulab.jp",
+  email: "contact@nebulab.jp",
   website: "https://www.nebulab.jp",
 } as const;
 

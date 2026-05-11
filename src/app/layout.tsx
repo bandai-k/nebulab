@@ -40,9 +40,6 @@ export const metadata: Metadata = {
     "NAJIMI",
     "narita-guide",
   ],
-  icons: {
-    icon: "/nebulab-symbol-dark.svg",
-  },
   alternates: {
     canonical: "/",
   },

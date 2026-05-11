@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { BRAND } from "@/constants/brand";
 import { HEADER_NAV } from "@/constants/navigation";
@@ -27,10 +28,17 @@ export default function Header() {
         <div className="mx-auto grid max-w-[1200px] grid-cols-[1fr_auto_1fr] items-center px-5 py-6 md:px-10 md:py-8">
           <Link
             href="/"
-            className="justify-self-start font-display text-xl font-normal tracking-[0.18em] text-cyber-text transition-colors hover:text-cyber-accent md:text-2xl"
+            className="justify-self-start transition-opacity hover:opacity-80"
             aria-label={BRAND.name}
           >
-            {BRAND.name}
+            <Image
+              src="/brand/wordmark-light.png"
+              alt={BRAND.name}
+              width={2048}
+              height={512}
+              priority
+              className="h-8 w-auto md:h-10"
+            />
           </Link>
 
           {/* Desktop nav (centered) */}

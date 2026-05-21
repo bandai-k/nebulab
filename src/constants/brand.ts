@@ -1,6 +1,6 @@
 export const BRAND = {
   name: "Nebulab",
-  tagline: "AIプロダクト開発ラボ",
+  tagline: "成田のテクノロジーカンパニー",
   email: "contact@nebulab.jp",
   emailMailto: "mailto:contact@nebulab.jp",
 } as const;

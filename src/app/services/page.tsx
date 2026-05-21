@@ -7,18 +7,18 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 export const metadata: Metadata = {
   title: "事業内容",
   description:
-    "Nebulab合同会社の4つの事業領域 — SES・受託開発、地域 × テクノロジー、オリジナルブランド「NAJIMI」、自社AIプロダクト。",
+    "Nebulab合同会社の事業領域 — SES・受託開発、地域 × テクノロジー、オリジナルブランド「NAJIMI」。",
   alternates: { canonical: "/services" },
   openGraph: {
     url: "/services",
     title: "事業内容 | Nebulab合同会社",
     description:
-      "Nebulab合同会社の4つの事業領域 — SES・受託開発、地域 × テクノロジー、オリジナルブランド「NAJIMI」、自社AIプロダクト。",
+      "Nebulab合同会社の事業領域 — SES・受託開発、地域 × テクノロジー、オリジナルブランド「NAJIMI」。",
   },
   twitter: {
     title: "事業内容 | Nebulab合同会社",
     description:
-      "Nebulab合同会社の4つの事業領域。SES・受託開発から自社AIプロダクトまで。",
+      "Nebulab合同会社の事業領域。SES・受託開発から地域 × テクノロジーまで。",
   },
 };
 
@@ -78,7 +78,7 @@ const areas: Area[] = [
         items: [
           "NRT-LOFT : 成田の3席限定コワーキングスペース",
           "narita-guide.com : 成田の観光・生活情報メディア",
-          "農業IT支援 : 地域農家のEC・販路開拓支援",
+          "小規模事業者へのIT支援 : HP制作・運用・業務IT全般のサポート",
         ],
       },
     ],
@@ -112,33 +112,6 @@ const areas: Area[] = [
     ],
     cta: { label: "More", href: "/projects" },
     imageUrl: "/services/ec-brand.png",
-  },
-  {
-    code: "04",
-    name: "AI PRODUCTS",
-    nameJa: "自社AIプロダクト",
-    description:
-      "「AIに質問する」のではなく「AIが動く」プロダクトを開発。人間の意思決定を加速させるツール群を設計・実装しています。",
-    blocks: [
-      {
-        heading: "プロダクト",
-        items: [
-          "Navi : 能動型AIナビゲーター(プロトタイプ)",
-          "SuperMindMap : 思考の構造可視化AI(R&D)",
-          "その他、Lab部門で複数プロジェクト進行中",
-        ],
-      },
-      {
-        heading: "特徴",
-        items: [
-          "受動ではなく能動 - AIが状況を観察し先に動く",
-          "自律ではなく拡張 - 最終判断は必ず人間が行う",
-          "高速反復 - 小さく作り、試し、壊し、また作る",
-        ],
-      },
-    ],
-    cta: { label: "Lab を見る", href: "/lab" },
-    imageUrl: "/services/ai-products.png",
   },
 ];
 

@@ -30,7 +30,6 @@ export const HEADER_NAV: HeaderNavItem[] = [
       { key: "svc-dev", href: "/services#development", label: "01 / SES・受託開発" },
       { key: "svc-local", href: "/services#local-tech", label: "02 / 地域 × テクノロジー" },
       { key: "svc-ec", href: "/services#ec-brand", label: "03 / オリジナルブランド" },
-      { key: "svc-ai", href: "/services#ai-products", label: "04 / 自社AIプロダクト" },
     ],
   },
   {
@@ -47,6 +46,7 @@ export const HEADER_NAV: HeaderNavItem[] = [
       { key: "proj-nebula", href: "/projects/nebula-place", label: "Nebula Place" },
     ],
   },
+  { key: "showcase", href: "/showcase", label: "Showcase" },
   { key: "news", href: "/news", label: "News" },
   {
     key: "lab",

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 108" role="img" aria-label="ホームページを持ちませんか? 最低 0 円から始められます (条件あり) — Nebulab">
+  <!-- 背景 -->
+  <rect width="520" height="108" fill="#000000"/>
+  <!-- 枠線 -->
+  <rect x="0.5" y="0.5" width="519" height="107" fill="none" stroke="#FAF7F0" stroke-opacity="0.25"/>
+
+  <!-- 左: キャッチ + 価格 + 注記 -->
+  <g>
+    <!-- メインキャッチ -->
+    <text x="24" y="38"
+          font-family="'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif"
+          font-size="21" fill="#FAF7F0" font-weight="500" letter-spacing="2">ホームページを持ちませんか?</text>
+
+    <!-- サブ: 最低 + ¥0(大) + 米印 + から始められます -->
+    <text x="24" y="74"
+          font-family="'SF Mono', 'Menlo', 'Consolas', monospace"
+          font-size="11" fill="#B0A48F" letter-spacing="1.5">最低</text>
+
+    <text x="60" y="77"
+          font-family="'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif"
+          font-size="23" fill="#FAF7F0" font-weight="500" letter-spacing="0">¥0</text>
+
+    <text x="96" y="61"
+          font-family="'SF Mono', 'Menlo', 'Consolas', monospace"
+          font-size="10" fill="#C68B5A" letter-spacing="0">※</text>
+
+    <text x="110" y="74"
+          font-family="'SF Mono', 'Menlo', 'Consolas', monospace"
+          font-size="11" fill="#B0A48F" letter-spacing="1.5">から始められます</text>
+
+    <!-- 注記 -->
+    <text x="24" y="96"
+          font-family="'SF Mono', 'Menlo', 'Consolas', monospace"
+          font-size="8" fill="#7A6F60" letter-spacing="2">※ 条件あり</text>
+  </g>
+
+  <!-- 縦区切り -->
+  <line x1="338" y1="22" x2="338" y2="86" stroke="#FAF7F0" stroke-opacity="0.2"/>
+
+  <!-- 右: Nebulab ロゴ + ブランドドット -->
+  <g>
+    <text x="356" y="62"
+          font-family="'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif"
+          font-size="26" fill="#FAF7F0" font-weight="500" letter-spacing="2">Nebulab</text>
+    <circle cx="492" cy="58" r="3" fill="#1556a5"/>
+  </g>
+</svg>

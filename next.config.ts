@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
       { source: "/docs/pricing-list", destination: "/docs/pricing-list.html" },
       { source: "/docs/proposal-sample", destination: "/docs/proposal-sample.html" },
       { source: "/docs/business-card", destination: "/docs/business-card.html" },
+      { source: "/docs/homepage-guide", destination: "/docs/homepage-guide.html" },
+      { source: "/docs/hp-trial", destination: "/docs/hp-trial.html" },
+      { source: "/docs/it-support", destination: "/docs/it-support.html" },
+      { source: "/pt/bandai-noen", destination: "/pt/bandai-noen/index.html" },
     ];
   },
 };

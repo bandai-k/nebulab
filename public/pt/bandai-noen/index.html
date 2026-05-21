@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="成田の畑から、季節の恵みを。萬代農園は千葉県成田市で家族で営む小さな農園です。ハウスのほうれん草、路地のジャガイモ・にんじんを中心に、季節の野菜を畑から直接お届けしています。">
+<meta name="robots" content="noindex, nofollow">
+<title>萬代農園 — 成田の畑から、季節の恵みを。</title>
+<style>
+:root {
+  --bg: #FAF7F0;
+  --bg-soft: #F2EDDF;
+  --bg-deep: #EBE3CC;
+  --paper: #FFFDF7;
+  --ink: #2D2620;
+  --ink-soft: #6B5F52;
+  --ink-mute: #948576;
+  --line: #D9CFBE;
+  --line-soft: #E8E0CC;
+  --green: #5D7A4E;
+  --green-deep: #3F5734;
+  --green-dark: #28381F;
+  --terra: #C68B5A;
+  --terra-deep: #8B5A38;
+  --gold: #B8956C;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+.serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif; }
+.mono { font-family: "SF Mono", "Menlo", "Consolas", monospace; letter-spacing: 0.08em; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+img, svg, iframe { max-width: 100%; display: block; }
+
+/* ===== ヘッダー ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: rgba(250, 247, 240, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  z-index: 50;
+}
+
+.site-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand img {
+  height: 56px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .brand img { height: 44px; }
+}
+
+.nav { display: flex; gap: 28px; font-size: 12px; }
+
+.nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  letter-spacing: 0.18em;
+  transition: color 0.15s;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--green-deep);
+  transition: all 0.2s;
+  transform: translateX(-50%);
+}
+
+.nav a:hover { color: var(--green-deep); }
+.nav a:hover::after { width: 100%; }
+
+@media (max-width: 768px) {
+  .nav { display: none; }
+  .site-header-inner { padding: 14px 20px; }
+}
+
+/* ===== お知らせバナー ===== */
+.announce-bar {
+  background: var(--green-dark);
+  color: var(--bg);
+  padding: 14px 0;
+  font-size: 13px;
+  position: relative;
+  overflow: hidden;
+}
+
+.announce-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 28px;
+  flex-wrap: wrap;
+  letter-spacing: 0.04em;
+}
+
+.announce-bar-label {
+  font-family: "SF Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  background: var(--terra);
+  color: var(--bg);
+  padding: 3px 10px;
+}
+
+/* ===== ヒーロー (フルブリード写真 + コピーオーバーレイ) ===== */
+.hero {
+  position: relative;
+  height: 88vh;
+  min-height: 620px;
+  max-height: 880px;
+  overflow: hidden;
+  background: #1F1A15;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  background-image: url("/pt/bandai-noen/hero.png");
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  animation: heroZoom 20s ease-out forwards;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(31, 26, 21, 0.35) 0%, rgba(31, 26, 21, 0) 30%, rgba(31, 26, 21, 0) 50%, rgba(31, 26, 21, 0.55) 80%, rgba(31, 26, 21, 0.85) 100%),
+    linear-gradient(90deg, rgba(31, 26, 21, 0.45) 0%, rgba(31, 26, 21, 0.1) 50%, rgba(31, 26, 21, 0) 100%);
+}
+
+.hero-corner-tl, .hero-corner-br {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.hero-corner-tl { top: 28px; left: 28px; border-top: 1px solid rgba(250, 247, 240, 0.8); border-left: 1px solid rgba(250, 247, 240, 0.8); }
+.hero-corner-br { bottom: 28px; right: 28px; border-bottom: 1px solid rgba(250, 247, 240, 0.8); border-right: 1px solid rgba(250, 247, 240, 0.8); }
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 80px;
+}
+
+.hero-text-pre {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: rgba(250, 247, 240, 0.9);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: "SF Mono", monospace;
+}
+
+.hero-text-pre::before {
+  content: "";
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  background: var(--terra);
+}
+
+.hero-title {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin-bottom: 24px;
+  letter-spacing: 0.04em;
+  color: var(--bg);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+  max-width: 800px;
+}
+
+.hero-title small {
+  display: block;
+  font-size: 16px;
+  color: rgba(250, 247, 240, 0.85);
+  margin-top: 16px;
+  letter-spacing: 0.22em;
+  font-weight: 300;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 880px) {
+  .hero { height: 78vh; min-height: 540px; }
+  .hero-title { font-size: 36px; }
+  .hero-title small { font-size: 13px; }
+  .hero-inner { padding-bottom: 56px; }
+  .hero-corner-tl, .hero-corner-br { width: 40px; height: 40px; top: 18px; left: 18px; }
+  .hero-corner-br { top: auto; left: auto; bottom: 18px; right: 18px; }
+}
+
+.hero-lede {
+  font-size: 14px;
+  line-height: 2.05;
+  color: rgba(250, 247, 240, 0.92);
+  margin-bottom: 32px;
+  max-width: 540px;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: inherit;
+  border: 1px solid transparent;
+}
+
+.btn.primary {
+  background: var(--terra);
+  color: var(--bg);
+  border-color: var(--terra);
+}
+.btn.primary:hover { background: var(--terra-deep); border-color: var(--terra-deep); }
+
+.btn.ghost {
+  background: transparent;
+  color: var(--bg);
+  border-color: rgba(250, 247, 240, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.btn.ghost:hover { background: rgba(250, 247, 240, 0.15); border-color: var(--bg); }
+
+/* セクション内のサブ CTA は元の green スタイルを保持 */
+.section .btn.primary { background: var(--green-deep); color: var(--bg); border-color: var(--green-deep); }
+.section .btn.primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+.section .btn.ghost { background: transparent; color: var(--green-deep); border-color: var(--green-deep); backdrop-filter: none; }
+.section .btn.ghost:hover { background: var(--green-deep); color: var(--bg); }
+
+.hero-meta {
+  display: flex;
+  gap: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(250, 247, 240, 0.25);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(250, 247, 240, 0.8);
+  font-family: "SF Mono", monospace;
+  flex-wrap: wrap;
+}
+
+.hero-meta strong { color: var(--terra); font-weight: 500; margin-right: 6px; }
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "SF Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  color: rgba(250, 247, 240, 0.55);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-scroll-hint::before,
+.hero-scroll-hint::after {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: rgba(250, 247, 240, 0.4);
+}
+
+@media (max-width: 640px) {
+  .hero-scroll-hint { display: none; }
+}
+
+/* ===== セクション共通 ===== */
+.section {
+  padding: 96px 0;
+  position: relative;
+}
+
+.section.alt { background: var(--bg-soft); }
+.section.deep { background: var(--bg-deep); }
+
+@media (max-width: 768px) {
+  .section { padding: 64px 0; }
+}
+
+.section-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--terra);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-eyebrow::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--terra);
+}
+
+.section-title {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .section-title { font-size: 26px; }
+}
+
+.section-lede {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 48px;
+  line-height: 2.1;
+  max-width: 680px;
+}
+
+/* ===== 届けたい、ということ ===== */
+.letter-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+@media (max-width: 880px) {
+  .letter-layout { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.letter-photo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.letter-photo {
+  aspect-ratio: 3 / 4;
+  background: url("/pt/bandai-noen/portrait.png") center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.letter-photo::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(250, 247, 240, 0.2);
+}
+
+.letter-text { padding-top: 24px; }
+
+.letter-pre {
+  font-family: "SF Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.letter-title {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .letter-title { font-size: 26px; }
+}
+
+.letter-body p {
+  font-size: 15px;
+  line-height: 2.15;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+
+.letter-body p:first-of-type::first-letter {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 56px;
+  float: left;
+  line-height: 0.95;
+  margin: 6px 8px 0 0;
+  color: var(--green-deep);
+  font-weight: 500;
+}
+
+.letter-quote {
+  border-left: 2px solid var(--terra);
+  padding: 4px 0 4px 24px;
+  margin: 32px 0;
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 19px;
+  font-style: italic;
+  line-height: 1.95;
+  color: var(--green-deep);
+  letter-spacing: 0.04em;
+}
+
+.letter-pillars {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 640px) {
+  .letter-pillars { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.pillar-num {
+  font-family: "SF Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--terra);
+  margin-bottom: 6px;
+}
+
+.pillar-title {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+
+.pillar-desc {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+/* ===== About / こだわり ===== */
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+@media (max-width: 880px) {
+  .about-cards { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.about-card {
+  background: var(--paper);
+  padding: 44px 32px 40px;
+  border: 1px solid var(--line-soft);
+  position: relative;
+  transition: all 0.2s;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 32px;
+  width: 32px;
+  height: 2px;
+  background: var(--green);
+}
+
+.about-card:hover {
+  border-color: var(--green);
+  transform: translateY(-3px);
+}
+
+.about-card-num {
+  font-family: "SF Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--terra);
+  margin-bottom: 14px;
+}
+
+.about-card-title {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.about-card-body {
+  font-size: 13px;
+  line-height: 2;
+  color: var(--ink-soft);
+}
+
+/* ===== 主力作物 3 種 ===== */
+.staples {
+  margin-top: 36px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  padding: 40px 40px 36px;
+}
+
+@media (max-width: 768px) {
+  .staples { padding: 28px 22px; }
+}
+
+.staples-head {
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+  max-width: 720px;
+}
+
+.staples-label {
+  font-family: "SF Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--green-deep);
+  margin-bottom: 10px;
+}
+
+.staples-title {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+
+.staples-desc {
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--ink-soft);
+}
+
+.staples-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 768px) {
+  .staples-cards { grid-template-columns: 1fr; gap: 20px; }
+}
+
+.staple-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border-left: 2px solid var(--green);
+  padding-left: 18px;
+}
+
+.staple-card.terra { border-left-color: var(--terra); }
+.staple-card.gold { border-left-color: var(--gold); }
+
+.staple-num {
+  font-family: "SF Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--ink-mute);
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.staple-tag {
+  font-family: "SF Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--terra);
+  margin-bottom: 6px;
+}
+
+.staple-card.terra .staple-tag { color: var(--terra-deep); }
+.staple-card.gold .staple-tag { color: var(--gold); }
+
+.staple-name {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+
+.staple-desc {
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+/* ===== 体験プログラム ===== */
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) { .exp-grid { grid-template-columns: 1fr; } }
+
+.exp-card {
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  display: flex;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.exp-card:hover { border-color: var(--green); }
+
+@media (max-width: 640px) { .exp-card { flex-direction: column; } }
+
+.exp-card-photo {
+  flex-shrink: 0;
+  width: 40%;
+  aspect-ratio: 1;
+  background: url("/pt/bandai-noen/exp-potato-dig.png") center/cover no-repeat;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .exp-card-photo { width: 100%; aspect-ratio: 16/9; }
+}
+
+.exp-card-photo.terra { background: url("/pt/bandai-noen/exp-harvest.png") center/cover no-repeat; }
+.exp-card-photo.gold { background: url("/pt/bandai-noen/exp-kitchen.png") center/cover no-repeat; }
+.exp-card-photo.dark { background: url("/pt/bandai-noen/exp-drawing.png") center/cover no-repeat; }
+
+.exp-card-photo::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(250, 247, 240, 0.2);
+}
+
+.exp-card-body {
+  padding: 24px 24px 24px 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-card-pre {
+  font-family: "SF Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--terra);
+  margin-bottom: 8px;
+}
+
+.exp-card-title {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.exp-card-meta {
+  font-size: 11px;
+  color: var(--ink-mute);
+  font-family: "SF Mono", monospace;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.exp-card-desc {
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  flex: 1;
+}
+
+.exp-reserve {
+  margin-top: 28px;
+  padding: 18px 24px;
+  background: var(--paper);
+  border-left: 2px solid var(--terra);
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--ink);
+}
+
+.exp-reserve-label {
+  display: inline-block;
+  font-family: "SF Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: var(--terra);
+  background: var(--bg-soft);
+  padding: 3px 10px;
+  margin-right: 12px;
+}
+
+.exp-reserve a {
+  color: var(--green-deep);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green-deep);
+}
+
+.exp-reserve a:hover { color: var(--terra-deep); border-color: var(--terra-deep); }
+
+/* ===== 共通 info dl (アクセス等) ===== */
+.shop-info dl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 18px 24px;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.shop-info dt {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--ink-mute);
+  padding-top: 5px;
+  font-family: "SF Mono", monospace;
+}
+
+.shop-info dd { color: var(--ink); }
+.shop-info dd strong { font-weight: 500; color: var(--green-deep); }
+.shop-info dd a {
+  color: var(--green-deep);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green-deep);
+  font-family: "SF Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+.shop-info dd a:hover { color: var(--terra-deep); border-color: var(--terra-deep); }
+
+/* ===== ギャラリー ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 36px;
+}
+
+@media (max-width: 880px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+
+.gphoto {
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.gphoto:hover { transform: scale(0.98); }
+
+.gphoto::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(250, 247, 240, 0.15);
+}
+
+.gphoto.span-2 { grid-column: span 2; }
+
+@media (max-width: 480px) { .gphoto.span-2 { grid-column: span 1; } }
+
+.g1 {
+  background: url("/pt/bandai-noen/potato-field.png") center/cover no-repeat;
+}
+.g2 { background: linear-gradient(160deg, var(--terra) 0%, var(--terra-deep) 100%); }
+.g3 { background: linear-gradient(180deg, var(--gold) 0%, #8B6F47 100%); }
+.g4 { background: linear-gradient(120deg, var(--green-deep) 0%, var(--green-dark) 100%); }
+.g5 { background: linear-gradient(200deg, var(--terra) 30%, var(--gold) 100%); }
+.g6 {
+  background: url("/pt/bandai-noen/carrot-field.png") center/cover no-repeat;
+}
+.g7 { background: linear-gradient(220deg, var(--green-dark) 0%, var(--gold) 100%); }
+.g8 { background: linear-gradient(135deg, var(--terra-deep) 0%, var(--green-deep) 100%); }
+
+.gallery-cta {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.gallery-cta a {
+  font-size: 12px;
+  color: var(--green-deep);
+  text-decoration: none;
+  letter-spacing: 0.2em;
+  border-bottom: 1px solid var(--green-deep);
+  padding-bottom: 4px;
+  transition: all 0.2s;
+}
+
+.gallery-cta a:hover { color: var(--terra); border-color: var(--terra); }
+
+/* ===== お知らせ ===== */
+.news-list {
+  list-style: none;
+  border-top: 1px solid var(--line);
+  margin-top: 32px;
+}
+
+.news-list li {
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+  display: grid;
+  grid-template-columns: 140px 100px 1fr;
+  gap: 24px;
+  align-items: baseline;
+}
+
+@media (max-width: 640px) { .news-list li { grid-template-columns: 1fr; gap: 6px; } }
+
+.news-date {
+  font-family: "SF Mono", monospace;
+  font-size: 12px;
+  color: var(--ink-mute);
+  letter-spacing: 0.1em;
+}
+
+.news-tag {
+  font-size: 10px;
+  padding: 3px 11px;
+  background: var(--green);
+  color: var(--bg);
+  letter-spacing: 0.18em;
+  justify-self: start;
+  font-family: "SF Mono", monospace;
+}
+
+.news-tag.terra { background: var(--terra); }
+.news-tag.gold { background: var(--gold); }
+
+.news-title { font-size: 14px; color: var(--ink); line-height: 1.85; }
+
+/* ===== アクセス + マップ ===== */
+.map-wrap {
+  margin-top: 32px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.map-wrap iframe { width: 100%; height: 400px; border: 0; }
+
+/* ===== フッター ===== */
+.site-footer {
+  background: #1F1A15;
+  color: #C9BDA8;
+  padding: 72px 0 32px;
+  font-size: 13px;
+  line-height: 1.95;
+}
+
+.footer-grid {
+  padding-bottom: 32px;
+  border-bottom: 1px solid #3A332A;
+}
+
+.footer-brand {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 28px;
+  color: var(--bg);
+  margin-bottom: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.footer-tag {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: #8C8071;
+  margin-bottom: 20px;
+  font-family: "SF Mono", monospace;
+}
+
+.footer-bottom {
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #8C8071;
+  letter-spacing: 0.08em;
+  font-family: "SF Mono", monospace;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.footer-bottom a {
+  color: #8C8071;
+  text-decoration: none;
+  border-bottom: 1px dotted #5A5246;
+  transition: all 0.15s;
+}
+
+.footer-bottom a:hover { color: var(--bg); border-bottom-color: var(--bg); }
+
+.nebulab-banner {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s;
+  border: 0;
+  line-height: 0;
+}
+
+.nebulab-banner:hover {
+  opacity: 0.88;
+}
+
+.nebulab-banner img {
+  height: 84px;
+  width: auto;
+  display: block;
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .nebulab-banner img { height: 64px; }
+}
+
+.showcase-notice {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: rgba(198, 139, 90, 0.1);
+  border-left: 2px solid var(--terra);
+  font-size: 11px;
+  color: #8C8071;
+  line-height: 1.85;
+  letter-spacing: 0.04em;
+}
+
+.showcase-notice a {
+  color: #B8956C;
+  text-decoration: none;
+  border-bottom: 1px dotted #6A5A48;
+}
+</style>
+</head>
+<body>
+
+<!-- お知らせバナー -->
+<div class="announce-bar">
+  <div class="announce-bar-inner">
+    <span class="announce-bar-label">FROM THE FARM</span>
+    <span>家族で、季節を読みながら、野菜を育てています。畑見学のご相談はお気軽に。</span>
+  </div>
+</div>
+
+<!-- ヘッダー -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="#top" class="brand" aria-label="萬代農園">
+      <img src="/pt/bandai-noen/logo.svg" alt="萬代農園 BANDAI FARM">
+    </a>
+    <nav class="nav">
+      <a href="#letter">想い</a>
+      <a href="#about">こだわり</a>
+      <a href="#staples">お野菜</a>
+      <a href="#experience">体験</a>
+      <a href="#access">アクセス</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ヒーロー (フルブリード写真 + コピーオーバーレイ) -->
+<section id="top" class="hero">
+  <div class="hero-image" role="img" aria-label="朝の畑で野菜を収穫している風景"></div>
+  <div class="hero-veil"></div>
+
+  <div class="hero-corner-tl"></div>
+  <div class="hero-corner-br"></div>
+
+  <div class="hero-inner">
+    <div class="hero-text-pre">BANDAI FARM / NARITA</div>
+    <h1 class="hero-title serif">
+      成田の畑から、<br>
+      季節の恵みを。
+      <small>家族で、季節と向き合っています</small>
+    </h1>
+    <p class="hero-lede">
+      千葉県成田市で家族で営む小さな農園です。
+      ハウスのほうれん草・路地のジャガイモ・にんじんを中心に、季節の野菜を地域の皆さまへ直接お届けしています。
+    </p>
+    <div class="hero-ctas">
+      <a href="#letter" class="btn primary">想いを読む →</a>
+      <a href="#experience" class="btn ghost">体験プログラム</a>
+    </div>
+    <div class="hero-meta">
+      <span><strong>LOC.</strong> NARITA, JP</span>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">SCROLL</div>
+</section>
+
+<!-- 届けたい、ということ -->
+<section id="letter" class="section alt">
+  <div class="container">
+    <div class="letter-layout">
+      <div class="letter-photo-stack">
+        <div class="letter-photo"></div>
+      </div>
+
+      <div class="letter-text">
+        <div class="letter-pre">WHY DIRECT</div>
+        <h2 class="letter-title serif">
+          届けたい、<br>ということ。
+        </h2>
+        <div class="letter-body">
+          <p>
+            安い野菜は、スーパーでも買えます。それでも、わざわざ畑の横まで足を運んで野菜を受け取ってくださる方がいらっしゃるのは、作った人の顔が見えるからだと思うのです。
+          </p>
+          <p>
+            育てた野菜のほとんどは、市場へ出荷されます。それでも、畑まで足を運んでくださる方には、その日に採れたものを直接お渡しすることがあります。流通の数字には載らない、小さなやりとり。だからこそ、その時間を丁寧にしたいと思っています。
+          </p>
+          <p>
+            旬の野菜のこと、保存方法、食べ方。気になることがあれば、畑で気軽に声をかけてください。短いやりとりの積み重ねが、お互いの安心感をつくっていくのだと思います。
+          </p>
+
+          <div class="letter-quote">
+            「安い野菜は、スーパーでも買えます。<br>
+            それでも、畑の横で受け取ってくださる方がいる。<br>
+            その理由を、私たちは大切にしたい。」
+          </div>
+        </div>
+
+        <div class="letter-pillars">
+          <div>
+            <div class="pillar-num">01</div>
+            <div class="pillar-title serif">顔が、見える</div>
+            <div class="pillar-desc">作った人がいる、という安心感を。</div>
+          </div>
+          <div>
+            <div class="pillar-num">02</div>
+            <div class="pillar-title serif">鮮度を、保つ</div>
+            <div class="pillar-desc">朝採りをその週のうちにお届け。</div>
+          </div>
+          <div>
+            <div class="pillar-num">03</div>
+            <div class="pillar-title serif">直接、話せる</div>
+            <div class="pillar-desc">食べ方も、困りごとも、その場で。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- こだわり -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-eyebrow mono">OUR VALUES</div>
+    <h2 class="section-title serif">3 つの、こだわり。</h2>
+    <p class="section-lede">
+      大きな差別化ではなく、当たり前の積み重ねを大切にしています。
+      昨年と同じ味を、今年も。同じ畑から、来年も。
+    </p>
+
+    <div class="about-cards">
+      <article class="about-card">
+        <div class="about-card-num">VALUE 01</div>
+        <h3 class="about-card-title serif">旬を、その時季に</h3>
+        <p class="about-card-body">
+          年中同じものを並べるのではなく、季節ごとに一番美味しい状態の野菜を収穫し、その週のうちにお届けします。早朝に収穫してその日のうちにお渡しするので、葉物のシャキッと感が違います。
+        </p>
+      </article>
+      <article class="about-card">
+        <div class="about-card-num">VALUE 02</div>
+        <h3 class="about-card-title serif">土から、ゆっくり</h3>
+        <p class="about-card-body">
+          化学肥料に過度に頼らず、堆肥と緑肥を組み合わせた土づくりを大切にしています。土の力で育った野菜は、味が濃く、日持ちもよくなります。年に一度の土壌診断も行っています。
+        </p>
+      </article>
+      <article class="about-card">
+        <div class="about-card-num">VALUE 03</div>
+        <h3 class="about-card-title serif">家族で、丁寧に</h3>
+        <p class="about-card-body">
+          大規模化はせず、家族で目が行き届く範囲で続けています。お客様の顔が見える距離感を、これからも大切にしたいと思っています。
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 主力作物 -->
+<section id="staples" class="section deep">
+  <div class="container">
+    <div class="section-eyebrow mono">STAPLES</div>
+    <h2 class="section-title serif">畑の、主役。</h2>
+    <p class="section-lede">
+      毎年安定してお届けしている、萬代農園のメイン作物です。
+      これに加えて、年によって変わるプラスアルファの作物も育てています。
+    </p>
+
+    <div class="staples">
+      <div class="staples-cards">
+        <article class="staple-card">
+          <div class="staple-num">01</div>
+          <div class="staple-body">
+            <div class="staple-tag">YEAR-ROUND / ハウス栽培</div>
+            <div class="staple-name serif">ほうれん草</div>
+            <div class="staple-desc">ビニールハウスでの通年栽培。屋外が難しい盛夏や寒波の時期も、安定した品質でお届けできます。収穫量に余裕のあるときは、地域の子ども食堂さまへお分けすることもあります。</div>
+          </div>
+        </article>
+        <article class="staple-card terra">
+          <div class="staple-num">02</div>
+          <div class="staple-body">
+            <div class="staple-tag">OPEN FIELD / 路地栽培</div>
+            <div class="staple-name serif">ジャガイモ</div>
+            <div class="staple-desc">路地で育てる新じゃがを中心に。5 月から販売を始めます。過去には、大手スナック菓子メーカーさまへ出荷した実績もあります。</div>
+          </div>
+        </article>
+        <article class="staple-card gold">
+          <div class="staple-num">03</div>
+          <div class="staple-body">
+            <div class="staple-tag">OPEN FIELD / 路地栽培</div>
+            <div class="staple-name serif">にんじん</div>
+            <div class="staple-desc">冬の路地で栽培。寒さに当たることで甘味が強く引き立つのが特徴です。土の香りを残したまま、葉付きで販売することもあります。</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 体験プログラム -->
+<section id="experience" class="section">
+  <div class="container">
+    <div class="section-eyebrow mono">EXPERIENCE</div>
+    <h2 class="section-title serif">畑で、季節を、感じる。</h2>
+    <p class="section-lede">
+      ご家族で、お友達同士で、お一人でも。
+      畑で実際に手を動かしながら、季節を感じる時間をご用意しています。事前予約制です。
+    </p>
+
+    <div class="exp-grid">
+      <article class="exp-card">
+        <div class="exp-card-photo terra"></div>
+        <div class="exp-card-body">
+          <div class="exp-card-pre">PROGRAM 01</div>
+          <h3 class="exp-card-title serif">季節野菜の収穫体験</h3>
+          <div class="exp-card-meta">90 分 / 通年 / 1 名から</div>
+          <p class="exp-card-desc">
+            その日の畑で旬を迎えている野菜を、ご自分の手で収穫。お持ち帰りはもちろん、その場でかじってみることもできます。子供さんの食育にも。
+          </p>
+        </div>
+      </article>
+
+      <article class="exp-card">
+        <div class="exp-card-photo"></div>
+        <div class="exp-card-body">
+          <div class="exp-card-pre">PROGRAM 02</div>
+          <h3 class="exp-card-title serif">春のじゃがいも掘り体験</h3>
+          <div class="exp-card-meta">半日 / 5月 – 6月 / 1家族</div>
+          <p class="exp-card-desc">
+            新じゃがの収穫時期にだけ実施する家族向けのプログラム。畑の土を掘り起こして、お子さまも一緒に楽しめます。終了後はジャガイモ 2kg をお持ち帰りいただけます。
+          </p>
+        </div>
+      </article>
+
+      <article class="exp-card">
+        <div class="exp-card-photo gold"></div>
+        <div class="exp-card-body">
+          <div class="exp-card-pre">PROGRAM 03</div>
+          <h3 class="exp-card-title serif">畑のキッチン / 季節の料理会</h3>
+          <div class="exp-card-meta">3 時間 / 季節ごと開催</div>
+          <p class="exp-card-desc">
+            収穫した野菜を、そのまま畑横のキッチンで調理してお召し上がりいただきます。地域の料理人さんを招くこともあります。要予約・定員 8 名まで。
+          </p>
+        </div>
+      </article>
+
+      <article class="exp-card">
+        <div class="exp-card-photo dark"></div>
+        <div class="exp-card-body">
+          <div class="exp-card-pre">PROGRAM 04</div>
+          <h3 class="exp-card-title serif">こどものための、野菜の絵</h3>
+          <div class="exp-card-meta">60 分 / 月 1 回 / 4〜10 歳向け</div>
+          <p class="exp-card-desc">
+            畑にある野菜を、紙とクレヨンでじっくり描いていただきます。「食べる前に、見る・触る・かぐ」を体験できる時間。野菜のお土産付き。
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="exp-reserve">
+      <span class="exp-reserve-label">RESERVE</span>
+      ご予約は、メールでのお問い合わせを承ります。1 週間前までに
+      <a href="mailto:contact@nebulab.jp">contact@nebulab.jp</a> までご連絡ください。
+    </div>
+  </div>
+</section>
+
+<!-- ギャラリー -->
+<section class="section deep">
+  <div class="container">
+    <div class="section-eyebrow mono">GALLERY</div>
+    <h2 class="section-title serif">畑の、ある日。</h2>
+    <p class="section-lede">
+      季節ごとの畑の風景と、収穫の瞬間。
+      日々の小さな出来事を、写真で記録しています。
+    </p>
+
+    <div class="gallery">
+      <div class="gphoto g1 span-2"></div>
+      <div class="gphoto g2"></div>
+      <div class="gphoto g3"></div>
+      <div class="gphoto g4"></div>
+      <div class="gphoto g5"></div>
+      <div class="gphoto g6 span-2"></div>
+      <div class="gphoto g7"></div>
+      <div class="gphoto g8"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- お知らせ -->
+<section class="section">
+  <div class="container">
+    <div class="section-eyebrow mono">NEWS</div>
+    <h2 class="section-title serif">お知らせ。</h2>
+
+    <ul class="news-list">
+      <li>
+        <span class="news-date">2026.05.10</span>
+        <span class="news-tag terra">畑から</span>
+        <span class="news-title">新じゃがいもの販売を開始しました。早朝収穫の土付きで、味の濃さを楽しんでいただけます。</span>
+      </li>
+      <li>
+        <span class="news-date">2026.04.22</span>
+        <span class="news-tag">お知らせ</span>
+        <span class="news-title">ハウスのほうれん草、今シーズンも品質を維持してお届けできています。盛夏に向けてご贔屓ください。</span>
+      </li>
+      <li>
+        <span class="news-date">2026.04.05</span>
+        <span class="news-tag gold">体験</span>
+        <span class="news-title">5 月の「畑のキッチン」体験会の予約受付を開始しました。今回は旬の野菜を使った 3 品をご用意します。</span>
+      </li>
+      <li>
+        <span class="news-date">2026.03.18</span>
+        <span class="news-tag terra">畑から</span>
+        <span class="news-title">春の畑開放、3 月 23 日(土)より始まります。春の野菜から順次お分けいたします。</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- アクセス -->
+<section id="access" class="section alt">
+  <div class="container">
+    <div class="section-eyebrow mono">VISIT</div>
+    <h2 class="section-title serif">畑を、訪ねてみたい方へ。</h2>
+    <p class="section-lede">
+      農園見学をご希望の方は、メールでお問い合わせください。<br>
+      日程や持ち物など、ご案内いたします。
+    </p>
+
+    <div class="shop-info" style="margin-top: 8px;">
+      <dl>
+        <dt>MAIL</dt>
+        <dd><a href="mailto:contact@nebulab.jp">contact@nebulab.jp</a></dd>
+      </dl>
+    </div>
+
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps?q=%E5%8D%83%E8%91%89%E7%9C%8C%E6%88%90%E7%94%B0%E5%B8%82&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="萬代農園 周辺マップ(成田市)"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand serif">萬代農園</div>
+        <div class="footer-tag">— BANDAI FARM / NARITA —</div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 萬代農園 / BANDAI FARM</span>
+      <a href="https://nebulab.jp/hp-trial" target="_blank" rel="noreferrer noopener" class="nebulab-banner" aria-label="ホームページを持ちませんか? Nebulab お試し公開プラン">
+        <img src="/brand/free-trial-banner.svg" alt="ホームページを、持ちませんか? — Nebulab お試し公開プラン">
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

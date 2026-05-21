@@ -10,7 +10,7 @@ import IntroOverlay from "@/components/ui/IntroOverlay";
 const SITE_URL = "https://www.nebulab.jp";
 const SITE_NAME = "Nebulab合同会社";
 const SITE_DESCRIPTION =
-  "Nebulab合同会社は、成田を拠点にSES・受託開発、自社AIプロダクト、コワーキング(NRT-LOFT)、ECブランド(NAJIMI)を展開するテクノロジーカンパニーです。";
+  "Nebulab合同会社は、成田を拠点にSES・受託開発、地域 × テクノロジー、コワーキング(NRT-LOFT)、ECブランド(NAJIMI)を展開するテクノロジーカンパニーです。";
 const OG_IMAGE = "/projects/nrt-loft.png";
 
 export const viewport: Viewport = {

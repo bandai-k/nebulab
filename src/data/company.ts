@@ -29,7 +29,6 @@ export const businessAreas: BusinessArea[] = [
   { code: "01", id: "development", name: "DEVELOPMENT", nameJa: "SES・受託開発" },
   { code: "02", id: "local-tech", name: "LOCAL × TECH", nameJa: "地域 × テクノロジー" },
   { code: "03", id: "ec-brand", name: "EC BRAND", nameJa: "オリジナルブランド" },
-  { code: "04", id: "ai-products", name: "AI PRODUCTS", nameJa: "自社AIプロダクト" },
 ];
 
 export const businessScope: string[] = [

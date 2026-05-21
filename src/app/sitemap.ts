@@ -9,6 +9,8 @@ const STATIC_PAGES: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/about/mvv", priority: 0.7, changeFrequency: "monthly" },
   { path: "/services", priority: 0.9, changeFrequency: "monthly" },
   { path: "/projects", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/showcase", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/hp-trial", priority: 0.9, changeFrequency: "monthly" },
   { path: "/news", priority: 0.8, changeFrequency: "weekly" },
   { path: "/lab", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.7, changeFrequency: "yearly" },

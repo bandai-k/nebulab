@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Nebulab合同会社 PC/スマホおたすけサービス</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@page { size: A4; margin: 0; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+html, body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  background: #E8E5DD;
+  color: #1A1A18;
+  line-height: 1.7;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  padding: 10mm 14mm;
+  background: #FAFAF8;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+}
+
+.page:last-child { page-break-after: auto; }
+
+@media screen {
+  body { padding: 30px 0; }
+  .page { margin: 0 auto 30px; box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+}
+
+@media print {
+  body { background: white; }
+  .page { margin: 0; box-shadow: none; }
+}
+
+.mono { font-family: "SF Mono", "Menlo", "Consolas", monospace; letter-spacing: 0.05em; }
+.serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif; }
+
+/* ===== ヘッダー / フッター ===== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 3mm;
+  border-bottom: 1px solid #1A1A18;
+  margin-bottom: 5mm;
+  flex-shrink: 0;
+}
+
+.page-header-left { display: flex; align-items: baseline; gap: 3mm; }
+.page-logo { font-size: 14pt; font-weight: 500; letter-spacing: -0.01em; }
+.page-title-mono { font-size: 8pt; color: #6A6A68; letter-spacing: 0.15em; }
+.page-num { font-size: 8pt; color: #6A6A68; letter-spacing: 0.1em; }
+
+.page-footer {
+  margin-top: auto;
+  padding-top: 3mm;
+  border-top: 1px solid #D0CDC4;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7pt;
+  color: #6A6A68;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+/* ===== 表紙 ===== */
+.cover { justify-content: space-between; padding: 0; }
+.cover-top { padding: 22mm 16mm 0; }
+
+.cover-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 4mm;
+  margin-bottom: 22mm;
+}
+
+.cover-logo-mark { font-size: 32pt; font-weight: 500; letter-spacing: -0.02em; }
+.cover-logo-tag { font-size: 9pt; color: #6A6A68; letter-spacing: 0.2em; }
+
+.cover-title-area { margin-bottom: 10mm; }
+
+.cover-title-pre {
+  font-size: 10pt;
+  color: #6A6A68;
+  letter-spacing: 0.3em;
+  margin-bottom: 5mm;
+}
+
+.cover-title {
+  font-size: 32pt;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 6mm;
+}
+
+.cover-subtitle { font-size: 13pt; color: #4A4A48; line-height: 1.7; }
+
+.cover-price-strip {
+  margin-top: 10mm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4mm;
+}
+
+.cover-price-card {
+  border: 1px solid #1A1A18;
+  background: #FAFAF8;
+  padding: 4mm 5mm;
+}
+
+.cover-price-label {
+  font-family: "SF Mono", monospace;
+  font-size: 7.5pt;
+  color: #6A6A68;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5mm;
+}
+
+.cover-price-name {
+  font-size: 11pt;
+  font-weight: 500;
+  margin-bottom: 1.5mm;
+}
+
+.cover-price-value {
+  font-size: 18pt;
+  font-weight: 500;
+  color: #C75D3C;
+  margin-bottom: 1mm;
+}
+
+.cover-price-unit {
+  font-size: 8pt;
+  color: #6A6A68;
+}
+
+.cover-bottom {
+  background: #1A1A18;
+  color: #FAFAF8;
+  padding: 12mm 16mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-philosophy {
+  flex: 1;
+  font-size: 14pt;
+  font-style: italic;
+  line-height: 1.7;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+}
+
+.cover-meta {
+  text-align: right;
+  font-size: 8pt;
+  letter-spacing: 0.15em;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+/* ===== 見出し ===== */
+.section-heading {
+  font-size: 10pt;
+  letter-spacing: 0.3em;
+  color: #6A6A68;
+  margin-bottom: 3mm;
+  padding-bottom: 2mm;
+  border-bottom: 1px solid #1A1A18;
+}
+
+.h2-title {
+  font-size: 18pt;
+  font-weight: 500;
+  margin-bottom: 4mm;
+  line-height: 1.3;
+}
+
+.h3-title {
+  font-size: 11.5pt;
+  font-weight: 500;
+  margin-bottom: 2.5mm;
+  margin-top: 4mm;
+}
+
+.h3-title:first-child { margin-top: 0; }
+
+.body-text {
+  font-size: 9.5pt;
+  line-height: 1.7;
+  color: #2A2A28;
+  margin-bottom: 2.5mm;
+}
+
+/* ===== プラン比較 ===== */
+.plan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4mm;
+  margin-bottom: 4mm;
+}
+
+.plan-card {
+  border: 1.5px solid #1A1A18;
+  background: #FFFFFF;
+  padding: 4mm 5mm;
+}
+
+.plan-card.featured { background: #FAFAF8; }
+
+.plan-label {
+  font-family: "SF Mono", monospace;
+  font-size: 8pt;
+  letter-spacing: 0.2em;
+  color: #C75D3C;
+  margin-bottom: 1.5mm;
+}
+
+.plan-name {
+  font-size: 13pt;
+  font-weight: 500;
+  margin-bottom: 1mm;
+}
+
+.plan-price {
+  font-size: 20pt;
+  font-weight: 500;
+  color: #C75D3C;
+  line-height: 1.1;
+  margin-bottom: 1mm;
+}
+
+.plan-price-unit {
+  font-size: 8.5pt;
+  color: #6A6A68;
+  margin-bottom: 2.5mm;
+  padding-bottom: 2.5mm;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  font-size: 9pt;
+  line-height: 1.6;
+}
+
+.plan-features li {
+  display: flex;
+  gap: 2mm;
+  margin-bottom: 1mm;
+}
+
+.plan-features li::before {
+  content: "◯";
+  color: #4A6B5C;
+  font-size: 7pt;
+  flex-shrink: 0;
+  margin-top: 1mm;
+}
+
+.plan-reco {
+  margin-top: 2.5mm;
+  padding-top: 2.5mm;
+  border-top: 1px dashed #D0CDC4;
+  font-size: 8.5pt;
+  color: #4A6B5C;
+  font-weight: 500;
+}
+
+/* ===== 困りごとカテゴリ ===== */
+.trouble-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2mm 4mm;
+  margin: 1.5mm 0 2.5mm;
+}
+
+.trouble-cat {
+  background: #FAFAF8;
+  border: 1px solid #D0CDC4;
+  padding: 2mm 3mm;
+}
+
+.trouble-cat-title {
+  font-size: 9.5pt;
+  font-weight: 500;
+  margin-bottom: 1.5mm;
+  padding-bottom: 1mm;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.trouble-cat-list {
+  list-style: none;
+  padding: 0;
+  font-size: 8.5pt;
+  line-height: 1.55;
+}
+
+.trouble-cat-list li {
+  display: flex;
+  gap: 1.5mm;
+}
+
+.trouble-cat-list li::before {
+  content: "・";
+  color: #6A6A68;
+  flex-shrink: 0;
+}
+
+/* ===== scope (対応外) ===== */
+.scope-out-box {
+  background: #FFF9E6;
+  border-left: 3px solid #C75D3C;
+  padding: 2.5mm 4mm;
+  font-size: 8.5pt;
+  line-height: 1.55;
+  margin-bottom: 2mm;
+}
+
+.scope-out-box strong { font-weight: 600; }
+
+.scope-out-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5mm 4mm;
+  margin-top: 1.5mm;
+}
+
+.scope-out-list li {
+  display: flex;
+  gap: 1.5mm;
+  font-size: 8.5pt;
+}
+
+.scope-out-list li::before {
+  content: "×";
+  color: #C75D3C;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+/* ===== area / table ===== */
+.cond-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin-bottom: 3mm;
+}
+
+.cond-table th, .cond-table td {
+  padding: 1.5mm 3mm;
+  text-align: left;
+  border-bottom: 1px solid #D0CDC4;
+  vertical-align: top;
+}
+
+.cond-table th { font-weight: 500; background: #F0EDE5; font-size: 9pt; width: 30%; }
+.cond-table tr:last-child td { border-bottom: 1px solid #1A1A18; }
+
+/* ===== flow ===== */
+.flow-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4mm;
+  margin: 2mm 0 4mm;
+}
+
+.flow-step {
+  border: 1px solid #1A1A18;
+  padding: 2.5mm 2mm;
+  text-align: center;
+  position: relative;
+  background: #FFFFFF;
+}
+
+.flow-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -3mm;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6A6A68;
+  font-size: 12pt;
+  background: #FAFAF8;
+  padding: 0 1mm;
+  z-index: 1;
+}
+
+.flow-num { font-size: 9pt; color: #6A6A68; margin-bottom: 0.5mm; font-family: "SF Mono", monospace; }
+.flow-text { font-size: 10pt; font-weight: 500; margin-bottom: 0.5mm; }
+.flow-detail { font-size: 7.5pt; color: #6A6A68; line-height: 1.4; }
+
+/* ===== note ===== */
+.note {
+  background: #F0EDE5;
+  padding: 3mm 4mm;
+  border-left: 2px solid #4A6B5C;
+  font-size: 8.5pt;
+  line-height: 1.6;
+  margin-bottom: 3mm;
+}
+
+.note strong { color: #1A1A18; }
+
+/* ===== FAQ ===== */
+.faq-list { list-style: none; padding: 0; }
+
+.faq-item {
+  margin-bottom: 2.5mm;
+  padding-bottom: 2.5mm;
+  border-bottom: 1px solid #D0CDC4;
+}
+
+.faq-item:last-child { border-bottom: none; }
+
+.faq-q {
+  font-weight: 500;
+  font-size: 10pt;
+  margin-bottom: 1.5mm;
+  display: flex;
+  gap: 3mm;
+}
+
+.faq-q::before {
+  content: "Q.";
+  color: #C75D3C;
+  font-family: "SF Mono", monospace;
+  flex-shrink: 0;
+}
+
+.faq-a {
+  font-size: 9pt;
+  line-height: 1.6;
+  color: #2A2A28;
+  display: flex;
+  gap: 3mm;
+  padding-left: 2mm;
+}
+
+.faq-a::before {
+  content: "A.";
+  color: #4A6B5C;
+  font-family: "SF Mono", monospace;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.faq-a-content { flex: 1; }
+
+/* ===== 会社情報フッター ===== */
+.company-block {
+  background: #1A1A18;
+  color: #FAFAF8;
+  padding: 5mm 8mm;
+  margin: 3mm -14mm -10mm;
+}
+
+.company-block-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5mm;
+}
+
+.company-block-left .company-name { font-size: 12pt; font-weight: 500; margin-bottom: 2mm; }
+.company-block-left .company-info { font-size: 8.5pt; line-height: 1.7; opacity: 0.9; }
+.company-block-right { border-left: 1px solid rgba(250, 250, 248, 0.2); padding-left: 5mm; }
+.company-block-right .label { font-size: 7.5pt; letter-spacing: 0.2em; opacity: 0.6; margin-bottom: 1.5mm; }
+.company-block-right .contact-line { font-size: 9pt; margin-bottom: 1.5mm; font-family: "SF Mono", monospace; }
+
+/* ===== 印刷ヒント ===== */
+.print-hint {
+  text-align: center;
+  color: #4A4A48;
+  font-size: 13px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  max-width: 800px;
+}
+
+.print-hint h3 { margin-bottom: 10px; font-size: 16px; }
+.print-hint code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+
+@media print { .print-hint { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="print-hint">
+  <h3>印刷・PDF出力の方法</h3>
+  <p>1. ブラウザで <code>Ctrl+P</code>(Windows)または <code>Cmd+P</code>(Mac)で印刷ダイアログを開く</p>
+  <p>2. 用紙サイズ「A4」、余白「なし」、「背景のグラフィック」を有効にする</p>
+  <p>3. PDFとして保存 または 直接印刷</p>
+  <p>※ 全 3 ページ・両面印刷で 2 枚に収まります</p>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ1: 表紙                                   -->
+<!-- ============================================ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">
+      <span class="cover-logo-mark serif">Nebulab</span>
+      <span class="cover-logo-tag mono">合同会社 / 成田市</span>
+    </div>
+
+    <div class="cover-title-area">
+      <div class="cover-title-pre mono">— PC / SMARTPHONE HELP —</div>
+      <h1 class="cover-title serif">
+        PC / スマホ<br>
+        おたすけサービス
+      </h1>
+      <p class="cover-subtitle">
+        「ちょっと困った」「誰に聞けばいいか分からない」を、<br>
+        地域価格・気軽な距離感で解決します。
+      </p>
+    </div>
+
+    <div class="cover-price-strip">
+      <div class="cover-price-card">
+        <div class="cover-price-label">— PLAN A / SINGLE —</div>
+        <div class="cover-price-name">単発おたすけ</div>
+        <div class="cover-price-value">¥3,000</div>
+        <div class="cover-price-unit">税込 / 30分 / 訪問は +¥1,000</div>
+      </div>
+      <div class="cover-price-card">
+        <div class="cover-price-label">— PLAN B / MONTHLY —</div>
+        <div class="cover-price-name">おたすけ月額</div>
+        <div class="cover-price-value">¥3,000</div>
+        <div class="cover-price-unit">税込 / 月 / LINE質問無制限</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-philosophy">
+      お店の隣に、<br>
+      "聞ける人" がいるという安心。
+    </div>
+    <div class="cover-meta mono">
+      VERSION 2026.05<br>
+      EFFECTIVE FROM<br>
+      MAY 2026<br>
+      <br>
+      35.7758°N<br>
+      140.3186°E
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ2: プラン比較 + 対応する困りごと            -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— PLANS & SCOPE —</span>
+    </div>
+    <span class="page-num mono">P. 02 / 03</span>
+  </div>
+
+  <div class="section-heading mono">— 01. 2 つのプランから選ぶ —</div>
+  <h2 class="h2-title">単発で気軽に、または<br>月額で安心の継続を。</h2>
+
+  <div class="plan-grid">
+    <div class="plan-card">
+      <div class="plan-label mono">— PLAN A / 単発 —</div>
+      <div class="plan-name">単発おたすけ</div>
+      <div class="plan-price">¥3,000</div>
+      <div class="plan-price-unit">税込 / 30分(訪問は +¥1,000)</div>
+      <ul class="plan-features">
+        <li>その場で 30 分以内に解決</li>
+        <li>延長は +¥3,000 / 30分</li>
+        <li>NRT-LOFT / オンライン / 訪問対応</li>
+        <li>当日〜翌営業日で対応</li>
+      </ul>
+      <div class="plan-reco">→ 単発で「今、困った」を解決したい方</div>
+    </div>
+
+    <div class="plan-card featured">
+      <div class="plan-label mono">— PLAN B / 月額 —</div>
+      <div class="plan-name">おたすけ月額</div>
+      <div class="plan-price">¥3,000</div>
+      <div class="plan-price-unit">税込 / 月(最低契約 3 ヶ月)</div>
+      <ul class="plan-features">
+        <li>LINE / メール 質問無制限</li>
+        <li>月 1 回 30 分の対応(訪問 or オンライン)</li>
+        <li>持ち越し不可・未使用月は失効</li>
+        <li>HP保守 Light との同時契約で ¥1,000 割引</li>
+      </ul>
+      <div class="plan-reco">→ 「気軽に聞ける人がほしい」リピート想定の方</div>
+    </div>
+  </div>
+
+  <div class="section-heading mono" style="margin-top: 4mm;">— 02. こんな困りごとに対応します —</div>
+
+  <div class="trouble-grid">
+    <div class="trouble-cat">
+      <div class="trouble-cat-title">メール / 連絡ツール</div>
+      <ul class="trouble-cat-list">
+        <li>メールが届かない / 送れない</li>
+        <li>迷惑メールフォルダの整理</li>
+        <li>LINE / Chatwork の使い方</li>
+        <li>署名・自動返信の設定</li>
+      </ul>
+    </div>
+    <div class="trouble-cat">
+      <div class="trouble-cat-title">プリンター / Wi-Fi / 周辺機器</div>
+      <ul class="trouble-cat-list">
+        <li>プリンターが繋がらない</li>
+        <li>Wi-Fi の設定・繋ぎ直し</li>
+        <li>スキャン・FAX 連携</li>
+        <li>USB / 外付けディスクの認識</li>
+      </ul>
+    </div>
+    <div class="trouble-cat">
+      <div class="trouble-cat-title">スマホ操作</div>
+      <ul class="trouble-cat-list">
+        <li>機種変更・データ移行</li>
+        <li>アプリのインストール・更新</li>
+        <li>キャリア・プラン相談</li>
+        <li>写真・連絡先のバックアップ</li>
+      </ul>
+    </div>
+    <div class="trouble-cat">
+      <div class="trouble-cat-title">PC / データ管理</div>
+      <ul class="trouble-cat-list">
+        <li>動作が重い / 起動しない</li>
+        <li>パスワード管理・忘れ対応</li>
+        <li>クラウド(Google / iCloud)整理</li>
+        <li>定期バックアップの設定</li>
+      </ul>
+    </div>
+    <div class="trouble-cat">
+      <div class="trouble-cat-title">SaaS / 業務ツール</div>
+      <ul class="trouble-cat-list">
+        <li>Google Workspace / Microsoft 365</li>
+        <li>会計ソフト・freee の基本操作</li>
+        <li>Canva・Notion の使い方</li>
+        <li>Zoom / Google Meet 設定</li>
+      </ul>
+    </div>
+    <div class="trouble-cat">
+      <div class="trouble-cat-title">生成 AI の使い方</div>
+      <ul class="trouble-cat-list">
+        <li>ChatGPT / Gemini の基本</li>
+        <li>業務での活用方法</li>
+        <li>プロンプトの書き方</li>
+        <li>有料/無料の使い分け</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="scope-out-box">
+    <strong>対応しないもの(別途専門業者へ)</strong>
+    <ul class="scope-out-list">
+      <li>ハードウェア修理(画面割れ等)</li>
+      <li>データ復旧(クラッシュ後)</li>
+      <li>保証期間内のメーカー保証案件</li>
+      <li>ウイルス感染後の本格復旧</li>
+      <li>業務システム開発(別途お見積)</li>
+      <li>違法・公序良俗違反な依頼</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span>Nebulab合同会社 PC/スマホおたすけサービス</span>
+    <span class="mono">EST. MAY 2026</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ3: エリア・流れ・FAQ                       -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— AREA, FLOW & FAQ —</span>
+    </div>
+    <span class="page-num mono">P. 03 / 03</span>
+  </div>
+
+  <div class="section-heading mono">— 03. 対応エリアと条件 —</div>
+
+  <table class="cond-table">
+    <tr>
+      <th>訪問エリア</th>
+      <td>成田市・印西市・佐倉市・八街市・四街道市(訪問費 +¥1,000 / 1回)<br>その他エリアは応相談(交通費実費)</td>
+    </tr>
+    <tr>
+      <th>対応方法</th>
+      <td>NRT-LOFT 来所 / オンライン(Zoom / LINE ビデオ通話) / 訪問 のいずれか</td>
+    </tr>
+    <tr>
+      <th>対応時間</th>
+      <td>月-金 10:00-19:00(土日祝は応相談、緊急時の LINE 連絡は可)</td>
+    </tr>
+    <tr>
+      <th>支払方法</th>
+      <td>銀行振込 / クレジットカード(Stripe)/ 月額は自動継続</td>
+    </tr>
+    <tr>
+      <th>キャンセル</th>
+      <td>訪問予約は前日 18:00 まで無料、当日キャンセルは ¥1,000</td>
+    </tr>
+  </table>
+
+  <div class="section-heading mono" style="margin-top: 4mm;">— 04. お申込みの流れ —</div>
+
+  <div class="flow-list">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-text">LINE / 電話</div>
+      <div class="flow-detail">困りごとを<br>簡単にお伝え</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-text">日時調整</div>
+      <div class="flow-detail">来所/訪問/<br>オンラインから</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-text">対応・解決</div>
+      <div class="flow-detail">30 分以内が<br>目安です</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <div class="flow-text">お支払い</div>
+      <div class="flow-detail">その場 or<br>後日請求</div>
+    </div>
+  </div>
+
+  <div class="section-heading mono" style="margin-top: 4mm;">— 05. よくあるご質問 —</div>
+
+  <ul class="faq-list">
+    <li class="faq-item">
+      <div class="faq-q">どのくらい簡単な質問でも対応してもらえますか?</div>
+      <div class="faq-a">
+        <div class="faq-a-content">
+          「メールの宛先の入れ方が分からない」「写真の送り方を教えてほしい」など、どんな小さなことでも構いません。月額プランなら LINE で気軽にご質問いただけます。
+        </div>
+      </div>
+    </li>
+    <li class="faq-item">
+      <div class="faq-q">30 分で終わらない場合はどうなりますか?</div>
+      <div class="faq-a">
+        <div class="faq-a-content">
+          延長 30 分ごとに +¥3,000(税込)を加算します。事前に「あと 30 分かかりそうです」とお伝えしますので、その場で延長 or 別日設定をお選びいただけます。
+        </div>
+      </div>
+    </li>
+    <li class="faq-item">
+      <div class="faq-q">月額プランで使わなかった月は繰り越せますか?</div>
+      <div class="faq-a">
+        <div class="faq-a-content">
+          月 1 回 30 分の対応枠は、その月のうちに使わないと失効します(繰り越し不可)。低価格を維持するための運用としてご了承ください。LINE 質問は使わなくても継続的にご利用可能です。
+        </div>
+      </div>
+    </li>
+    <li class="faq-item">
+      <div class="faq-q">高齢の家族にも使えますか?</div>
+      <div class="faq-a">
+        <div class="faq-a-content">
+          もちろんです。「親が使えなくて困っている」というご相談も多くいただきます。訪問対応も可能ですので、お気軽にご連絡ください。
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- 会社情報フッター -->
+  <div class="company-block">
+    <div class="company-block-grid">
+      <div class="company-block-left">
+        <div class="company-name serif">Nebulab合同会社</div>
+        <div class="company-info">
+          〒286-0033 千葉県成田市花崎町(NRT-LOFT内)<br>
+          代表社員: 萬代 晃生(Bandai Koki)<br>
+          設立: 2026年5月1日
+        </div>
+      </div>
+      <div class="company-block-right">
+        <div class="label mono">— CONTACT —</div>
+        <div class="contact-line">WEB nebulab.jp</div>
+        <div class="contact-line">MAIL contact@nebulab.jp</div>
+        <div class="contact-line">LINE 名刺裏面 QR から</div>
+        <div style="margin-top: 3mm; font-size: 8pt; opacity: 0.7;">
+          「PC/スマホおたすけの件」とお伝えください。<br>
+          まずは LINE か電話で、お気軽に。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

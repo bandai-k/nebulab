@@ -8,18 +8,18 @@ import { projects, type Project, type ProjectStatus } from "@/data/projects";
 export const metadata: Metadata = {
   title: "Lab",
   description:
-    "Nebulab Lab — 自社AIプロダクトのR&Dと技術的な実験・検証を行う部門。",
+    "Nebulab Lab — 新しい技術・サービスの R&D と実験・検証を行う部門。",
   alternates: { canonical: "/lab" },
   openGraph: {
     url: "/lab",
     title: "Lab | Nebulab合同会社",
     description:
-      "Nebulab Lab — 自社AIプロダクトのR&Dと技術的な実験・検証を行う部門。",
+      "Nebulab Lab — 新しい技術・サービスの R&D と実験・検証を行う部門。",
   },
   twitter: {
     title: "Lab | Nebulab合同会社",
     description:
-      "Nebulab Lab — 自社AIプロダクトのR&Dと技術的な実験・検証を行う部門。",
+      "Nebulab Lab — 新しい技術・サービスの R&D と実験・検証を行う部門。",
   },
 };
 
@@ -98,9 +98,9 @@ export default function LabPage() {
             LAB
           </p>
           <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base">
-            Nebulab Lab は、自社AIプロダクトのR&amp;Dと
+            Nebulab Lab は、新しい技術・サービスの R&amp;D と
             <br />
-            技術的な実験・検証を行う部門です。
+            実験・検証を行う部門です。
           </p>
         </div>
         <div className="hidden md:block">

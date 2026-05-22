@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="小さなパン屋 kitchen KAME の日記。今日のパンのこと、季節のこと、店主のひとりごと。">
+<meta name="robots" content="noindex, nofollow">
+<title>パン日記 — kitchen KAME</title>
+<style>
+:root{
+  --bg:#FAF4EA; --bg-deep:#F2E8D6; --paper:#FFFDF7;
+  --ink:#3D2E20; --ink-soft:#7A6452; --ink-mute:#A89683;
+  --line:#E8D8BF; --accent:#B5673B; --accent-deep:#8B4A22; --pink:#E8AFAF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;-webkit-font-smoothing:antialiased}
+.serif{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+.mono{font-family:"SF Mono","Menlo",monospace;letter-spacing:.05em}
+.container{max-width:1040px;margin:0 auto;padding:0 24px}
+img,svg,iframe{max-width:100%;display:block}
+a{color:inherit}
+
+/* ヘッダー */
+.site-header{position:sticky;top:0;background:rgba(250,244,234,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+.site-header-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;max-width:1040px;margin:0 auto}
+.brand{display:inline-flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none}
+.brand-logo{height:42px;width:auto;display:block}
+.brand-name{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:21px;font-weight:500;letter-spacing:.08em;line-height:1}
+.brand-name b{font-weight:600;letter-spacing:.12em}
+.brand-tag{font-size:10px;color:var(--ink-mute);letter-spacing:.2em;margin-left:10px;font-family:"SF Mono",monospace}
+.nav{display:flex;gap:24px;font-size:12px}
+.nav a{color:var(--ink-soft);text-decoration:none;letter-spacing:.18em;transition:color .15s}
+.nav a:hover{color:var(--accent-deep)}
+.nav a.is-active{color:var(--accent-deep)}
+@media (max-width:768px){.nav{display:none}}
+
+/* ページヘッダー */
+.page-head{padding:72px 0 48px;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-deep) 100%);border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"SF Mono",monospace;font-size:10px;letter-spacing:.35em;color:var(--accent);margin-bottom:14px;text-transform:uppercase;display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+.page-title{font-family:"Hiragino Mincho ProN",serif;font-size:40px;font-weight:500;letter-spacing:.04em;margin-bottom:16px;line-height:1.4}
+.page-lede{font-size:14px;color:var(--ink-soft);line-height:2;max-width:600px}
+
+/* レイアウト(本文 + サイドバー) */
+.blog-layout{display:grid;grid-template-columns:1fr 280px;gap:56px;padding:56px 0 88px;align-items:start}
+@media (max-width:880px){.blog-layout{grid-template-columns:1fr;gap:48px}}
+
+/* 記事一覧 */
+.post-row{display:grid;grid-template-columns:140px 1fr;gap:28px;padding:30px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;transition:background .15s}
+.post-row:first-child{border-top:1px solid var(--line)}
+.post-row:hover{background:var(--paper)}
+.post-row:hover .post-title{color:var(--accent-deep)}
+@media (max-width:680px){.post-row{grid-template-columns:1fr;gap:10px;padding:26px 0}}
+.post-meta{font-family:"SF Mono",monospace;font-size:11px;color:var(--ink-mute);letter-spacing:.1em;padding-top:6px}
+.post-cat{display:inline-block;margin-top:8px;padding:3px 10px;border:1px solid var(--line);font-size:9px;letter-spacing:.2em;color:var(--accent)}
+.post-title{font-family:"Hiragino Mincho ProN",serif;font-size:22px;font-weight:500;letter-spacing:.04em;margin-bottom:10px;line-height:1.5;transition:color .15s}
+.post-excerpt{font-size:14px;color:var(--ink-soft);line-height:1.9}
+.post-arrow{font-family:"SF Mono",monospace;font-size:11px;color:var(--accent);letter-spacing:.14em;margin-top:14px}
+
+/* ページネーション(ダミー) */
+.pager{display:flex;gap:8px;margin-top:40px;font-family:"SF Mono",monospace;font-size:12px}
+.pager a,.pager span{display:flex;align-items:center;justify-content:center;min-width:38px;height:38px;padding:0 12px;border:1px solid var(--line);text-decoration:none;color:var(--ink-soft);letter-spacing:.08em;transition:all .15s}
+.pager a:hover{border-color:var(--accent);color:var(--accent-deep)}
+.pager .current{background:var(--accent-deep);border-color:var(--accent-deep);color:var(--bg)}
+.pager .disabled{color:var(--ink-mute);opacity:.5;pointer-events:none}
+
+/* サイドバー */
+.sidebar{display:flex;flex-direction:column;gap:36px}
+.widget-title{font-family:"SF Mono",monospace;font-size:10px;letter-spacing:.28em;color:var(--accent);text-transform:uppercase;padding-bottom:12px;margin-bottom:16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.widget-title::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%}
+
+/* 検索(ダミー) */
+.search-box{display:flex;border:1px solid var(--line);background:var(--paper)}
+.search-box input{flex:1;border:0;background:transparent;padding:10px 14px;font-size:13px;color:var(--ink);font-family:inherit;outline:none}
+.search-box input::placeholder{color:var(--ink-mute)}
+.search-box button{border:0;background:var(--accent-deep);color:var(--bg);padding:0 16px;font-size:13px;cursor:pointer;letter-spacing:.1em}
+
+/* リスト系ウィジェット */
+.widget-list{list-style:none;font-size:13px}
+.widget-list li{border-bottom:1px dotted var(--line)}
+.widget-list li:last-child{border-bottom:0}
+.widget-list a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 2px;text-decoration:none;color:var(--ink-soft);transition:color .15s}
+.widget-list a:hover{color:var(--accent-deep)}
+.widget-list .count{font-family:"SF Mono",monospace;font-size:10px;color:var(--ink-mute);background:var(--bg-deep);padding:2px 8px;min-width:28px;text-align:center}
+
+/* 最近の記事 */
+.recent-list{list-style:none;display:flex;flex-direction:column;gap:16px}
+.recent-list a{text-decoration:none;color:inherit;display:block}
+.recent-list .r-date{font-family:"SF Mono",monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.1em;margin-bottom:4px}
+.recent-list .r-title{font-family:"Hiragino Mincho ProN",serif;font-size:14px;line-height:1.6;transition:color .15s}
+.recent-list a:hover .r-title{color:var(--accent-deep)}
+
+/* カレンダー */
+.calendar-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-family:"SF Mono",monospace}
+.calendar-nav .cal-month{font-size:13px;letter-spacing:.08em;color:var(--ink)}
+.calendar-nav a{font-size:14px;color:var(--ink-mute);text-decoration:none;padding:0 6px}
+.calendar-nav a:hover{color:var(--accent-deep)}
+.calendar-nav .disabled{color:var(--ink-mute);opacity:.4;pointer-events:none}
+.calendar{width:100%;border-collapse:collapse;font-family:"SF Mono",monospace;font-size:12px;text-align:center}
+.calendar th{padding:7px 0;color:var(--ink-mute);font-weight:400;font-size:10px;letter-spacing:.06em;border-bottom:1px solid var(--line)}
+.calendar td{padding:6px 0;color:var(--ink-soft);height:30px}
+.calendar .sun{color:#C0654E}
+.calendar .sat{color:#5E84A3}
+.calendar .muted{color:var(--ink-mute);opacity:.45}
+.calendar a{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;text-decoration:none;background:var(--accent-deep);color:var(--bg);transition:opacity .15s}
+.calendar a:hover{opacity:.78}
+.calendar .today{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;border:1px solid var(--accent)}
+.cal-legend{display:flex;gap:14px;margin-top:12px;font-family:"SF Mono",monospace;font-size:10px;color:var(--ink-mute)}
+.cal-legend span{display:inline-flex;align-items:center;gap:6px}
+.cal-legend .dot{width:10px;height:10px;border-radius:50%;background:var(--accent-deep)}
+.cal-legend .ring{width:10px;height:10px;border-radius:50%;border:1px solid var(--accent)}
+
+/* タグクラウド */
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.tag-cloud a{font-size:12px;color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);padding:5px 11px;background:var(--paper);transition:all .15s}
+.tag-cloud a:hover{border-color:var(--accent);color:var(--accent-deep)}
+
+/* フッター */
+.site-footer{background:#2D2018;color:#D9C9B5;padding:56px 0 28px;font-size:13px}
+.footer-grid{padding-bottom:28px;border-bottom:1px solid #4A382B}
+.footer-brand{display:flex;align-items:center;gap:12px;font-family:"Hiragino Mincho ProN",serif;font-size:26px;color:#FAF4EA;margin-bottom:10px;font-weight:500;letter-spacing:.1em}
+.footer-logo{height:44px;width:auto;display:block}
+.footer-tag{font-size:10px;letter-spacing:.25em;color:#A89683;font-family:"SF Mono",monospace}
+.footer-bottom{padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#A89683;letter-spacing:.05em;font-family:"SF Mono",monospace;flex-wrap:wrap;gap:14px}
+.nebulab-banner{display:inline-block;text-decoration:none;transition:opacity .15s;line-height:0}
+.nebulab-banner:hover{opacity:.88}
+.nebulab-banner img{height:64px;width:auto;display:block}
+@media (max-width:640px){.nebulab-banner img{height:52px}}
+
+/* サンプル透かし(全ページ共通) */
+.sample-watermark{position:fixed;top:14px;right:14px;z-index:9999;padding:5px 12px;background:rgba(0,0,0,.55);color:rgba(255,255,255,.95);font-family:"Hiragino Mincho ProN",serif;font-size:11px;letter-spacing:.18em;pointer-events:none;user-select:none;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+</style>
+</head>
+<body>
+<div class="sample-watermark" aria-hidden="true">サンプルです。</div>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/sample/bakery/" class="brand"><img src="/sample/bakery/kame-logo.svg" alt="" class="brand-logo"><span class="brand-name">kitchen <b>KAME</b></span></a>
+    <nav class="nav">
+      <a href="/sample/bakery/#about">お店について</a>
+      <a href="/sample/bakery/#menu">商品</a>
+      <a href="/sample/bakery/#story">物語</a>
+      <a href="/sample/bakery/blog/" class="is-active">日記</a>
+      <a href="/sample/bakery/#access">アクセス</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="container">
+    <div class="eyebrow">BLOG</div>
+    <h1 class="page-title serif">パン日記</h1>
+    <p class="page-lede">
+      今日のパンのこと、季節の小麦のこと、店主のひとりごと。<br>
+      お店に並ぶものは日替わりです。来る前のひと読みに、どうぞ。
+    </p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="blog-layout">
+
+    <!-- 本文: 記事一覧 -->
+    <main>
+      <a href="/sample/bakery/blog/03.html" class="post-row">
+        <div class="post-meta">
+          2026.05.18
+          <span class="post-cat">日々のこと</span>
+        </div>
+        <div>
+          <h2 class="post-title serif">新しい小麦に切り替えました</h2>
+          <p class="post-excerpt">春先からずっと探していた、北海道のある農家さんの小麦が届きました。今週から田舎パンの粉を、少しずつこちらに切り替えています。香りがふっくらと…</p>
+          <div class="post-arrow">つづきを読む →</div>
+        </div>
+      </a>
+
+      <a href="/sample/bakery/blog/02.html" class="post-row">
+        <div class="post-meta">
+          2026.05.09
+          <span class="post-cat">焼き菓子</span>
+        </div>
+        <div>
+          <h2 class="post-title serif">いちごのジャム、炊きました</h2>
+          <p class="post-excerpt">今年もいちごの季節がやってきました。スコーンに添える季節のジャムを、昨日の閉店後にことことと。砂糖は控えめ、レモンを少し効かせて…</p>
+          <div class="post-arrow">つづきを読む →</div>
+        </div>
+      </a>
+
+      <a href="/sample/bakery/blog/01.html" class="post-row">
+        <div class="post-meta">
+          2026.04.28
+          <span class="post-cat">おしらせ</span>
+        </div>
+        <div>
+          <h2 class="post-title serif">ゴールデンウィークの営業について</h2>
+          <p class="post-excerpt">いつもありがとうございます。連休中の営業時間のおしらせです。期間中は焼く量を少し増やしてお待ちしておりますが、売り切れ次第の閉店は変わりません…</p>
+          <div class="post-arrow">つづきを読む →</div>
+        </div>
+      </a>
+
+      <!-- ページネーション(ダミー) -->
+      <nav class="pager" aria-label="ページ送り">
+        <span class="disabled">← 前へ</span>
+        <span class="current">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">次へ →</a>
+      </nav>
+    </main>
+
+    <!-- サイドバー -->
+    <aside class="sidebar">
+
+      <!-- 検索 -->
+      <div class="widget">
+        <div class="widget-title">検索</div>
+        <form class="search-box" onsubmit="return false">
+          <input type="search" placeholder="日記をさがす…" aria-label="日記を検索">
+          <button type="submit">検索</button>
+        </form>
+      </div>
+
+      <!-- カレンダー -->
+      <div class="widget">
+        <div class="widget-title">カレンダー</div>
+        <div class="calendar-nav">
+          <a href="#" aria-label="前の月">‹</a>
+          <span class="cal-month">2026 年 5 月</span>
+          <span class="disabled" aria-label="次の月">›</span>
+        </div>
+        <table class="calendar">
+          <thead>
+            <tr><th class="sun">日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="sat">土</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="muted"></td><td class="muted"></td><td class="muted"></td><td class="muted"></td><td class="muted"></td><td>1</td><td class="sat">2</td></tr>
+            <tr><td class="sun">3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td class="sat"><a href="/sample/bakery/blog/02.html" title="いちごのジャム、炊きました">9</a></td></tr>
+            <tr><td class="sun">10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td class="sat">16</td></tr>
+            <tr><td class="sun">17</td><td><a href="/sample/bakery/blog/03.html" title="新しい小麦に切り替えました">18</a></td><td>19</td><td>20</td><td>21</td><td><span class="today" title="今日">22</span></td><td class="sat">23</td></tr>
+            <tr><td class="sun">24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td class="sat">30</td></tr>
+            <tr><td class="sun">31</td><td></td><td></td><td></td><td></td><td></td><td class="sat"></td></tr>
+          </tbody>
+        </table>
+        <div class="cal-legend">
+          <span><span class="dot"></span>更新日</span>
+          <span><span class="ring"></span>今日</span>
+        </div>
+      </div>
+
+      <!-- カテゴリー -->
+      <div class="widget">
+        <div class="widget-title">カテゴリー</div>
+        <ul class="widget-list">
+          <li><a href="#">日々のこと<span class="count">8</span></a></li>
+          <li><a href="#">焼き菓子<span class="count">5</span></a></li>
+          <li><a href="#">季節のこと<span class="count">4</span></a></li>
+          <li><a href="#">おしらせ<span class="count">3</span></a></li>
+          <li><a href="#">レシピ<span class="count">2</span></a></li>
+        </ul>
+      </div>
+
+      <!-- 月別アーカイブ -->
+      <div class="widget">
+        <div class="widget-title">月別アーカイブ</div>
+        <ul class="widget-list">
+          <li><a href="#">2026 年 5 月<span class="count">2</span></a></li>
+          <li><a href="#">2026 年 4 月<span class="count">4</span></a></li>
+          <li><a href="#">2026 年 3 月<span class="count">3</span></a></li>
+          <li><a href="#">2026 年 2 月<span class="count">5</span></a></li>
+          <li><a href="#">2026 年 1 月<span class="count">4</span></a></li>
+        </ul>
+      </div>
+
+      <!-- 最近の記事 -->
+      <div class="widget">
+        <div class="widget-title">最近の日記</div>
+        <ul class="recent-list">
+          <li><a href="/sample/bakery/blog/03.html">
+            <div class="r-date">2026.05.18</div>
+            <div class="r-title serif">新しい小麦に切り替えました</div>
+          </a></li>
+          <li><a href="/sample/bakery/blog/02.html">
+            <div class="r-date">2026.05.09</div>
+            <div class="r-title serif">いちごのジャム、炊きました</div>
+          </a></li>
+          <li><a href="/sample/bakery/blog/01.html">
+            <div class="r-date">2026.04.28</div>
+            <div class="r-title serif">ゴールデンウィークの営業について</div>
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- タグ -->
+      <div class="widget">
+        <div class="widget-title">よく使うタグ</div>
+        <div class="tag-cloud">
+          <a href="#">田舎パン</a>
+          <a href="#">スコーン</a>
+          <a href="#">国産小麦</a>
+          <a href="#">自家製酵母</a>
+          <a href="#">ジャム</a>
+          <a href="#">焼き菓子</a>
+          <a href="#">季節限定</a>
+          <a href="#">定休日</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand serif"><img src="/sample/bakery/kame-logo.svg" alt="" class="footer-logo">kitchen KAME</div>
+      <div class="footer-tag">— KITCHEN KAME · NARITA —</div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KITCHEN KAME</span>
+      <a href="https://nebulab.jp/hp-trial" target="_blank" rel="noreferrer noopener" class="nebulab-banner" aria-label="ホームページを持ちませんか? Nebulab お試し公開プラン">
+        <img src="/brand/free-trial-banner.svg" alt="ホームページを、持ちませんか? — Nebulab お試し公開プラン">
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

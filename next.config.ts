@@ -24,6 +24,7 @@ const nextConfig: NextConfig = {
       { source: "/docs/samples", destination: "/docs/samples.html" },
       { source: "/pt/bandai-noen", destination: "/pt/bandai-noen/index.html" },
       { source: "/sample/bakery", destination: "/sample/bakery/index.html" },
+      { source: "/sample/bakery/blog", destination: "/sample/bakery/blog/index.html" },
       { source: "/sample/shokudo", destination: "/sample/shokudo/index.html" },
       { source: "/sample/salon", destination: "/sample/salon/index.html" },
       { source: "/sample/leather", destination: "/sample/leather/index.html" },

@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="小さなパン屋 こねもの。毎朝、ひとつずつ手で生地をこねる、小さな焼き菓子とパンのお店。">
+<meta name="description" content="小さなパン屋 kitchen KAME。毎朝、ひとつずつ手で生地をこねる、小さな焼き菓子とパンのお店。">
 <meta name="robots" content="noindex, nofollow">
-<title>こねもの — 小さなパンと焼き菓子のお店</title>
+<title>kitchen KAME — 小さなパンと焼き菓子のお店</title>
 <style>
 :root{
   --bg:#FAF4EA; --bg-deep:#F2E8D6; --paper:#FFFDF7;
@@ -22,8 +22,11 @@ img,svg,iframe{max-width:100%;display:block}
 
 /* ヘッダー */
 .site-header{position:sticky;top:0;background:rgba(250,244,234,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
-.site-header-inner{display:flex;justify-content:space-between;align-items:baseline;padding:16px 24px;max-width:1040px;margin:0 auto}
-.brand{font-family:"Hiragino Mincho ProN",serif;font-size:22px;font-weight:500;letter-spacing:.12em;color:var(--ink);text-decoration:none}
+.site-header-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;max-width:1040px;margin:0 auto}
+.brand{display:inline-flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none}
+.brand-logo{height:42px;width:auto;display:block}
+.brand-name{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:21px;font-weight:500;letter-spacing:.08em;line-height:1}
+.brand-name b{font-weight:600;letter-spacing:.12em}
 .brand-tag{font-size:10px;color:var(--ink-mute);letter-spacing:.2em;margin-left:10px;font-family:"SF Mono",monospace}
 .nav{display:flex;gap:24px;font-size:12px}
 .nav a{color:var(--ink-soft);text-decoration:none;letter-spacing:.18em;transition:color .15s}
@@ -75,6 +78,20 @@ img,svg,iframe{max-width:100%;display:block}
 .story-photo::after{content:"";position:absolute;inset:14px;border:1px solid rgba(255,255,255,.2)}
 .story-body p{font-size:15px;line-height:2.1;margin-bottom:16px}
 
+/* 日記(ブログ)ティーザー */
+.blog-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:36px}
+.blog-more{font-family:"SF Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--accent-deep);text-decoration:none;white-space:nowrap}
+.blog-more:hover{text-decoration:underline}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media (max-width:768px){.blog-grid{grid-template-columns:1fr}}
+.blog-card{display:block;background:var(--paper);border:1px solid var(--line);padding:24px 24px 26px;text-decoration:none;color:inherit;transition:all .2s}
+.blog-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.blog-card:hover .blog-title{color:var(--accent-deep)}
+.blog-meta{font-family:"SF Mono",monospace;font-size:10px;letter-spacing:.14em;color:var(--ink-mute);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.blog-cat{padding:2px 8px;border:1px solid var(--line);font-size:9px;letter-spacing:.18em;color:var(--accent)}
+.blog-title{font-family:"Hiragino Mincho ProN",serif;font-size:18px;font-weight:500;letter-spacing:.03em;line-height:1.55;margin-bottom:10px;transition:color .15s}
+.blog-excerpt{font-size:13px;line-height:1.85;color:var(--ink-soft)}
+
 /* アクセス */
 .info-dl{display:grid;grid-template-columns:100px 1fr;gap:14px 24px;font-size:14px;line-height:1.8;margin-bottom:24px}
 .info-dl dt{font-family:"SF Mono",monospace;font-size:10px;letter-spacing:.22em;color:var(--ink-mute);padding-top:5px}
@@ -85,7 +102,8 @@ img,svg,iframe{max-width:100%;display:block}
 /* フッター */
 .site-footer{background:#2D2018;color:#D9C9B5;padding:56px 0 28px;font-size:13px}
 .footer-grid{padding-bottom:28px;border-bottom:1px solid #4A382B}
-.footer-brand{font-family:"Hiragino Mincho ProN",serif;font-size:26px;color:#FAF4EA;margin-bottom:10px;font-weight:500;letter-spacing:.1em}
+.footer-brand{display:flex;align-items:center;gap:12px;font-family:"Hiragino Mincho ProN",serif;font-size:26px;color:#FAF4EA;margin-bottom:10px;font-weight:500;letter-spacing:.1em}
+.footer-logo{height:44px;width:auto;display:block}
 .footer-tag{font-size:10px;letter-spacing:.25em;color:#A89683;font-family:"SF Mono",monospace}
 .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#A89683;letter-spacing:.05em;font-family:"SF Mono",monospace;flex-wrap:wrap;gap:14px}
 .nebulab-banner{display:inline-block;text-decoration:none;transition:opacity .15s;line-height:0}
@@ -102,11 +120,12 @@ img,svg,iframe{max-width:100%;display:block}
 
 <header class="site-header">
   <div class="site-header-inner">
-    <a href="#top" class="brand">こねもの<span class="brand-tag">KONEMONO</span></a>
+    <a href="#top" class="brand"><img src="/sample/bakery/kame-logo.svg" alt="" class="brand-logo"><span class="brand-name">kitchen <b>KAME</b></span></a>
     <nav class="nav">
       <a href="#about">お店について</a>
       <a href="#menu">商品</a>
       <a href="#story">物語</a>
+      <a href="/sample/bakery/blog/">日記</a>
       <a href="#access">アクセス</a>
     </nav>
   </div>
@@ -203,7 +222,36 @@ img,svg,iframe{max-width:100%;display:block}
   </div>
 </section>
 
-<section id="access" class="section alt">
+<section id="blog" class="section alt">
+  <div class="container">
+    <div class="blog-head">
+      <div>
+        <div class="eyebrow">BLOG</div>
+        <h2 class="section-title serif">パン日記。</h2>
+      </div>
+      <a href="/sample/bakery/blog/" class="blog-more">日記の一覧へ →</a>
+    </div>
+    <div class="blog-grid">
+      <a href="/sample/bakery/blog/03.html" class="blog-card">
+        <div class="blog-meta">2026.05.18 <span class="blog-cat">日々のこと</span></div>
+        <h3 class="blog-title serif">新しい小麦に切り替えました</h3>
+        <p class="blog-excerpt">春先からずっと探していた、北海道のある農家さんの小麦が届きました。今週から田舎パンの粉を…</p>
+      </a>
+      <a href="/sample/bakery/blog/02.html" class="blog-card">
+        <div class="blog-meta">2026.05.09 <span class="blog-cat">焼き菓子</span></div>
+        <h3 class="blog-title serif">いちごのジャム、炊きました</h3>
+        <p class="blog-excerpt">今年もいちごの季節がやってきました。スコーンに添える季節のジャムを、昨日の閉店後にことことと…</p>
+      </a>
+      <a href="/sample/bakery/blog/01.html" class="blog-card">
+        <div class="blog-meta">2026.04.28 <span class="blog-cat">おしらせ</span></div>
+        <h3 class="blog-title serif">ゴールデンウィークの営業について</h3>
+        <p class="blog-excerpt">いつもありがとうございます。連休中の営業時間のおしらせです。期間中は焼く量を少し増やして…</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="access" class="section">
   <div class="container">
     <div class="eyebrow">SHOP</div>
     <h2 class="section-title serif">お店のご案内。</h2>
@@ -218,7 +266,7 @@ img,svg,iframe{max-width:100%;display:block}
       <dt>PAY</dt><dd>現金 / PayPay / クレジットカード</dd>
     </dl>
     <div class="map-wrap">
-      <iframe src="https://www.google.com/maps?q=%E5%8D%83%E8%91%89%E7%9C%8C%E6%88%90%E7%94%B0%E5%B8%82&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="こねもの 周辺マップ"></iframe>
+      <iframe src="https://www.google.com/maps?q=%E5%8D%83%E8%91%89%E7%9C%8C%E6%88%90%E7%94%B0%E5%B8%82&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="kitchen KAME 周辺マップ"></iframe>
     </div>
   </div>
 </section>
@@ -226,11 +274,11 @@ img,svg,iframe{max-width:100%;display:block}
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand serif">こねもの</div>
-      <div class="footer-tag">— KONEMONO BAKERY · NARITA —</div>
+      <div class="footer-brand serif"><img src="/sample/bakery/kame-logo.svg" alt="" class="footer-logo">kitchen KAME</div>
+      <div class="footer-tag">— KITCHEN KAME · NARITA —</div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 KONEMONO</span>
+      <span>© 2026 KITCHEN KAME</span>
       <a href="https://nebulab.jp/hp-trial" target="_blank" rel="noreferrer noopener" class="nebulab-banner" aria-label="ホームページを持ちませんか? Nebulab お試し公開プラン">
         <img src="/brand/free-trial-banner.svg" alt="ホームページを、持ちませんか? — Nebulab お試し公開プラン">
       </a>

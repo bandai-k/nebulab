@@ -84,9 +84,16 @@ img,svg,iframe{max-width:100%;display:block}
 .blog-more:hover{text-decoration:underline}
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 @media (max-width:768px){.blog-grid{grid-template-columns:1fr}}
-.blog-card{display:block;background:var(--paper);border:1px solid var(--line);padding:24px 24px 26px;text-decoration:none;color:inherit;transition:all .2s}
+.blog-card{display:block;background:var(--paper);border:1px solid var(--line);text-decoration:none;color:inherit;transition:all .2s;overflow:hidden}
 .blog-card:hover{border-color:var(--accent);transform:translateY(-3px)}
 .blog-card:hover .blog-title{color:var(--accent-deep)}
+.blog-card:hover .blog-thumb-inner{transform:scale(1.05)}
+.blog-thumb{aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--bg-deep)}
+.blog-thumb-inner{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .4s ease}
+.bt-01{background-image:url("/sample/bakery/cookie.png")}
+.bt-02{background-image:url("/sample/bakery/scone.png")}
+.bt-03{background-image:url("/sample/bakery/bread.png")}
+.blog-body{padding:22px 24px 26px}
 .blog-meta{font-family:"SF Mono",monospace;font-size:10px;letter-spacing:.14em;color:var(--ink-mute);margin-bottom:10px;display:flex;align-items:center;gap:10px}
 .blog-cat{padding:2px 8px;border:1px solid var(--line);font-size:9px;letter-spacing:.18em;color:var(--accent)}
 .blog-title{font-family:"Hiragino Mincho ProN",serif;font-size:18px;font-weight:500;letter-spacing:.03em;line-height:1.55;margin-bottom:10px;transition:color .15s}
@@ -233,19 +240,28 @@ img,svg,iframe{max-width:100%;display:block}
     </div>
     <div class="blog-grid">
       <a href="/sample/bakery/blog/03.html" class="blog-card">
-        <div class="blog-meta">2026.05.18 <span class="blog-cat">日々のこと</span></div>
-        <h3 class="blog-title serif">新しい小麦に切り替えました</h3>
-        <p class="blog-excerpt">春先からずっと探していた、北海道のある農家さんの小麦が届きました。今週から田舎パンの粉を…</p>
+        <div class="blog-thumb"><div class="blog-thumb-inner bt-03"></div></div>
+        <div class="blog-body">
+          <div class="blog-meta">2026.05.18 <span class="blog-cat">日々のこと</span></div>
+          <h3 class="blog-title serif">新しい小麦に切り替えました</h3>
+          <p class="blog-excerpt">春先からずっと探していた、北海道のある農家さんの小麦が届きました。今週から田舎パンの粉を…</p>
+        </div>
       </a>
       <a href="/sample/bakery/blog/02.html" class="blog-card">
-        <div class="blog-meta">2026.05.09 <span class="blog-cat">焼き菓子</span></div>
-        <h3 class="blog-title serif">いちごのジャム、炊きました</h3>
-        <p class="blog-excerpt">今年もいちごの季節がやってきました。スコーンに添える季節のジャムを、昨日の閉店後にことことと…</p>
+        <div class="blog-thumb"><div class="blog-thumb-inner bt-02"></div></div>
+        <div class="blog-body">
+          <div class="blog-meta">2026.05.09 <span class="blog-cat">焼き菓子</span></div>
+          <h3 class="blog-title serif">いちごのジャム、炊きました</h3>
+          <p class="blog-excerpt">今年もいちごの季節がやってきました。スコーンに添える季節のジャムを、昨日の閉店後にことことと…</p>
+        </div>
       </a>
       <a href="/sample/bakery/blog/01.html" class="blog-card">
-        <div class="blog-meta">2026.04.28 <span class="blog-cat">おしらせ</span></div>
-        <h3 class="blog-title serif">ゴールデンウィークの営業について</h3>
-        <p class="blog-excerpt">いつもありがとうございます。連休中の営業時間のおしらせです。期間中は焼く量を少し増やして…</p>
+        <div class="blog-thumb"><div class="blog-thumb-inner bt-01"></div></div>
+        <div class="blog-body">
+          <div class="blog-meta">2026.04.28 <span class="blog-cat">おしらせ</span></div>
+          <h3 class="blog-title serif">ゴールデンウィークの営業について</h3>
+          <p class="blog-excerpt">いつもありがとうございます。連休中の営業時間のおしらせです。期間中は焼く量を少し増やして…</p>
+        </div>
       </a>
     </div>
   </div>

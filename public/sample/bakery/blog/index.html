@@ -47,12 +47,21 @@ a{color:inherit}
 @media (max-width:880px){.blog-layout{grid-template-columns:1fr;gap:48px}}
 
 /* 記事一覧 */
-.post-row{display:grid;grid-template-columns:140px 1fr;gap:28px;padding:30px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;transition:background .15s}
+.post-row{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:30px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;transition:background .15s;align-items:center}
 .post-row:first-child{border-top:1px solid var(--line)}
 .post-row:hover{background:var(--paper)}
 .post-row:hover .post-title{color:var(--accent-deep)}
-@media (max-width:680px){.post-row{grid-template-columns:1fr;gap:10px;padding:26px 0}}
-.post-meta{font-family:"SF Mono",monospace;font-size:11px;color:var(--ink-mute);letter-spacing:.1em;padding-top:6px}
+.post-row:hover .post-thumb-inner{transform:scale(1.04)}
+@media (max-width:680px){.post-row{grid-template-columns:1fr;gap:14px;padding:26px 0}}
+/* サムネイル */
+.post-thumb{aspect-ratio:4/3;background:var(--bg-deep);position:relative;overflow:hidden}
+.post-thumb-inner{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .35s ease}
+.post-thumb::after{content:"";position:absolute;inset:8px;border:1px solid rgba(255,255,255,.22);pointer-events:none}
+.thumb-01{background-image:url("/sample/bakery/cookie.png")}
+.thumb-02{background-image:url("/sample/bakery/scone.png")}
+.thumb-03{background-image:url("/sample/bakery/bread.png")}
+@media (max-width:680px){.post-thumb{aspect-ratio:16/9}}
+.post-meta{font-family:"SF Mono",monospace;font-size:11px;color:var(--ink-mute);letter-spacing:.1em;margin-bottom:10px}
 .post-cat{display:inline-block;margin-top:8px;padding:3px 10px;border:1px solid var(--line);font-size:9px;letter-spacing:.2em;color:var(--accent)}
 .post-title{font-family:"Hiragino Mincho ProN",serif;font-size:22px;font-weight:500;letter-spacing:.04em;margin-bottom:10px;line-height:1.5;transition:color .15s}
 .post-excerpt{font-size:14px;color:var(--ink-soft);line-height:1.9}
@@ -165,11 +174,12 @@ a{color:inherit}
     <!-- 本文: 記事一覧 -->
     <main>
       <a href="/sample/bakery/blog/03.html" class="post-row">
-        <div class="post-meta">
-          2026.05.18
-          <span class="post-cat">日々のこと</span>
-        </div>
-        <div>
+        <div class="post-thumb"><div class="post-thumb-inner thumb-03"></div></div>
+        <div class="post-body">
+          <div class="post-meta">
+            2026.05.18
+            <span class="post-cat">日々のこと</span>
+          </div>
           <h2 class="post-title serif">新しい小麦に切り替えました</h2>
           <p class="post-excerpt">春先からずっと探していた、北海道のある農家さんの小麦が届きました。今週から田舎パンの粉を、少しずつこちらに切り替えています。香りがふっくらと…</p>
           <div class="post-arrow">つづきを読む →</div>
@@ -177,11 +187,12 @@ a{color:inherit}
       </a>
 
       <a href="/sample/bakery/blog/02.html" class="post-row">
-        <div class="post-meta">
-          2026.05.09
-          <span class="post-cat">焼き菓子</span>
-        </div>
-        <div>
+        <div class="post-thumb"><div class="post-thumb-inner thumb-02"></div></div>
+        <div class="post-body">
+          <div class="post-meta">
+            2026.05.09
+            <span class="post-cat">焼き菓子</span>
+          </div>
           <h2 class="post-title serif">いちごのジャム、炊きました</h2>
           <p class="post-excerpt">今年もいちごの季節がやってきました。スコーンに添える季節のジャムを、昨日の閉店後にことことと。砂糖は控えめ、レモンを少し効かせて…</p>
           <div class="post-arrow">つづきを読む →</div>
@@ -189,11 +200,12 @@ a{color:inherit}
       </a>
 
       <a href="/sample/bakery/blog/01.html" class="post-row">
-        <div class="post-meta">
-          2026.04.28
-          <span class="post-cat">おしらせ</span>
-        </div>
-        <div>
+        <div class="post-thumb"><div class="post-thumb-inner thumb-01"></div></div>
+        <div class="post-body">
+          <div class="post-meta">
+            2026.04.28
+            <span class="post-cat">おしらせ</span>
+          </div>
           <h2 class="post-title serif">ゴールデンウィークの営業について</h2>
           <p class="post-excerpt">いつもありがとうございます。連休中の営業時間のおしらせです。期間中は焼く量を少し増やしてお待ちしておりますが、売り切れ次第の閉店は変わりません…</p>
           <div class="post-arrow">つづきを読む →</div>

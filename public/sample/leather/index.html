@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ATELIER FUJI — 一枚革から手で作る、革小物の工房。財布・名刺入れ・キーケース・オーダー製作。">
+<meta name="robots" content="noindex, nofollow">
+<title>ATELIER FUJI — Leather Craft Studio</title>
+<style>
+:root{
+  --bg:#1A1310; --bg-deep:#0F0A07; --paper:#2A1F1A;
+  --ink:#E8DCC8; --ink-soft:#A89683; --ink-mute:#6E5F50;
+  --line:#3D2E25; --camel:#B58853; --camel-deep:#7A5530; --rust:#A04E2A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;-webkit-font-smoothing:antialiased}
+.serif{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+.mono{font-family:"SF Mono","Menlo","Consolas",monospace;letter-spacing:.05em}
+.container{max-width:1100px;margin:0 auto;padding:0 28px}
+
+/* ヘッダー */
+.site-header{position:sticky;top:0;background:rgba(26,19,16,.95);backdrop-filter:blur(8px);z-index:10;border-bottom:1px solid var(--line)}
+.site-header-inner{display:flex;justify-content:space-between;align-items:baseline;padding:18px 28px;max-width:1100px;margin:0 auto}
+.brand{display:flex;align-items:baseline;gap:14px;font-family:"Hiragino Mincho ProN",serif;font-size:20px;font-weight:500;letter-spacing:.28em;color:var(--ink);text-decoration:none;text-transform:uppercase}
+.brand-tag{font-size:9px;color:var(--ink-mute);letter-spacing:.32em;font-family:"SF Mono",monospace;text-transform:uppercase}
+.nav{display:flex;gap:30px;font-size:11px}
+.nav a{color:var(--ink-soft);text-decoration:none;letter-spacing:.28em;text-transform:uppercase;transition:color .15s}
+.nav a:hover{color:var(--camel)}
+@media (max-width:768px){.nav{display:none}}
+
+/* ヒーロー */
+.hero{position:relative;min-height:88vh;overflow:hidden;background:#0F0A07;display:flex;align-items:flex-end;padding:60px 0 80px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(181,136,83,.25),transparent 60%),linear-gradient(160deg,#3D2E25 0%,#0F0A07 100%);overflow:hidden}
+.hero-bg::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(232,220,200,.015) 0,rgba(232,220,200,.015) 1px,transparent 1px,transparent 3px)}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero-corner-tl,.hero-corner-br{position:absolute;width:80px;height:80px;border:1px solid rgba(232,220,200,.4)}
+.hero-corner-tl{top:30px;left:30px;border-right:0;border-bottom:0}
+.hero-corner-br{bottom:30px;right:30px;border-left:0;border-top:0}
+.hero-pre{font-family:"SF Mono",monospace;font-size:11px;letter-spacing:.4em;color:var(--camel);margin-bottom:24px;text-transform:uppercase}
+.hero-pre::before{content:"— ";color:var(--camel)}
+.hero-title{font-family:"Hiragino Mincho ProN",serif;font-size:84px;font-weight:500;letter-spacing:.16em;margin-bottom:24px;line-height:1.05;text-transform:uppercase}
+@media (max-width:880px){.hero-title{font-size:48px}}
+.hero-title-sub{font-family:"Hiragino Mincho ProN",serif;font-size:16px;letter-spacing:.32em;color:var(--ink-soft);margin-bottom:36px;text-transform:uppercase}
+.hero-lede{font-size:15px;line-height:2.1;max-width:560px;margin-bottom:36px;color:var(--ink-soft);letter-spacing:.04em}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 38px;font-size:11px;letter-spacing:.32em;text-decoration:none;border:1px solid var(--camel);background:transparent;color:var(--camel);transition:all .2s;font-family:"SF Mono",monospace;text-transform:uppercase}
+.btn:hover{background:var(--camel);color:var(--bg)}
+.btn.solid{background:var(--camel-deep);border-color:var(--camel-deep);color:var(--ink)}
+.btn.solid:hover{background:var(--camel);border-color:var(--camel)}
+.hero-meta{display:flex;gap:32px;padding-top:28px;margin-top:48px;border-top:1px solid var(--line);font-family:"SF Mono",monospace;font-size:10px;letter-spacing:.22em;color:var(--ink-mute);text-transform:uppercase;flex-wrap:wrap}
+.hero-meta strong{color:var(--camel);font-weight:500;margin-right:8px}
+
+/* セクション */
+.section{padding:96px 0;position:relative}
+.section.alt{background:var(--paper)}
+.eyebrow{font-family:"SF Mono",monospace;font-size:10px;letter-spacing:.42em;color:var(--camel);margin-bottom:18px;text-transform:uppercase;display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";width:32px;height:1px;background:var(--camel)}
+.section-title{font-family:"Hiragino Mincho ProN",serif;font-size:38px;font-weight:500;letter-spacing:.1em;margin-bottom:18px;line-height:1.4;text-transform:uppercase}
+@media (max-width:768px){.section-title{font-size:28px}}
+.section-lede{font-size:14px;color:var(--ink-soft);margin-bottom:48px;line-height:2;max-width:640px;letter-spacing:.04em}
+
+/* 商品 */
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:40px}
+@media (max-width:880px){.product-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
+@media (max-width:640px){.product-grid{grid-template-columns:1fr}}
+.product{background:#1A1310;border:1px solid var(--line);transition:border .2s}
+.product:hover{border-color:var(--camel)}
+.product-photo{aspect-ratio:4/3;background:url("/sample/leather/item-wallet-long.png") center/cover no-repeat;position:relative}
+.product-photo.dark{background:url("/sample/leather/item-wallet-bifold.png") center/cover no-repeat}
+.product-photo.cognac{background:url("/sample/leather/item-cardcase.png") center/cover no-repeat}
+.product-photo.tan{background:url("/sample/leather/item-keycase.png") center/cover no-repeat}
+.product-photo.rust{background:url("/sample/leather/item-coinpouch.png") center/cover no-repeat}
+.product-photo.black{background:url("/sample/leather/item-belt.png") center/cover no-repeat}
+.product-photo::after{content:"";position:absolute;inset:10px;border:1px solid rgba(232,220,200,.1)}
+.product-body{padding:24px 26px}
+.product-pre{font-family:"SF Mono",monospace;font-size:9px;letter-spacing:.3em;color:var(--camel);margin-bottom:6px;text-transform:uppercase}
+.product-name{font-family:"Hiragino Mincho ProN",serif;font-size:18px;font-weight:500;margin-bottom:8px;letter-spacing:.06em;text-transform:uppercase}
+.product-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.9;margin-bottom:18px}
+.product-meta{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;border-top:1px solid var(--line);font-family:"SF Mono",monospace;font-size:11px;color:var(--ink-mute);letter-spacing:.12em}
+.product-meta .price{font-family:"Hiragino Mincho ProN",serif;font-size:17px;color:var(--camel);letter-spacing:.04em}
+
+/* BASE への外部リンクバナー */
+.ext-banner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 32px;background:#FFFFFF;color:#1A1310;text-decoration:none;border:1.5px solid #E8DCC8;transition:all .2s;max-width:520px;margin:48px auto 0}
+.ext-banner:hover{border-color:#0080FF;background:#F0F8FF}
+.ext-banner-l{display:flex;flex-direction:column;gap:4px}
+.ext-banner-logo{font-family:"Helvetica Neue","Arial",sans-serif;font-size:26px;font-weight:900;letter-spacing:.02em;line-height:1;color:#0080FF}
+.ext-banner-sub{font-size:13px;color:#5A4515;letter-spacing:.04em}
+.ext-banner-arrow{font-size:22px;color:#0080FF;font-weight:300}
+
+/* オーダー */
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media (max-width:880px){.order-grid{grid-template-columns:1fr;gap:32px}}
+.order-photo{aspect-ratio:4/5;background:url("/sample/leather/order.png") center/cover no-repeat;position:relative}
+.order-photo::after{content:"";position:absolute;inset:18px;border:1px solid rgba(232,220,200,.15)}
+.order-steps{display:flex;flex-direction:column;gap:24px;margin-top:32px}
+.order-step{display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:start}
+.order-step-num{font-family:"Hiragino Mincho ProN",serif;font-size:28px;color:var(--camel);letter-spacing:.06em;line-height:1}
+.order-step-title{font-family:"Hiragino Mincho ProN",serif;font-size:16px;font-weight:500;margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase}
+.order-step-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.9}
+
+/* 工房 */
+.studio-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:40px}
+@media (max-width:768px){.studio-grid{grid-template-columns:repeat(2,1fr)}}
+.studio-cell{aspect-ratio:1;position:relative}
+.studio-cell::after{content:"";position:absolute;inset:6px;border:1px solid rgba(232,220,200,.1)}
+.sc1{background:url("/sample/leather/studio-1.png") center/cover no-repeat}
+.sc2{background:url("/sample/leather/studio-2.png") center/cover no-repeat}
+.sc3{background:url("/sample/leather/studio-3.png") center/cover no-repeat}
+.sc4{background:url("/sample/leather/studio-4.png") center/cover no-repeat}
+.sc5{background:url("/sample/leather/studio-5.png") center/cover no-repeat}
+.sc6{background:url("/sample/leather/studio-6.png") center/cover no-repeat}
+.sc7{background:url("/sample/leather/studio-7.png") center/cover no-repeat}
+.sc8{background:url("/sample/leather/studio-8.png") center/cover no-repeat}
+
+/* アクセス */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media (max-width:880px){.info-grid{grid-template-columns:1fr;gap:32px}}
+.info-dl{display:grid;grid-template-columns:100px 1fr;gap:18px 28px;font-size:13px;line-height:1.95;letter-spacing:.04em}
+.info-dl dt{font-family:"SF Mono",monospace;font-size:10px;letter-spacing:.28em;color:var(--ink-mute);padding-top:5px;text-transform:uppercase}
+.info-dl dd strong{font-weight:500;color:var(--camel)}
+.map-wrap{border:1px solid var(--line);overflow:hidden;filter:invert(.92) hue-rotate(180deg)}
+.map-wrap iframe{width:100%;height:340px;border:0;display:block}
+
+/* フッター */
+.site-footer{background:#0A0604;color:#A89683;padding:64px 0 32px;font-size:13px;border-top:1px solid var(--line)}
+.footer-grid{padding-bottom:28px;border-bottom:1px solid var(--line)}
+.footer-brand{font-family:"Hiragino Mincho ProN",serif;font-size:30px;color:var(--ink);margin-bottom:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase}
+.footer-tag{font-size:10px;letter-spacing:.32em;color:var(--ink-mute);font-family:"SF Mono",monospace;text-transform:uppercase}
+.footer-bottom{padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--ink-mute);letter-spacing:.08em;font-family:"SF Mono",monospace;flex-wrap:wrap;gap:14px;text-transform:uppercase}
+.nebulab-banner{display:inline-block;text-decoration:none;transition:opacity .15s;line-height:0}
+.nebulab-banner:hover{opacity:.88}
+.nebulab-banner img{height:64px;width:auto}
+@media (max-width:640px){.nebulab-banner img{height:52px}}
+
+/* サンプル透かし(全ページ共通) */
+.sample-watermark{position:fixed;top:14px;right:14px;z-index:9999;padding:5px 12px;background:rgba(0,0,0,.55);color:rgba(255,255,255,.95);font-family:"Hiragino Mincho ProN",serif;font-size:11px;letter-spacing:.18em;pointer-events:none;user-select:none;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+</style>
+</head>
+<body>
+<div class="sample-watermark" aria-hidden="true">サンプルです。</div>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="#top" class="brand">ATELIER FUJI<span class="brand-tag">LEATHER CRAFT</span></a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#order">Order</a>
+      <a href="#studio">Studio</a>
+      <a href="#access">Access</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-corner-tl"></div>
+  <div class="hero-corner-br"></div>
+  <div class="container hero-inner">
+    <div class="hero-pre">LEATHER CRAFT STUDIO · NARITA · EST.2018</div>
+    <h1 class="hero-title serif">One Hide.<br>One Hand.</h1>
+    <div class="hero-title-sub serif">一枚革から、ひとつずつ。</div>
+    <p class="hero-lede">
+      量産はしません。<br>
+      一枚の革を、手で裁断し、手で縫う。<br>
+      時間はかかりますが、その分、長く使えるものに。
+    </p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <a href="#products" class="btn solid">View Products →</a>
+      <a href="#order" class="btn">Custom Order</a>
+    </div>
+    <div class="hero-meta">
+      <span><strong>EST.</strong> 2018</span>
+      <span><strong>STUDIO</strong> NARITA, JP</span>
+      <span><strong>OPEN</strong> SAT / SUN BY APPT.</span>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="container">
+    <div class="eyebrow">About</div>
+    <h2 class="section-title serif">Hand-Made,<br>One Piece at a Time.</h2>
+    <p class="section-lede">
+      機械の縫製では出せない、手縫いの強度と表情を大切にしています。
+      使う革は、栃木レザーをはじめとする国産タンナーの一枚革のみ。
+      使い込むほどに艶が出る、植物タンニン鞣しの革を選んでいます。
+    </p>
+  </div>
+</section>
+
+<section id="products" class="section alt">
+  <div class="container">
+    <div class="eyebrow">Products</div>
+    <h2 class="section-title serif">Standard Items</h2>
+    <p class="section-lede">
+      定番として常時お作りしているアイテムです。革の色は 3 色からお選びいただけます。
+    </p>
+    <div class="product-grid">
+      <article class="product">
+        <div class="product-photo"></div>
+        <div class="product-body">
+          <div class="product-pre">ITEM 01</div>
+          <h3 class="product-name serif">Long Wallet</h3>
+          <p class="product-desc">長財布。札・カード・小銭を整理しやすい構造。手縫いで仕立てる、定番の一品。</p>
+          <div class="product-meta"><span>VEG-TAN LEATHER</span><span class="price serif">¥36,000</span></div>
+        </div>
+      </article>
+      <article class="product">
+        <div class="product-photo dark"></div>
+        <div class="product-body">
+          <div class="product-pre">ITEM 02</div>
+          <h3 class="product-name serif">Bifold Wallet</h3>
+          <p class="product-desc">二つ折り財布。コンパクトな設計で、ポケットに収まりやすい。日常使いに。</p>
+          <div class="product-meta"><span>VEG-TAN LEATHER</span><span class="price serif">¥24,000</span></div>
+        </div>
+      </article>
+      <article class="product">
+        <div class="product-photo cognac"></div>
+        <div class="product-body">
+          <div class="product-pre">ITEM 03</div>
+          <h3 class="product-name serif">Card Case</h3>
+          <p class="product-desc">名刺入れ。シンプルな構造で、革の表情がそのまま出るデザイン。</p>
+          <div class="product-meta"><span>VEG-TAN LEATHER</span><span class="price serif">¥12,000</span></div>
+        </div>
+      </article>
+      <article class="product">
+        <div class="product-photo tan"></div>
+        <div class="product-body">
+          <div class="product-pre">ITEM 04</div>
+          <h3 class="product-name serif">Key Case</h3>
+          <p class="product-desc">4 連キーケース。バネホックで開閉。鍵 4 本まで収納できます。</p>
+          <div class="product-meta"><span>VEG-TAN LEATHER</span><span class="price serif">¥9,500</span></div>
+        </div>
+      </article>
+      <article class="product">
+        <div class="product-photo rust"></div>
+        <div class="product-body">
+          <div class="product-pre">ITEM 05</div>
+          <h3 class="product-name serif">Coin Pouch</h3>
+          <p class="product-desc">小銭入れ。馬蹄型のクラシックな形。中身を取り出しやすい構造。</p>
+          <div class="product-meta"><span>VEG-TAN LEATHER</span><span class="price serif">¥8,500</span></div>
+        </div>
+      </article>
+      <article class="product">
+        <div class="product-photo black"></div>
+        <div class="product-body">
+          <div class="product-pre">ITEM 06</div>
+          <h3 class="product-name serif">Belt</h3>
+          <p class="product-desc">5mm 厚の一枚革ベルト。バックル交換可能。使うほどに肌に馴染みます。</p>
+          <div class="product-meta"><span>VEG-TAN LEATHER</span><span class="price serif">¥14,000</span></div>
+        </div>
+      </article>
+    </div>
+
+    <a href="https://thebase.com/" target="_blank" rel="noreferrer noopener" class="ext-banner base">
+      <div class="ext-banner-l">
+        <div class="ext-banner-logo">BASE</div>
+        <div class="ext-banner-sub">オンラインショップで購入できます</div>
+      </div>
+      <span class="ext-banner-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<section id="order" class="section">
+  <div class="container">
+    <div class="order-grid">
+      <div class="order-photo" role="img" aria-label="手縫いの様子"></div>
+      <div>
+        <div class="eyebrow">Custom Order</div>
+        <h2 class="section-title serif">Tell Us<br>Your Vision.</h2>
+        <p class="section-lede">
+          お持ちのアイテムの再現、サイズ調整、特別な仕様のご相談まで。<br>
+          まずはイメージをお聞かせください。
+        </p>
+        <div class="order-steps">
+          <div class="order-step">
+            <div class="order-step-num serif">01</div>
+            <div>
+              <div class="order-step-title serif">Inquiry</div>
+              <div class="order-step-desc">メール or 工房来訪で、用途・サイズ・色をご相談。参考写真があればぜひ。</div>
+            </div>
+          </div>
+          <div class="order-step">
+            <div class="order-step-num serif">02</div>
+            <div>
+              <div class="order-step-title serif">Quote</div>
+              <div class="order-step-desc">仕様確定後、お見積もりと納期(通常 4-8 週間)をお伝えします。</div>
+            </div>
+          </div>
+          <div class="order-step">
+            <div class="order-step-num serif">03</div>
+            <div>
+              <div class="order-step-title serif">Craft</div>
+              <div class="order-step-desc">革の選定から裁断・縫製まで、一人で仕立てます。進捗写真も随時お送りします。</div>
+            </div>
+          </div>
+          <div class="order-step">
+            <div class="order-step-num serif">04</div>
+            <div>
+              <div class="order-step-title serif">Delivery</div>
+              <div class="order-step-desc">完成後、お渡し・配送。修理・お手入れのご相談は半永久的に承ります。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="studio" class="section alt">
+  <div class="container">
+    <div class="eyebrow">Studio</div>
+    <h2 class="section-title serif">In the Workshop.</h2>
+    <p class="section-lede">
+      工房での日々の風景。革との対話の時間です。
+    </p>
+    <div class="studio-grid">
+      <div class="studio-cell sc1"></div>
+      <div class="studio-cell sc2"></div>
+      <div class="studio-cell sc3"></div>
+      <div class="studio-cell sc4"></div>
+      <div class="studio-cell sc5"></div>
+      <div class="studio-cell sc6"></div>
+      <div class="studio-cell sc7"></div>
+      <div class="studio-cell sc8"></div>
+    </div>
+  </div>
+</section>
+
+<section id="access" class="section">
+  <div class="container">
+    <div class="eyebrow">Access</div>
+    <h2 class="section-title serif">Visit the Studio.</h2>
+    <p class="section-lede">
+      工房は、土・日のみご予約制でご見学いただけます。<br>
+      お買い物・オーダーのご相談は、メールにて承ります。
+    </p>
+    <div class="info-grid">
+      <dl class="info-dl">
+        <dt>OPEN</dt><dd><strong>SAT / SUN</strong><br>By appointment only · 13:00 – 18:00</dd>
+        <dt>CLOSE</dt><dd>MON – FRI(製作日)</dd>
+        <dt>ADDRESS</dt><dd>千葉県成田市 ◯◯</dd>
+        <dt>MAIL</dt><dd>info@atelier-fuji.example</dd>
+        <dt>ORDER</dt><dd>メール / DM にて承ります</dd>
+      </dl>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=%E5%8D%83%E8%91%89%E7%9C%8C%E6%88%90%E7%94%B0%E5%B8%82&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ATELIER FUJI 周辺マップ"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand serif">ATELIER FUJI</div>
+      <div class="footer-tag">— LEATHER CRAFT STUDIO · NARITA —</div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ATELIER FUJI</span>
+      <a href="https://nebulab.jp/hp-trial" target="_blank" rel="noreferrer noopener" class="nebulab-banner" aria-label="ホームページを持ちませんか? Nebulab お試し公開プラン">
+        <img src="/brand/free-trial-banner.svg" alt="ホームページを、持ちませんか? — Nebulab お試し公開プラン">
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

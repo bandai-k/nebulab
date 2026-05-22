@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Nebulab合同会社 お困りごと別サービスガイド</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@page { size: A4; margin: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+html, body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  background: #E8E5DD;
+  color: #1A1A18;
+  line-height: 1.7;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  padding: 10mm 14mm;
+  background: #FAFAF8;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+}
+
+.page:last-child { page-break-after: auto; }
+
+@media screen {
+  body { padding: 30px 0; }
+  .page { margin: 0 auto 30px; box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+}
+
+@media print {
+  body { background: white; }
+  .page { margin: 0; box-shadow: none; }
+}
+
+.mono { font-family: "SF Mono", "Menlo", "Consolas", monospace; letter-spacing: 0.05em; }
+.serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif; }
+
+/* ===== ヘッダー / フッター ===== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 3mm;
+  border-bottom: 1px solid #1A1A18;
+  margin-bottom: 5mm;
+  flex-shrink: 0;
+}
+
+.page-header-left { display: flex; align-items: baseline; gap: 3mm; }
+.page-logo { font-size: 14pt; font-weight: 500; letter-spacing: -0.01em; }
+.page-title-mono { font-size: 8pt; color: #6A6A68; letter-spacing: 0.15em; }
+.page-num { font-size: 8pt; color: #6A6A68; letter-spacing: 0.1em; }
+
+.page-footer {
+  margin-top: auto;
+  padding-top: 3mm;
+  border-top: 1px solid #D0CDC4;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7pt;
+  color: #6A6A68;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+/* ===== 表紙 ===== */
+.cover { justify-content: space-between; padding: 0; }
+.cover-top { padding: 22mm 16mm 0; }
+
+.cover-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 4mm;
+  margin-bottom: 28mm;
+}
+
+.cover-logo-mark { font-size: 32pt; font-weight: 500; letter-spacing: -0.02em; }
+.cover-logo-tag { font-size: 9pt; color: #6A6A68; letter-spacing: 0.2em; }
+
+.cover-title-area { margin-bottom: 8mm; }
+
+.cover-title-pre {
+  font-size: 10pt;
+  color: #6A6A68;
+  letter-spacing: 0.3em;
+  margin-bottom: 5mm;
+}
+
+.cover-title {
+  font-size: 36pt;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 6mm;
+}
+
+.cover-subtitle { font-size: 13pt; color: #4A4A48; line-height: 1.7; }
+
+.cover-visual {
+  margin: 14mm -16mm 0;
+}
+
+.cover-visual img { width: 100%; height: auto; display: block; }
+
+.cover-bottom {
+  background: #1A1A18;
+  color: #FAFAF8;
+  padding: 12mm 16mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-philosophy {
+  flex: 1;
+  font-size: 14pt;
+  font-style: italic;
+  line-height: 1.7;
+  font-family: "Hiragino Mincho ProN", serif;
+}
+
+.cover-meta {
+  text-align: right;
+  font-size: 8pt;
+  letter-spacing: 0.15em;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+/* ===== セクション見出し ===== */
+.section-heading {
+  font-size: 10pt;
+  letter-spacing: 0.3em;
+  color: #6A6A68;
+  margin-bottom: 3mm;
+  padding-bottom: 2mm;
+  border-bottom: 1px solid #1A1A18;
+}
+
+.section-heading.cat {
+  border-bottom: 1px solid #C75D3C;
+  color: #C75D3C;
+}
+
+.h2-title {
+  font-size: 16pt;
+  font-weight: 500;
+  margin-bottom: 3mm;
+  line-height: 1.3;
+}
+
+.body-text {
+  font-size: 9.5pt;
+  line-height: 1.65;
+  color: #2A2A28;
+  margin-bottom: 3mm;
+}
+
+/* ===== お困りごとカード ===== */
+.concern-card {
+  display: grid;
+  grid-template-columns: 1fr 8mm 1fr;
+  gap: 3mm;
+  padding: 3mm 4mm;
+  background: #FFFFFF;
+  border: 1px solid #1A1A18;
+  margin-bottom: 2.5mm;
+  align-items: center;
+  page-break-inside: avoid;
+}
+
+.concern-question {
+  display: flex;
+  flex-direction: column;
+}
+
+.concern-question-label {
+  font-family: "SF Mono", monospace;
+  font-size: 7pt;
+  letter-spacing: 0.2em;
+  color: #C75D3C;
+  margin-bottom: 1mm;
+}
+
+.concern-question-title {
+  font-weight: 500;
+  font-size: 10pt;
+  margin-bottom: 0.5mm;
+  line-height: 1.4;
+}
+
+.concern-question-sub {
+  font-size: 7.5pt;
+  color: #6A6A68;
+  line-height: 1.5;
+}
+
+.concern-arrow {
+  color: #C75D3C;
+  font-size: 14pt;
+  text-align: center;
+  font-family: "SF Mono", monospace;
+  line-height: 1;
+}
+
+.concern-solution {
+  display: flex;
+  gap: 2.5mm;
+  align-items: center;
+}
+
+.concern-solution-icon {
+  width: 9mm;
+  height: 9mm;
+  background: #FAFAF8;
+  border: 1px solid #D0CDC4;
+  color: #C75D3C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.concern-solution-icon img { width: 5.5mm; height: 5.5mm; display: block; }
+
+.concern-solution-info { flex: 1; min-width: 0; }
+
+.concern-solution-name {
+  font-weight: 500;
+  font-size: 10pt;
+  margin-bottom: 0.5mm;
+  line-height: 1.3;
+}
+
+.concern-solution-meta {
+  font-family: "SF Mono", monospace;
+  font-size: 7.5pt;
+  color: #6A6A68;
+  letter-spacing: 0.05em;
+}
+
+.concern-solution-meta strong {
+  font-weight: 500;
+  color: #C75D3C;
+}
+
+/* カテゴリ帯 */
+.cat-band {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background: #F0EDE5;
+  padding: 2mm 3mm;
+  margin-bottom: 3mm;
+  margin-top: 5mm;
+  font-family: "SF Mono", monospace;
+  font-size: 8.5pt;
+  letter-spacing: 0.15em;
+  color: #1A1A18;
+}
+
+.cat-band:first-of-type { margin-top: 0; }
+
+.cat-band .cat-band-en { color: #C75D3C; font-size: 8pt; }
+
+/* ===== 進め方 ===== */
+.flow-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4mm;
+  margin: 3mm 0 4mm;
+}
+
+.flow-step {
+  border: 1px solid #1A1A18;
+  padding: 3mm 2mm;
+  text-align: center;
+  position: relative;
+  background: #FFFFFF;
+}
+
+.flow-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -3mm;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6A6A68;
+  font-size: 12pt;
+  background: #FAFAF8;
+  padding: 0 1mm;
+  z-index: 1;
+}
+
+.flow-num { font-size: 9pt; color: #6A6A68; margin-bottom: 0.5mm; font-family: "SF Mono", monospace; }
+.flow-text { font-size: 10pt; font-weight: 500; margin-bottom: 0.5mm; }
+.flow-detail { font-size: 7.5pt; color: #6A6A68; line-height: 1.4; }
+
+/* ===== 会社情報 ===== */
+.company-block {
+  background: #1A1A18;
+  color: #FAFAF8;
+  padding: 6mm 8mm;
+  margin: 4mm -14mm -10mm;
+}
+
+.company-block-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5mm;
+}
+
+.company-block-left .company-name { font-size: 12pt; font-weight: 500; margin-bottom: 2mm; }
+.company-block-left .company-info { font-size: 8.5pt; line-height: 1.7; opacity: 0.9; }
+.company-block-right { border-left: 1px solid rgba(250, 250, 248, 0.2); padding-left: 5mm; }
+.company-block-right .label { font-size: 7.5pt; letter-spacing: 0.2em; opacity: 0.6; margin-bottom: 1.5mm; }
+.company-block-right .contact-line { font-size: 9pt; margin-bottom: 1.5mm; font-family: "SF Mono", monospace; }
+
+/* ===== 印刷ヒント ===== */
+.print-hint {
+  text-align: center;
+  color: #4A4A48;
+  font-size: 13px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  max-width: 800px;
+}
+
+.print-hint h3 { margin-bottom: 10px; font-size: 16px; }
+.print-hint code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+
+@media print { .print-hint { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="print-hint">
+  <h3>印刷・PDF出力の方法</h3>
+  <p>1. ブラウザで <code>Ctrl+P</code>(Windows)または <code>Cmd+P</code>(Mac)で印刷ダイアログを開く</p>
+  <p>2. 用紙サイズ「A4」、余白「なし」、「背景のグラフィック」を有効にする</p>
+  <p>3. PDFとして保存 または 直接印刷</p>
+  <p>※ 全 4 ページ・両面印刷で 2 枚に収まります</p>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ1: 表紙                                   -->
+<!-- ============================================ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">
+      <span class="cover-logo-mark serif">Nebulab</span>
+      <span class="cover-logo-tag mono">合同会社 / 成田市</span>
+    </div>
+
+    <div class="cover-title-area">
+      <div class="cover-title-pre mono">— CONCERNS · SOLUTIONS —</div>
+      <h1 class="cover-title serif">
+        お困りごとから、<br>
+        サービスを。
+      </h1>
+      <p class="cover-subtitle">
+        「これって誰に聞けばいいの?」を、<br>
+        Nebulab のどのサービスが解決できるか、一覧で。
+      </p>
+    </div>
+
+    <div class="cover-visual">
+      <img src="/brand/cover-visual.svg" alt="Nebulab サービス群">
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-philosophy">
+      困っているところから、<br>
+      ご一緒にひとつずつ。
+    </div>
+    <div class="cover-meta mono">
+      VERSION 2026.05<br>
+      CONCERNS GUIDE<br>
+      <br>
+      35.7758°N<br>
+      140.3186°E
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ2: Web 集客系 + 業務効率化系               -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— CONCERNS · SOLUTIONS MAP —</span>
+    </div>
+    <span class="page-num mono">P. 02 / 04</span>
+  </div>
+
+  <div class="section-heading mono">— お困りごとから、サービスを引く —</div>
+  <h2 class="h2-title">「こんな時、Nebulab に。」</h2>
+  <p class="body-text">
+    地域の小規模事業者さま・個人事業主さまから多くいただくお困りごとと、
+    その解決にお使いいただける Nebulab のサービスを並べました。
+  </p>
+
+  <!-- カテゴリ: Web 集客 -->
+  <div class="cat-band">
+    <span>A. WEB 集客・ブランディング</span>
+    <span class="cat-band-en">WEB · MARKETING</span>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 01</div>
+      <div class="concern-question-title">ホームページがない / 古い</div>
+      <div class="concern-question-sub">スマホで見ると崩れる、何年も更新していない…</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/monitor.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">HP 制作 / リニューアル</div>
+        <div class="concern-solution-meta"><strong>¥30,000 – ¥300,000</strong> / 2-6 週間</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 02</div>
+      <div class="concern-question-title">Google 検索でお店が出てこない</div>
+      <div class="concern-question-sub">マップに古い情報が載りっぱなし、新規のお客様に届いていない</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/map-pin.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">Google ビジネスプロフィール整備</div>
+        <div class="concern-solution-meta"><strong>¥30,000</strong> / 1 週間</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 03</div>
+      <div class="concern-question-title">キャンペーン用の 1 ページがほしい</div>
+      <div class="concern-question-sub">セール・新メニュー・イベント告知などの集客用ランディング</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/monitor.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">LP 単発制作</div>
+        <div class="concern-solution-meta"><strong>¥150,000</strong> / 2-3 週間</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 04</div>
+      <div class="concern-question-title">Web 広告で集客を伸ばしたい</div>
+      <div class="concern-question-sub">Google 広告を出してみたが、効果が分からない / 自分で運用できない</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/megaphone.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">Google 広告運用代行</div>
+        <div class="concern-solution-meta"><strong>¥30,000/月</strong> + 広告費の 10%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- カテゴリ: 業務効率化 -->
+  <div class="cat-band">
+    <span>B. 業務効率化・販売チャネル</span>
+    <span class="cat-band-en">OPERATIONS · COMMERCE</span>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 05</div>
+      <div class="concern-question-title">電話予約だけで、対応に追われている</div>
+      <div class="concern-question-sub">夜間や営業時間外の予約も取りこぼしているかもしれない</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/calendar.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">予約システム導入</div>
+        <div class="concern-solution-meta"><strong>¥100,000</strong> / 1-2 週間</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 06</div>
+      <div class="concern-question-title">ネット販売を始めたい</div>
+      <div class="concern-question-sub">店頭以外の販路を持ちたい、まずは小さく始めたい</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/cart.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">EC サイト構築 (Shopify / BASE / STORES)</div>
+        <div class="concern-solution-meta"><strong>¥150,000 – ¥250,000</strong> / 2-5 週間</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Nebulab合同会社 お困りごと別サービスガイド</span>
+    <span class="mono">EST. MAY 2026</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ3: サポート・相談系 + 補助・特殊           -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— CONCERNS · SOLUTIONS MAP —</span>
+    </div>
+    <span class="page-num mono">P. 03 / 04</span>
+  </div>
+
+  <!-- カテゴリ: サポート・相談 -->
+  <div class="cat-band">
+    <span>C. サポート・相談・運用</span>
+    <span class="cat-band-en">SUPPORT · ADVISORY</span>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 07</div>
+      <div class="concern-question-title">PC やスマホで困った時に、聞ける人がほしい</div>
+      <div class="concern-question-sub">メール・プリンター・Wi-Fi・アプリ設定など「ちょっと困った」を解決したい</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/devices.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">PC/スマホおたすけ(単発 or 月額)</div>
+        <div class="concern-solution-meta"><strong>¥3,000/30分</strong> or <strong>¥3,000/月</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 08</div>
+      <div class="concern-question-title">IT のことを継続的に相談したい</div>
+      <div class="concern-question-sub">業務 IT 全般のアドバイス・ツール選定・運用方針を一緒に考えてほしい</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/chat.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">IT 顧問 (Light / Standard)</div>
+        <div class="concern-solution-meta"><strong>¥30,000 – ¥50,000/月</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 09</div>
+      <div class="concern-question-title">公開後のホームページの運用が不安</div>
+      <div class="concern-question-sub">セキュリティ更新・バックアップ・軽微な修正を任せたい</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/gear.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">HP 保守 (Light / Standard)</div>
+        <div class="concern-solution-meta"><strong>¥10,000 – ¥20,000/月</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 10</div>
+      <div class="concern-question-title">ドメイン・サーバーの契約が不安</div>
+      <div class="concern-question-sub">技術的な手続きをまるごとお願いしたい</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/wrench.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">初期セットアップ代行</div>
+        <div class="concern-solution-meta"><strong>¥10,000</strong> / 1 回</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- カテゴリ: 補助・特殊 -->
+  <div class="cat-band">
+    <span>D. 補助・特殊なご相談</span>
+    <span class="cat-band-en">SPECIAL · SUBSIDY</span>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 11</div>
+      <div class="concern-question-title">生成 AI を業務で使いこなしたい</div>
+      <div class="concern-question-sub">ChatGPT / Gemini を業務にどう取り入れるか、自社向けに整理してほしい</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/sparkle.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">生成 AI 活用ヒアリング</div>
+        <div class="concern-solution-meta"><strong>¥30,000</strong> / 90 分+資料</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 12</div>
+      <div class="concern-question-title">補助金で IT 投資を進めたい</div>
+      <div class="concern-question-sub">小規模事業者持続化補助金などの申請書類を一緒に整えてほしい</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/doc.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">補助金申請サポート</div>
+        <div class="concern-solution-meta"><strong>¥50,000</strong> 着手 + 成功報酬 10%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concern-card">
+    <div class="concern-question">
+      <div class="concern-question-label mono">CONCERN 13</div>
+      <div class="concern-question-title">業務全体の IT 化を、段階的に進めたい</div>
+      <div class="concern-question-sub">どこから手を付けるかから、一緒に整理したい</div>
+    </div>
+    <div class="concern-arrow">→</div>
+    <div class="concern-solution">
+      <div class="concern-solution-icon"><img src="/brand/icons/chat.svg" alt=""></div>
+      <div class="concern-solution-info">
+        <div class="concern-solution-name">業務改善コンサル(月次型)</div>
+        <div class="concern-solution-meta"><strong>¥200,000</strong> / 6 ヶ月</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Nebulab合同会社 お困りごと別サービスガイド</span>
+    <span class="mono">EST. MAY 2026</span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ページ4: 進め方 + 会社情報                       -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <span class="page-logo serif">Nebulab</span>
+      <span class="page-title-mono">— HOW TO START —</span>
+    </div>
+    <span class="page-num mono">P. 04 / 04</span>
+  </div>
+
+  <div class="section-heading mono">— ご利用の流れ —</div>
+  <h2 class="h2-title">まず 30 分、お話しすることから。</h2>
+  <p class="body-text">
+    「これって相談していい話かな?」と迷ったら、まずはご連絡ください。
+    お困りごとの中身を伺った上で、最適なサービスをご提案します。
+    無料相談は対面(NRT-LOFT)もオンラインも可。
+  </p>
+
+  <div class="flow-list">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-text">お問い合わせ</div>
+      <div class="flow-detail">電話・LINE・<br>メール</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-text">無料相談 30 分</div>
+      <div class="flow-detail">NRT-LOFT へ<br>or お伺いします</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-text">お見積もり</div>
+      <div class="flow-detail">ご提案・<br>無料</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <div class="flow-text">ご契約・着手</div>
+      <div class="flow-detail">納品・<br>運用開始</div>
+    </div>
+  </div>
+
+  <div class="section-heading mono" style="margin-top: 6mm;">— 補足 —</div>
+
+  <p class="body-text">
+    本書は概要のサマリーです。各サービスの詳細(含まれるもの / 含まれないもの・制作プロセス・金額の内訳)は、別冊「受託サービス価格表」「ホームページ制作 詳細ガイド」をご参照ください。
+  </p>
+  <p class="body-text">
+    一つの案件に複数のサービスが組み合わさることも多くあります(例: HP 制作 + 予約システム + Google ビジネスプロフィール整備)。組合せでのお見積もりもお気軽にご相談ください。
+  </p>
+
+  <!-- 会社情報フッター -->
+  <div class="company-block">
+    <div class="company-block-grid">
+      <div class="company-block-left">
+        <div class="company-name serif">Nebulab合同会社</div>
+        <div class="company-info">
+          〒286-0033 千葉県成田市花崎町(NRT-LOFT内)<br>
+          代表社員: 萬代 晃生(Bandai Koki)<br>
+          設立: 2026年5月1日<br>
+          資本金: ¥1,000,000
+        </div>
+      </div>
+      <div class="company-block-right">
+        <div class="label mono">— CONTACT —</div>
+        <div class="contact-line">WEB nebulab.jp</div>
+        <div class="contact-line">MAIL contact@nebulab.jp</div>
+        <div class="contact-line">LINE QR (名刺裏面)</div>
+        <div style="margin-top: 4mm; font-size: 8pt; opacity: 0.7;">
+          まずは 30 分の無料相談から、<br>
+          お気軽にお声がけください。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

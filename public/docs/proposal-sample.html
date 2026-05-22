@@ -192,6 +192,20 @@ html, body {
   margin-bottom: 6mm;
 }
 
+.cover-visual {
+  margin: 4mm 0 0;
+  padding: 0;
+  text-align: center;
+}
+
+.cover-visual img {
+  width: 75%;
+  max-width: 145mm;
+  height: auto;
+  display: inline-block;
+  opacity: 0.85;
+}
+
 .cover-subtitle {
   font-size: 12pt;
   color: #4A4A48;
@@ -417,10 +431,31 @@ html, body {
   margin-bottom: 4mm;
   padding-bottom: 4mm;
   border-bottom: 1px solid #D0CDC4;
+  gap: 4mm;
+}
+
+.proposal-icon {
+  flex-shrink: 0;
+  width: 12mm;
+  height: 12mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FAFAF8;
+  border: 1px solid #D0CDC4;
+  color: #C75D3C;
+  margin-top: 0.5mm;
+}
+
+.proposal-icon img {
+  width: 7mm;
+  height: 7mm;
+  display: block;
 }
 
 .proposal-name-area {
   flex: 1;
+  min-width: 0;
 }
 
 .proposal-plan-name {
@@ -834,6 +869,10 @@ html, body {
       </p>
       <div class="edit-hint">📝 上記を提案の一行サマリーに変更してください</div>
     </div>
+
+    <div class="cover-visual">
+      <img src="/brand/cover-visual.svg" alt="Nebulab サービス群">
+    </div>
   </div>
 
   <div class="cover-bottom">
@@ -952,6 +991,7 @@ html, body {
   <div class="proposal-card recommended">
     <div class="recommended-badge mono">— 推奨プラン —</div>
     <div class="proposal-header">
+      <div class="proposal-icon"><img src="/brand/icons/monitor.svg" alt=""></div>
       <div class="proposal-name-area">
         <div class="proposal-plan-name">HP Standard リニューアル</div>
         <div class="proposal-tagline">5-7ページ構成・WordPress構築・スマホ完全対応</div>
@@ -1005,6 +1045,7 @@ html, body {
   <!-- プラン2 -->
   <div class="proposal-card">
     <div class="proposal-header">
+      <div class="proposal-icon"><img src="/brand/icons/calendar.svg" alt=""></div>
       <div class="proposal-name-area">
         <div class="proposal-plan-name">予約システム導入</div>
         <div class="proposal-tagline">RESERVA を選定・初期設定・運用サポート</div>
@@ -1032,6 +1073,7 @@ html, body {
   <!-- プラン3 -->
   <div class="proposal-card">
     <div class="proposal-header">
+      <div class="proposal-icon"><img src="/brand/icons/map-pin.svg" alt=""></div>
       <div class="proposal-name-area">
         <div class="proposal-plan-name">Googleビジネスプロフィール整備</div>
         <div class="proposal-tagline">Googleマップ最適化・写真撮影・SEO対策</div>

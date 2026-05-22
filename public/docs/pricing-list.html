@@ -172,6 +172,17 @@ html, body {
   line-height: 1.7;
 }
 
+.cover-visual {
+  margin: 14mm -16mm 0;
+  padding: 0;
+}
+
+.cover-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .cover-bottom {
   background: #1A1A18;
   color: #FAFAF8;
@@ -329,10 +340,31 @@ html, body {
   margin-bottom: 1mm;
   padding-bottom: 1mm;
   border-bottom: 1px solid #D0CDC4;
+  gap: 3mm;
+}
+
+.service-icon {
+  flex-shrink: 0;
+  width: 9mm;
+  height: 9mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FAFAF8;
+  border: 1px solid #D0CDC4;
+  color: #C75D3C;
+  margin-top: 0.5mm;
+}
+
+.service-icon img {
+  width: 5.5mm;
+  height: 5.5mm;
+  display: block;
 }
 
 .service-name-area {
   flex: 1;
+  min-width: 0;
 }
 
 .service-name {
@@ -677,6 +709,10 @@ html, body {
         無理なく投資できる価格で、ご提供します。
       </p>
     </div>
+
+    <div class="cover-visual">
+      <img src="/brand/cover-visual.svg" alt="Nebulab サービス群">
+    </div>
   </div>
 
   <div class="cover-bottom">
@@ -849,6 +885,7 @@ html, body {
   <!-- Googleビジネスプロフィール整備 -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/map-pin.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">Googleビジネスプロフィール整備</div>
         <div class="service-tagline">Google検索でお店を見つけてもらう</div>
@@ -873,6 +910,7 @@ html, body {
   <!-- HP診断 -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/doc.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">ホームページ簡易診断</div>
         <div class="service-tagline">今のサイトの課題を可視化</div>
@@ -897,6 +935,7 @@ html, body {
   <!-- AI活用ヒアリング -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/sparkle.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">生成AI活用ヒアリング</div>
         <div class="service-tagline">業務にAIをどう取り入れるか</div>
@@ -921,6 +960,7 @@ html, body {
   <!-- PC/スマホおたすけ 単発 -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/devices.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">PC/スマホおたすけ(単発)</div>
         <div class="service-tagline">「ちょっと困った」を 30 分で解決</div>
@@ -970,6 +1010,7 @@ html, body {
   <!-- オープン応援サブスク(featured) -->
   <div class="service-card featured subscription">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/infinity.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name"><span class="featured-mark">★</span>Nebulab オープン応援サブスク</div>
         <div class="service-tagline">初期費用なしで始められる月額制プラン(オールインワン)</div>
@@ -1042,6 +1083,7 @@ html, body {
   <!-- HP Superlight -->
   <div class="service-card featured">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/monitor.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name"><span class="featured-mark">★</span>HP Superlight</div>
         <div class="service-tagline">名刺代わりの最小ホームページ・お試しプラン</div>
@@ -1146,6 +1188,7 @@ html, body {
   <!-- HP Light -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/monitor.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name"><span class="featured-mark">★</span>HP Light</div>
         <div class="service-tagline">シンプルな1ページ完結型 / 初めての方におすすめ</div>
@@ -1176,6 +1219,7 @@ html, body {
   <!-- HP Standard -->
   <div class="service-card featured">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/monitor.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name"><span class="featured-mark">★★</span>HP Standard</div>
         <div class="service-tagline">しっかり集客できる標準プラン / 主力商品</div>
@@ -1207,6 +1251,7 @@ html, body {
   <!-- HPリニューアル -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/monitor.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">HPリニューアル</div>
         <div class="service-tagline">既存サイトを刷新</div>
@@ -1233,6 +1278,7 @@ html, body {
   <!-- 予約システム導入 -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/calendar.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">予約システム導入</div>
         <div class="service-tagline">電話予約をWebに置き換え</div>
@@ -1258,6 +1304,7 @@ html, body {
   <!-- 初期セットアップ代行 -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/wrench.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">初期セットアップ代行(オプション)</div>
         <div class="service-tagline">ドメイン・サーバー契約から設定まで代行</div>
@@ -1306,6 +1353,7 @@ html, body {
   <!-- HP Premium -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/monitor.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">HP Premium</div>
         <div class="service-tagline">オリジナルデザインの本格ブランドサイト</div>
@@ -1330,6 +1378,7 @@ html, body {
   <!-- EC Shopify -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/cart.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">EC Shopify構築</div>
         <div class="service-tagline">Shopifyで本格EC</div>
@@ -1355,6 +1404,7 @@ html, body {
   <!-- EC BASE -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/cart.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">EC BASE / STORES構築</div>
         <div class="service-tagline">手軽なEC構築</div>
@@ -1379,6 +1429,7 @@ html, body {
   <!-- LP単発 -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/monitor.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">LP単発制作</div>
         <div class="service-tagline">キャンペーン用ランディングページ</div>
@@ -1402,6 +1453,7 @@ html, body {
   <!-- 業務改善コンサル -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/chat.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">業務改善コンサル(月次型)</div>
         <div class="service-tagline">業務全体のIT化を6ヶ月で</div>
@@ -1425,6 +1477,7 @@ html, body {
   <!-- 補助金申請サポート -->
   <div class="service-card">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/doc.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name"><span class="featured-mark">★</span>補助金申請サポート</div>
         <div class="service-tagline">小規模事業者持続化補助金等の申請代行・サポート</div>
@@ -1474,6 +1527,7 @@ html, body {
   <!-- おたすけ月額 -->
   <div class="service-card subscription">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/devices.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name"><span class="featured-mark">★</span>PC/スマホおたすけ月額</div>
         <div class="service-tagline">気軽に聞ける、地域のIT相談係(超低価格)</div>
@@ -1497,6 +1551,7 @@ html, body {
   <!-- HP保守 Light -->
   <div class="service-card subscription">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/gear.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name"><span class="featured-mark">★</span>HP保守 Light</div>
         <div class="service-tagline">サイトを安全に最新に保つ・ドメイン/サーバー込み</div>
@@ -1522,6 +1577,7 @@ html, body {
   <!-- HP保守 Standard -->
   <div class="service-card subscription">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/gear.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">HP保守 Standard</div>
         <div class="service-tagline">コンテンツ運用も含む</div>
@@ -1544,6 +1600,7 @@ html, body {
   <!-- IT顧問 Light -->
   <div class="service-card subscription">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/chat.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name"><span class="featured-mark">★</span>IT顧問 Light</div>
         <div class="service-tagline">気軽に相談できるIT顧問</div>
@@ -1566,6 +1623,7 @@ html, body {
   <!-- IT顧問 Standard -->
   <div class="service-card subscription">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/chat.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">IT顧問 Standard</div>
         <div class="service-tagline">実作業もサポート</div>
@@ -1588,6 +1646,7 @@ html, body {
   <!-- Google広告運用 -->
   <div class="service-card subscription">
     <div class="service-header">
+      <div class="service-icon"><img src="/brand/icons/megaphone.svg" alt=""></div>
       <div class="service-name-area">
         <div class="service-name">Google広告運用代行</div>
         <div class="service-tagline">Google広告で集客</div>

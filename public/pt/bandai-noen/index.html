@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="成田の畑から、季節の恵みを。萬代農園は千葉県成田市で家族で営む小さな農園です。ハウスのほうれん草、路地のジャガイモ・にんじんを中心に、季節の野菜を畑から直接お届けしています。">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>萬代農園 — 成田の畑から、季節の恵みを。</title>
 <style>
 :root {
@@ -156,16 +156,39 @@ img, svg, iframe { max-width: 100%; display: block; }
 .hero-image {
   position: absolute;
   inset: 0;
-  background-image: url("/pt/bandai-noen/hero.png");
   background-size: cover;
   background-position: center 40%;
   background-repeat: no-repeat;
-  animation: heroZoom 20s ease-out forwards;
+  transform-origin: center 45%;
+  opacity: 0;
+  /* heroFade = クロスフェード(全体周期) / heroZoom = 表示中のズームアウト */
+  animation: heroFade 30s infinite, heroZoom 30s infinite;
+  animation-timing-function: ease-in-out, cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* 3枚を 10秒ずつずらして表示(周期 30s = 10s × 3枚) */
+.hero-image.h1 { background-image: url("/pt/bandai-noen/hero.png");          animation-delay: 0s; }
+.hero-image.h2 { background-image: url("/pt/bandai-noen/hero-2.png");  animation-delay: 10s; }
+.hero-image.h3 { background-image: url("/pt/bandai-noen/hero-3.png");  animation-delay: 20s; }
+
+@keyframes heroFade {
+  0%   { opacity: 0; }
+  4%   { opacity: 1; }
+  30%  { opacity: 1; }
+  37%  { opacity: 0; }
+  100% { opacity: 0; }
 }
 
 @keyframes heroZoom {
-  from { transform: scale(1.06); }
-  to { transform: scale(1); }
+  0%   { transform: scale(1.22); }
+  33%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image { animation: none; }
+  .hero-image.h1 { opacity: 1; transform: scale(1); }
+  .hero-image.h2, .hero-image.h3 { opacity: 0; }
 }
 
 .hero-veil {
@@ -206,6 +229,7 @@ img, svg, iframe { max-width: 100%; display: block; }
   color: rgba(250, 247, 240, 0.9);
   margin-bottom: 24px;
   text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -228,7 +252,7 @@ img, svg, iframe { max-width: 100%; display: block; }
   margin-bottom: 24px;
   letter-spacing: 0.04em;
   color: var(--bg);
-  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 2px 30px rgba(0, 0, 0, 0.45);
   max-width: 800px;
 }
 
@@ -239,7 +263,7 @@ img, svg, iframe { max-width: 100%; display: block; }
   margin-top: 16px;
   letter-spacing: 0.22em;
   font-weight: 300;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7), 0 1px 14px rgba(0, 0, 0, 0.45);
 }
 
 @media (max-width: 880px) {
@@ -257,7 +281,7 @@ img, svg, iframe { max-width: 100%; display: block; }
   color: rgba(250, 247, 240, 0.92);
   margin-bottom: 32px;
   max-width: 540px;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7), 0 1px 14px rgba(0, 0, 0, 0.45);
 }
 
 .hero-ctas {
@@ -840,22 +864,24 @@ img, svg, iframe { max-width: 100%; display: block; }
   border: 1px solid rgba(250, 247, 240, 0.15);
 }
 
-.gphoto.span-2 { grid-column: span 2; }
+.gphoto.span-2 { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
 
-@media (max-width: 480px) { .gphoto.span-2 { grid-column: span 1; } }
+@media (max-width: 480px) { .gphoto.span-2 { grid-column: span 1; grid-row: auto; aspect-ratio: 1; } }
 
 .g1 {
   background: url("/pt/bandai-noen/potato-field.png") center/cover no-repeat;
 }
-.g2 { background: linear-gradient(160deg, var(--terra) 0%, var(--terra-deep) 100%); }
-.g3 { background: linear-gradient(180deg, var(--gold) 0%, #8B6F47 100%); }
-.g4 { background: linear-gradient(120deg, var(--green-deep) 0%, var(--green-dark) 100%); }
-.g5 { background: linear-gradient(200deg, var(--terra) 30%, var(--gold) 100%); }
+.g2 { background: url("/pt/bandai-noen/gallery-2.png") center/cover no-repeat; }
+.g3 { background: url("/pt/bandai-noen/gallery-3.png") center/cover no-repeat; }
+.g4 { background: url("/pt/bandai-noen/gallery-4.png") center/cover no-repeat; }
+.g5 { background: url("/pt/bandai-noen/gallery-5.png") center/cover no-repeat; }
 .g6 {
   background: url("/pt/bandai-noen/carrot-field.png") center/cover no-repeat;
 }
-.g7 { background: linear-gradient(220deg, var(--green-dark) 0%, var(--gold) 100%); }
-.g8 { background: linear-gradient(135deg, var(--terra-deep) 0%, var(--green-deep) 100%); }
+.g7 { background: url("/pt/bandai-noen/gallery-7.png") center/cover no-repeat; }
+.g8 { background: url("/pt/bandai-noen/gallery-8.png") center/cover no-repeat; }
+.g9 { background: url("/pt/bandai-noen/gallery-9.png") center/cover no-repeat; }
+.g10 { background: url("/pt/bandai-noen/gallery-10.png") center/cover no-repeat; }
 
 .gallery-cta {
   text-align: center;
@@ -1046,7 +1072,9 @@ img, svg, iframe { max-width: 100%; display: block; }
 
 <!-- ヒーロー (フルブリード写真 + コピーオーバーレイ) -->
 <section id="top" class="hero">
-  <div class="hero-image" role="img" aria-label="朝の畑で野菜を収穫している風景"></div>
+  <div class="hero-image h1" role="img" aria-label="朝の畑で野菜を収穫している風景"></div>
+  <div class="hero-image h2" aria-hidden="true"></div>
+  <div class="hero-image h3" aria-hidden="true"></div>
   <div class="hero-veil"></div>
 
   <div class="hero-corner-tl"></div>
@@ -1289,9 +1317,11 @@ img, svg, iframe { max-width: 100%; display: block; }
       <div class="gphoto g3"></div>
       <div class="gphoto g4"></div>
       <div class="gphoto g5"></div>
-      <div class="gphoto g6 span-2"></div>
       <div class="gphoto g7"></div>
       <div class="gphoto g8"></div>
+      <div class="gphoto g6 span-2"></div>
+      <div class="gphoto g9"></div>
+      <div class="gphoto g10"></div>
     </div>
 
   </div>

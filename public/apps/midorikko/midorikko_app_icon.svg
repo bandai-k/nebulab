@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!--
+    みどりっこ App Icon
+    1024 x 1024 / 透過なし / 角丸なし（Appleが自動でマスクします）
+
+    設計メモ:
+    - ホーム画面では実際には約120pxで表示されるため、要素は3つまでに絞っている
+    - 鉢の顔は小さいサイズだと潰れるので、目と口は太めの線で描いている
+    - 背景は #F8F6F0 より少し濃い生成りにして、白い壁紙でもアイコンの輪郭が立つようにした
+    - セーフエリア: 中央の約80%（102〜922px）に主要素を収める
+  -->
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F4F0E4"/>
+      <stop offset="100%" stop-color="#E8E3D3"/>
+    </linearGradient>
+    <linearGradient id="potBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FBF7EC"/>
+      <stop offset="100%" stop-color="#EDE6D3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景（角丸なしの正方形。iOSが自動でマスクする） -->
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+
+  <!-- 葉の後ろのやわらかい光 -->
+  <circle cx="512" cy="430" r="250" fill="#FFFFFF" opacity="0.35"/>
+
+  <!-- 茎 -->
+  <path d="M512 620 V470" stroke="#7E9A5C" stroke-width="34" stroke-linecap="round"/>
+
+  <!-- 右の葉（濃い） -->
+  <path d="M512 486
+           C512 380 566 300 654 286
+           C700 279 726 328 700 372
+           C654 450 512 486 512 486 Z"
+        fill="#728C4C"/>
+  <path d="M654 300 C600 340 552 410 520 476"
+        stroke="#8CA768" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.55"/>
+
+  <!-- 左の葉（淡い） -->
+  <path d="M512 510
+           C512 412 462 340 380 328
+           C336 322 312 366 336 406
+           C378 476 512 510 512 510 Z"
+        fill="#9DB57C"/>
+  <path d="M380 342 C430 378 474 440 504 500"
+        stroke="#B4C79A" stroke-width="9" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+  <!-- 鉢のリム -->
+  <path d="M318 596
+           h388
+           a26 26 0 0 1 26 26
+           v36
+           H292
+           v-36
+           a26 26 0 0 1 26 -26 Z"
+        fill="#FBF7EC"/>
+
+  <!-- 鉢の本体 -->
+  <path d="M304 658
+           h416
+           l-42 250
+           a44 44 0 0 1 -43 37
+           H389
+           a44 44 0 0 1 -43 -37 Z"
+        fill="url(#potBody)"/>
+
+  <!-- 鉢の陰影（右下） -->
+  <path d="M560 658 h160 l-42 250 a44 44 0 0 1 -43 37 h-96 Z"
+        fill="#000000" opacity="0.045"/>
+
+  <!-- 顔 -->
+  <circle cx="446" cy="768" r="21" fill="#7E8471"/>
+  <circle cx="578" cy="768" r="21" fill="#7E8471"/>
+  <path d="M470 818 C494 842 530 842 554 818"
+        stroke="#7E8471" stroke-width="18" stroke-linecap="round" fill="none"/>
+
+  <!-- ほお -->
+  <circle cx="400" cy="806" r="17" fill="#E3B7B7" opacity="0.55"/>
+  <circle cx="624" cy="806" r="17" fill="#E3B7B7" opacity="0.55"/>
+</svg>

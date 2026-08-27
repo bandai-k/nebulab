@@ -46,6 +46,16 @@ export const HEADER_NAV: HeaderNavItem[] = [
       { key: "proj-nebula", href: "/projects/nebula-place", label: "Nebula Place" },
     ],
   },
+  {
+    key: "apps",
+    href: "/apps",
+    label: "Apps",
+    children: [
+      { key: "apps-all", href: "/apps", label: "すべてのアプリ" },
+      { key: "apps-garage-techo", href: "/apps/garage-techo", label: "ガレージ手帳" },
+      { key: "apps-midorikko", href: "/apps/midorikko", label: "みどりっこ" },
+    ],
+  },
   { key: "showcase", href: "/showcase", label: "Showcase" },
   { key: "news", href: "/news", label: "News" },
   {

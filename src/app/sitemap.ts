@@ -15,8 +15,10 @@ const STATIC_PAGES: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/lab", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.7, changeFrequency: "yearly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/apps", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/apps/garage-techo", priority: 0.8, changeFrequency: "monthly" },
   { path: "/apps/midorikko", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/apps/seibi-techo", priority: 0.8, changeFrequency: "monthly" },
+  // App Store 審査に提出済みの URL。移動・リダイレクトを設定しないこと。
   { path: "/apps/seibi-techo/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/apps/midorikko/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },

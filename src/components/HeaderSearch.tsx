@@ -8,6 +8,7 @@ const CATEGORY_LABEL: Record<SearchItem["category"], string> = {
   PAGE: "PAGE",
   BUSINESS: "BUSINESS",
   PROJECT: "PROJECT",
+  APP: "APP",
 };
 
 function isExternal(href: string) {

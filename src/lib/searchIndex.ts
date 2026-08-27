@@ -1,7 +1,8 @@
 import { businessAreas } from "@/data/company";
 import { projects } from "@/data/projects";
+import { apps } from "@/data/apps";
 
-export type SearchCategory = "PAGE" | "BUSINESS" | "PROJECT";
+export type SearchCategory = "PAGE" | "BUSINESS" | "PROJECT" | "APP";
 
 export type SearchItem = {
   id: string;
@@ -76,6 +77,14 @@ const pageItems: SearchItem[] = [
     keywords: ["R&D", "研究開発", "実験", "検証"],
   },
   {
+    id: "page-apps",
+    title: "Apps / アプリ",
+    category: "PAGE",
+    description: "Nebulab が開発・公開している iOS アプリの一覧。",
+    href: "/apps",
+    keywords: ["アプリ", "iOS", "アプリ一覧", "app"],
+  },
+  {
     id: "page-contact",
     title: "Contact / お問い合わせ",
     category: "PAGE",
@@ -111,10 +120,26 @@ const projectItems: SearchItem[] = projects.map((p) => {
   };
 });
 
+const appItems: SearchItem[] = apps.map((a) => ({
+  id: `app-${a.id}`,
+  title: a.name,
+  category: "APP",
+  description: a.tagline,
+  href: `/apps/${a.id}`,
+  keywords: [
+    a.nameEn,
+    a.category,
+    a.platform,
+    a.description,
+    ...(a.tags ?? []),
+  ],
+}));
+
 export const searchIndex: SearchItem[] = [
   ...pageItems,
   ...businessItems,
   ...projectItems,
+  ...appItems,
 ];
 
 export function scoreItem(item: SearchItem, query: string): number {

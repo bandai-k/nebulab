@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import StatusBar from "@/components/StatusBar";
-import HeroVisual from "@/components/HeroVisual";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { apps, findApp, type AppStatus } from "@/data/apps";
+import AppIcon from "@/components/apps/AppIcon";
+import AppScreenshots from "@/components/apps/AppScreenshots";
+import AppParagraphs from "@/components/apps/AppParagraphs";
+import { apps, findApp, type AppEntry, type AppStatus } from "@/data/apps";
 import { company } from "@/data/company";
 
 const STATUS_STYLES: Record<AppStatus, string> = {
@@ -17,13 +19,8 @@ const STATUS_LABELS: Record<AppStatus, string> = {
   COMING_SOON: "COMING SOON",
 };
 
-function hashSeed(s: string) {
-  let h = 0;
-  for (let i = 0; i < s.length; i++) {
-    h = ((h << 5) - h + s.charCodeAt(i)) | 0;
-  }
-  return Math.abs(h);
-}
+const bodyTextClass =
+  "text-sm leading-[2.1] text-cyber-text-secondary md:text-base";
 
 export async function generateStaticParams() {
   return apps.map((a) => ({ appId: a.id }));
@@ -39,15 +36,59 @@ export async function generateMetadata({
   if (!app) return { title: "App Not Found" };
 
   const url = `/apps/${app.id}`;
-  const ogTitle = `${app.name} | ${company.name}`;
+  const ogTitle = app.metaTitle ?? `${app.name} | ${company.name}`;
+  // OG は 1200×630 の専用画像を優先し、無ければアイコンで代替する
+  const ogImage = app.ogImage ?? (app.icon ? { src: app.icon, width: 256, height: 256 } : undefined);
+  const ogImages = ogImage
+    ? [{ url: ogImage.src, width: ogImage.width, height: ogImage.height, alt: app.name }]
+    : undefined;
 
   return {
-    title: app.name,
+    // metaTitle があるときは指定どおりの文字列をそのまま <title> にする
+    title: app.metaTitle ? { absolute: app.metaTitle } : app.name,
     description: app.description,
     alternates: { canonical: url },
-    openGraph: { url, title: ogTitle, description: app.description },
-    twitter: { title: ogTitle, description: app.description },
+    openGraph: {
+      url,
+      title: ogTitle,
+      description: app.description,
+      ...(ogImages ? { images: ogImages } : {}),
+    },
+    twitter: {
+      title: ogTitle,
+      description: app.description,
+      ...(ogImage ? { images: [ogImage.src] } : {}),
+    },
   };
+}
+
+/** App Store ボタン。appStoreUrl が空のときは「近日公開」の非活性表示にする。 */
+function AppStoreButton({ app }: { app: AppEntry }) {
+  if (app.appStoreUrl) {
+    return (
+      <a
+        href={app.appStoreUrl}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="inline-flex rounded-sm bg-cyber-accent/80 px-8 py-3.5 font-mono text-[11px] tracking-[0.3em] text-white shadow-[0_0_30px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.3)] transition-shadow hover:shadow-[0_0_50px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.5)]"
+      >
+        App Store で見る ↗
+      </a>
+    );
+  }
+
+  // URL 未設定。公開済みのアプリに「近日公開」と出すのは誤りなので状態に合わせる。
+  const label = app.status === "PUBLISHED" ? "APP STORE 公開中" : "近日公開";
+
+  return (
+    <button
+      type="button"
+      disabled
+      className="inline-flex cursor-not-allowed rounded-sm border border-cyber-border px-8 py-3.5 font-mono text-[11px] tracking-[0.3em] text-cyber-text-muted"
+    >
+      {label}
+    </button>
+  );
 }
 
 export default async function AppDetailPage({
@@ -60,109 +101,98 @@ export default async function AppDetailPage({
   if (!app) notFound();
 
   return (
-    <main className="mx-auto max-w-5xl px-5 py-24 md:px-10">
+    <main className="mx-auto max-w-5xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
       {/* ── Breadcrumb ── */}
       <nav
         aria-label="パンくずリスト"
         className="mb-8 flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase"
       >
         <Link
-          href="/showcase"
+          href="/apps"
           className="text-cyber-text-muted transition-colors hover:text-white"
         >
-          Showcase
+          Apps
         </Link>
         <span className="text-cyber-text-muted">/</span>
         <span className="text-cyber-accent">{app.name}</span>
       </nav>
 
-      {/* ── Page Header ── */}
-      <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
-        <div>
-          <StatusBar
-            items={[
-              { label: `${app.nameEn}:${STATUS_LABELS[app.status]}`, pulse: true },
-              ...(app.statusNote ? [{ label: app.statusNote }] : []),
-            ]}
-            className="mb-10"
-          />
-          <h1 className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl">
-            {app.name}
-          </h1>
-          <p className="mt-4 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
-            {app.platform} / {app.category}
-          </p>
-          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text md:text-base">
-            {app.tagline}
-          </p>
+      {/* ── Hero ── */}
+      <section id="hero" className="scroll-mt-28 md:scroll-mt-32">
+        <StatusBar
+          items={[
+            { label: `${app.nameEn}:${STATUS_LABELS[app.status]}`, pulse: true },
+            ...(app.statusNote ? [{ label: app.statusNote }] : []),
+            ...(app.released ? [{ label: `RELEASE:${app.released}` }] : []),
+          ]}
+          className="mb-10"
+        />
 
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span
-              className={`inline-flex items-center rounded-sm border px-2 py-0.5 font-mono text-[10px] tracking-wider ${STATUS_STYLES[app.status]}`}
-            >
-              {STATUS_LABELS[app.status]}
-            </span>
-            {app.tags?.map((tag) => (
-              <span
-                key={tag}
-                className="font-mono text-[10px] tracking-wider text-cyber-text-muted"
-              >
-                #{tag}
-              </span>
-            ))}
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
+          <AppIcon
+            src={app.icon}
+            name={app.name}
+            nameEn={app.nameEn}
+            fallbackStyle={app.thumbStyle}
+            className="w-24 md:w-36 lg:w-40"
+          />
+
+          <div className="min-w-0">
+            <h1 className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl">
+              {app.name}
+            </h1>
+            <p className="mt-3 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
+              {app.nameEn} / {app.category}
+            </p>
+            <p className="mt-6 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text md:text-base">
+              {app.tagline}
+            </p>
+
+            <div className="mt-8">
+              <AppStoreButton app={app} />
+            </div>
+
+            <p className="mt-5 font-mono text-[11px] tracking-[0.2em] text-cyber-text-secondary">
+              {app.osRequirement} ／ {app.price}
+            </p>
           </div>
         </div>
-        <div className="hidden md:block">
-          <HeroVisual
-            seed={hashSeed(app.id)}
-            className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]"
-          />
-        </div>
-      </div>
 
-      {/* ── Hero visual ── */}
-      <section className="mt-16">
-        <div
-          className="relative flex aspect-[16/9] items-center justify-center overflow-hidden border border-cyber-border-dim"
-          style={{ background: app.thumbStyle }}
-          aria-hidden="true"
-        >
-          {app.thumbLogo ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={app.thumbLogo}
-              alt={app.name}
-              className="h-auto w-[40%] max-w-[220px]"
-            />
-          ) : (
-            <div className="flex flex-col items-center text-white">
-              <div className="font-display text-3xl tracking-wide md:text-5xl">
-                {app.name}
-              </div>
-              <div className="mt-3 font-mono text-[10px] tracking-[0.4em] opacity-75">
-                {app.nameEn}
-              </div>
-            </div>
-          )}
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <span
+            className={`inline-flex items-center rounded-sm border px-2 py-0.5 font-mono text-[10px] tracking-wider ${STATUS_STYLES[app.status]}`}
+          >
+            {STATUS_LABELS[app.status]}
+          </span>
+          {app.tags?.map((tag) => (
+            <span
+              key={tag}
+              className="font-mono text-[10px] tracking-wider text-cyber-text-muted"
+            >
+              #{tag}
+            </span>
+          ))}
         </div>
       </section>
 
       {/* ── Overview ── */}
       {app.body && app.body.length > 0 && (
-        <section className="mt-12 border-t border-cyber-border-dim pt-12">
+        <section
+          id="overview"
+          className="section-tinted mt-10 scroll-mt-28 rounded-sm border border-cyber-border-dim p-6 md:mt-12 md:scroll-mt-32 md:p-10"
+        >
           <ScrollReveal>
-            <div className="section-eyebrow-line mb-12">
+            <div className="section-eyebrow-line mb-8">
               <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
                 Overview
               </span>
             </div>
+            <h2 className="font-display text-2xl leading-[1.4] tracking-wide md:text-3xl">
+              概要
+            </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <div className="space-y-6 text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
-              {app.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+            <AppParagraphs items={app.body} className={`mt-8 ${bodyTextClass}`} />
           </ScrollReveal>
         </section>
       )}
@@ -170,31 +200,67 @@ export default async function AppDetailPage({
       {/* ── Sections ── */}
       {app.sections?.map((section) => (
         <section
-          key={section.heading}
-          className="mt-16 border-t border-cyber-border-dim pt-12"
+          key={section.id}
+          id={section.id}
+          className="section-tinted mt-10 scroll-mt-28 rounded-sm border border-cyber-border-dim p-6 md:mt-12 md:scroll-mt-32 md:p-10"
         >
           <ScrollReveal>
-            <div className="section-eyebrow-line mb-12">
+            <div className="section-eyebrow-line mb-8">
               <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
-                {section.heading}
+                {section.eyebrow}
               </span>
             </div>
+            <h2 className="font-display text-2xl leading-[1.4] tracking-wide md:text-3xl">
+              {section.heading}
+            </h2>
           </ScrollReveal>
 
           {section.body && (
             <ScrollReveal delay={0.1}>
-              <p className="text-sm leading-8 text-cyber-text-secondary md:text-base">
-                {section.body}
-              </p>
+              <AppParagraphs
+                items={section.body}
+                className={`mt-8 ${bodyTextClass}`}
+              />
+            </ScrollReveal>
+          )}
+
+          {section.features && (
+            <ScrollReveal delay={0.1}>
+              <div className="mt-8 grid gap-5 md:grid-cols-3">
+                {section.features.map((feature, i) => (
+                  <div
+                    key={feature.title}
+                    className="glass-card flex h-full flex-col p-6 md:p-7"
+                  >
+                    <span className="font-mono text-[10px] tracking-[0.3em] text-cyber-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-4 text-base font-medium leading-[1.7] tracking-wide text-cyber-text">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-[2] text-cyber-text-secondary">
+                      {feature.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+          )}
+
+          {section.media === "screenshots" && app.screenshots && (
+            <ScrollReveal delay={0.1}>
+              <div className="mt-8">
+                <AppScreenshots shots={app.screenshots} />
+              </div>
             </ScrollReveal>
           )}
 
           {section.items && (
             <ScrollReveal delay={0.1}>
-              <ul className="space-y-3 text-sm leading-7 text-cyber-text-secondary md:text-base">
+              <ul className="mt-8 space-y-3 text-sm leading-7 text-cyber-text-secondary md:text-base">
                 {section.items.map((item, i) => (
-                  <li key={i} className="flex gap-4">
-                    <span className="font-mono text-[10px] tracking-wider text-cyber-accent">
+                  <li key={item} className="flex gap-4">
+                    <span className="shrink-0 font-mono text-[10px] leading-7 tracking-wider text-cyber-accent">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span>{item}</span>
@@ -203,51 +269,68 @@ export default async function AppDetailPage({
               </ul>
             </ScrollReveal>
           )}
+
+          {section.afterItems && (
+            <ScrollReveal delay={0.1}>
+              <AppParagraphs
+                items={section.afterItems}
+                className={`mt-8 ${bodyTextClass}`}
+              />
+            </ScrollReveal>
+          )}
+
+          {section.callout && (
+            <ScrollReveal delay={0.1}>
+              <div className="glass-card corner-accent mt-8 p-6 md:p-8">
+                <p className="text-sm leading-[2.1] text-cyber-text md:text-base">
+                  {section.callout.lead}
+                </p>
+                {section.callout.body && (
+                  <p className="mt-3 text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+                    {section.callout.body}
+                  </p>
+                )}
+              </div>
+            </ScrollReveal>
+          )}
         </section>
       ))}
 
       {/* ── Links / CTA ── */}
-      <section className="mt-16 border-t border-cyber-border-dim pt-12">
+      <section
+        id="links"
+        className="section-tinted mt-10 scroll-mt-28 rounded-sm border border-cyber-border-dim p-6 md:mt-12 md:scroll-mt-32 md:p-10"
+      >
         <ScrollReveal>
-          <div className="flex flex-wrap items-center gap-5">
-            {app.appStoreUrl ? (
-              <a
-                href={app.appStoreUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="rounded-sm bg-cyber-accent/80 px-9 py-3.5 font-mono text-[11px] tracking-[0.3em] text-white shadow-[0_0_30px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.3)] transition-shadow hover:shadow-[0_0_50px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.5)]"
-              >
-                App Store で見る ↗
-              </a>
-            ) : (
-              <span className="rounded-sm border border-cyber-border px-9 py-3.5 font-mono text-[11px] tracking-[0.3em] text-cyber-text-muted">
-                {app.status === "PUBLISHED" ? "APP STORE 公開中" : "COMING SOON"}
-              </span>
-            )}
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-5">
+            <AppStoreButton app={app} />
             <Link
               href={app.privacyUrl}
               className="font-mono text-xs tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-accent"
             >
               プライバシーポリシー →
             </Link>
-            <Link
-              href="/contact"
+            <a
+              href={`mailto:${company.email}`}
               className="font-mono text-xs tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-accent"
             >
-              お問い合わせ →
-            </Link>
+              {company.email} →
+            </a>
           </div>
+          <p className="mt-8 font-mono text-[10px] tracking-[0.25em] text-cyber-text-muted">
+            提供: {company.name}
+          </p>
         </ScrollReveal>
       </section>
 
       {/* ── Back link ── */}
-      <section className="mt-16 border-t border-cyber-border-dim pt-12">
+      <section className="mt-10 md:mt-12">
         <ScrollReveal>
           <Link
-            href="/showcase"
+            href="/apps"
             className="font-mono text-xs tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-accent"
           >
-            ← ショーケースに戻る
+            ← アプリ一覧に戻る
           </Link>
         </ScrollReveal>
       </section>

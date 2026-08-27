@@ -70,7 +70,7 @@ const organizationJsonLd = {
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto max-w-5xl px-5 py-24 md:px-10">
+    <main className="mx-auto max-w-5xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

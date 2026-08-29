@@ -96,11 +96,10 @@ export const apps: AppEntry[] = [
     description:
       "ZRX1200Rの持ち主が自分のために作った整備手帳。開いた瞬間に次にやるべき整備がわかる。ZRX / ZZR1100 / Z900RS 対応。iOS向け、無料。",
     metaTitle: "ガレージ手帳 — バイクの点検・整備・ツーリング日記",
-    status: "COMING_SOON",
-    statusNote: "APP STORE 審査中",
+    status: "PUBLISHED",
+    statusNote: "APP STORE 公開中",
     released: "2026-08",
-    // 公開後に App Store の URL を入れる。空のあいだは「近日公開」を非活性で表示する。
-    appStoreUrl: "",
+    appStoreUrl: "https://apps.apple.com/jp/app/id6805839454",
     // App Store 審査に提出済みの URL。移動・リダイレクトを設定しないこと。
     privacyUrl: "/apps/seibi-techo/privacy",
     icon: "/apps/garage-techo/icon-256.png",

@@ -9,6 +9,11 @@ export type HeaderNavItem = {
   href: string;
   label: string;
   children?: HeaderNavChild[];
+  /**
+   * href 以外に、この項目を「現在地」として扱うパスの接頭辞。
+   * 例: アプリの詳細(/apps/...)も PRODUCTS の配下として扱う。
+   */
+  match?: string[];
 };
 
 /**
@@ -43,6 +48,8 @@ export const HEADER_NAV: HeaderNavItem[] = [
     // §5.1 はこの項目を PRODUCTS と表記している。ルートは /projects のまま。
     href: "/projects",
     label: "Products",
+    // アプリの詳細ページもプロダクトの配下なので、ここを現在地にする。
+    match: ["/apps"],
     children: [
       { key: "proj-all", href: "/projects", label: "すべてのプロダクト" },
       { key: "proj-midorikko", href: "/apps/midorikko", label: "みどりっこ" },

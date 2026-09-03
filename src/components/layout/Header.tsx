@@ -3,11 +3,24 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BRAND } from "@/constants/brand";
-import { HEADER_NAV } from "@/constants/navigation";
+import { HEADER_NAV, type HeaderNavItem } from "@/constants/navigation";
+
+/**
+ * その項目が現在地かどうか。
+ * 配下のページ(/about/mvv など)でも親の項目を現在地として扱う。
+ */
+function isCurrent(item: HeaderNavItem, pathname: string): boolean {
+  const paths = [item.href, ...(item.match ?? [])];
+  return paths.some((base) =>
+    base === "/" ? pathname === "/" : pathname === base || pathname.startsWith(`${base}/`),
+  );
+}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname() ?? "/";
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -42,14 +55,27 @@ export default function Header() {
 
           {/* Desktop nav (centered) */}
           <nav className="col-start-2 hidden items-center justify-self-center gap-8 md:flex">
-            {HEADER_NAV.map((item) => (
+            {HEADER_NAV.map((item) => {
+              const current = isCurrent(item, pathname);
+              return (
               <div
                 key={item.key}
                 className="group relative inline-flex items-center"
               >
+                {/*
+                  現在地とホバーは同じ表現(アクセント色＋下線)にする。§3.2 の
+                  「アクティブ状態はアクセント1色」に従う。下線は border で
+                  引き、既定を transparent にしておくことで、状態が変わっても
+                  文字が動かないようにしている。
+                */}
                 <Link
                   href={item.href}
-                  className="text-[0.6875rem] font-medium uppercase leading-none tracking-[0.18em] text-ink-sub transition-colors group-hover:text-ink"
+                  aria-current={current ? "page" : undefined}
+                  className={`inline-block border-b-2 pb-1.5 text-[0.6875rem] font-medium uppercase leading-none tracking-[0.18em] transition-colors ${
+                    current
+                      ? "border-accent text-accent"
+                      : "border-transparent text-ink-sub group-hover:border-accent group-hover:text-accent"
+                  }`}
                 >
                   {item.label}
                 </Link>
@@ -73,7 +99,8 @@ export default function Header() {
                   </div>
                 )}
               </div>
-            ))}
+              );
+            })}
           </nav>
 
           {/* 問い合わせボタン(右)。§5.1 のとおりアクセントの塗り＋メールアイコン。 */}
@@ -126,11 +153,18 @@ export default function Header() {
       {menuOpen && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-ground pb-12 pt-24 md:hidden">
           <nav className="flex flex-col items-center gap-8 px-5 py-6">
-            {HEADER_NAV.map((item) => (
+            {HEADER_NAV.map((item) => {
+              const current = isCurrent(item, pathname);
+              return (
               <div key={item.key} className="text-center">
                 <Link
                   href={item.href}
-                  className="text-sm font-medium uppercase tracking-[0.22em] text-ink transition-colors hover:text-accent"
+                  aria-current={current ? "page" : undefined}
+                  className={`inline-block border-b-2 pb-1.5 text-sm font-medium uppercase tracking-[0.22em] transition-colors ${
+                    current
+                      ? "border-accent text-accent"
+                      : "border-transparent text-ink hover:border-accent hover:text-accent"
+                  }`}
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.label}
@@ -151,7 +185,8 @@ export default function Header() {
                   </ul>
                 )}
               </div>
-            ))}
+              );
+            })}
           </nav>
         </div>
       )}

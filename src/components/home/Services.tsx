@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
+import Reveal from "@/components/ui/Reveal";
 import { NUMBER_ASSETS } from "@/components/decor/brushAssets";
 import ViewMore from "@/components/ui/ViewMore";
 
@@ -53,13 +54,15 @@ export default function Services() {
   return (
     <section id="services" className="border-b border-rule py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
-        <SectionHeading
-          label="SERVICES"
-          heading="つくることと、つくれるようにすること。"
-          color="amber"
-        />
+        <Reveal stagger={0}>
+          <SectionHeading
+            label="SERVICES"
+            heading="つくることと、つくれるようにすること。"
+            color="amber"
+          />
+        </Reveal>
 
-        <ul className="mt-16 border-t border-rule">
+        <Reveal as="ul" className="mt-16 border-t border-rule" delay={120}>
           {services.map((s) => {
             const num = NUMBER_ASSETS[s.code];
             return (
@@ -97,7 +100,7 @@ export default function Services() {
               </li>
             );
           })}
-        </ul>
+        </Reveal>
       </div>
     </section>
   );

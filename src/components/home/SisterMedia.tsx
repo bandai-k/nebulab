@@ -1,4 +1,5 @@
 import BrushField from "@/components/decor/BrushField";
+import Reveal from "@/components/ui/Reveal";
 import { DEPTH } from "@/components/decor/brushAssets";
 
 /**
@@ -49,7 +50,7 @@ export default function SisterMedia() {
       <BrushField layers={[...LAYERS]} sizes="130vw" />
 
       <div className="relative mx-auto max-w-6xl px-6 py-36 md:px-12 lg:px-16 md:py-56">
-        <div className="max-w-xl">
+        <Reveal className="max-w-xl">
           <p className="section-label">SISTER MEDIA</p>
 
           <p className="mt-8 text-sm font-medium tracking-[0.28em] text-ink">
@@ -72,7 +73,7 @@ export default function SisterMedia() {
           >
             NRT LOFT を見る ↗
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

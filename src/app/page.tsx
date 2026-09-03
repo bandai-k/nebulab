@@ -28,10 +28,20 @@ export const metadata: Metadata = {
  */
 const HERO_BRUSH = [
   /*
-   * 右の層。端末の背後を通り、右へ抜ける。
-   * 本文は左半分にあるので、2段組になる lg 以上では右へ寄せて
-   * 文字の裏に回り込ませない(§3.4)。実測で本文の右端から 40px 前後は
-   * 空く。これ以上左へ寄せると本文に掛かる。
+   * ヒーローの筆。端末の背後を通り、右へ抜ける。
+   *
+   * 本文は左半分にあるため、2段組になる lg 以上では文字の裏に回り込ませ
+   * ない(§3.4)。左端を本文の右端のすぐ外(左から 55%)に置き、幅 46% で
+   * 右へ 1% 抜けさせている。これ以上左へ寄せると本文に掛かる。
+   *
+   * どの幅でも層の下端がセクションの下端に揃うようにしている。下へ
+   * ずらすとストロークの下端が切れて、筆に見えなくなる。
+   * 1段組(lg 未満)でも端末が本文の下に来るため、これで本文とは
+   * 130px 以上空く。
+   *
+   * 以前は左下にもう1層置いて重心を左へ振っていたが、ヒーローの高さ
+   * (670〜830px)に対して層が高すぎ、インクの 6 割が切れていたため外した。
+   * 広い画面の左右は SideBrushes が受け持つ。
    */
   {
     name: "hero-main",
@@ -39,27 +49,9 @@ const HERO_BRUSH = [
     // 本文はこの層に重ならないため、§9 のコントラスト上限に縛られない。
     opacity: 0.75,
     anchor: "bottom",
-    position: "-left-[8%] w-[116%] lg:left-auto lg:-right-[6%] lg:w-[50%]",
-    shiftClass: "translate-y-[22%]",
+    position: "-left-[8%] w-[116%] lg:right-auto lg:left-[55%] lg:w-[46%]",
+    shiftClass: "translate-y-0 lg:-translate-y-[3%]",
     // 画面表示時にゆっくり落ち着かせる(§4.1 動くのは筆だけ)
-    entrance: true,
-  },
-  /*
-   * 左下の帯。右の層だけだと重心が画面の右隅に寄って見えるため、
-   * 本文の下に抜ける帯を足して左へ振っている。
-   * 層を小さめにしてあるのは、幅なりに高くすると 828px のヒーローに
-   * 収まらず、本文の下に置いた時点でほとんど見えなくなるため。
-   * 1段組(lg 未満)では端末が本文の下に来るので出さない。
-   */
-  {
-    name: "hero-main",
-    depth: DEPTH.far,
-    opacity: 0.5,
-    anchor: "bottom",
-    position: "hidden lg:block lg:-left-[10%] lg:w-[62%]",
-    // 幅の上限を切らないと、広い画面ほど層が高くなって本文に掛かる。
-    maxWidth: 900,
-    shiftClass: "lg:translate-y-[72%]",
     entrance: true,
   },
 ] as const;
@@ -89,7 +81,7 @@ export default function HomePage() {
         <div className="relative mx-auto w-full max-w-6xl px-6 md:px-12 lg:px-16">
           <div className="grid items-center gap-16 py-28 md:py-32 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
             <div>
-              <p className="section-label">NEBULAB — NARITA, JP</p>
+              <p className="section-label">NEBULAB</p>
 
               <h1 className="mt-10 font-display text-[1.5rem] font-light leading-[1.75] tracking-[0.02em] text-ink md:text-[1.7rem] xl:text-[1.95rem]">
                 自社で開発し、自社で運用している。
@@ -114,6 +106,27 @@ export default function HomePage() {
             <HeroDevices />
           </div>
         </div>
+
+        {/*
+          下へスクロールする導線。次のセクション(#services)へのリンクに
+          しているので、JS が無くてもキーボードでも動く。
+          §4.4 が常時ループするアニメーションを禁じているため、
+          よくある上下に跳ねる動きは付けていない。
+
+          1段組(lg 未満)では出さない。筆の帯が下端にあり、その上に
+          文字を置くことになるため(§3.4)。狭い画面ではスクロールできる
+          ことは自明でもある。
+        */}
+        <a
+          href="#services"
+          className="group absolute inset-x-0 bottom-8 mx-auto hidden w-fit flex-col items-center gap-3 text-[10px] font-medium tracking-[0.24em] text-ink-sub transition-colors hover:text-accent lg:flex"
+        >
+          SCROLL
+          <span
+            aria-hidden="true"
+            className="block h-10 w-px bg-ink-sub transition-colors group-hover:bg-accent"
+          />
+        </a>
       </section>
 
       <Services />

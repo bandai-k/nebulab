@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
+import Reveal from "@/components/ui/Reveal";
 
 /**
  * 自社プロダクト(指示書 v2 §5.3)。カード4枚を横一列。
@@ -69,13 +70,19 @@ export default function Products() {
   return (
     <section id="products" className="border-b border-rule py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
-        <SectionHeading
-          label="SELF PRODUCTS"
-          heading="自分たちで使うものを、つくっています。"
-          color="pink"
-        />
+        <Reveal stagger={0}>
+          <SectionHeading
+            label="SELF PRODUCTS"
+            heading="自分たちで使うものを、つくっています。"
+            color="pink"
+          />
+        </Reveal>
 
-        <ul className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal
+          as="ul"
+          className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
+          delay={120}
+        >
           {products.map((p) => (
             <li key={p.name} className="flex flex-col">
               {/*
@@ -130,13 +137,13 @@ export default function Products() {
               </div>
             </li>
           ))}
-        </ul>
+        </Reveal>
 
-        <div className="mt-16">
+        <Reveal className="mt-16" stagger={0} delay={260}>
           <Link href="/projects" className="btn btn-ghost">
             すべてのプロダクトを見る
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

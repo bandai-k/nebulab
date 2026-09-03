@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
+import Reveal from "@/components/ui/Reveal";
 import { company } from "@/data/company";
 
 /**
@@ -17,9 +18,11 @@ export default function CeoMessage() {
       className="border-b border-rule py-24 md:py-32"
     >
       <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
-        <SectionHeading label="MESSAGE" color="teal" />
+        <Reveal stagger={0}>
+          <SectionHeading label="MESSAGE" color="teal" />
+        </Reveal>
 
-        <div className="mt-16 grid gap-12 md:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)] md:gap-16 lg:gap-20">
+        <Reveal className="mt-16 grid gap-12 md:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)] md:gap-16 lg:gap-20">
           {/* 写真 — 素材が用意でき次第差し替える(§12-1) */}
           <div className="panel relative aspect-3/4 w-full max-w-[300px]">
             <div className="absolute inset-0 flex items-center justify-center">
@@ -62,7 +65,7 @@ export default function CeoMessage() {
               会社概要を見る
             </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

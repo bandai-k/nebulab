@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
+import Reveal from "@/components/ui/Reveal";
 import { PARTNERS, LAYERS } from "@/data/partners";
 
 /**
@@ -25,13 +26,15 @@ export default function Partners() {
   return (
     <section id="partners" className="border-b border-rule py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
-        <SectionHeading
-          label="PARTNERS"
-          heading="得意なところを、それぞれが持ち寄る。"
-          color="indigo"
-        />
+        <Reveal stagger={0}>
+          <SectionHeading
+            label="PARTNERS"
+            heading="得意なところを、それぞれが持ち寄る。"
+            color="indigo"
+          />
+        </Reveal>
 
-        <ul className="mt-16 grid gap-10 md:grid-cols-2 md:gap-12">
+        <Reveal as="ul" className="mt-16 grid gap-10 md:grid-cols-2 md:gap-12" delay={120}>
           {PARTNERS.map((p) => (
             <li key={p.name} className="panel flex flex-col p-8 md:p-10">
               {/*
@@ -69,7 +72,7 @@ export default function Partners() {
               )}
             </li>
           ))}
-        </ul>
+        </Reveal>
 
         {/*
           NRT LOFT → AIM → NEBULAB の三層構造(§5.6)。

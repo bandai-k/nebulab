@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { BRAND } from "@/constants/brand";
 import { HEADER_NAV } from "@/constants/navigation";
-import HeaderSearch from "@/components/HeaderSearch";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,8 +23,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[60] bg-cyber-bg/90 md:backdrop-blur-md">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-[1fr_auto_1fr] items-center px-5 py-6 md:px-10 md:py-8">
+      <header className="fixed inset-x-0 top-0 z-[60] border-b border-cyber-border-dim bg-cyber-bg/95 md:backdrop-blur-md">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10 md:py-5">
           <Link
             href="/"
             className="justify-self-start transition-opacity hover:opacity-80"
@@ -37,7 +36,7 @@ export default function Header() {
               width={2048}
               height={512}
               priority
-              className="h-8 w-auto md:h-10"
+              className="h-7 w-auto md:h-8"
             />
           </Link>
 
@@ -77,8 +76,13 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Desktop search (right) */}
-          <HeaderSearch />
+          {/* 問い合わせボタン(右) */}
+          <Link
+            href="/contact"
+            className="col-start-3 hidden justify-self-end border border-rule px-5 py-2 font-mono text-[10px] tracking-[0.22em] text-cyber-text-secondary transition-colors hover:border-cyber-text-secondary hover:text-cyber-text md:inline-block"
+          >
+            お問い合わせ
+          </Link>
 
           {/* Mobile hamburger (right) */}
           <button

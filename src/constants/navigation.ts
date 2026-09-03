@@ -11,6 +11,13 @@ export type HeaderNavItem = {
   children?: HeaderNavChild[];
 };
 
+/**
+ * ヘッダーのナビ(指示書 §5.1)。ABOUT / SERVICES / PROJECTS / PARTNERS / CONTACT の5項目。
+ * ここから外れるページ(Apps / Showcase / News / Lab など)はフッターから辿れる。
+ *
+ * PARTNERS は当面トップページ内のセクションを指す。
+ * Phase 4 で /partners を新規作成したら href を差し替えること。
+ */
 export const HEADER_NAV: HeaderNavItem[] = [
   {
     key: "about",
@@ -27,9 +34,10 @@ export const HEADER_NAV: HeaderNavItem[] = [
     href: "/services",
     label: "Services",
     children: [
-      { key: "svc-dev", href: "/services#development", label: "01 / SES・受託開発" },
-      { key: "svc-local", href: "/services#local-tech", label: "02 / 地域 × テクノロジー" },
-      { key: "svc-ec", href: "/services#ec-brand", label: "03 / オリジナルブランド" },
+      { key: "svc-dev", href: "/services", label: "01 / 受託開発" },
+      { key: "svc-enablement", href: "/services", label: "02 / 内製化支援" },
+      { key: "svc-products", href: "/projects", label: "03 / 自社プロダクト" },
+      { key: "svc-local", href: "/hp-trial", label: "04 / 地域のIT支援" },
     ],
   },
   {
@@ -38,36 +46,13 @@ export const HEADER_NAV: HeaderNavItem[] = [
     label: "Projects",
     children: [
       { key: "proj-all", href: "/projects", label: "すべてのプロジェクト" },
+      { key: "proj-apps", href: "/apps", label: "アプリ" },
       { key: "proj-nrt", href: "/projects/nrt-loft", label: "NRT LOFT" },
       { key: "proj-narita", href: "/projects/narita-guide", label: "narita-guide.com" },
       { key: "proj-najimi", href: "/projects/najimi", label: "NAJIMI" },
       { key: "proj-navi", href: "/projects/navi", label: "Navi" },
-      { key: "proj-smm", href: "/projects/supermindmap", label: "SuperMindMap" },
-      { key: "proj-nebula", href: "/projects/nebula-place", label: "Nebula Place" },
     ],
   },
-  {
-    key: "apps",
-    href: "/apps",
-    label: "Apps",
-    children: [
-      { key: "apps-all", href: "/apps", label: "すべてのアプリ" },
-      { key: "apps-garage-techo", href: "/apps/garage-techo", label: "ガレージ手帳" },
-      { key: "apps-midorikko", href: "/apps/midorikko", label: "みどりっこ" },
-    ],
-  },
-  { key: "showcase", href: "/showcase", label: "Showcase" },
-  { key: "news", href: "/news", label: "News" },
-  {
-    key: "lab",
-    href: "/lab",
-    label: "Lab",
-    children: [
-      { key: "lab-principles", href: "/lab#principles", label: "Lab の活動方針" },
-      { key: "lab-rd", href: "/lab#rd", label: "R&D プロジェクト" },
-      { key: "lab-blog", href: "/lab#blog", label: "技術ブログ" },
-    ],
-  },
+  { key: "partners", href: "/#partners", label: "Partners" },
   { key: "contact", href: "/contact", label: "Contact" },
 ];
-

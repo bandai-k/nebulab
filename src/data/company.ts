@@ -7,7 +7,7 @@ export const company = {
     prefecture: "千葉県",
     city: "成田市",
     street: "花崎町",
-    full: "〒286-0033 千葉県成田市花崎町(NRT-LOFT内)",
+    full: "〒286-0033 千葉県成田市花崎町(NRT LOFT内)",
   },
   ceo: "萬代 晃生",
   ceoEn: "Bandai Koki",

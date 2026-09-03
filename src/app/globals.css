@@ -25,7 +25,9 @@
   --color-cyber-border-dim: #1b2226;
   --color-cyber-text: var(--color-ink);
   --color-cyber-text-secondary: var(--color-ink-sub);
-  --color-cyber-text-muted: #5c666b;
+  /* 線画の上でも AA(4.5:1)を満たす必要があるため補助色と同値。
+     これより暗くすると線画の上で 4.5:1 を割る。 */
+  --color-cyber-text-muted: #8a9499;
   --color-cyber-accent: var(--color-ink-sub);
   --color-cyber-glow: rgba(138, 148, 153, 0.16);
 

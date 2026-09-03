@@ -83,6 +83,11 @@ type LineArtProps = {
   sizes?: string;
   /** 既定は contain(線画の形を保つ)。帯状に使うときは cover。 */
   fit?: "contain" | "cover";
+  /**
+   * ゆっくりズームさせるか。既定は true。
+   * prefers-reduced-motion では globals.css 側で停止する。
+   */
+  animate?: boolean;
 };
 
 export default function LineArt({
@@ -92,6 +97,7 @@ export default function LineArt({
   priority = false,
   sizes = "200vw",
   fit = "contain",
+  animate = true,
 }: LineArtProps) {
   const asset = LINE_ART[name];
   const variable =
@@ -100,17 +106,22 @@ export default function LineArt({
       : "var(--lineart-intensity, 0.08)";
   const base = intensity !== undefined ? String(intensity) : variable;
 
+  const objectFit = fit === "cover" ? "object-cover" : "object-contain";
+
   return (
     <div aria-hidden="true" className={className}>
-      <Image
-        src={asset.src}
-        alt=""
-        fill
-        sizes={sizes}
-        priority={priority}
-        className={fit === "cover" ? "object-cover" : "object-contain"}
-        style={{ opacity: `calc(${base} * ${asset.k})` }}
-      />
+      {/* ズームで枠外にはみ出すぶんを切る */}
+      <div className="absolute inset-0 overflow-hidden">
+        <Image
+          src={asset.src}
+          alt=""
+          fill
+          sizes={sizes}
+          priority={priority}
+          className={`${objectFit}${animate ? " lineart-zoom" : ""}`}
+          style={{ opacity: `calc(${base} * ${asset.k})` }}
+        />
+      </div>
     </div>
   );
 }

@@ -53,10 +53,15 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-cyber-border-dim">
       {/* 成田の街並みを横長に薄く */}
+      {/*
+        フッターは文字が線画の全面に乗るため、スクリムでは守れない。
+        素の状態で AA を満たす 0.10 を個別に渡している。
+      */}
       <LineArt
         name="townscape"
         fit="cover"
         sizes="100vw"
+        intensity={0.1}
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[46%]"
       />
 

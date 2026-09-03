@@ -15,6 +15,7 @@ export default function SisterMedia() {
         sizes="(min-width: 768px) 55vw, 110vw"
         className="pointer-events-none absolute -right-[12%] bottom-0 h-full w-[95%] md:right-0 md:w-[48%]"
       />
+      <div className="lineart-scrim-left-invert" />
 
       <div className="relative mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
         <div className="max-w-xl">

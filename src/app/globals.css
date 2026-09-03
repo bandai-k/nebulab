@@ -51,15 +51,17 @@
     /*
      * 線画の濃さ。サイト全体をこの1つの数値で調整する。
      * 上限の根拠(背景 #0E1417 / 線は白):
-     *   0.08 → 補助テキスト 4.88:1(AA 合格)。ほぼ見えない
-     *   0.10 → 補助テキスト 4.57:1(AA 合格)。形が読める上限。既定値
-     *   0.12 → 補助テキスト 4.31:1(AA 不合格)
+     *   0.10 → 補助テキスト 4.57:1
+     *   0.16 → 補助テキスト 3.78:1(素のままでは AA 不合格)
+     * 0.16 で運用するため、文字が線画に重なる面には .lineart-scrim-* を
+     * 敷いて背景を沈める。文字が全面に乗るフッターだけは素で AA を満たす
+     * 0.10 を個別に渡している。
      * 補助テキストが重なる場所では 0.10 を超えないこと。
      * 本文(#E4E7E6)しか重ならない場所は 0.20 まで 8:1 以上を保てる。
      */
-    --lineart-intensity: 0.1;
+    --lineart-intensity: 0.16;
     /* 反転ブロック(#F7F6F1)に置く黒線用 */
-    --lineart-intensity-invert: 0.1;
+    --lineart-intensity-invert: 0.14;
   }
 
   [id] {
@@ -239,6 +241,44 @@
     background-size: 160px 160px;
   }
 
+  /*
+   * 線画スクリム。線画を明るくしたぶん、文字が重なる側だけ背景色で沈めて
+   * コントラストを確保する。線画と本文の間に敷いて使う。
+   */
+  .lineart-scrim-left {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgb(14 20 23) 0%,
+      rgb(14 20 23 / 0.92) 30%,
+      rgb(14 20 23 / 0) 66%
+    );
+  }
+  .lineart-scrim-left-invert {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgb(247 246 241) 0%,
+      rgb(247 246 241 / 0.92) 30%,
+      rgb(247 246 241 / 0) 66%
+    );
+  }
+  .lineart-scrim-right {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to left,
+      rgb(14 20 23) 0%,
+      rgb(14 20 23 / 0.92) 34%,
+      rgb(14 20 23 / 0) 70%
+    );
+  }
+
   /* ── Ambient: viewport-locked nebula blob with slow drift ── */
   .nebula-fixed {
     position: fixed;
@@ -384,12 +424,28 @@
     hero-carousel-bg-zoom 28s ease-in-out infinite;
 }
 
+/* ── 線画のゆっくりしたズーム ── */
+.lineart-zoom {
+  transform-origin: 50% 50%;
+  will-change: transform;
+  animation: lineart-zoom 52s ease-in-out infinite alternate;
+}
+@keyframes lineart-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.14);
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

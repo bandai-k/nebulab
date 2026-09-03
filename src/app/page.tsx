@@ -23,6 +23,7 @@ export default function HomePage() {
           sizes="(min-width: 1024px) 1600px, 200vw"
           className="pointer-events-none absolute -right-[18%] top-0 h-full w-[115%] md:-right-[6%] md:w-[80%]"
         />
+        <div className="lineart-scrim-left" />
 
         <div className="relative mx-auto max-w-6xl px-5 md:px-10">
           <div className="grid items-center gap-16 py-24 md:py-32 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.78fr)] lg:gap-16">

@@ -13,7 +13,7 @@ export type HeaderNavItem = {
 
 /**
  * ヘッダーのナビ(指示書 v2 §5.1)。ABOUT / SERVICES / PRODUCTS / PARTNERS / CONTACT の5項目。
- * ここから外れるページ(Apps / Showcase / News / Lab など)はフッターから辿れる。
+ * ここから外れるページ(Showcase / News など)はフッターから辿れる。
 
  */
 export const HEADER_NAV: HeaderNavItem[] = [
@@ -44,12 +44,12 @@ export const HEADER_NAV: HeaderNavItem[] = [
     href: "/projects",
     label: "Products",
     children: [
-      { key: "proj-all", href: "/projects", label: "すべてのプロジェクト" },
-      { key: "proj-apps", href: "/apps", label: "アプリ" },
-      { key: "proj-nrt", href: "/projects/nrt-loft", label: "NRT LOFT" },
+      { key: "proj-all", href: "/projects", label: "すべてのプロダクト" },
+      { key: "proj-midorikko", href: "/apps/midorikko", label: "みどりっこ" },
+      { key: "proj-garage", href: "/apps/garage-techo", label: "ガレージ手帳" },
+      { key: "proj-navi", href: "/projects/navi", label: "Navi" },
       { key: "proj-narita", href: "/projects/narita-guide", label: "narita-guide.com" },
       { key: "proj-najimi", href: "/projects/najimi", label: "NAJIMI" },
-      { key: "proj-navi", href: "/projects/navi", label: "Navi" },
     ],
   },
   { key: "partners", href: "/partners", label: "Partners" },

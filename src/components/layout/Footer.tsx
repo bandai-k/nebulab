@@ -17,8 +17,8 @@ import { company } from "@/data/company";
  *     記載には住所の番地・電話番号など未確定の情報が要るため、
  *     事実を作らずリンクを出していない。
  *
- * カテゴリは §5.8 の5つ。ヘッダーから外れるページ(Apps / Showcase /
- * News / Lab など)も、いずれかのカテゴリの配下に入れて辿れるようにする。
+ * カテゴリは §5.8 の5つ。ヘッダーから外れるページ(Showcase / News など)も、
+ * いずれかのカテゴリの配下に入れて辿れるようにする。
  */
 const sitemap: { heading: string; href: string; links: { href: string; label: string }[] }[] =
   [
@@ -30,7 +30,6 @@ const sitemap: { heading: string; href: string; links: { href: string; label: st
         { href: "/about/mvv", label: "ミッション・ビジョン・バリュー" },
         { href: "/about#message", label: "代表メッセージ" },
         { href: "/news", label: "ニュース" },
-        { href: "/lab", label: "Lab" },
       ],
     },
     {
@@ -49,9 +48,9 @@ const sitemap: { heading: string; href: string; links: { href: string; label: st
       href: "/projects",
       links: [
         { href: "/projects", label: "すべてのプロダクト" },
-        { href: "/apps", label: "アプリ" },
+        { href: "/apps/midorikko", label: "みどりっこ" },
+        { href: "/apps/garage-techo", label: "ガレージ手帳" },
         { href: "/projects/navi", label: "Navi" },
-        { href: "/projects/najimi", label: "NAJIMI" },
         { href: "/showcase", label: "制作事例" },
       ],
     },

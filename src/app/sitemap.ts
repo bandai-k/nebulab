@@ -8,15 +8,14 @@ const STATIC_PAGES: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/about", priority: 0.9, changeFrequency: "monthly" },
   { path: "/about/mvv", priority: 0.7, changeFrequency: "monthly" },
   { path: "/services", priority: 0.9, changeFrequency: "monthly" },
+  // 自社プロダクトの唯一の一覧(/apps と /lab を統合した先)
   { path: "/projects", priority: 0.9, changeFrequency: "monthly" },
   { path: "/partners", priority: 0.7, changeFrequency: "monthly" },
   { path: "/showcase", priority: 0.8, changeFrequency: "monthly" },
   { path: "/hp-trial", priority: 0.9, changeFrequency: "monthly" },
   { path: "/news", priority: 0.8, changeFrequency: "weekly" },
-  { path: "/lab", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.7, changeFrequency: "yearly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
-  { path: "/apps", priority: 0.8, changeFrequency: "monthly" },
   { path: "/apps/garage-techo", priority: 0.8, changeFrequency: "monthly" },
   { path: "/apps/midorikko", priority: 0.8, changeFrequency: "monthly" },
   // App Store 審査に提出済みの URL。移動・リダイレクトを設定しないこと。

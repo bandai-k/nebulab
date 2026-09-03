@@ -69,22 +69,6 @@ const pageItems: SearchItem[] = [
     keywords: ["ニュース", "お知らせ"],
   },
   {
-    id: "page-lab",
-    title: "Lab / 実験と検証の場",
-    category: "PAGE",
-    description: "新しい技術・サービスの R&D と実験・検証。",
-    href: "/lab",
-    keywords: ["R&D", "研究開発", "実験", "検証"],
-  },
-  {
-    id: "page-apps",
-    title: "Apps / アプリ",
-    category: "PAGE",
-    description: "Nebulab が開発・公開している iOS アプリの一覧。",
-    href: "/apps",
-    keywords: ["アプリ", "iOS", "アプリ一覧", "app"],
-  },
-  {
     id: "page-contact",
     title: "Contact / お問い合わせ",
     category: "PAGE",

@@ -1,132 +1,129 @@
 import type { Metadata } from "next";
-import SectionHeading from "@/components/decor/SectionHeading";
-import { STATUS_TONE } from "@/lib/statusStyle";
+import Image from "next/image";
 import Link from "next/link";
-import ProjectImage from "@/components/ProjectImage";
-import ScrollReveal from "@/components/ui/ScrollReveal";
-import { projects, type Project, type ProjectStatus } from "@/data/projects";
+import SectionHeading from "@/components/decor/SectionHeading";
+import { LABEL_ASSETS, type LabelColor } from "@/components/decor/brushAssets";
+import { productIndex, type ProductEntry } from "@/data/productIndex";
 
 export const metadata: Metadata = {
-  title: "プロジェクト一覧",
+  title: "プロダクト",
   description:
-    "Nebulabが運営・開発・実験している全プロジェクトの一覧。NRT LOFT, narita-guide.com, NAJIMI, Navi, SuperMindMap など。",
+    "Nebulab合同会社が開発・運用している自社プロダクトの一覧。みどりっこ、ガレージ手帳、Navi、narita-guide.com、NAJIMI など。",
   alternates: { canonical: "/projects" },
   openGraph: {
     url: "/projects",
-    title: "プロジェクト一覧 | Nebulab合同会社",
+    title: "プロダクト | Nebulab合同会社",
     description:
-      "Nebulabが運営・開発・実験している全プロジェクト。NRT LOFT, narita-guide.com, NAJIMI, Navi 他。",
+      "Nebulab合同会社が開発・運用している自社プロダクトの一覧。みどりっこ、ガレージ手帳、Navi、narita-guide.com、NAJIMI など。",
   },
   twitter: {
-    title: "プロジェクト一覧 | Nebulab合同会社",
-    description:
-      "Nebulabが運営・開発・実験している全プロジェクト。",
+    title: "プロダクト | Nebulab合同会社",
+    description: "Nebulab合同会社が開発・運用している自社プロダクトの一覧。",
   },
 };
 
-const STATUS_STYLES: Record<ProjectStatus, string> = {
-  ACTIVE: STATUS_TONE.live,
-  LAUNCHING: STATUS_TONE.upcoming,
-  PROTOTYPE: STATUS_TONE.early,
-  "R&D": STATUS_TONE.early,
-  CONCEPT: STATUS_TONE.early,
+/**
+ * 自社プロダクトの一覧(指示書 v2 §5.3 の「すべてのプロダクトを見る」の飛び先)。
+ *
+ * 以前は /projects・/apps・/lab の3ページに分かれており、しかもこのページに
+ * 公開中のアプリ2本が載っていなかった。data/productIndex.ts で1つの並びに
+ * まとめ、一覧はここだけにしている。
+ * URL は /projects のまま変えていない(既存リンクと sitemap を切らないため)。
+ */
+
+// 分類ごとに筆の色を固定する。画像が無いカードの下敷きに使う。
+const COLOR_BY_CATEGORY: Record<string, LabelColor> = {
+  "LOCAL × TECH": "teal",
+  "EC BRAND": "amber",
+  "AI PRODUCT": "indigo",
 };
 
-function ProjectCard({ project }: { project: Project }) {
-  const statusClass = STATUS_STYLES[project.status];
-  const cardClass = `panel ${
-    project.featured ? "" : ""
-  } flex h-full flex-col overflow-hidden scroll-mt-24`;
+function ProductCard({ entry }: { entry: ProductEntry }) {
+  const brush = LABEL_ASSETS[COLOR_BY_CATEGORY[entry.category] ?? "pink"];
 
   return (
-    <article id={project.id} className={cardClass}>
-      <div className="relative aspect-[16/9] overflow-hidden border-b border-rule bg-black/20">
-        <ProjectImage project={project} />
+    <li className="panel flex h-full flex-col overflow-hidden">
+      <div className="relative aspect-16/10 overflow-hidden bg-surface">
+        {entry.imageUrl ? (
+          <Image
+            src={entry.imageUrl}
+            alt={`${entry.name} の画面`}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover object-top"
+          />
+        ) : (
+          <Image
+            src={brush.src}
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+            style={{ opacity: 0.2 }}
+          />
+        )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6 md:p-8">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <span
-            className={`inline-flex items-center rounded-sm border px-2 py-0.5 text-[10px] tracking-wider ${statusClass}`}
-          >
-            {project.status}
+      <div className="flex grow flex-col p-6 md:p-7">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="rounded-full border border-rule px-3 py-1 text-[10px] tracking-[0.14em] text-ink-sub">
+            {entry.status}
           </span>
-          {project.statusNote && (
-            <span className="text-[10px] tracking-wider text-ink-sub">
-              {project.statusNote}
+          {entry.statusNote && (
+            <span className="text-[10px] tracking-[0.14em] text-ink-sub">
+              {entry.statusNote}
             </span>
           )}
         </div>
 
-        <p className="mt-5 text-[10px] tracking-[0.3em] uppercase text-ink-sub">
-          {project.category}
+        <p className="mt-5 text-[10px] font-medium tracking-[0.22em] text-ink-sub">
+          {entry.category}
         </p>
-
-        <h2 className="mt-3 font-display text-2xl font-normal tracking-wide text-ink md:text-3xl">
-          {project.name}
+        <h2 className="mt-2 font-display text-lg font-normal tracking-[0.04em] text-ink">
+          {entry.name}
         </h2>
-
-        <p className="mt-4 text-sm leading-7 text-ink">
-          {project.tagline}
+        <p className="mt-3 text-sm leading-7 text-ink">{entry.tagline}</p>
+        <p className="mt-3 grow text-xs leading-6 text-ink-sub">
+          {entry.description}
         </p>
 
-        <p className="mt-3 text-sm leading-7 text-ink-sub">
-          {project.description}
-        </p>
-
-        {(project.externalUrl || project.internalUrl) && (
-          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 pt-4">
-            {project.internalUrl && (
-              <Link
-                href={project.internalUrl}
-                className="text-xs tracking-wider text-ink-sub transition-colors hover:text-accent"
-              >
-                詳細 →
-              </Link>
-            )}
-            {project.externalUrl && (
-              <a
-                href={project.externalUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="text-xs tracking-wider text-ink-sub transition-colors hover:text-accent"
-              >
-                外部サイト ↗
-              </a>
-            )}
-          </div>
-        )}
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          <Link href={entry.href} className="btn btn-outline btn-sm">
+            {`${entry.name} の詳細`}
+          </Link>
+          {entry.externalUrl && (
+            <a
+              href={entry.externalUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="btn btn-outline btn-sm"
+            >
+              {entry.externalLabel} ↗
+            </a>
+          )}
+        </div>
       </div>
-    </article>
+    </li>
   );
 }
 
-export default function ProjectsPage() {
+export default function ProductsPage() {
   return (
-    <main className="mx-auto max-w-6xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
-      <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
-        <div>
-          <SectionHeading
-            level="h1"
-            label="PROJECTS"
-            heading="進行中のプロジェクト"
-            color="pink"
-          />
-          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-ink-sub md:text-base">
-            Nebulabが運営・開発・実験している全プロジェクトの一覧です。
-          </p>
-        </div>
-        <div className="hidden md:block">
-        </div>
-      </div>      <section className="mt-12 border-t border-rule pt-12">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
-            <ScrollReveal key={project.id} delay={(i % 3) * 0.08}>
-              <ProjectCard project={project} />
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
+    <main className="mx-auto max-w-6xl px-5 pb-24 pt-32 md:px-10 md:pt-40">
+      <SectionHeading
+        level="h1"
+        label="SELF PRODUCTS"
+        heading="つくって、使って、運用しているもの。"
+        color="pink"
+        lead="受託だけでなく、自分たちで課題を見つけてつくったプロダクトです。日々使いながら運用しているので、つくった後に何が起きるかを具体的にお話しできます。"
+      />
+
+      <ul className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {productIndex.map((entry) => (
+          <ProductCard key={entry.key} entry={entry} />
+        ))}
+      </ul>
     </main>
   );
 }

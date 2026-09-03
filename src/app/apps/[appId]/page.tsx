@@ -108,7 +108,7 @@ export default async function AppDetailPage({
         className="mb-8 flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase"
       >
         <Link
-          href="/apps"
+          href="/projects"
           className="text-ink-sub transition-colors hover:text-accent"
         >
           Apps
@@ -319,10 +319,10 @@ export default async function AppDetailPage({
       <section className="mt-10 md:mt-12">
         <ScrollReveal>
           <Link
-            href="/apps"
+            href="/projects"
             className="text-xs tracking-[0.25em] text-ink-sub transition-colors hover:text-ink-sub"
           >
-            ← アプリ一覧に戻る
+            ← プロダクト一覧に戻る
           </Link>
         </ScrollReveal>
       </section>

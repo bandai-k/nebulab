@@ -9,8 +9,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+// .hero-slide の CSS アニメーション(hero-carousel-4)は4枚前提。枚数を変えるなら globals.css も直す。
 const heroSlides = [
-  "/projects/nrt-loft.png",
+  "/services/ai-products.png",
   "/projects/najimi.png",
   "/projects/narita-guide.png",
   "/projects/navi.png",

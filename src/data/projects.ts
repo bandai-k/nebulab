@@ -43,35 +43,25 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "nrt-loft",
-    name: "NRT-LOFT",
+    name: "NRT LOFT",
     status: "ACTIVE",
-    statusNote: "2026.05 OPEN",
+    statusNote: "2026.05-",
     category: "LOCAL × TECH",
-    tagline: "成田の小さなコワーキングスペース",
+    tagline: "AIでものづくりを発信するメディア／ラボ",
     description:
-      "成田の旧釣具屋2階をリノベーションした、3席限定のコワーキングスペース。",
+      "AIで自分のための道具をつくる。その記録を発信するメディア／ラボ。",
     externalUrl: "https://www.nrt-loft.jp",
     internalUrl: "/projects/nrt-loft",
     featured: true,
-    imageUrl: "/projects/nrt-loft.png",
+    // 画像は旧事業の内装写真だったため一旦外し、手続き的サムネイルにフォールバックさせる。
     body: [
-      "成田駅近く、旧山中釣具店の2階を DIY リノベーションした、3席限定の小さなコワーキングスペースです。",
-      "観光地でも空港隣接でもない「働く拠点」として、集中して作業したい人・地元のクリエイティブな出会いの場を求める人のための静かな空間を目指しています。",
+      "AIで自分のための道具をつくる。その記録を発信するメディア／ラボです。",
+      "非エンジニア向けに、AIを使った小さな仕組みづくりを発信しています。",
     ],
-    sections: [
-      {
-        heading: "施設概要",
-        items: [
-          "席数: 3席限定(完全予約制)",
-          "場所: 千葉県成田市花崎町(NRT-LOFT 内)",
-          "想定利用者: フリーランス、出張ワーカー、地元事業者",
-        ],
-      },
-    ],
-    tags: ["コワーキング", "成田", "DIY", "地域"],
+    tags: ["メディア", "AI", "ものづくり", "成田"],
     links: [
       {
-        label: "公式サイト(予約・料金)",
+        label: "サイトを見る",
         href: "https://www.nrt-loft.jp",
         external: true,
       },
@@ -196,11 +186,11 @@ export const projects: Project[] = [
     category: "LOCAL × TECH",
     tagline: "地域活性化ハブ構想",
     description:
-      "NRT-LOFTを起点に、ゲストハウス・カフェ・アウトドアスペースを統合した地域活性化ハブを構想中。",
+      "成田・花崎町の一角を起点に、ゲストハウス・カフェ・アウトドアスペースを統合した地域活性化ハブを構想中。",
     internalUrl: "/projects/nebula-place",
     imageUrl: "/projects/nebula-place.svg",
     body: [
-      "NRT-LOFT を出発点に、ゲストハウス・カフェ・アウトドアスペースを統合した、成田エリアの地域活性化ハブを構想中です。",
+      "成田・花崎町の一角を起点に、ゲストハウス・カフェ・アウトドアスペースを統合した、成田エリアの地域活性化ハブを構想中です。",
       "現在は事業計画と物件選定を並行して進める段階。具体化次第、随時お知らせします。",
     ],
     sections: [

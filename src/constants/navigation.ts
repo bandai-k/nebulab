@@ -38,7 +38,7 @@ export const HEADER_NAV: HeaderNavItem[] = [
     label: "Projects",
     children: [
       { key: "proj-all", href: "/projects", label: "すべてのプロジェクト" },
-      { key: "proj-nrt", href: "/projects/nrt-loft", label: "NRT-LOFT" },
+      { key: "proj-nrt", href: "/projects/nrt-loft", label: "NRT LOFT" },
       { key: "proj-narita", href: "/projects/narita-guide", label: "narita-guide.com" },
       { key: "proj-najimi", href: "/projects/najimi", label: "NAJIMI" },
       { key: "proj-navi", href: "/projects/navi", label: "Navi" },

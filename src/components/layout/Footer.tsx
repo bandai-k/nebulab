@@ -2,7 +2,7 @@ import Link from "next/link";
 import { company } from "@/data/company";
 
 const externalProjects = [
-  { href: "https://www.nrt-loft.jp", label: "NRT-LOFT" },
+  { href: "https://www.nrt-loft.jp", label: "NRT LOFT" },
   { href: "https://www.narita-guide.com", label: "narita-guide.com" },
 ];
 

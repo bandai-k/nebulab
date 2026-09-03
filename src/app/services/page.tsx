@@ -76,7 +76,7 @@ const areas: Area[] = [
       {
         heading: "プロジェクト",
         items: [
-          "NRT-LOFT : 成田の3席限定コワーキングスペース",
+          "NRT LOFT : AIでのものづくりを発信する自社メディア／ラボ",
           "narita-guide.com : 成田の観光・生活情報メディア",
           "小規模事業者へのIT支援 : HP制作・運用・業務IT全般のサポート",
         ],
@@ -84,7 +84,7 @@ const areas: Area[] = [
     ],
     note: "「地域に住むからこそできる事業」をテーマに、代表者の地縁を活かした活動を継続しています。",
     cta: {
-      label: "NRT-LOFT を見る",
+      label: "NRT LOFT を見る",
       href: "https://www.nrt-loft.jp",
       external: true,
     },

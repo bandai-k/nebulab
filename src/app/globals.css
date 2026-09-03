@@ -147,41 +147,57 @@
   /*
    * リンクとボタンは全部この形(§3.1)。派手な色に対する釣り合いを
    * レイアウトの規律で取るため、形の種類を増やさない。
+   *
+   * 背景は支給素材の水彩。素材は丸い端を含んだ pill だが、端まで含めて
+   * 引き伸ばすとボタン幅によって端が歪むため、平坦部だけを切り出して
+   * 使い、形は border-radius で作っている。
+   * background-size: 100% 100% で幅に追随させる(水彩なので伸びてよい)。
+   *
+   * 画像が読めなかったときのために background-color を必ず併記する。
    */
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 0.625rem;
-    padding: 0.875rem 1.75rem;
+    padding: 0.875rem 1.875rem;
     border: 1px solid transparent;
-    border-radius: 2px;
+    border-radius: 9999px;
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     line-height: 1;
     white-space: nowrap;
-    transition: background-color 160ms ease, border-color 160ms ease,
-      color 160ms ease;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: filter 160ms ease, background-color 160ms ease,
+      border-color 160ms ease, color 160ms ease;
   }
-  .btn-primary {
-    background: var(--color-accent);
-    color: #ffffff;
+  .btn:hover {
+    filter: brightness(0.94);
   }
-  .btn-primary:hover {
-    background: #26307a;
-  }
+
   /* カード内など、行に収めたい場合の小さい版。形は同じ(§3.1)。 */
   .btn-sm {
-    padding: 0.625rem 1rem;
+    padding: 0.625rem 1.25rem;
     font-size: 0.75rem;
   }
-  .btn-ghost {
-    border-color: var(--color-rule);
-    color: var(--color-ink);
+
+  /*
+   * 主ボタン。白文字を乗せるため、素材の濃い側だけを使っている。
+   * 明るい側まで含めると白文字のコントラストが 1.7:1 まで落ちて
+   * AA を満たせない(実測)。切り出し範囲を広げるときは測り直すこと。
+   */
+  .btn-primary {
+    background-color: var(--color-accent);
+    background-image: url("/ui/btn-primary.webp");
+    color: #ffffff;
   }
-  .btn-ghost:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+
+  /* 副ボタン。素材の中央が地に近い明度なので、本文色を乗せてよい。 */
+  .btn-ghost {
+    background-color: var(--color-surface);
+    background-image: url("/ui/btn-secondary.webp");
+    color: var(--color-ink);
   }
 
   /* 面(カード)。角丸と影を増やさず、細い罫線1本で締める(§3.1)。 */

@@ -15,21 +15,24 @@ import { DEPTH } from "@/components/decor/brushAssets";
 /*
  * 濃さは他のセクションの倍程度(§5.7)。ただし本文の裏には回り込ませない(§3.4)。
  *
- * shift は層自身の高さに対する割合。素材はストロークが上下 25%〜75% に
- * 入っているので、下の値ならストロークはセクションの上端・下端から
- * 層高の 30% ぶんだけ内側に入り、本文の余白の中に収まる。
+ * 素材は見出しと同じ label-* を使い回している。専用素材を増やすより、
+ * 同じ筆を使い回したほうが画面全体の質感が揃う。
+ *
+ * shift は層自身の高さに対する割合。素材はストロークが上下 15%〜84% に
+ * 入っているので、下の値ならストロークはセクションの上端・下端の余白に
+ * 収まり、本文には掛からない。
  * パララックスで層は上下に動く(近い層で層高の約 10%)。その移動ぶんを
  * 見込んで本文との間に余裕を取ってある。数値を変えるときは 375px 〜
  * 1440px のすべてで、移動後も本文と重ならないことを確認すること。
  */
 const LAYERS = [
-  { name: "loft-indigo", depth: DEPTH.far, opacity: 0.5, anchor: "top", shift: "-46%" },
+  { name: "label-indigo", depth: DEPTH.far, opacity: 0.5, anchor: "top", shift: "-61%" },
   {
-    name: "loft-pink",
+    name: "label-pink",
     depth: DEPTH.near,
     opacity: 0.45,
     anchor: "bottom",
-    shift: "53%",
+    shift: "70%",
     reveal: true,
   },
 ] as const;

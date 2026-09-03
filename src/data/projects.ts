@@ -53,7 +53,7 @@ export const projects: Project[] = [
     externalUrl: "https://www.nrt-loft.jp",
     internalUrl: "/projects/nrt-loft",
     featured: true,
-    // 画像は旧事業の内装写真だったため外している。キャプチャが用意でき次第 imageUrl を足す。
+    imageUrl: "/projects/nrt-loft.png",
     body: [
       "AIで自分のための道具をつくる。その記録を発信するメディア／ラボです。",
       "非エンジニア向けに、AIを使った小さな仕組みづくりを発信しています。",

@@ -16,8 +16,8 @@ type Product = {
   detailHref: string;
   external?: { href: string; label: string };
   image: string;
-  /** 端末の実キャプチャか。前者は上端を揃えて見せる。 */
-  isScreen: boolean;
+  /** カード画像の種類。icon は iOS アプリアイコン(正方形、contain)。 */
+  imageKind: "icon" | "site";
 };
 
 const products: Product[] = [
@@ -29,8 +29,8 @@ const products: Product[] = [
       href: "https://apps.apple.com/jp/app/midorikko/id6803494534",
       label: "App Store",
     },
-    image: "/apps/midorikko/01_home.png",
-    isScreen: true,
+    image: "/apps/midorikko/midorikko_app_icon.svg",
+    imageKind: "icon",
   },
   {
     name: "ガレージ手帳",
@@ -40,8 +40,8 @@ const products: Product[] = [
       href: "https://apps.apple.com/jp/app/id6805839454",
       label: "App Store",
     },
-    image: "/apps/garage-techo/shot-01.webp",
-    isScreen: true,
+    image: "/apps/garage-techo/icon-256.png",
+    imageKind: "icon",
   },
   {
     name: "narita-guide.com",
@@ -49,7 +49,7 @@ const products: Product[] = [
     detailHref: "/projects/narita-guide",
     external: { href: "https://www.narita-guide.com", label: "サイト" },
     image: "/projects/narita-guide.png",
-    isScreen: false,
+    imageKind: "site",
   },
 ];
 
@@ -77,17 +77,27 @@ export default function Products() {
                 ボタンが並ぶため、同じ行き先のリンクが重複してしまう。
               */}
               <div className="panel relative aspect-4/3 overflow-hidden">
-                <Image
-                  src={p.image}
-                  alt={`${p.name} の画面`}
-                  fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  className={
-                    p.isScreen
-                      ? "object-cover object-top"
-                      : "object-cover opacity-80"
-                  }
-                />
+                {p.imageKind === "icon" ? (
+                  <div className="flex h-full w-full items-center justify-center p-8">
+                    <div className="relative aspect-square w-full max-w-28 overflow-hidden rounded-[22%]">
+                      <Image
+                        src={p.image}
+                        alt={`${p.name} のアイコン`}
+                        fill
+                        sizes="112px"
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <Image
+                    src={p.image}
+                    alt={`${p.name} の画面`}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover opacity-80"
+                  />
+                )}
               </div>
 
               <h3 className="mt-5 font-display text-base font-normal tracking-[0.04em] text-ink">

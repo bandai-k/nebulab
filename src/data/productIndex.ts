@@ -30,6 +30,8 @@ export type ProductEntry = {
   externalLabel?: string;
   /** カードに敷く画像。無ければ筆のプレースホルダーになる。 */
   imageUrl?: string;
+  /** true なら imageUrl は正方形のアプリアイコン(contain 表示)。 */
+  imageIsIcon?: boolean;
 };
 
 /**
@@ -65,7 +67,8 @@ const appEntries: ProductEntry[] = apps.map((a) => ({
   href: `/apps/${a.id}`,
   externalUrl: a.appStoreUrl || undefined,
   externalLabel: a.appStoreUrl ? "App Store" : undefined,
-  imageUrl: a.screenshots?.[0]?.src,
+  imageUrl: a.icon,
+  imageIsIcon: true,
 }));
 
 const projectEntries: ProductEntry[] = projects.map((p) => ({

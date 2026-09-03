@@ -45,13 +45,27 @@ function ProductCard({ entry }: { entry: ProductEntry }) {
     <li className="panel flex h-full flex-col overflow-hidden">
       <div className="relative aspect-16/10 overflow-hidden bg-surface">
         {entry.imageUrl ? (
-          <Image
-            src={entry.imageUrl}
-            alt={`${entry.name} の画面`}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover object-top"
-          />
+          entry.imageIsIcon ? (
+            <div className="flex h-full w-full items-center justify-center p-8">
+              <div className="relative aspect-square w-full max-w-36 overflow-hidden rounded-[22%]">
+                <Image
+                  src={entry.imageUrl}
+                  alt={`${entry.name} のアイコン`}
+                  fill
+                  sizes="144px"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          ) : (
+            <Image
+              src={entry.imageUrl}
+              alt={`${entry.name} の画面`}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+              className="object-cover object-top"
+            />
+          )
         ) : (
           <Image
             src={brush.src}

@@ -41,28 +41,24 @@ export const BRUSH: Record<BrushName, BrushAsset> = {
 /**
  * セクション見出しの下敷き(§3.6)。支給素材。
  *
- * 画像には細い罫線が含まれており、その位置が4色で揃っていない。
- * 実測(画像高さに対する比):
- *   pink 53.4% / amber 53.5% / teal 54.5% / indigo 61.6%
- * indigo だけ約7%下にあるため、そのままでは下線がずれる。
- * ruleY を使って層を上下にずらし、見た目の下線位置を揃えている。
+ * 罫線なし版に差し替え済み。下線は CSS で引く(§3.6「小さな英字＋短い下線」)。
+ * ストロークは画像高さの約 15%〜84% に入っている。
  *
- * 罫線なし版を支給いただいたら ruleY ごと削除し、下線は CSS で引くこと。
+ * 本文色 #1C1A17 を最も濃い画素に乗せたときのコントラスト実測:
+ *   pink 8.0:1 / amber 9.7:1 / teal 7.3:1 / indigo 5.5:1 (いずれも不透明度 0.55)
+ * 最も厳しい indigo でも AA を満たす。濃さを上げるときは測り直すこと。
  */
 export type LabelColor = "pink" | "amber" | "teal" | "indigo";
 
 export const LABEL_ASSETS: Record<
   LabelColor,
-  { src: string; width: number; height: number; ruleY: number }
+  { src: string; width: number; height: number }
 > = {
-  pink: { src: "/brush/label-pink.webp", width: 2172, height: 724, ruleY: 0.534 },
-  amber: { src: "/brush/label-amber.webp", width: 2172, height: 724, ruleY: 0.535 },
-  teal: { src: "/brush/label-teal.webp", width: 2172, height: 724, ruleY: 0.545 },
-  indigo: { src: "/brush/label-indigo.webp", width: 2172, height: 724, ruleY: 0.616 },
+  pink: { src: "/brush/label-pink.webp", width: 2172, height: 724 },
+  amber: { src: "/brush/label-amber.webp", width: 2172, height: 724 },
+  teal: { src: "/brush/label-teal.webp", width: 2172, height: 724 },
+  indigo: { src: "/brush/label-indigo.webp", width: 2172, height: 724 },
 };
-
-/** 下線を揃える基準。pink / amber の実測値。 */
-export const LABEL_RULE_BASE = 0.534;
 
 /**
  * サービスの番号(§5.4)。支給素材 script-text.png(中身は 01〜04)から

@@ -27,18 +27,16 @@ export default function Header() {
         <div className="mx-auto grid max-w-[1200px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10 md:py-5">
           <Link
             href="/"
-            // ワードマークPNGは左右18%・上下30%の余白を含んだ書き出しになっている。
-            // 素材を書き換えず、余白ぶんを見込んで拡大し左に引き戻す。
-            className="-ml-8 justify-self-start transition-opacity hover:opacity-80"
+            className="justify-self-start transition-opacity hover:opacity-80"
             aria-label={BRAND.name}
           >
             <Image
-              src="/brand/wordmark-dark.png"
+              src="/brand/wordmark.webp"
               alt={BRAND.name}
-              width={2048}
-              height={512}
+              width={1942}
+              height={663}
               priority
-              className="h-10 w-auto md:h-11"
+              className="h-12 w-auto md:h-14"
             />
           </Link>
 

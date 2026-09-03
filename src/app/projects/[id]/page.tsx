@@ -244,7 +244,7 @@ export default async function ProjectDetailPage({
                     href={link.href}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="rounded-sm bg-cyber-accent/80 px-9 py-3.5 font-mono text-[11px] tracking-[0.3em] text-white shadow-[0_0_30px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.3)] transition-shadow hover:shadow-[0_0_50px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.5)]"
+                    className="rounded-sm bg-cyber-accent/80 px-9 py-3.5 font-mono text-[11px] tracking-[0.3em] text-white"
                   >
                     {link.label} ↗
                   </a>
@@ -252,7 +252,7 @@ export default async function ProjectDetailPage({
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="rounded-sm bg-cyber-accent/80 px-9 py-3.5 font-mono text-[11px] tracking-[0.3em] text-white shadow-[0_0_30px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.3)] transition-shadow hover:shadow-[0_0_50px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.5)]"
+                    className="rounded-sm bg-cyber-accent/80 px-9 py-3.5 font-mono text-[11px] tracking-[0.3em] text-white"
                   >
                     {link.label} →
                   </Link>

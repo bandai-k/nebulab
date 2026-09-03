@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import AmbientBackground from "@/components/AmbientBackground";
-import IntroOverlay from "@/components/ui/IntroOverlay";
 
 const SITE_URL = "https://www.nebulab.jp";
 const SITE_NAME = "Nebulab合同会社";
@@ -81,9 +79,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="relative min-h-dvh overflow-x-hidden bg-cyber-bg text-cyber-text antialiased">
-        <IntroOverlay />
-        <AmbientBackground />
+      <body className="relative bg-ground text-ink antialiased">
         <Header />
         <div className="relative z-[1]">
           {children}

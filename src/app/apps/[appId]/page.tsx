@@ -71,7 +71,7 @@ function AppStoreButton({ app }: { app: AppEntry }) {
         href={app.appStoreUrl}
         target="_blank"
         rel="noreferrer noopener"
-        className="inline-flex rounded-sm bg-cyber-accent/80 px-8 py-3.5 font-mono text-[11px] tracking-[0.3em] text-white shadow-[0_0_30px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.3)] transition-shadow hover:shadow-[0_0_50px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.5)]"
+        className="inline-flex rounded-sm bg-cyber-accent/80 px-8 py-3.5 font-mono text-[11px] tracking-[0.3em] text-white"
       >
         App Store で見る ↗
       </a>

@@ -1,36 +1,57 @@
-import LineArt from "@/components/decor/LineArt";
+import BrushField from "@/components/decor/BrushField";
+import { DEPTH } from "@/components/decor/brushAssets";
 
 /**
- * NRT LOFT への導線(指示書 §5.7)。
- * このブロックのみ背景を #F7F6F1 にして強い対比をつける。線画は濃い線で描く。
+ * NRT LOFT への導線(指示書 v2 §5.7)。
  *
- * 線画は建物の外観(成田・花崎町の旧釣具屋2階)。
- * デザイン案にあるコワーキングスペースの内装は使わない。
+ * 画像は置かない。カンプのコワーキングスペース内装写真も、成田の線画も
+ * 使わない。他のセクションより筆のストロークを濃く入れることだけで
+ * 印象を変える。
+ *
+ * 文面は §5.7 の指定をそのまま使う。ここを書き換えないこと。
+ * (生成AIに任せると旧サイトのコワーキングスペースの説明に戻る)
  */
+
+/*
+ * 濃さは他のセクションの倍程度(§5.7)。ただし本文の裏には回り込ませない(§3.4)。
+ *
+ * shift は層自身の高さに対する割合。素材はストロークが上下 25%〜75% に
+ * 入っているので、下の値ならストロークはセクションの上端・下端から
+ * 層高の 30% ぶんだけ内側に入り、本文の余白の中に収まる。
+ * パララックスで層は上下に動く(近い層で層高の約 10%)。その移動ぶんを
+ * 見込んで本文との間に余裕を取ってある。数値を変えるときは 375px 〜
+ * 1440px のすべてで、移動後も本文と重ならないことを確認すること。
+ */
+const LAYERS = [
+  { name: "loft-indigo", depth: DEPTH.far, opacity: 0.5, anchor: "top", shift: "-46%" },
+  {
+    name: "loft-pink",
+    depth: DEPTH.near,
+    opacity: 0.45,
+    anchor: "bottom",
+    shift: "53%",
+    reveal: true,
+  },
+] as const;
+
 export default function SisterMedia() {
   return (
-    <section className="relative overflow-hidden bg-invert-ground text-invert-ink">
-      <LineArt
-        name="nrt-loft-building"
-        sizes="(min-width: 768px) 55vw, 110vw"
-        className="pointer-events-none absolute -right-[12%] bottom-0 h-full w-[95%] md:right-0 md:w-[48%]"
-      />
-      <div className="lineart-scrim-left-invert" />
+    <section className="relative overflow-hidden border-t border-rule">
+      <BrushField layers={[...LAYERS]} sizes="130vw" />
 
-      <div className="relative mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
+      <div className="relative mx-auto max-w-6xl px-5 py-36 md:px-10 md:py-56">
         <div className="max-w-xl">
-          <p className="font-mono text-[10px] tracking-[0.4em] text-invert-ink/70">
-            SISTER MEDIA
-          </p>
-          <p className="mt-5 font-mono text-sm tracking-[0.3em] text-invert-ink">
+          <p className="section-label">SISTER MEDIA</p>
+
+          <p className="mt-8 text-sm font-medium tracking-[0.28em] text-ink">
             NRT LOFT
           </p>
 
-          <h2 className="mt-10 font-display text-xl font-light leading-[1.9] tracking-[0.06em] text-invert-ink md:text-2xl">
+          <h2 className="mt-8 font-display text-xl font-light leading-[1.9] tracking-[0.04em] text-ink md:text-2xl">
             欲しいものが無かったので、自分で作ることにした。
           </h2>
 
-          <p className="mt-8 max-w-lg text-sm leading-[2.1] text-invert-ink/75">
+          <p className="mt-8 max-w-lg text-sm leading-[2.1] text-ink-sub">
             {"AIを使って「自分の困りごとを解決する小さな仕組み」をつくる過程を発信しています。非エンジニア向けのメディアです。"}
           </p>
 
@@ -38,7 +59,7 @@ export default function SisterMedia() {
             href="https://www.nrt-loft.jp"
             target="_blank"
             rel="noreferrer noopener"
-            className="mt-12 inline-block border border-invert-ink/35 px-8 py-3 font-mono text-[11px] tracking-[0.25em] text-invert-ink transition-colors hover:border-invert-ink focus-visible:outline-invert-ink"
+            className="btn btn-ghost mt-12"
           >
             NRT LOFT を見る ↗
           </a>

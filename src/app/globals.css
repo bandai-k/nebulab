@@ -1,39 +1,58 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&family=Inter:wght@400;500;600;700&family=Fragment+Mono&family=Noto+Sans+JP:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Fragment+Mono&display=swap");
 @import "tailwindcss";
 
 @theme {
-  /* ── パレット(指示書 §4)。ここが色の唯一の出所 ── */
-  --color-ground: #0e1417; /* 背景 */
-  --color-surface: #161d21; /* 面(カード等) */
-  --color-rule: #252e33; /* 罫線 */
-  --color-ink: #e4e7e6; /* 本文 */
-  --color-ink-sub: #8a9499; /* 補助テキスト */
-  --color-brass: #c9a227; /* アクセント(真鍮)。主ボタンとごく一部のラベルのみ */
-  --color-invert-ground: #f7f6f1; /* 反転ブロック背景 */
-  --color-invert-ink: #2c2c2a; /* 反転ブロック本文 */
+  /* ────────────────────────────────────────────────────────────
+   * 指示書 v2 §3.2。色の唯一の出所。
+   * 基調はコズミックラテ。ダークモードは実装しない(§3.5)。
+   * ──────────────────────────────────────────────────────────── */
+  --color-ground: #fff8e7; /* 基調(背景) */
+  --color-surface: #fffdf7; /* カード面 */
+  --color-rule: #e5dfce; /* 罫線 */
+  --color-ink: #1c1a17; /* 本文 */
+  --color-ink-sub: #6b655c; /* 補助テキスト */
 
   /*
-   * 旧 cyber-* トークンは既存ページが全面的に参照しているため名前を残し、
-   * 値だけ新パレットに向ける。ページ側の移行は Phase 3 以降で順次行う。
-   * cyber-accent は真鍮ではなく補助色に寄せている。真鍮を全面に散らすと
-   * 「アクセントは多用しない」(§4)に反するため、真鍮は明示的に指定した
-   * 箇所(--color-brass)でのみ使う。
+   * UIアクセント。ボタン・リンク・フォーカスリング・アクティブ状態は
+   * すべてこの1色(§3.2)。他の色をUIに使わないこと。
+   * 対 --color-ground で 9.4:1、白文字を乗せても 10.0:1。
+   */
+  --color-accent: #2f3a8c;
+
+  /*
+   * 筆のストロークの色(§3.3)。装飾専用。
+   * 文字色・ボタン・アイコンには使わない。名前空間を分けて事故を防ぐ。
+   */
+  --color-brush-pink: #c6478a;
+  --color-brush-indigo: #2f3a8c;
+  --color-brush-teal: #2e8f8a;
+  --color-brush-amber: #e0912f;
+
+  /*
+   * 旧 cyber-* トークン。下層ページ32ファイルが全面的に参照しているため
+   * 名前を残し、値だけライトテーマへ向ける。ページ側の書き換えは Phase 4。
+   *
+   * 注意: cyber-accent は「UIアクセント」ではなく実態として補助テキスト色
+   * として使われている(102箇所)。ここに --color-accent を流すと本文中の
+   * 非リンクまで藍色になるため、補助色に据え置く。UIアクセントを使う所は
+   * accent を明示指定すること。
    */
   --color-cyber-bg: var(--color-ground);
   --color-cyber-surface: var(--color-surface);
   --color-cyber-border: var(--color-rule);
-  --color-cyber-border-dim: #1b2226;
+  --color-cyber-border-dim: #efe9da;
   --color-cyber-text: var(--color-ink);
   --color-cyber-text-secondary: var(--color-ink-sub);
-  /* 線画の上でも AA(4.5:1)を満たす必要があるため補助色と同値。
-     これより暗くすると線画の上で 4.5:1 を割る。 */
-  --color-cyber-text-muted: #8a9499;
+  /* 基調色の上で 4.54:1。これより明るくすると小さな文字が AA を割る。 */
+  --color-cyber-text-muted: #78716a;
   --color-cyber-accent: var(--color-ink-sub);
-  --color-cyber-glow: rgba(138, 148, 153, 0.16);
+  --color-cyber-glow: rgba(47, 58, 140, 0.1);
 
-  /* 日本語見出し・数字用の細い明朝 */
-  --font-display: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-  /* 本文および英字ラベル(グロテスク系サンセリフ) */
+  /*
+   * 日本語見出しは細めのゴシック(§3.6)。明朝は使わない。
+   * 英字も同じグロテスク系サンセリフで揃える。
+   */
+  --font-display: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
   --font-body: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Fragment Mono", ui-monospace, monospace;
 }
@@ -41,27 +60,13 @@
 @layer base {
   :root {
     /*
-     * 装飾(グロー・罫線)用の RGB。真鍮ではなく補助色のスレートを使う。
-     * 差し色を増やさないための措置(§4)。
+     * 下層ページの手続き的SVG(HeroVisual / ProjectThumb)がまだ参照している。
+     * 定義を消すと無効な色指定になるため、UIアクセントの RGB を渡しておく。
+     * これらのSVGを作り直す Phase 4 で削除する。
      */
-    --accent-r: 138;
-    --accent-g: 148;
-    --accent-b: 153;
-
-    /*
-     * 線画の濃さ。サイト全体をこの1つの数値で調整する。
-     * 上限の根拠(背景 #0E1417 / 線は白):
-     *   0.10 → 補助テキスト 4.57:1
-     *   0.16 → 補助テキスト 3.78:1(素のままでは AA 不合格)
-     * 0.16 で運用するため、文字が線画に重なる面には .lineart-scrim-* を
-     * 敷いて背景を沈める。文字が全面に乗るフッターだけは素で AA を満たす
-     * 0.10 を個別に渡している。
-     * 補助テキストが重なる場所では 0.10 を超えないこと。
-     * 本文(#E4E7E6)しか重ならない場所は 0.20 まで 8:1 以上を保てる。
-     */
-    --lineart-intensity: 0.16;
-    /* 反転ブロック(#F7F6F1)に置く黒線用 */
-    --lineart-intensity-invert: 0.14;
+    --accent-r: 47;
+    --accent-g: 58;
+    --accent-b: 140;
   }
 
   [id] {
@@ -70,22 +75,24 @@
 
   html {
     scroll-behavior: smooth;
+    /*
+     * 横スクロールの抑止はここで行う。body 側に overflow-x を持たせると、
+     * height:100% と組み合わさって body 自体がスクロールコンテナになり、
+     * window.scrollY が動かなくなる(position:sticky や scroll-margin-top も
+     * 効かなくなる)。html を唯一のスクロール主体に保つこと。
+     */
+    overflow-x: hidden;
   }
 
-  html,
   body {
-    height: 100%;
-  }
-
-  body {
-    font-family: "Inter", "Noto Sans JP", ui-sans-serif, system-ui,
-      -apple-system, sans-serif;
+    min-height: 100dvh;
+    font-family: var(--font-body);
     overscroll-behavior-x: none;
     touch-action: pan-y pinch-zoom;
   }
 
   /*
-   * 見出しの折り返しをブラウザ任せにしない(§8)。
+   * 見出しの折り返しをブラウザ任せにしない(§9)。
    * 日本語は文節で切れるようにし、意図した位置の <br> だけを効かせる。
    */
   h1,
@@ -96,15 +103,15 @@
     overflow-wrap: break-word;
   }
 
-  /* 暗い背景でもフォーカスリングが見えること(§8) */
+  /* フォーカスは必ず UIアクセントで示す(§3.2 / §9) */
   :focus-visible {
-    outline: 2px solid var(--color-brass);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }
 
   ::selection {
-    background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.4);
-    color: #ffffff;
+    background: rgba(47, 58, 140, 0.18);
+    color: var(--color-ink);
   }
 }
 
@@ -116,27 +123,88 @@
   background: var(--color-ground);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
+  background: var(--color-rule);
   border-radius: 2px;
 }
 
-/* ── Custom component classes (in @layer so Tailwind utilities can override) ── */
 @layer components {
-  /* ── Nebula glow blob ── */
-  .nebula-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    background: radial-gradient(
-      circle,
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.06) 0%,
-      transparent 70%
-    );
-    transition: background 2s ease;
+  /*
+   * セクションのラベル(§3.6)。小さな英字＋短い下線。
+   * ラベルはこのクラスだけで作る。個別に組まないこと。
+   */
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    line-height: 1;
+    color: var(--color-ink-sub);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-ink-sub);
   }
 
-  /* ── Section eyebrow + line ── */
+  /*
+   * リンクとボタンは全部この形(§3.1)。派手な色に対する釣り合いを
+   * レイアウトの規律で取るため、形の種類を増やさない。
+   */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.75rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color 160ms ease, border-color 160ms ease,
+      color 160ms ease;
+  }
+  .btn-primary {
+    background: var(--color-accent);
+    color: #ffffff;
+  }
+  .btn-primary:hover {
+    background: #26307a;
+  }
+  .btn-ghost {
+    border-color: var(--color-rule);
+    color: var(--color-ink);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* 面(カード)。角丸と影を増やさず、細い罫線1本で締める(§3.1)。 */
+  .panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: 2px;
+  }
+
+  /* ────────────────────────────────────────────────────────────
+   * 下層ページ互換。Phase 4 でページを作り直したら削除する。
+   *
+   * これらのクラスはダークテーマ前提の装飾(半透明の白、コーナーの
+   * かぎ括弧、アクセントの光る帯)だった。定義を消すと下層ページの
+   * カードが素の div になってしまうため、ライトの体裁に置き換えて残す。
+   * 装飾性は §3.1 に合わせて落とし、罫線1本で締める形にしている。
+   * ──────────────────────────────────────────────────────────── */
+  .glass-card {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  /* かぎ括弧の装飾はライトの硬いレイアウトに合わないため無効化する。 */
+  .corner-accent {
+    /* no-op */
+  }
   .section-eyebrow-line {
     display: flex;
     align-items: center;
@@ -146,306 +214,107 @@
     content: "";
     flex: 1;
     height: 1px;
-    background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.4);
+    background: var(--color-rule);
   }
-
-  /* ── Section divider: clear visual boundary between sections ── */
   .section-divider {
-    position: relative;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .section-divider::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -1.5px;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 3px;
-    background: rgba(
-      var(--accent-r),
-      var(--accent-g),
-      var(--accent-b),
-      0.7
-    );
-    pointer-events: none;
+    border-top: 1px solid var(--color-rule);
   }
   .section-tinted {
-    background: rgba(255, 255, 255, 0.025);
+    background: var(--color-surface);
   }
-
-  /* ── Glass card ── */
-  .glass-card {
-    position: relative;
-    border: 1px solid
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.2);
-    border-radius: 2px;
-    background: rgba(255, 255, 255, 0.02);
-    overflow: hidden;
-    transition: border-color 2s ease;
-  }
-  @media (min-width: 768px) {
-    .glass-card {
-      backdrop-filter: blur(8px);
-    }
-  }
-
-  /* ── Corner accent ── */
-  .corner-accent::before,
-  .corner-accent::after {
-    content: "";
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    pointer-events: none;
-    transition: border-color 2s ease;
-  }
-  .corner-accent::before {
-    top: 0;
-    left: 0;
-    border-top: 1px solid
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
-    border-left: 1px solid
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
-  }
-  .corner-accent::after {
-    bottom: 0;
-    right: 0;
-    border-bottom: 1px solid
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
-    border-right: 1px solid
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
-  }
-
-  /* ── Vertical divider ── */
   .vertical-divider {
     width: 1px;
     height: 64px;
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5),
-      transparent
-    );
+    background: linear-gradient(to bottom, var(--color-rule), transparent);
     margin-inline: auto;
   }
 
-  /* ── Ambient: SVG film grain (fixed, viewport-locked) ── */
-  .ambient-noise {
-    position: fixed;
-    inset: 0;
+  /*
+   * 筆のストロークの層(§3.4 / §4.2)。
+   *
+   * - 本文が乗る面には置かない
+   * - 左右に抜けさせて断ち切りにする(枠内に収めると挿絵になる)
+   * - パララックスで上下に動くぶん、層はセクションより高く作る
+   */
+  .brush-layer {
+    position: absolute;
+    left: -8%;
+    width: 116%;
     pointer-events: none;
-    z-index: 0;
-    opacity: 0.06;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    background-size: 160px 160px;
+  }
+  /*
+   * 基準位置(セクション端からのずらし)は層自身の高さに対する % で
+   * インラインの transform として与える。層の高さは画面幅に追随して
+   * 変わるため、セクション高に対する % で置くと狭い画面で層が
+   * セクションの外に出て消える。
+   *
+   * パララックスは内側の要素に書き込み、基準位置と混ぜない。
+   * (transform を CSS 変数の calc で合成するとビルド時に宣言ごと
+   *  落ちるため、2要素に分けている)
+   */
+  .brush-shift {
+    will-change: auto;
+  }
+  .brush-shift.is-animating {
+    will-change: transform;
   }
 
   /*
-   * 線画スクリム。線画を明るくしたぶん、文字が重なる側だけ背景色で沈めて
-   * コントラストを確保する。線画と本文の間に敷いて使う。
+   * 滲み出し(§4.3)。左から右へ現れる。一度だけ。
+   * PNG のため stroke-dasharray は使えないので、柔らかい境界のマスクを
+   * 横に滑らせて代替する。硬いワイプにならないよう境界を広く取る。
    */
-  .lineart-scrim-left {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-      to right,
-      rgb(14 20 23) 0%,
-      rgb(14 20 23 / 0.92) 30%,
-      rgb(14 20 23 / 0) 66%
+  .brush-reveal {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      #000 0 33.33%,
+      rgba(0, 0, 0, 0) 45%
     );
+    mask-image: linear-gradient(90deg, #000 0 33.33%, rgba(0, 0, 0, 0) 45%);
+    -webkit-mask-size: 300% 100%;
+    mask-size: 300% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
   }
-  .lineart-scrim-left-invert {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-      to right,
-      rgb(247 246 241) 0%,
-      rgb(247 246 241 / 0.92) 30%,
-      rgb(247 246 241 / 0) 66%
-    );
-  }
-  .lineart-scrim-right {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-      to left,
-      rgb(14 20 23) 0%,
-      rgb(14 20 23 / 0.92) 34%,
-      rgb(14 20 23 / 0) 70%
-    );
-  }
-
-  /* ── Ambient: viewport-locked nebula blob with slow drift ── */
-  .nebula-fixed {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(100px);
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(
-      circle,
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.07) 0%,
-      transparent 70%
-    );
-    will-change: transform;
-    transition: background 2s ease;
-  }
-  .nebula-fixed--drift-1 {
-    animation: nebula-drift-1 28s ease-in-out infinite;
-  }
-  .nebula-fixed--drift-2 {
-    animation: nebula-drift-2 36s ease-in-out infinite;
-  }
-  .nebula-fixed--drift-3 {
-    animation: nebula-drift-3 44s ease-in-out infinite;
+  .brush-reveal.is-drawn {
+    animation: brush-draw 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 }
 
-@keyframes nebula-drift-1 {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(60px, 40px);
-  }
-}
-@keyframes nebula-drift-2 {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-50px, 60px);
-  }
-}
-@keyframes nebula-drift-3 {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(40px, -50px);
-  }
-}
-
-/* ── HeroVisual: orbit rotation + node pulse + star twinkle ── */
-.hero-visual {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.hero-orbit-rotate {
-  animation: hero-orbit 90s linear infinite;
-  transform-box: fill-box;
-}
-@keyframes hero-orbit {
+@keyframes brush-draw {
   from {
-    transform: rotate(0deg);
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
   }
   to {
-    transform: rotate(360deg);
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
   }
 }
 
-.hero-node {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.hero-node--1 {
-  animation: hero-node-pulse 3.2s ease-in-out infinite;
-}
-.hero-node--2 {
-  animation: hero-node-pulse 4s ease-in-out infinite 0.6s;
-}
-.hero-node--3 {
-  animation: hero-node-pulse 3.6s ease-in-out infinite 1.2s;
-}
-@keyframes hero-node-pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.45;
-  }
-}
-
-.hero-star {
-  animation: hero-star-twinkle 4.8s ease-in-out infinite;
-}
-@keyframes hero-star-twinkle {
-  0%,
-  100% {
-    opacity: var(--twinkle-low, 0.2);
-  }
-  50% {
-    opacity: var(--twinkle-high, 0.7);
-  }
-}
-
-/* ── Hero carousel: full-bleed cross-fading image slides ── */
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  animation: hero-carousel-4 28s ease-in-out infinite;
-}
-@keyframes hero-carousel-4 {
-  0%,
-  22% {
-    opacity: 1;
-  }
-  28%,
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes hero-carousel-bg-zoom {
-  0%,
-  22% {
-    transform: scale(1.06);
-  }
-  28%,
-  100% {
-    transform: scale(1);
-  }
-}
-.hero-slide-zoom {
-  animation:
-    hero-carousel-4 28s ease-in-out infinite,
-    hero-carousel-bg-zoom 28s ease-in-out infinite;
-}
-
-/* ── 線画のゆっくりしたズーム ── */
-.lineart-zoom {
-  transform-origin: 50% 50%;
-  will-change: transform;
-  animation: lineart-zoom 52s ease-in-out infinite alternate;
-}
-@keyframes lineart-zoom {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.14);
-  }
-}
-
-/* ── Reduced motion ── */
+/*
+ * §4.5。パララックスと滲み出しを完全に停止し、最終状態を表示する。
+ * 停止時にマスクが残ると筆が消えたままになるので、マスク自体を外す。
+ */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .brush-reveal,
+  .brush-reveal.is-drawn {
+    -webkit-mask-image: none;
+    mask-image: none;
+    animation: none !important;
   }
 }

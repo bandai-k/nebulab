@@ -134,7 +134,7 @@ export default function HpTrialPage() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               href="/contact"
-              className="rounded-sm bg-cyber-accent/85 px-7 py-3 font-mono text-xs tracking-[0.25em] text-white shadow-[0_0_30px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.4)] transition-shadow hover:shadow-[0_0_50px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.6)]"
+              className="rounded-sm bg-cyber-accent/85 px-7 py-3 font-mono text-xs tracking-[0.25em] text-white"
             >
               申込・相談する →
             </Link>
@@ -409,7 +409,7 @@ export default function HpTrialPage() {
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="rounded-sm bg-cyber-accent/85 px-12 py-4 font-mono text-[11px] tracking-[0.3em] text-white shadow-[0_0_30px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.3)] transition-shadow hover:shadow-[0_0_60px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.5)]"
+                className="rounded-sm bg-cyber-accent/85 px-12 py-4 font-mono text-[11px] tracking-[0.3em] text-white"
               >
                 申込・相談する →
               </Link>

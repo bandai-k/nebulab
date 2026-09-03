@@ -27,16 +27,18 @@ export default function Header() {
         <div className="mx-auto grid max-w-[1200px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10 md:py-5">
           <Link
             href="/"
-            className="justify-self-start transition-opacity hover:opacity-80"
+            // ワードマークPNGは左右18%・上下30%の余白を含んだ書き出しになっている。
+            // 素材を書き換えず、余白ぶんを見込んで拡大し左に引き戻す。
+            className="-ml-8 justify-self-start transition-opacity hover:opacity-80"
             aria-label={BRAND.name}
           >
             <Image
-              src="/brand/wordmark-light.png"
+              src="/brand/wordmark-dark.png"
               alt={BRAND.name}
               width={2048}
               height={512}
               priority
-              className="h-7 w-auto md:h-8"
+              className="h-10 w-auto md:h-11"
             />
           </Link>
 
@@ -49,13 +51,13 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="text-xs font-medium tracking-wider leading-none text-cyber-text-secondary transition-colors group-hover:text-white"
+                  className="text-xs font-medium tracking-wider leading-none text-cyber-text-secondary transition-colors group-hover:text-ink"
                 >
                   {item.label}
                 </Link>
                 {item.children && (
                   <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-4 opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100">
-                    <ul className="min-w-[260px] border border-cyber-border bg-cyber-bg/95 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-md">
+                    <ul className="min-w-[260px] border border-cyber-border bg-cyber-bg/95 py-2 shadow-[0_8px_24px_rgba(28,26,23,0.10)] backdrop-blur-md">
                       {item.children.map((child) => (
                         <li
                           key={child.key}
@@ -63,7 +65,7 @@ export default function Header() {
                         >
                           <Link
                             href={child.href}
-                            className="block px-5 py-3 text-xs font-medium tracking-wider text-cyber-text-secondary transition-colors hover:bg-cyber-accent/10 hover:text-white"
+                            className="block px-5 py-3 text-xs font-medium tracking-wider text-cyber-text-secondary transition-colors hover:bg-accent/5 hover:text-ink"
                           >
                             {child.label}
                           </Link>
@@ -119,7 +121,7 @@ export default function Header() {
               <div key={item.key} className="text-center">
                 <Link
                   href={item.href}
-                  className="font-mono text-sm tracking-[0.3em] text-cyber-text-secondary transition-colors hover:text-white"
+                  className="font-mono text-sm tracking-[0.3em] text-cyber-text-secondary transition-colors hover:text-ink"
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.label}

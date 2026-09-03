@@ -1,5 +1,4 @@
 import Link from "next/link";
-import LineArt from "@/components/decor/LineArt";
 import { company } from "@/data/company";
 
 /**
@@ -15,12 +14,6 @@ export default function CeoMessage() {
       id="message"
       className="relative overflow-hidden border-b border-cyber-border-dim py-24 md:py-32"
     >
-      <LineArt
-        name="pagoda"
-        sizes="(min-width: 768px) 50vw, 100vw"
-        className="pointer-events-none absolute -left-[10%] top-0 h-full w-[70%] md:w-[42%]"
-      />
-      <div className="lineart-scrim-right" />
 
       <div className="relative mx-auto max-w-6xl px-5 md:px-10">
         <p className="font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">

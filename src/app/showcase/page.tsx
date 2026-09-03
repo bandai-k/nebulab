@@ -286,7 +286,7 @@ export default function ShowcasePage() {
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <Link
               href="/hp-trial"
-              className="inline-flex items-center gap-3 rounded-sm bg-cyber-accent/85 px-7 py-3 font-mono text-xs tracking-[0.25em] text-white transition-shadow hover:shadow-[0_0_30px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.5)]"
+              className="inline-flex items-center gap-3 rounded-sm bg-cyber-accent/85 px-7 py-3 font-mono text-xs tracking-[0.25em] text-white"
             >
               プラン詳細 →
             </Link>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import LineArt from "@/components/decor/LineArt";
 
 export const metadata: Metadata = {
   title: "事業内容",
@@ -125,13 +124,6 @@ export default function ServicesPage() {
   return (
     <main>
       <section className="relative overflow-hidden border-b border-cyber-border-dim">
-        <LineArt
-          name="control-tower"
-          priority
-          sizes="(min-width: 1024px) 1600px, 200vw"
-          className="pointer-events-none absolute -right-[15%] top-0 h-full w-[110%] md:right-0 md:w-[58%]"
-        />
-        <div className="lineart-scrim-left" />
         <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-32 md:px-10 md:pb-24 md:pt-40">
           <p className="font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
             SERVICES

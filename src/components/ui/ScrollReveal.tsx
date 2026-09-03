@@ -1,35 +1,18 @@
-"use client";
-
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
-
-type Props = {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
-  id?: string;
-};
-
+/**
+ * 指示書 v2 §4.4 により、カード・テキスト・見出しへのフェードインは
+ * 禁止された。読もうとした瞬間に文字が動くと、かえって読みづらいため。
+ *
+ * 呼び出し側が11ファイルあるため、まずはここを素通しにして動きを止める。
+ * 呼び出し自体の除去は各ページを作り直す Phase 4 で行う。
+ */
 export default function ScrollReveal({
   children,
-  delay = 0,
   className,
-  id,
-}: Props) {
-  return (
-    <motion.div
-      id={id}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{
-        duration: 0.7,
-        delay,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+}: {
+  children: React.ReactNode;
+  className?: string;
+  /** 旧 API の互換のために受けるだけで、もう使わない。 */
+  delay?: number;
+}) {
+  return <div className={className}>{children}</div>;
 }

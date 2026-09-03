@@ -156,7 +156,7 @@ export default function AppScreenshots({ shots }: AppScreenshotsProps) {
             type="button"
             onClick={close}
             aria-label="閉じる"
-            className="absolute right-4 top-4 z-[1] flex h-10 w-10 items-center justify-center font-mono text-sm text-cyber-text-secondary transition-colors hover:text-white md:right-8 md:top-8"
+            className="absolute right-4 top-4 z-[1] flex h-10 w-10 items-center justify-center font-mono text-sm text-cyber-text-secondary transition-colors hover:text-ink md:right-8 md:top-8"
           >
             ✕
           </button>
@@ -170,7 +170,7 @@ export default function AppScreenshots({ shots }: AppScreenshotsProps) {
                   step(-1);
                 }}
                 aria-label="前のスクリーンショット"
-                className="absolute left-2 z-[1] flex h-12 w-12 items-center justify-center font-mono text-lg text-cyber-text-secondary transition-colors hover:text-white md:left-6"
+                className="absolute left-2 z-[1] flex h-12 w-12 items-center justify-center font-mono text-lg text-cyber-text-secondary transition-colors hover:text-ink md:left-6"
               >
                 ‹
               </button>
@@ -181,7 +181,7 @@ export default function AppScreenshots({ shots }: AppScreenshotsProps) {
                   step(1);
                 }}
                 aria-label="次のスクリーンショット"
-                className="absolute right-2 z-[1] flex h-12 w-12 items-center justify-center font-mono text-lg text-cyber-text-secondary transition-colors hover:text-white md:right-6"
+                className="absolute right-2 z-[1] flex h-12 w-12 items-center justify-center font-mono text-lg text-cyber-text-secondary transition-colors hover:text-ink md:right-6"
               >
                 ›
               </button>

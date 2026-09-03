@@ -1,5 +1,4 @@
 import Link from "next/link";
-import LineArt from "@/components/decor/LineArt";
 import { company } from "@/data/company";
 
 /**
@@ -57,13 +56,6 @@ export default function Footer() {
         フッターは文字が線画の全面に乗るため、スクリムでは守れない。
         素の状態で AA を満たす 0.10 を個別に渡している。
       */}
-      <LineArt
-        name="townscape"
-        fit="cover"
-        sizes="100vw"
-        intensity={0.1}
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[46%]"
-      />
 
       <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-10">
         <div className="grid gap-14 md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] md:gap-16">

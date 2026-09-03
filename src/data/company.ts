@@ -31,6 +31,10 @@ export const businessAreas: BusinessArea[] = [
   { code: "03", id: "ec-brand", name: "EC BRAND", nameJa: "オリジナルブランド" },
 ];
 
+/**
+ * 登記された定款の事業目的の写し。実際の事業内容ではないため、
+ * 登記変更なしに書き換えないこと。表示用は businessAreas を参照。
+ */
 export const businessScope: string[] = [
   "インターネットを利用した各種情報提供サービス",
   "ソフトウェア・アプリケーションの企画、開発、保守、販売",

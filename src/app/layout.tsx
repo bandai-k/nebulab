@@ -9,7 +9,7 @@ const SITE_URL = "https://www.nebulab.jp";
 const SITE_NAME = "Nebulab合同会社";
 const SITE_DESCRIPTION =
   "Nebulab合同会社は、成田を拠点に受託開発・内製化支援・自社プロダクト開発を手がける開発会社です。自ら使うプロダクトをつくり、運用まで含めた知見をお客様に還元します。";
-const OG_IMAGE = "/brand/square-dark.png";
+const OG_IMAGE = "/og-image.png";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: OG_IMAGE,
-        width: 1024,
-        height: 1024,
+        width: 1200,
+        height: 630,
         alt: SITE_NAME,
       },
     ],

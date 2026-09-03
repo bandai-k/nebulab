@@ -90,7 +90,7 @@ export default function LineArt({
   className,
   intensity,
   priority = false,
-  sizes = "100vw",
+  sizes = "200vw",
   fit = "contain",
 }: LineArtProps) {
   const asset = LINE_ART[name];

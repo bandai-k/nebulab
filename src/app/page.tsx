@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import StatusBar from "@/components/StatusBar";
+import LineArt from "@/components/decor/LineArt";
+import HeroDevices from "@/components/home/HeroDevices";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { BRAND } from "@/constants/brand";
 import { news } from "@/data/news";
@@ -8,14 +9,6 @@ import { news } from "@/data/news";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
-
-// .hero-slide の CSS アニメーション(hero-carousel-4)は4枚前提。枚数を変えるなら globals.css も直す。
-const heroSlides = [
-  "/services/ai-products.png",
-  "/projects/najimi.png",
-  "/projects/narita-guide.png",
-  "/projects/navi.png",
-];
 
 const localShopConcerns: { code: string; title: string; sub: string }[] = [
   {
@@ -53,63 +46,49 @@ const localShopConcerns: { code: string; title: string; sub: string }[] = [
 export default function HomePage() {
   return (
     <main>
-      {/* ── Hero: full-bleed carousel + overlay copy ── */}
-      <section className="relative h-[88dvh] min-h-[640px] overflow-hidden">
-        <div className="absolute inset-0">
-          {heroSlides.map((src, i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={src}
-              src={src}
-              alt=""
-              className="hero-slide hero-slide-zoom"
-              style={{ animationDelay: `${i * 7}s` }}
-            />
-          ))}
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-cyber-bg via-cyber-bg/65 to-cyber-bg/20" />
-        <div className="absolute inset-0 bg-cyber-bg/35" />
+      {/* ── Hero(指示書 §5.2): 左にコピー、右に端末。背景に成田の線画 ── */}
+      <section className="relative overflow-hidden border-b border-cyber-border-dim">
+        <LineArt
+          name="airplane-clouds"
+          priority
+          sizes="(min-width: 1024px) 1600px, 200vw"
+          className="pointer-events-none absolute -right-[18%] top-0 h-full w-[115%] md:-right-[6%] md:w-[80%]"
+        />
 
-        <div className="relative z-10 flex h-full flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
-          <div className="mx-auto w-full max-w-6xl">
-            <StatusBar
-              items={[
-                { label: "SYS:ONLINE", pulse: true },
-                { label: "FY2026" },
-                { label: "NARITA, JP" },
-              ]}
-              className="mb-8"
-            />
-            <h1 className="font-display text-4xl font-normal leading-[1.1] tracking-wide text-white md:text-6xl lg:text-7xl">
-              Nebulab
-              <span className="ml-4 align-baseline font-mono text-sm tracking-[0.4em] text-cyber-accent md:ml-6 md:text-base lg:text-lg">
-                ネビュラボ
-              </span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-9 text-white/90 md:text-xl">
-              ── 小さく始めて、無限に広がる
-            </p>
-            <p className="mt-3 font-mono text-xs tracking-[0.3em] text-cyber-accent md:text-sm">
-              SMALL START, INFINITE REACH.
-            </p>
-            <p className="mt-6 max-w-xl text-sm leading-[2.1] text-white/70 md:text-base">
-              成田を拠点に、テクノロジーで地域と人の可能性を拡張する。
-            </p>
+        <div className="relative mx-auto max-w-6xl px-5 md:px-10">
+          <div className="grid items-center gap-16 py-24 md:py-32 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.78fr)] lg:gap-16">
+            <div>
+              <p className="font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
+                NEBULAB — NARITA, JP
+              </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                href="/about"
-                className="rounded-sm border border-white/40 bg-white/5 px-7 py-3 font-mono text-xs tracking-[0.25em] text-white backdrop-blur-sm transition-all hover:border-cyber-accent hover:bg-cyber-accent/30"
-              >
-                ABOUT →
-              </Link>
-              <Link
-                href="/services"
-                className="rounded-sm bg-cyber-accent/85 px-7 py-3 font-mono text-xs tracking-[0.25em] text-white shadow-[0_0_30px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.4)] transition-shadow hover:shadow-[0_0_50px_rgba(var(--accent-r),var(--accent-g),var(--accent-b),0.6)]"
-              >
-                SERVICES →
-              </Link>
+              <h1 className="mt-8 font-display text-[1.25rem] font-light leading-[1.85] tracking-[0.06em] text-cyber-text md:text-[1.45rem] xl:text-[1.7rem]">
+                自社で開発し、自社で運用している。
+                <br />
+                だから、つくった後の話ができる。
+              </h1>
+
+              <p className="mt-8 max-w-md text-sm leading-[2.1] text-cyber-text-secondary md:text-[0.95rem]">
+                {"受託開発と内製化支援に加えて、自分たちのプロダクトをつくり、日々使い、運用しています。設計だけでも実装だけでもなく、運用して初めて分かることまで含めてお渡しします。"}
+              </p>
+
+              <div className="mt-12 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/contact"
+                  className="rounded-xs bg-brass px-7 py-3 font-mono text-[11px] tracking-[0.25em] text-[#1a1508] transition-opacity hover:opacity-85"
+                >
+                  相談する
+                </Link>
+                <Link
+                  href="/services"
+                  className="rounded-xs border border-rule px-7 py-3 font-mono text-[11px] tracking-[0.25em] text-cyber-text-secondary transition-colors hover:border-cyber-text-secondary hover:text-cyber-text"
+                >
+                  事業内容
+                </Link>
+              </div>
             </div>
+
+            <HeroDevices />
           </div>
         </div>
       </section>

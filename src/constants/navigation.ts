@@ -14,9 +14,7 @@ export type HeaderNavItem = {
 /**
  * ヘッダーのナビ(指示書 §5.1)。ABOUT / SERVICES / PROJECTS / PARTNERS / CONTACT の5項目。
  * ここから外れるページ(Apps / Showcase / News / Lab など)はフッターから辿れる。
- *
- * PARTNERS は当面トップページ内のセクションを指す。
- * Phase 4 で /partners を新規作成したら href を差し替えること。
+
  */
 export const HEADER_NAV: HeaderNavItem[] = [
   {
@@ -34,10 +32,10 @@ export const HEADER_NAV: HeaderNavItem[] = [
     href: "/services",
     label: "Services",
     children: [
-      { key: "svc-dev", href: "/services", label: "01 / 受託開発" },
-      { key: "svc-enablement", href: "/services", label: "02 / 内製化支援" },
-      { key: "svc-products", href: "/projects", label: "03 / 自社プロダクト" },
-      { key: "svc-local", href: "/hp-trial", label: "04 / 地域のIT支援" },
+      { key: "svc-dev", href: "/services#development", label: "01 / 受託開発" },
+      { key: "svc-enablement", href: "/services#enablement", label: "02 / 内製化支援" },
+      { key: "svc-products", href: "/services#products", label: "03 / 自社プロダクト" },
+      { key: "svc-local", href: "/services#local", label: "04 / 地域のIT支援" },
     ],
   },
   {
@@ -53,6 +51,6 @@ export const HEADER_NAV: HeaderNavItem[] = [
       { key: "proj-navi", href: "/projects/navi", label: "Navi" },
     ],
   },
-  { key: "partners", href: "/#partners", label: "Partners" },
+  { key: "partners", href: "/partners", label: "Partners" },
   { key: "contact", href: "/contact", label: "Contact" },
 ];

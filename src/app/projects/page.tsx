@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { STATUS_TONE } from "@/lib/statusStyle";
 import Link from "next/link";
 import StatusBar from "@/components/StatusBar";
 import HeroVisual from "@/components/HeroVisual";
@@ -25,11 +26,11 @@ export const metadata: Metadata = {
 };
 
 const STATUS_STYLES: Record<ProjectStatus, string> = {
-  ACTIVE: "border-emerald-400/40 bg-emerald-400/10 text-emerald-300",
-  LAUNCHING: "border-sky-400/40 bg-sky-400/10 text-sky-300",
-  PROTOTYPE: "border-violet-400/40 bg-violet-400/10 text-violet-300",
-  "R&D": "border-cyber-border bg-white/5 text-cyber-text-secondary",
-  CONCEPT: "border-cyber-border-dim text-cyber-text-muted",
+  ACTIVE: STATUS_TONE.live,
+  LAUNCHING: STATUS_TONE.upcoming,
+  PROTOTYPE: STATUS_TONE.early,
+  "R&D": STATUS_TONE.early,
+  CONCEPT: STATUS_TONE.early,
 };
 
 function ProjectCard({ project }: { project: Project }) {

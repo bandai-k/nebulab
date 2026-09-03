@@ -21,7 +21,7 @@ const navGroups: { heading: string; links: { href: string; label: string }[] }[]
         { href: "/about", label: "会社概要" },
         { href: "/about/mvv", label: "ミッション・ビジョン・バリュー" },
         { href: "/services", label: "事業内容" },
-        { href: "/#partners", label: "パートナー" },
+        { href: "/partners", label: "パートナー" },
       ],
     },
     {

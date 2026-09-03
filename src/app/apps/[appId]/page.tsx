@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { STATUS_TONE } from "@/lib/statusStyle";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import StatusBar from "@/components/StatusBar";
@@ -10,8 +11,8 @@ import { apps, findApp, type AppEntry, type AppStatus } from "@/data/apps";
 import { company } from "@/data/company";
 
 const STATUS_STYLES: Record<AppStatus, string> = {
-  PUBLISHED: "border-emerald-400/40 bg-emerald-400/10 text-emerald-300",
-  COMING_SOON: "border-sky-400/40 bg-sky-400/10 text-sky-300",
+  PUBLISHED: STATUS_TONE.live,
+  COMING_SOON: STATUS_TONE.upcoming,
 };
 
 const STATUS_LABELS: Record<AppStatus, string> = {

@@ -25,10 +25,12 @@ export type BusinessArea = {
   nameJa: string;
 };
 
+/** /services の4分類と対応させること(id はページ内アンカーを兼ねる)。 */
 export const businessAreas: BusinessArea[] = [
-  { code: "01", id: "development", name: "DEVELOPMENT", nameJa: "SES・受託開発" },
-  { code: "02", id: "local-tech", name: "LOCAL × TECH", nameJa: "地域 × テクノロジー" },
-  { code: "03", id: "ec-brand", name: "EC BRAND", nameJa: "オリジナルブランド" },
+  { code: "01", id: "development", name: "DEVELOPMENT", nameJa: "受託開発" },
+  { code: "02", id: "enablement", name: "ENABLEMENT", nameJa: "内製化支援" },
+  { code: "03", id: "products", name: "PRODUCTS", nameJa: "自社プロダクト" },
+  { code: "04", id: "local", name: "LOCAL", nameJa: "地域のIT支援" },
 ];
 
 /**

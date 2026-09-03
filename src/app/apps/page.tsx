@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { STATUS_TONE } from "@/lib/statusStyle";
 import Link from "next/link";
 import StatusBar from "@/components/StatusBar";
 import HeroVisual from "@/components/HeroVisual";
@@ -46,8 +47,8 @@ function AppCard({ app }: { app: AppEntry }) {
           <span
             className={`inline-flex items-center rounded-sm border px-2 py-0.5 font-mono text-[10px] tracking-wider ${
               published
-                ? "border-emerald-400/40 bg-emerald-400/10 text-emerald-300"
-                : "border-sky-400/40 bg-sky-400/10 text-sky-300"
+                ? STATUS_TONE.live
+                : STATUS_TONE.upcoming
             }`}
           >
             {published ? "PUBLISHED" : "COMING SOON"}

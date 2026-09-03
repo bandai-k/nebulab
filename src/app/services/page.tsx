@@ -1,242 +1,206 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import StatusBar from "@/components/StatusBar";
-import HeroVisual from "@/components/HeroVisual";
-import ScrollReveal from "@/components/ui/ScrollReveal";
+import LineArt from "@/components/decor/LineArt";
 
 export const metadata: Metadata = {
   title: "事業内容",
   description:
-    "Nebulab合同会社の事業領域 — SES・受託開発、地域 × テクノロジー、オリジナルブランド「NAJIMI」。",
+    "Nebulab合同会社の事業内容 — 受託開発、内製化支援、自社プロダクト開発、地域のIT支援。設計から運用まで一貫して手がけます。",
   alternates: { canonical: "/services" },
   openGraph: {
     url: "/services",
     title: "事業内容 | Nebulab合同会社",
     description:
-      "Nebulab合同会社の事業領域 — SES・受託開発、地域 × テクノロジー、オリジナルブランド「NAJIMI」。",
+      "受託開発、内製化支援、自社プロダクト開発、地域のIT支援。設計から運用まで一貫して手がけます。",
   },
   twitter: {
     title: "事業内容 | Nebulab合同会社",
-    description:
-      "Nebulab合同会社の事業領域。SES・受託開発から地域 × テクノロジーまで。",
+    description: "受託開発、内製化支援、自社プロダクト開発、地域のIT支援。",
   },
 };
 
-type AreaBlock = {
-  heading: string;
-  items: string[];
-};
-
-type AreaCTA = {
-  label: string;
-  href: string;
-  external?: boolean;
-};
-
+type Block = { heading: string; items: string[] };
 type Area = {
   code: string;
+  id: string;
   name: string;
-  nameJa: string;
   description: string;
-  blocks: AreaBlock[];
-  note?: string;
-  cta: AreaCTA;
-  imageUrl: string;
+  body: string;
+  blocks: Block[];
+  cta: { label: string; href: string };
 };
 
+/**
+ * トップページの4分類(指示書 §5.4)に合わせて再編(§6)。
+ *
+ * NRT LOFT はここから外している。受注する事業ではなく自社メディアであり、
+ * PROJECTS 側でのみ扱うため。
+ * 04「地域のIT支援」は削除せず、最下段に置くことで優先度を表現する。
+ */
 const areas: Area[] = [
   {
     code: "01",
-    name: "DEVELOPMENT",
-    nameJa: "SES・受託開発",
-    description:
-      "既存クライアントへのSES契約による安定した開発リソース提供と、パートナー企業経由での受託開発案件を展開しています。",
+    id: "development",
+    name: "受託開発",
+    description: "業務システムやWebサービスの設計・開発・運用までワンストップで",
+    body: "要件の整理から設計・実装・リリース後の運用まで、一貫して引き受けます。既存クライアントへのSES契約による開発リソース提供と、パートナー企業経由での受託開発の双方を手がけています。",
     blocks: [
       {
         heading: "対応領域",
         items: [
-          "Web系システム開発(Next.js, TypeScript, Python等)",
-          "AI/LLM活用システム設計・開発",
-          "クラウドインフラ構築・運用(AWS, Vercel等)",
+          "Web系システム開発(Next.js, TypeScript, Python 等)",
+          "AI / LLM 活用システムの設計・開発",
+          "クラウドインフラ構築・運用(AWS, Vercel 等)",
           "プロジェクトマネジメント支援",
           "技術コンサルティング",
         ],
       },
     ],
-    cta: { label: "お問い合わせ", href: "/contact" },
-    imageUrl: "/services/development.png",
+    cta: { label: "相談する", href: "/contact" },
   },
   {
     code: "02",
-    name: "LOCAL × TECH",
-    nameJa: "地域 × テクノロジー",
-    description:
-      "成田を拠点に、地域資源とテクノロジーを結ぶ事業を展開しています。",
+    id: "enablement",
+    name: "内製化支援",
+    description: "技術力向上や開発プロセスの整備を通じて、チームの自走をサポート",
+    body: "開発を丸ごと請け負うのではなく、お客様のチームが自分たちで作れる状態を目指します。現状の進め方を一緒に見直し、必要なところに伴走します。",
     blocks: [
       {
-        heading: "プロジェクト",
+        heading: "支援の内容",
         items: [
-          "NRT LOFT : AIでのものづくりを発信する自社メディア／ラボ",
-          "narita-guide.com : 成田の観光・生活情報メディア",
-          "小規模事業者へのIT支援 : HP制作・運用・業務IT全般のサポート",
+          "開発プロセスの整備",
+          "技術選定と設計方針の策定支援",
+          "チームの技術力向上に向けた伴走",
         ],
       },
     ],
-    note: "「地域に住むからこそできる事業」をテーマに、代表者の地縁を活かした活動を継続しています。",
-    cta: {
-      label: "NRT LOFT を見る",
-      href: "https://www.nrt-loft.jp",
-      external: true,
-    },
-    imageUrl: "/services/local-tech.png",
+    cta: { label: "相談する", href: "/contact" },
   },
   {
     code: "03",
-    name: "EC BRAND",
-    nameJa: "オリジナルブランド「NAJIMI」",
-    description:
-      "デスクワークの実用性と質感を両立させるオリジナルブランド「NAJIMI」を運営しています。",
+    id: "products",
+    name: "自社プロダクト",
+    description: "自ら課題を見つけ、プロダクトを開発・運用。得た知見を還元",
+    body: "自分たちが欲しいものをつくり、実際に使い、運用しています。運用して初めて分かることを、受託開発や内製化支援の現場に還元しています。",
     blocks: [
       {
-        heading: "第一弾商品",
+        heading: "公開中",
         items: [
-          "PUレザーリストレスト(2026年秋発売予定)",
-          "日本刀の柄(つかまき)から着想を得たデザイン",
-          "国産品質、長く使える設計",
+          "みどりっこ — 植物の記録を残す iOS アプリ",
+          "ガレージ手帳 — バイクの点検・整備・ツーリング記録の iOS アプリ",
         ],
       },
       {
-        heading: "販売チャネル",
-        items: ["未定"],
+        heading: "開発中",
+        items: [
+          "Navi — 能動型AIナビゲーター(プロトタイプ)",
+          "SuperMindMap — 思考の構造可視化(R&D)",
+          "NAJIMI — デスクまわりのオリジナルブランド(2026年秋 発売予定)",
+        ],
       },
     ],
-    cta: { label: "More", href: "/projects" },
-    imageUrl: "/services/ec-brand.png",
+    cta: { label: "プロダクトを見る", href: "/projects" },
+  },
+  {
+    code: "04",
+    id: "local",
+    name: "地域のIT支援",
+    description: "成田市を中心に、中小企業や地域団体のIT活用・DXを支援",
+    body: "「これって誰に聞けばいいの?」という段階からご相談いただけます。成田で生まれ育った代表が直接対応します。",
+    blocks: [
+      {
+        heading: "取り組み",
+        items: [
+          "narita-guide.com — 成田の観光・生活情報メディアの運営",
+          "小規模事業者へのIT支援 — HP制作・運用、業務IT全般のサポート",
+          "HP お試し公開プラン — 事例化のご協力と引き換えに1ページを制作",
+        ],
+      },
+    ],
+    cta: { label: "HP お試し公開プランを見る", href: "/hp-trial" },
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <main className="mx-auto max-w-5xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
-      {/* ── Page Header ── */}
-      <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
-        <div>
-          <StatusBar
-            items={[{ label: `SERVICES:${areas.length}LINES`, pulse: true }]}
-            className="mb-10"
-          />
-          <h1 className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl">
-            事業内容
-          </h1>
-          <p className="mt-4 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
+    <main>
+      <section className="relative overflow-hidden border-b border-cyber-border-dim">
+        <LineArt
+          name="control-tower"
+          priority
+          sizes="(min-width: 1024px) 1600px, 200vw"
+          className="pointer-events-none absolute -right-[15%] top-0 h-full w-[110%] md:right-0 md:w-[58%]"
+        />
+        <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-32 md:px-10 md:pb-24 md:pt-40">
+          <p className="font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
             SERVICES
           </p>
-          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base">
-            Nebulabは、4つの事業領域を統合的に展開しています。
-            <br />
-            それぞれが独立しながら、相互に補完しあう構造です。
+          <h1 className="mt-8 font-display text-[1.4rem] font-light leading-[1.8] tracking-[0.06em] text-cyber-text md:text-[1.7rem]">
+            事業内容
+          </h1>
+          <p className="mt-8 max-w-lg text-sm leading-[2.1] text-cyber-text-secondary">
+            {"4つの事業を、それぞれ独立させつつ相互に補完する形で展開しています。自社でつくって運用した経験を、受託や支援の現場に持ち込むのが基本の考え方です。"}
           </p>
         </div>
-        <div className="hidden md:block">
-          <HeroVisual seed={23} className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]" />
-        </div>
-      </div>      {/* ── 4 Business Areas ── */}
-      <div className="mt-16">
-        {areas.map((area, idx) => (
-          <section
-            key={area.code}
-            id={area.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
-            className={`border-t border-cyber-border-dim pt-16 ${
-              idx > 0 ? "mt-20" : ""
-            }`}
-          >
-            <ScrollReveal>
-              <div className="border border-cyber-border-dim">
-                {/* Header with background image */}
-                <div className="relative overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={area.imageUrl}
-                    alt=""
-                    aria-hidden="true"
-                    className="absolute inset-0 h-full w-full object-cover opacity-55"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyber-bg/95 via-cyber-bg/70 to-cyber-bg/30" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-cyber-bg/85 via-cyber-bg/30 to-transparent" />
+      </section>
 
-                  <div className="relative z-10 px-6 py-14 md:px-10 md:py-20">
-                    <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-                      <span className="font-display text-5xl font-normal text-cyber-accent md:text-6xl">
-                        {area.code}
-                      </span>
-                      <span className="font-mono text-xs tracking-[0.4em] text-cyber-text-muted">
-                        / {area.name}
-                      </span>
+      {areas.map((area) => (
+        <section
+          key={area.code}
+          id={area.id}
+          className="border-b border-cyber-border-dim py-20 md:py-28"
+        >
+          <div className="mx-auto max-w-6xl px-5 md:px-10">
+            <div className="grid gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-16">
+              <span className="font-display text-3xl font-extralight tracking-[0.08em] text-cyber-text-muted md:text-4xl">
+                {area.code}
+              </span>
+
+              <div>
+                <h2 className="font-display text-lg font-normal tracking-[0.06em] text-cyber-text md:text-xl">
+                  {area.name}
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-cyber-text-secondary">
+                  {area.description}
+                </p>
+                <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-cyber-text-secondary">
+                  {area.body}
+                </p>
+
+                <div className="mt-12 grid gap-10 md:grid-cols-2">
+                  {area.blocks.map((block) => (
+                    <div key={block.heading}>
+                      <p className="font-mono text-[9px] tracking-[0.3em] text-cyber-text-muted">
+                        {block.heading}
+                      </p>
+                      <ul className="mt-5 space-y-3">
+                        {block.items.map((item) => (
+                          <li
+                            key={item}
+                            className="flex gap-3 text-sm leading-7 text-cyber-text-secondary"
+                          >
+                            <span className="mt-[0.85em] block h-px w-3 shrink-0 bg-rule" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <h2 className="mt-4 text-xl font-medium tracking-wide text-cyber-text md:text-2xl">
-                      {area.nameJa}
-                    </h2>
-                    <p className="mt-6 max-w-3xl text-sm leading-8 text-cyber-text-secondary md:text-base">
-                      {area.description}
-                    </p>
-                  </div>
+                  ))}
                 </div>
 
-                {/* Body (solid black fill) */}
-                <div className="bg-cyber-bg px-6 py-12 md:px-10 md:py-14">
-                  <div className="grid gap-10 md:grid-cols-2">
-                    {area.blocks.map((block, bi) => (
-                      <ScrollReveal key={bi} delay={0.1 + bi * 0.08}>
-                        <p className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-cyber-accent">
-                          {block.heading}
-                        </p>
-                        <ul className="mt-5 space-y-3 text-sm leading-7 text-cyber-text-secondary md:text-base">
-                          {block.items.map((item, ii) => (
-                            <li key={ii} className="flex gap-3">
-                              <span className="mt-[0.65em] block h-px w-3 shrink-0 bg-cyber-text-muted" />
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </ScrollReveal>
-                    ))}
-                  </div>
-
-                  {area.note && (
-                    <ScrollReveal delay={0.2}>
-                      <p className="mt-10 max-w-3xl text-sm leading-8 text-cyber-text-secondary md:text-base">
-                        {area.note}
-                      </p>
-                    </ScrollReveal>
-                  )}
-
-                  <ScrollReveal delay={0.25}>
-                    <div className="mt-12">
-                      {area.cta.external ? (
-                        <a
-                          href={area.cta.href}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          className="inline-flex items-center gap-3 font-mono text-xs tracking-[0.25em] text-cyber-accent transition-colors hover:text-white"
-                        >
-                          {area.cta.label} ↗
-                        </a>
-                      ) : (
-                        <Link
-                          href={area.cta.href}
-                          className="inline-flex items-center gap-3 font-mono text-xs tracking-[0.25em] text-cyber-accent transition-colors hover:text-white"
-                        >
-                          {area.cta.label} →
-                        </Link>
-                      )}
-                    </div>
-                  </ScrollReveal>
+                <div className="mt-12">
+                  <Link
+                    href={area.cta.href}
+                    className="font-mono text-[10px] tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-text"
+                  >
+                    {area.cta.label} →
+                  </Link>
                 </div>
               </div>
-            </ScrollReveal>
-          </section>
-        ))}
-      </div>
+            </div>
+          </div>
+        </section>
+      ))}
     </main>
   );
 }

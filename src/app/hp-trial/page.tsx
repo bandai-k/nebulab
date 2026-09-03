@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { STATUS_TONE } from "@/lib/statusStyle";
 import Link from "next/link";
 import StatusBar from "@/components/StatusBar";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -271,7 +272,7 @@ export default function HpTrialPage() {
                     className={`inline-flex shrink-0 self-start rounded-sm px-3 py-1 font-mono text-[10px] tracking-[0.25em] ${
                       r.badge === "REQUIRED"
                         ? "bg-cyber-accent/85 text-white"
-                        : "border border-emerald-400/40 bg-emerald-400/10 text-emerald-300"
+                        : `border ${STATUS_TONE.live}`
                     }`}
                   >
                     {r.badge}

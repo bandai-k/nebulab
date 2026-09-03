@@ -5,8 +5,7 @@ import Link from "next/link";
  * 左に細い番号、中央に名前と説明、右に詳細リンク。アイコンは使わない。
  *
  * 04「地域のIT支援」は残すが、順序を下げることで優先度を表現する(§5.4)。
- * リンク先は現時点で存在するページのみを指す。/services の項目別アンカーは
- * Phase 4 の再編で作るため、それまではページ単位で繋いでおく。
+ * リンク先は /services の各項目。アンカーは Phase 4 で作成済み。
  */
 type Service = {
   code: string;
@@ -21,27 +20,27 @@ const services: Service[] = [
     name: "受託開発",
     description:
       "業務システムやWebサービスの設計・開発・運用までワンストップで",
-    href: "/services",
+    href: "/services#development",
   },
   {
     code: "02",
     name: "内製化支援",
     description:
       "技術力向上や開発プロセスの整備を通じて、チームの自走をサポート",
-    href: "/services",
+    href: "/services#enablement",
   },
   {
     code: "03",
     name: "自社プロダクト",
     description: "自ら課題を見つけ、プロダクトを開発・運用。得た知見を還元",
-    href: "/projects",
+    href: "/services#products",
   },
   {
     code: "04",
     name: "地域のIT支援",
     description:
       "成田市を中心に、中小企業や地域団体のIT活用・DXを支援",
-    href: "/hp-trial",
+    href: "/services#local",
   },
 ];
 

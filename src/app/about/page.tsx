@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import StatusBar from "@/components/StatusBar";
 import HeroVisual from "@/components/HeroVisual";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { company, history } from "@/data/company";
+import { company, history, businessAreas } from "@/data/company";
 
 export const metadata: Metadata = {
   title: "会社概要",
@@ -22,11 +23,17 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * 代表メッセージ。Phase 1 で「コワーキング」「サードプレイス」を削除したうえで、
+ * Phase 4 で新しい事業構成(受託開発 / 内製化支援 / 自社プロダクト / 地域のIT支援)
+ * に合わせて書き直したもの(指示書 §6)。
+ */
 const ceoMessage = [
   "私は成田で生まれ育ちました。\n実家は農家で、長男として地域と共に歩んできました。",
-  "フリーランスエンジニアとして独立後、SES契約による\n安定した事業基盤を築く中で、技術を地域社会の実課題と\n結びつけたいという想いが年々強くなりました。",
-  "成田空港という世界的インフラがありながら、地域の小規模事業者が\nIT化で機会を逸していること。作り手の少なさゆえに、身近な課題ほど\n手つかずのまま残されていること。",
-  "これらの課題に対し、受託開発・内製化支援・自社プロダクト開発・\n地域情報発信を統合的に展開することで、小さくても確かな循環を\n生み出せると考えています。",
+  "フリーランスエンジニアとして独立し、開発の現場で経験を重ねる中で、\n技術を地域社会の実課題と結びつけたいという想いが年々\n強くなりました。",
+  "成田空港という世界的インフラがありながら、地域の小規模事業者が\nIT化で機会を逸していること。作り手が少ないために、身近な課題ほど\n手つかずのまま残されていること。",
+  "だから、受託開発と内製化支援に加えて、自分たちのプロダクトを\nつくり、日々使い、運用しています。自分で使い続けているからこそ、\nつくった後に何が起きるかを具体的にお話しできます。",
+  "設計だけでも実装だけでもなく、運用して初めて分かることまで\n含めてお渡しする。それがNebulabの提供価値だと考えています。",
   "「小さく始めて、無限に広がる」\nこれが、Nebulabの掲げる理念です。",
 ];
 
@@ -135,6 +142,40 @@ export default function AboutPage() {
             </p>
           </ScrollReveal>
         </div>
+      </section>
+
+      {/* ── 事業領域(/services の4分類と対応) ── */}
+      <section
+        id="business"
+        className="mt-16 border-t border-cyber-border-dim pt-12"
+      >
+        <ScrollReveal>
+          <div className="section-eyebrow-line mb-12">
+            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+              Business
+            </span>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.1}>
+          <ul className="border-t border-cyber-border-dim">
+            {businessAreas.map((area) => (
+              <li key={area.code} className="border-b border-cyber-border-dim">
+                <Link
+                  href={`/services#${area.id}`}
+                  className="group grid grid-cols-[auto_1fr] items-baseline gap-6 py-6 md:gap-10"
+                >
+                  <span className="font-display text-xl font-extralight tracking-[0.08em] text-cyber-text-muted transition-colors group-hover:text-cyber-text-secondary">
+                    {area.code}
+                  </span>
+                  <span className="font-display text-base font-normal tracking-[0.06em] text-cyber-text">
+                    {area.nameJa}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </ScrollReveal>
       </section>
 
       {/* ── COMPANY INFORMATION ── */}

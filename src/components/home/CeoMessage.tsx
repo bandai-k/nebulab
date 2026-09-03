@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
@@ -22,16 +23,7 @@ export default function CeoMessage() {
           <SectionHeading label="MESSAGE" color="teal" />
         </Reveal>
 
-        <Reveal className="mt-16 grid gap-12 md:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)] md:gap-16 lg:gap-20">
-          {/* 写真 — 素材が用意でき次第差し替える(§12-1) */}
-          <div className="panel relative aspect-3/4 w-full max-w-[300px]">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-[10px] tracking-[0.24em] text-ink-sub">
-                PHOTO PENDING
-              </span>
-            </div>
-          </div>
-
+        <Reveal className="mt-16 grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,0.5fr)] md:gap-16 lg:gap-20">
           <div>
             <h2 className="font-display text-lg font-light leading-[1.95] tracking-[0.04em] text-ink md:text-xl">
               小さく始めて、無限に広がる。
@@ -64,6 +56,17 @@ export default function CeoMessage() {
             <Link href="/about" className="btn btn-ghost mt-8">
               会社概要を見る
             </Link>
+          </div>
+
+          {/* 代表写真 */}
+          <div className="panel relative aspect-3/4 w-full">
+            <Image
+              src="/about/ceo-photo.png"
+              alt={`${company.ceo} 代表社員`}
+              fill
+              sizes="(min-width: 768px) 30vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </Reveal>
       </div>

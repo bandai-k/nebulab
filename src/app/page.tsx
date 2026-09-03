@@ -7,7 +7,7 @@ import HeroDevices from "@/components/home/HeroDevices";
 import Products from "@/components/home/Products";
 import Services from "@/components/home/Services";
 import CeoMessage from "@/components/home/CeoMessage";
-import Partners from "@/components/home/Partners";
+// import Partners from "@/components/home/Partners"; // 一旦非表示
 import SisterMedia from "@/components/home/SisterMedia";
 
 export const metadata: Metadata = {
@@ -30,9 +30,13 @@ const HERO_BRUSH = [
   /*
    * ヒーローの筆。端末の背後を通り、右へ抜ける。
    *
-   * 本文は左半分にあるため、2段組になる lg 以上では文字の裏に回り込ませ
-   * ない(§3.4)。左端を本文の右端のすぐ外(左から 55%)に置き、幅 46% で
-   * 右へ 1% 抜けさせている。これ以上左へ寄せると本文に掛かる。
+   * 依頼により、本文の裏まで左へ寄せている(左から 38%、幅 70%)。
+   * 指示書 §3.4 は「カードやテキストブロックの背後に回り込ませない」と
+   * しているが、ここは意図的に外している。
+   *
+   * そのぶん読みやすさは数値で担保する。実測では本文色 #6B655C は
+   * 不透明度 0.15 まで下げても AA に届かなかったため、ヒーローの
+   * 導入文は見出しと同じ #1C1A17 にしている。
    *
    * どの幅でも層の下端がセクションの下端に揃うようにしている。下へ
    * ずらすとストロークの下端が切れて、筆に見えなくなる。
@@ -46,11 +50,16 @@ const HERO_BRUSH = [
   {
     name: "hero-main",
     depth: DEPTH.mid,
-    // 本文はこの層に重ならないため、§9 のコントラスト上限に縛られない。
-    opacity: 0.75,
+    /*
+     * 本文の裏に回り込むため、§9 のコントラストで上限が決まる。
+     * 素材の最も暗い部分に見出し色 #1C1A17 を乗せた実測で、
+     * 0.6 が AA(4.5:1)の上限。余裕を見て 0.5 にしている。
+     * ここを上げるときは必ず測り直すこと。
+     */
+    opacity: 0.5,
     anchor: "bottom",
-    position: "-left-[8%] w-[116%] lg:right-auto lg:left-[55%] lg:w-[46%]",
-    shiftClass: "translate-y-0 lg:-translate-y-[3%]",
+    position: "-left-[8%] w-[116%] lg:right-auto lg:left-[42%] lg:w-[52%]",
+    shiftClass: "translate-y-0 lg:-translate-y-[25%]",
     // 画面表示時にゆっくり落ち着かせる(§4.1 動くのは筆だけ)
     entrance: true,
   },
@@ -83,13 +92,13 @@ export default function HomePage() {
             <div>
               <p className="section-label">NEBULAB</p>
 
-              <h1 className="mt-10 font-display text-[1.5rem] font-light leading-[1.75] tracking-[0.02em] text-ink md:text-[1.7rem] xl:text-[1.95rem]">
+              <h1 className="mt-10 font-display text-[1.75rem] font-light leading-[1.75] tracking-[0.02em] text-ink drop-shadow-lg md:text-[2rem] xl:text-[2.3rem]">
                 自社で開発し、自社で運用している。
                 <br />
                 だから、つくった後の話ができる。
               </h1>
 
-              <p className="mt-10 max-w-lg text-sm leading-[2.1] text-ink-sub md:text-base">
+              <p className="mt-10 max-w-lg text-base leading-[2.1] text-ink drop-shadow-md md:text-lg">
                 {"受託開発と内製化支援に加えて、自分たちのプロダクトをつくり、日々使い、運用しています。設計だけでも実装だけでもなく、運用して初めて分かることまで含めてお渡しします。"}
               </p>
 
@@ -131,9 +140,9 @@ export default function HomePage() {
 
       <Services />
       <Products />
-      <CeoMessage />
-      <Partners />
       <SisterMedia />
+      {/* <Partners /> */}
+      <CeoMessage />
     </main>
   );
 }

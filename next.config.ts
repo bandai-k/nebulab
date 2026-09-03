@@ -4,8 +4,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        // Navi の掲載は停止中。旧URLからの流入はプロダクト一覧へ誘導する。
         source: "/navi",
-        destination: "/projects/navi",
+        destination: "/projects",
         permanent: true,
       },
     ];

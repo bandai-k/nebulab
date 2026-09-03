@@ -50,7 +50,6 @@ const sitemap: { heading: string; href: string; links: { href: string; label: st
         { href: "/projects", label: "すべてのプロダクト" },
         { href: "/apps/midorikko", label: "みどりっこ" },
         { href: "/apps/garage-techo", label: "ガレージ手帳" },
-        { href: "/projects/navi", label: "Navi" },
         { href: "/showcase", label: "制作事例" },
       ],
     },

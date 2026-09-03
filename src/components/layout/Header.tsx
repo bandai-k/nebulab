@@ -56,7 +56,7 @@ export default function Header() {
         <div className="grid grid-cols-[1fr_auto_1fr] items-center py-3 md:py-4">
           <Link
             href="/"
-            className="justify-self-start transition-opacity hover:opacity-80"
+            className="justify-self-start pl-6 md:pl-12 transition-opacity hover:opacity-80"
             aria-label={BRAND.name}
           >
             <Image
@@ -87,7 +87,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   aria-current={current ? "page" : undefined}
-                  className={`inline-block border-b-2 pb-1.5 text-[0.6875rem] font-medium uppercase leading-none tracking-[0.18em] transition-colors ${
+                  className={`inline-block border-b-2 pb-1.5 text-sm font-medium uppercase leading-none tracking-[0.18em] transition-colors ${
                     current
                       ? "border-accent text-accent"
                       : "border-transparent text-ink-sub group-hover:border-accent group-hover:text-accent"

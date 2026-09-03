@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
-import { PARTNERS, LAYERS } from "@/data/partners";
+// import { PARTNERS, LAYERS } from "@/data/partners"; // 各社・三層構造セクションを一旦非表示にしているため未使用
 
 export const metadata: Metadata = {
   title: "パートナー",
@@ -35,7 +34,7 @@ export default function PartnersPage() {
       </section>
 
       {/* 各社 */}
-      <section className="border-b border-rule py-20 md:py-28">
+      {/* <section className="border-b border-rule py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
           <ul className="grid gap-12 md:grid-cols-2 md:gap-16">
             {PARTNERS.map((p) => (
@@ -84,10 +83,10 @@ export default function PartnersPage() {
             ))}
           </ul>
         </div>
-      </section>
+      </section> */}
 
       {/* 三層構造 */}
-      <section className="border-b border-rule py-20 md:py-28">
+      {/* <section className="border-b border-rule py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
           <p className="text-[10px] tracking-[0.4em] text-ink-sub">
             STRUCTURE
@@ -121,7 +120,7 @@ export default function PartnersPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

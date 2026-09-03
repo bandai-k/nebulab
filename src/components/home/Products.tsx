@@ -4,16 +4,11 @@ import SectionHeading from "@/components/decor/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 
 /**
- * 自社プロダクト(指示書 v2 §5.3)。カード4枚を横一列。
+ * 自社プロダクト(指示書 v2 §5.3)。カードを横一列。
  * 各カードに画面キャプチャ、名前、1〜2行の説明、詳細ボタンと外部リンクボタン。
  *
- * 掲載は実在するプロダクトのみ。指示書は「確定3枚: Capture Box / Navi /
- * みどりっこ」としているが、Capture Box はリポジトリ内に名称・説明・
- * キャプチャのいずれも存在せず、事実を作れないため出していない。
- * 素材が揃ったらこの配列に1件足せば差し替えられる。
- *
- * 4枚目は narita-guide.com。ガレージ手帳は App Store 公開中で実キャプチャと
- * 外部リンクが揃っており、§5.3 のカード要件を満たす唯一の残り候補だった。
+ * 掲載は実在するプロダクトのみ。Navi は掲載を停止しているため含めない
+ * (data/projects.ts にもエントリを置いていない)。
  */
 type Product = {
   name: string;
@@ -49,14 +44,6 @@ const products: Product[] = [
     isScreen: true,
   },
   {
-    name: "Navi",
-    summary: "状況を読み、次の一歩を提案する能動型AIナビゲーター。",
-    detailHref: "/projects/navi",
-    external: { href: "/demo", label: "デモ" },
-    image: "/projects/navi.png",
-    isScreen: false,
-  },
-  {
     name: "narita-guide.com",
     summary: "成田の観光・生活情報を地元の視点で発信するメディア。",
     detailHref: "/projects/narita-guide",
@@ -80,7 +67,7 @@ export default function Products() {
 
         <Reveal
           as="ul"
-          className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
           delay={120}
         >
           {products.map((p) => (

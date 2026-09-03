@@ -8,13 +8,13 @@ import { productIndex, type ProductEntry } from "@/data/productIndex";
 export const metadata: Metadata = {
   title: "プロダクト",
   description:
-    "Nebulab合同会社が開発・運用している自社プロダクトの一覧。みどりっこ、ガレージ手帳、Navi、narita-guide.com、NAJIMI など。",
+    "Nebulab合同会社が開発・運用している自社プロダクトの一覧。みどりっこ、ガレージ手帳、narita-guide.com、NRT LOFT など。",
   alternates: { canonical: "/projects" },
   openGraph: {
     url: "/projects",
     title: "プロダクト | Nebulab合同会社",
     description:
-      "Nebulab合同会社が開発・運用している自社プロダクトの一覧。みどりっこ、ガレージ手帳、Navi、narita-guide.com、NAJIMI など。",
+      "Nebulab合同会社が開発・運用している自社プロダクトの一覧。みどりっこ、ガレージ手帳、narita-guide.com、NRT LOFT など。",
   },
   twitter: {
     title: "プロダクト | Nebulab合同会社",

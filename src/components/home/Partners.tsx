@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
-import { PARTNERS, LAYERS } from "@/data/partners";
+import { PARTNERS } from "@/data/partners";
 
 /**
  * パートナー(指示書 v2 §5.6)。2社。ロゴ枠＋社名＋2行程度の説明を横並び。
@@ -78,7 +78,7 @@ export default function Partners() {
           NRT LOFT → AIM → NEBULAB の三層構造(§5.6)。
           単なる相互リンクではないことを示す。
         */}
-        <ol className="mt-16 border-t border-rule pt-10">
+        {/* <ol className="mt-16 border-t border-rule pt-10">
           {LAYERS.map((l, i) => (
             <li
               key={l.label}
@@ -97,7 +97,7 @@ export default function Partners() {
               </span>
             </li>
           ))}
-        </ol>
+        </ol> */}
 
         <div className="mt-12">
           <Link href="/partners" className="btn btn-ghost">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SectionHeading from "@/components/decor/SectionHeading";
+import { company } from "@/data/company";
 
 export const metadata: Metadata = {
   title: "利用規約 — Nebulab",
@@ -20,7 +21,7 @@ export default function TermsPage() {
         <section className="border-t border-rule py-8">
           <h2 className="text-sm font-medium text-ink">第1条（適用）</h2>
           <p className="mt-3 text-sm leading-7 text-ink-sub">
-            本規約は、NEBULAB（以下、「当ラボ」）が提供するサービスの利用条件を定めるものです。本サービスを利用するすべてのユーザーは、本規約に同意したものとみなします。
+            {`本規約は、${company.name}（以下、「当社」）が提供するサービスの利用条件を定めるものです。本サービスを利用するすべてのユーザーは、本規約に同意したものとみなします。`}
           </p>
         </section>
 
@@ -32,38 +33,38 @@ export default function TermsPage() {
           <ul className="mt-3 list-inside list-disc space-y-1.5 text-sm leading-7 text-ink-sub">
             <li>法令または公序良俗に違反する行為</li>
             <li>犯罪行為に関連する行為</li>
-            <li>当ラボのサーバーまたはネットワークに負荷をかける行為</li>
-            <li>当ラボのサービスの運営を妨害する行為</li>
+            <li>当社のサーバーまたはネットワークに負荷をかける行為</li>
+            <li>当社のサービスの運営を妨害する行為</li>
             <li>他のユーザーに関する個人情報を収集する行為</li>
             <li>不正アクセス行為</li>
-            <li>その他、当ラボが不適切と判断する行為</li>
+            <li>その他、当社が不適切と判断する行為</li>
           </ul>
         </section>
 
         <section className="border-t border-rule py-8">
           <h2 className="text-sm font-medium text-ink">第3条（サービスの提供の停止等）</h2>
           <p className="mt-3 text-sm leading-7 text-ink-sub">
-            当ラボは、以下のいずれかに該当する場合、ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします：
+            当社は、以下のいずれかに該当する場合、ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします：
           </p>
           <ul className="mt-3 list-inside list-disc space-y-1.5 text-sm leading-7 text-ink-sub">
             <li>本サービスに係るコンピュータシステムの保守点検または更新を行う場合</li>
             <li>地震、落雷、火災、停電または天災などの不可抗力により本サービスの提供が困難となった場合</li>
             <li>コンピュータまたは通信回線等が事故により停止した場合</li>
-            <li>その他、当ラボが本サービスの提供が困難と判断した場合</li>
+            <li>その他、当社が本サービスの提供が困難と判断した場合</li>
           </ul>
         </section>
 
         <section className="border-t border-rule py-8">
           <h2 className="text-sm font-medium text-ink">第4条（免責事項）</h2>
           <p className="mt-3 text-sm leading-7 text-ink-sub">
-            当ラボは、本サービスに関して、ユーザーと他のユーザーまたは第三者との間において生じた取引、連絡または紛争等について一切責任を負いません。
+            当社は、本サービスに関して、ユーザーと他のユーザーまたは第三者との間において生じた取引、連絡または紛争等について一切責任を負いません。
           </p>
         </section>
 
         <section className="border-t border-rule py-8">
           <h2 className="text-sm font-medium text-ink">第5条（規約の変更）</h2>
           <p className="mt-3 text-sm leading-7 text-ink-sub">
-            当ラボは、必要と判断した場合、ユーザーに通知することなくいつでも本規約を変更することができるものとします。変更後の規約は、当サイトに掲載された時点で効力を生じるものとします。
+            当社は、必要と判断した場合、ユーザーに通知することなくいつでも本規約を変更することができるものとします。変更後の規約は、当サイトに掲載された時点で効力を生じるものとします。
           </p>
         </section>
 

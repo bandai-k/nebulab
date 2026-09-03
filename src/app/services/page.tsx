@@ -92,14 +92,6 @@ const areas: Area[] = [
           "ガレージ手帳 — バイクの点検・整備・ツーリング記録の iOS アプリ",
         ],
       },
-      {
-        heading: "開発中",
-        items: [
-          "Navi — 能動型AIナビゲーター(プロトタイプ)",
-          "SuperMindMap — 思考の構造可視化(R&D)",
-          "NAJIMI — デスクまわりのオリジナルブランド(2026年秋 発売予定)",
-        ],
-      },
     ],
     cta: { label: "プロダクトを見る", href: "/projects" },
   },

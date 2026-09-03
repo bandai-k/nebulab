@@ -1,65 +1,33 @@
-import BrushField from "@/components/decor/BrushField";
+import SectionHeading from "@/components/decor/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
-import { DEPTH } from "@/components/decor/brushAssets";
 
 /**
  * NRT LOFT への導線(指示書 v2 §5.7)。
  *
  * 画像は置かない。カンプのコワーキングスペース内装写真も、成田の線画も
- * 使わない。他のセクションより筆のストロークを濃く入れることだけで
- * 印象を変える。
+ * 使わない。
  *
  * 文面は §5.7 の指定をそのまま使う。ここを書き換えないこと。
  * (生成AIに任せると旧サイトのコワーキングスペースの説明に戻る)
- */
-
-/*
- * 濃さは他のセクションの倍程度(§5.7)。ただし本文の裏には回り込ませない(§3.4)。
  *
- * 素材は見出しと同じ label-* を使い回している。専用素材を増やすより、
- * 同じ筆を使い回したほうが画面全体の質感が揃う。
- *
- * shiftClass は層自身の高さに対する割合。素材はストロークが上下 15%〜84% に
- * 入っているので、下の値ならストロークはセクションの上端・下端の余白に
- * 収まり、本文には掛からない。
- * パララックスで層は上下に動く(近い層で層高の約 10%)。その移動ぶんを
- * 見込んで本文との間に余裕を取ってある。数値を変えるときは 375px 〜
- * 1440px のすべてで、移動後も本文と重ならないことを確認すること。
+ * 見出しは他セクションと同じ SectionHeading(label-* を背景に敷く形)に揃えている。
+ * 以前は label-* を区切り演出(BrushField)としても使っていたが、
+ * 見出し以外での使用は他セクションに無いパターンだったため外した。
  */
-const LAYERS = [
-  {
-    name: "label-indigo",
-    depth: DEPTH.far,
-    opacity: 0.5,
-    anchor: "top",
-    shiftClass: "-translate-y-[61%]",
-  },
-  {
-    name: "label-pink",
-    depth: DEPTH.near,
-    opacity: 0.45,
-    anchor: "bottom",
-    shiftClass: "translate-y-[70%]",
-    reveal: true,
-  },
-] as const;
-
 export default function SisterMedia() {
   return (
-    <section className="relative overflow-hidden border-t border-rule">
-      <BrushField layers={[...LAYERS]} sizes="130vw" />
-
-      <div className="relative mx-auto max-w-6xl px-6 py-36 md:px-12 lg:px-16 md:py-56">
+    <section className="border-b border-rule">
+      <div className="mx-auto max-w-6xl px-6 py-24 md:px-12 md:py-32 lg:px-16">
         <Reveal className="max-w-xl">
-          <p className="section-label">SISTER MEDIA</p>
+          <SectionHeading
+            label="SISTER MEDIA"
+            heading="欲しいものが無かったので、自分で作ることにした。"
+            color="amber"
+          />
 
           <p className="mt-8 text-sm font-medium tracking-[0.28em] text-ink">
             NRT LOFT
           </p>
-
-          <h2 className="mt-8 font-display text-xl font-light leading-[1.9] tracking-[0.04em] text-ink md:text-2xl">
-            欲しいものが無かったので、自分で作ることにした。
-          </h2>
 
           <p className="mt-8 max-w-lg text-sm leading-[2.1] text-ink-sub">
             {"AIを使って「自分の困りごとを解決する小さな仕組み」をつくる過程を発信しています。非エンジニア向けのメディアです。"}

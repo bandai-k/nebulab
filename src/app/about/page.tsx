@@ -113,7 +113,7 @@ export default function AboutPage() {
             <div className="relative aspect-[4/5] overflow-hidden border border-rule">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/about/ceo-portrait.svg"
+                src="/about/ceo-photo.png"
                 alt={`${company.ceo}(${company.ceoEn})`}
                 className="absolute inset-0 h-full w-full object-cover"
               />

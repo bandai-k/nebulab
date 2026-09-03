@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
+import SectionHeading from "@/components/decor/SectionHeading";
 import { STATUS_TONE } from "@/lib/statusStyle";
 import Link from "next/link";
-import StatusBar from "@/components/StatusBar";
-import HeroVisual from "@/components/HeroVisual";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { apps, type AppEntry } from "@/data/apps";
 
@@ -59,10 +58,10 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
       href={item.url}
       target="_blank"
       rel="noreferrer noopener"
-      className="group glass-card flex h-full flex-col overflow-hidden transition-colors"
+      className="group panel flex h-full flex-col overflow-hidden transition-colors"
     >
       <div
-        className="relative aspect-[16/9] overflow-hidden border-b border-cyber-border-dim"
+        className="relative aspect-[16/9] overflow-hidden border-b border-rule"
         style={{ background: item.thumbBg ?? item.thumbStyle }}
         aria-hidden="true"
       >
@@ -80,41 +79,41 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
             <div className="font-display text-3xl tracking-wide md:text-4xl">
               {item.name}
             </div>
-            <div className="mt-2 font-mono text-[10px] tracking-[0.3em] opacity-75">
+            <div className="mt-2 text-[10px] tracking-[0.3em] opacity-75">
               {item.nameEn}
             </div>
           </div>
         )}
-        <div className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-sm border border-black/15 bg-white/70 px-2 py-0.5 font-mono text-[9px] tracking-wider text-black/70 backdrop-blur-sm">
+        <div className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-sm border border-black/15 bg-white/70 px-2 py-0.5 text-[9px] tracking-wider text-black/70 backdrop-blur-sm">
           LIVE ↗
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-6 md:p-8">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <span className={`inline-flex items-center rounded-sm border px-2 py-0.5 font-mono text-[10px] tracking-wider ${STATUS_TONE.live}`}>
+          <span className={`inline-flex items-center rounded-sm border px-2 py-0.5 text-[10px] tracking-wider ${STATUS_TONE.live}`}>
             PUBLISHED
           </span>
-          <span className="font-mono text-[10px] tracking-wider text-cyber-text-muted">
+          <span className="text-[10px] tracking-wider text-ink-sub">
             HP TRIAL SAMPLE
           </span>
         </div>
 
-        <p className="mt-5 font-mono text-[10px] tracking-[0.3em] uppercase text-cyber-accent">
+        <p className="mt-5 text-[10px] tracking-[0.3em] uppercase text-ink-sub">
           {item.category}
         </p>
 
-        <h2 className="mt-3 font-display text-2xl font-normal tracking-wide text-cyber-text md:text-3xl">
+        <h2 className="mt-3 font-display text-2xl font-normal tracking-wide text-ink md:text-3xl">
           {item.name}
         </h2>
 
-        <p className="mt-4 text-sm leading-7 text-cyber-text">{item.tagline}</p>
+        <p className="mt-4 text-sm leading-7 text-ink">{item.tagline}</p>
 
-        <p className="mt-3 text-sm leading-7 text-cyber-text-secondary">
+        <p className="mt-3 text-sm leading-7 text-ink-sub">
           {item.description}
         </p>
 
-        <span className="mt-6 inline-flex items-center gap-2 pt-4 font-mono text-xs tracking-wider text-cyber-accent transition-colors group-hover:text-white">
+        <span className="mt-6 inline-flex items-center gap-2 pt-4 text-xs tracking-wider text-ink-sub transition-colors group-hover:text-accent">
           公開サイトを見る
           <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
             ↗
@@ -130,10 +129,10 @@ function AppCard({ app }: { app: AppEntry }) {
   return (
     <Link
       href={`/apps/${app.id}`}
-      className="group glass-card flex h-full flex-col overflow-hidden transition-colors"
+      className="group panel flex h-full flex-col overflow-hidden transition-colors"
     >
       <div
-        className="relative aspect-[16/9] overflow-hidden border-b border-cyber-border-dim"
+        className="relative aspect-[16/9] overflow-hidden border-b border-rule"
         style={{ background: app.thumbStyle }}
         aria-hidden="true"
       >
@@ -151,12 +150,12 @@ function AppCard({ app }: { app: AppEntry }) {
             <div className="font-display text-3xl tracking-wide md:text-4xl">
               {app.name}
             </div>
-            <div className="mt-2 font-mono text-[10px] tracking-[0.3em] opacity-75">
+            <div className="mt-2 text-[10px] tracking-[0.3em] opacity-75">
               {app.nameEn}
             </div>
           </div>
         )}
-        <div className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-sm border border-black/15 bg-white/70 px-2 py-0.5 font-mono text-[9px] tracking-wider text-black/70 backdrop-blur-sm">
+        <div className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-sm border border-black/15 bg-white/70 px-2 py-0.5 text-[9px] tracking-wider text-black/70 backdrop-blur-sm">
           {app.platform}
         </div>
       </div>
@@ -164,7 +163,7 @@ function AppCard({ app }: { app: AppEntry }) {
       <div className="flex flex-1 flex-col p-6 md:p-8">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           <span
-            className={`inline-flex items-center rounded-sm border px-2 py-0.5 font-mono text-[10px] tracking-wider ${
+            className={`inline-flex items-center rounded-sm border px-2 py-0.5 text-[10px] tracking-wider ${
               published
                 ? STATUS_TONE.live
                 : STATUS_TONE.upcoming
@@ -173,27 +172,27 @@ function AppCard({ app }: { app: AppEntry }) {
             {published ? "PUBLISHED" : "COMING SOON"}
           </span>
           {app.statusNote && (
-            <span className="font-mono text-[10px] tracking-wider text-cyber-text-muted">
+            <span className="text-[10px] tracking-wider text-ink-sub">
               {app.statusNote}
             </span>
           )}
         </div>
 
-        <p className="mt-5 font-mono text-[10px] tracking-[0.3em] uppercase text-cyber-accent">
+        <p className="mt-5 text-[10px] tracking-[0.3em] uppercase text-ink-sub">
           {app.category}
         </p>
 
-        <h3 className="mt-3 font-display text-2xl font-normal tracking-wide text-cyber-text md:text-3xl">
+        <h3 className="mt-3 font-display text-2xl font-normal tracking-wide text-ink md:text-3xl">
           {app.name}
         </h3>
 
-        <p className="mt-4 text-sm leading-7 text-cyber-text">{app.tagline}</p>
+        <p className="mt-4 text-sm leading-7 text-ink">{app.tagline}</p>
 
-        <p className="mt-3 text-sm leading-7 text-cyber-text-secondary">
+        <p className="mt-3 text-sm leading-7 text-ink-sub">
           {app.description}
         </p>
 
-        <span className="mt-6 inline-flex items-center gap-2 pt-4 font-mono text-xs tracking-wider text-cyber-accent transition-colors group-hover:text-white">
+        <span className="mt-6 inline-flex items-center gap-2 pt-4 text-xs tracking-wider text-ink-sub transition-colors group-hover:text-accent">
           アプリの詳細を見る
           <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
             →
@@ -209,34 +208,29 @@ export default function ShowcasePage() {
     <main className="mx-auto max-w-5xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
       <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
         <div>
-          <StatusBar
-            items={[{ label: `SHOWCASE:${items.length + apps.length}ITEM`, pulse: true }]}
-            className="mb-10"
+          <SectionHeading
+            level="h1"
+            label="SHOWCASE"
+            heading="事例集 / ショーケース"
+            color="pink"
           />
-          <h1 className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl">
-            事例集 / ショーケース
-          </h1>
-          <p className="mt-4 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
-            SHOWCASE
-          </p>
-          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base">
+          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-ink-sub md:text-base">
             Nebulab の「HP お試し公開プラン」で制作・公開している事例集です。
             実際の Web ページとして、デザイン・構成・操作感をそのままご確認いただけます。
           </p>
-          <p className="mt-4 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base">
+          <p className="mt-4 max-w-xl text-sm leading-[2.1] tracking-wide text-ink-sub md:text-base">
             あわせて、自社で開発・公開している iOS アプリも掲載しています。
           </p>
         </div>
         <div className="hidden md:block">
-          <HeroVisual seed={42} className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]" />
         </div>
       </div>
 
       {/* ── HP お試し公開プランの事例 ── */}
-      <section className="mt-12 border-t border-cyber-border-dim pt-12">
+      <section className="mt-12 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               HP Trial Samples
             </span>
           </div>
@@ -251,10 +245,10 @@ export default function ShowcasePage() {
       </section>
 
       {/* ── 自社開発の iOS アプリ ── */}
-      <section className="mt-20 border-t border-cyber-border-dim pt-12">
+      <section className="mt-20 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               iOS Apps
             </span>
           </div>
@@ -269,9 +263,9 @@ export default function ShowcasePage() {
       </section>
 
       {/* CTA: HP お試し公開プラン */}
-      <section className="mt-20 border-t border-cyber-border-dim pt-12">
+      <section className="mt-20 border-t border-rule pt-12">
         <ScrollReveal>
-          <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-cyber-accent">
+          <p className="text-[10px] tracking-[0.3em] uppercase text-ink-sub">
             For Local Businesses
           </p>
           <h2 className="mt-4 font-display text-2xl leading-[1.4] tracking-wide md:text-3xl">
@@ -279,20 +273,20 @@ export default function ShowcasePage() {
             <br className="md:hidden" />
             作ってくださる方へ。
           </h2>
-          <p className="mt-6 max-w-2xl text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+          <p className="mt-6 max-w-2xl text-sm leading-[2.1] text-ink-sub md:text-base">
             事例化のご協力と引き換えに、1 ページの Web ページを無料で制作してお届けします。
             先着 10 社・成田と近隣の事業者さま限定、2026 年 5〜12 月の期間限定プランです。
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <Link
               href="/hp-trial"
-              className="inline-flex items-center gap-3 rounded-sm bg-cyber-accent/85 px-7 py-3 font-mono text-xs tracking-[0.25em] text-white"
+              className="inline-flex items-center gap-3 rounded-sm bg-accent/85 px-7 py-3 text-xs tracking-[0.25em] text-white"
             >
               プラン詳細 →
             </Link>
             <Link
               href="/contact"
-              className="font-mono text-xs tracking-wider text-cyber-text-secondary transition-colors hover:text-cyber-accent"
+              className="text-xs tracking-wider text-ink-sub transition-colors hover:text-ink-sub"
             >
               まずは相談する →
             </Link>

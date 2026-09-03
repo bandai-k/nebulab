@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
 import { NUMBER_ASSETS } from "@/components/decor/brushAssets";
+import ViewMore from "@/components/ui/ViewMore";
 
 /**
  * サービス(指示書 v2 §5.4)。4項目を横罫線で区切って縦に並べる。
- * 左に番号、中央に名前と説明、右に「詳細を見る」。アイコンは使わない。
+ * 左に番号、中央に名前と説明、右に「View More」の導線。アイコンは使わない。
  *
  * 番号は筆の画像。装飾なので aria-hidden を付け、サービス名はテキストで書く。
  * 04「地域のIT支援」は必ず残す。順序を下げることで優先度を表現する(§5.4)。
@@ -86,8 +87,11 @@ export default function Services() {
                     </p>
                   </div>
 
-                  <span className="col-start-2 mt-4 text-xs tracking-[0.12em] text-ink-sub transition-colors group-hover:text-accent md:col-start-3 md:mt-0 md:justify-self-end">
-                    詳細を見る →
+                  <span className="col-start-2 mt-4 md:col-start-3 md:mt-0 md:justify-self-end">
+                    <ViewMore
+                      label={`${s.name} の詳細を見る`}
+                      className="transition-opacity group-hover:opacity-80"
+                    />
                   </span>
                 </Link>
               </li>

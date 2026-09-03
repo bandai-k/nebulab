@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
+import SectionHeading from "@/components/decor/SectionHeading";
 import Link from "next/link";
-import StatusBar from "@/components/StatusBar";
-import HeroVisual from "@/components/HeroVisual";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { MISSION, VISION, VALUES } from "@/constants/mvv";
 
@@ -29,75 +28,70 @@ export default function MvvPage() {
       {/* ── Breadcrumb ── */}
       <nav
         aria-label="パンくずリスト"
-        className="mb-8 flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase"
+        className="mb-8 flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase"
       >
         <Link
           href="/about"
-          className="text-cyber-text-muted transition-colors hover:text-white"
+          className="text-ink-sub transition-colors hover:text-accent"
         >
           About
         </Link>
-        <span className="text-cyber-text-muted">/</span>
-        <span className="text-cyber-accent">Mission · Vision · Values</span>
+        <span className="text-ink-sub">/</span>
+        <span className="text-ink-sub">Mission · Vision · Values</span>
       </nav>
 
       {/* ── Page Header ── */}
       <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
         <div>
-          <StatusBar
-            items={[{ label: "MVV:CORE", pulse: true }]}
-            className="mb-10"
+          <SectionHeading
+            level="h1"
+            label="MISSION / VISION / VALUES"
+            heading="理念"
+            color="teal"
           />
-          <h1 className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl">
-            理念
-          </h1>
-          <p className="mt-4 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
-            MISSION / VISION / VALUES
-          </p>
-          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base">
+          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-ink-sub md:text-base">
             Nebulab が日々の判断軸として大切にしている、ミッション・ビジョン・3 つのバリュー。
           </p>
         </div>
         <div className="hidden md:block">
-          <HeroVisual seed={113} className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]" />
         </div>
       </div>      {/* ── Mission ── */}
-      <section className="mt-12 border-t border-cyber-border-dim pt-12">
+      <section className="mt-12 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Mission
             </span>
           </div>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
-          <p className="font-display text-2xl leading-[1.7] tracking-wide text-cyber-text md:text-3xl lg:text-4xl">
+          <p className="font-display text-2xl leading-[1.7] tracking-wide text-ink md:text-3xl lg:text-4xl">
             {MISSION}
           </p>
         </ScrollReveal>
       </section>
 
       {/* ── Vision ── */}
-      <section className="mt-16 border-t border-cyber-border-dim pt-12">
+      <section className="mt-16 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Vision
             </span>
           </div>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
-          <p className="font-display text-2xl leading-[1.7] tracking-wide text-cyber-text md:text-3xl lg:text-4xl">
+          <p className="font-display text-2xl leading-[1.7] tracking-wide text-ink md:text-3xl lg:text-4xl">
             {VISION}
           </p>
         </ScrollReveal>
       </section>
 
       {/* ── Values ── */}
-      <section className="mt-16 border-t border-cyber-border-dim pt-12">
+      <section className="mt-16 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Values
             </span>
           </div>
@@ -106,14 +100,14 @@ export default function MvvPage() {
         <div className="grid gap-6 md:grid-cols-3">
           {VALUES.map((value, i) => (
             <ScrollReveal key={value.code} delay={i * 0.1}>
-              <div className="glass-card corner-accent h-full p-6 md:p-8">
-                <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-cyber-accent">
+              <div className="panel  h-full p-6 md:p-8">
+                <span className="text-[9px] font-bold tracking-[0.3em] text-ink-sub">
                   {value.code}
                 </span>
-                <h2 className="mt-3 text-base font-medium text-cyber-text">
+                <h2 className="mt-3 text-base font-medium text-ink">
                   {value.title}
                 </h2>
-                <p className="mt-4 text-sm leading-7 text-cyber-text-secondary">
+                <p className="mt-4 text-sm leading-7 text-ink-sub">
                   {value.description}
                 </p>
               </div>
@@ -123,11 +117,11 @@ export default function MvvPage() {
       </section>
 
       {/* ── Back link ── */}
-      <section className="mt-16 border-t border-cyber-border-dim pt-12">
+      <section className="mt-16 border-t border-rule pt-12">
         <ScrollReveal>
           <Link
             href="/about"
-            className="font-mono text-xs tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-accent"
+            className="text-xs tracking-[0.25em] text-ink-sub transition-colors hover:text-ink-sub"
           >
             ← About に戻る
           </Link>

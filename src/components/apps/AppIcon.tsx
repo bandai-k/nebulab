@@ -35,7 +35,7 @@ export default function AppIcon({
 
   return (
     <div
-      className={`relative aspect-square shrink-0 overflow-hidden rounded-[22%] border border-cyber-border-dim ${className}`.trim()}
+      className={`relative aspect-square shrink-0 overflow-hidden rounded-[22%] border border-rule ${className}`.trim()}
       style={showImage ? undefined : { background: fallbackStyle }}
     >
       {showImage ? (
@@ -56,7 +56,7 @@ export default function AppIcon({
           <span className="font-display text-base leading-tight tracking-wide md:text-lg">
             {name}
           </span>
-          <span className="mt-1 font-mono text-[8px] tracking-[0.25em] opacity-70">
+          <span className="mt-1 text-[8px] tracking-[0.25em] opacity-70">
             {nameEn}
           </span>
         </div>

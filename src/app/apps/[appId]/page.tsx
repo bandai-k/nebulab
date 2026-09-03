@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { STATUS_TONE } from "@/lib/statusStyle";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import StatusBar from "@/components/StatusBar";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import AppIcon from "@/components/apps/AppIcon";
 import AppScreenshots from "@/components/apps/AppScreenshots";
@@ -21,7 +20,7 @@ const STATUS_LABELS: Record<AppStatus, string> = {
 };
 
 const bodyTextClass =
-  "text-sm leading-[2.1] text-cyber-text-secondary md:text-base";
+  "text-sm leading-[2.1] text-ink-sub md:text-base";
 
 export async function generateStaticParams() {
   return apps.map((a) => ({ appId: a.id }));
@@ -71,7 +70,7 @@ function AppStoreButton({ app }: { app: AppEntry }) {
         href={app.appStoreUrl}
         target="_blank"
         rel="noreferrer noopener"
-        className="inline-flex rounded-sm bg-cyber-accent/80 px-8 py-3.5 font-mono text-[11px] tracking-[0.3em] text-white"
+        className="inline-flex rounded-sm bg-accent/80 px-8 py-3.5 text-[11px] tracking-[0.3em] text-white"
       >
         App Store で見る ↗
       </a>
@@ -85,7 +84,7 @@ function AppStoreButton({ app }: { app: AppEntry }) {
     <button
       type="button"
       disabled
-      className="inline-flex cursor-not-allowed rounded-sm border border-cyber-border px-8 py-3.5 font-mono text-[11px] tracking-[0.3em] text-cyber-text-muted"
+      className="inline-flex cursor-not-allowed rounded-sm border border-rule px-8 py-3.5 text-[11px] tracking-[0.3em] text-ink-sub"
     >
       {label}
     </button>
@@ -106,28 +105,20 @@ export default async function AppDetailPage({
       {/* ── Breadcrumb ── */}
       <nav
         aria-label="パンくずリスト"
-        className="mb-8 flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase"
+        className="mb-8 flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase"
       >
         <Link
           href="/apps"
-          className="text-cyber-text-muted transition-colors hover:text-white"
+          className="text-ink-sub transition-colors hover:text-accent"
         >
           Apps
         </Link>
-        <span className="text-cyber-text-muted">/</span>
-        <span className="text-cyber-accent">{app.name}</span>
+        <span className="text-ink-sub">/</span>
+        <span className="text-ink-sub">{app.name}</span>
       </nav>
 
       {/* ── Hero ── */}
       <section id="hero" className="scroll-mt-28 md:scroll-mt-32">
-        <StatusBar
-          items={[
-            { label: `${app.nameEn}:${STATUS_LABELS[app.status]}`, pulse: true },
-            ...(app.statusNote ? [{ label: app.statusNote }] : []),
-            ...(app.released ? [{ label: `RELEASE:${app.released}` }] : []),
-          ]}
-          className="mb-10"
-        />
 
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
           <AppIcon
@@ -142,10 +133,10 @@ export default async function AppDetailPage({
             <h1 className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl">
               {app.name}
             </h1>
-            <p className="mt-3 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
+            <p className="mt-3 text-[10px] tracking-[0.4em] text-ink-sub">
               {app.nameEn} / {app.category}
             </p>
-            <p className="mt-6 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text md:text-base">
+            <p className="mt-6 max-w-xl text-sm leading-[2.1] tracking-wide text-ink md:text-base">
               {app.tagline}
             </p>
 
@@ -153,7 +144,7 @@ export default async function AppDetailPage({
               <AppStoreButton app={app} />
             </div>
 
-            <p className="mt-5 font-mono text-[11px] tracking-[0.2em] text-cyber-text-secondary">
+            <p className="mt-5 text-[11px] tracking-[0.2em] text-ink-sub">
               {app.osRequirement} ／ {app.price}
             </p>
           </div>
@@ -161,14 +152,14 @@ export default async function AppDetailPage({
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <span
-            className={`inline-flex items-center rounded-sm border px-2 py-0.5 font-mono text-[10px] tracking-wider ${STATUS_STYLES[app.status]}`}
+            className={`inline-flex items-center rounded-sm border px-2 py-0.5 text-[10px] tracking-wider ${STATUS_STYLES[app.status]}`}
           >
             {STATUS_LABELS[app.status]}
           </span>
           {app.tags?.map((tag) => (
             <span
               key={tag}
-              className="font-mono text-[10px] tracking-wider text-cyber-text-muted"
+              className="text-[10px] tracking-wider text-ink-sub"
             >
               #{tag}
             </span>
@@ -180,11 +171,11 @@ export default async function AppDetailPage({
       {app.body && app.body.length > 0 && (
         <section
           id="overview"
-          className="section-tinted mt-10 scroll-mt-28 rounded-sm border border-cyber-border-dim p-6 md:mt-12 md:scroll-mt-32 md:p-10"
+          className="section-tinted mt-10 scroll-mt-28 rounded-sm border border-rule p-6 md:mt-12 md:scroll-mt-32 md:p-10"
         >
           <ScrollReveal>
             <div className="section-eyebrow-line mb-8">
-              <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+              <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
                 Overview
               </span>
             </div>
@@ -203,11 +194,11 @@ export default async function AppDetailPage({
         <section
           key={section.id}
           id={section.id}
-          className="section-tinted mt-10 scroll-mt-28 rounded-sm border border-cyber-border-dim p-6 md:mt-12 md:scroll-mt-32 md:p-10"
+          className="section-tinted mt-10 scroll-mt-28 rounded-sm border border-rule p-6 md:mt-12 md:scroll-mt-32 md:p-10"
         >
           <ScrollReveal>
             <div className="section-eyebrow-line mb-8">
-              <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+              <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
                 {section.eyebrow}
               </span>
             </div>
@@ -231,15 +222,15 @@ export default async function AppDetailPage({
                 {section.features.map((feature, i) => (
                   <div
                     key={feature.title}
-                    className="glass-card flex h-full flex-col p-6 md:p-7"
+                    className="panel flex h-full flex-col p-6 md:p-7"
                   >
-                    <span className="font-mono text-[10px] tracking-[0.3em] text-cyber-accent">
+                    <span className="text-[10px] tracking-[0.3em] text-ink-sub">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="mt-4 text-base font-medium leading-[1.7] tracking-wide text-cyber-text">
+                    <h3 className="mt-4 text-base font-medium leading-[1.7] tracking-wide text-ink">
                       {feature.title}
                     </h3>
-                    <p className="mt-4 text-sm leading-[2] text-cyber-text-secondary">
+                    <p className="mt-4 text-sm leading-[2] text-ink-sub">
                       {feature.body}
                     </p>
                   </div>
@@ -258,10 +249,10 @@ export default async function AppDetailPage({
 
           {section.items && (
             <ScrollReveal delay={0.1}>
-              <ul className="mt-8 space-y-3 text-sm leading-7 text-cyber-text-secondary md:text-base">
+              <ul className="mt-8 space-y-3 text-sm leading-7 text-ink-sub md:text-base">
                 {section.items.map((item, i) => (
                   <li key={item} className="flex gap-4">
-                    <span className="shrink-0 font-mono text-[10px] leading-7 tracking-wider text-cyber-accent">
+                    <span className="shrink-0 text-[10px] leading-7 tracking-wider text-ink-sub">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span>{item}</span>
@@ -282,12 +273,12 @@ export default async function AppDetailPage({
 
           {section.callout && (
             <ScrollReveal delay={0.1}>
-              <div className="glass-card corner-accent mt-8 p-6 md:p-8">
-                <p className="text-sm leading-[2.1] text-cyber-text md:text-base">
+              <div className="panel  mt-8 p-6 md:p-8">
+                <p className="text-sm leading-[2.1] text-ink md:text-base">
                   {section.callout.lead}
                 </p>
                 {section.callout.body && (
-                  <p className="mt-3 text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+                  <p className="mt-3 text-sm leading-[2.1] text-ink-sub md:text-base">
                     {section.callout.body}
                   </p>
                 )}
@@ -300,25 +291,25 @@ export default async function AppDetailPage({
       {/* ── Links / CTA ── */}
       <section
         id="links"
-        className="section-tinted mt-10 scroll-mt-28 rounded-sm border border-cyber-border-dim p-6 md:mt-12 md:scroll-mt-32 md:p-10"
+        className="section-tinted mt-10 scroll-mt-28 rounded-sm border border-rule p-6 md:mt-12 md:scroll-mt-32 md:p-10"
       >
         <ScrollReveal>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-5">
             <AppStoreButton app={app} />
             <Link
               href={app.privacyUrl}
-              className="font-mono text-xs tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-accent"
+              className="text-xs tracking-[0.25em] text-ink-sub transition-colors hover:text-ink-sub"
             >
               プライバシーポリシー →
             </Link>
             <a
               href={`mailto:${company.email}`}
-              className="font-mono text-xs tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-accent"
+              className="text-xs tracking-[0.25em] text-ink-sub transition-colors hover:text-ink-sub"
             >
               {company.email} →
             </a>
           </div>
-          <p className="mt-8 font-mono text-[10px] tracking-[0.25em] text-cyber-text-muted">
+          <p className="mt-8 text-[10px] tracking-[0.25em] text-ink-sub">
             提供: {company.name}
           </p>
         </ScrollReveal>
@@ -329,7 +320,7 @@ export default async function AppDetailPage({
         <ScrollReveal>
           <Link
             href="/apps"
-            className="font-mono text-xs tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-accent"
+            className="text-xs tracking-[0.25em] text-ink-sub transition-colors hover:text-ink-sub"
           >
             ← アプリ一覧に戻る
           </Link>

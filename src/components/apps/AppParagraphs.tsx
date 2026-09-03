@@ -4,7 +4,7 @@ import type { AppParagraph } from "@/data/apps";
 
 // プライバシーポリシーページと同じリンク表現に揃える
 const linkClass =
-  "text-cyber-accent underline underline-offset-4 transition-colors hover:text-ink";
+  "text-accent underline underline-offset-4 transition-colors hover:text-ink";
 
 function InlineNodes({ value }: { value: Exclude<AppParagraph, string> }) {
   return (

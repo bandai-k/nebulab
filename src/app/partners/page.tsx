@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import SectionHeading from "@/components/decor/SectionHeading";
 import { PARTNERS, LAYERS } from "@/data/partners";
 
 export const metadata: Metadata = {
@@ -21,51 +22,49 @@ export const metadata: Metadata = {
 export default function PartnersPage() {
   return (
     <main>
-      <section className="relative overflow-hidden border-b border-cyber-border-dim">
-        <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-32 md:px-10 md:pb-24 md:pt-40">
-          <p className="font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
-            PARTNERS
-          </p>
-          <h1 className="mt-8 font-display text-[1.4rem] font-light leading-[1.8] tracking-[0.06em] text-cyber-text md:text-[1.7rem]">
-            パートナー
-          </h1>
-          <p className="mt-8 max-w-lg text-sm leading-[2.1] text-cyber-text-secondary">
-            {"相互リンクではなく、実際に案件や役割を分担している相手です。得意な領域が重ならないため、入口から本格的な開発まで途切れずに引き渡せます。"}
-          </p>
+      <section className="border-b border-rule">
+        <div className="mx-auto max-w-6xl px-5 pb-20 pt-32 md:px-10 md:pb-24 md:pt-40">
+          <SectionHeading
+            level="h1"
+            label="PARTNERS"
+            heading="パートナー"
+            color="indigo"
+            lead="相互リンクではなく、実際に案件や役割を分担している相手です。得意な領域が重ならないため、入口から本格的な開発まで途切れずに引き渡せます。"
+          />
         </div>
       </section>
 
       {/* 各社 */}
-      <section className="border-b border-cyber-border-dim py-20 md:py-28">
+      <section className="border-b border-rule py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-5 md:px-10">
           <ul className="grid gap-12 md:grid-cols-2 md:gap-16">
             {PARTNERS.map((p) => (
-              <li key={p.name} className="border-t border-cyber-border-dim pt-8">
-                <h2 className="font-display text-lg font-normal tracking-[0.06em] text-cyber-text md:text-xl">
+              <li key={p.name} className="border-t border-rule pt-8">
+                <h2 className="font-display text-lg font-normal tracking-[0.06em] text-ink md:text-xl">
                   {p.name}
                 </h2>
                 {p.representative && (
-                  <p className="mt-2 text-xs text-cyber-text-muted">
+                  <p className="mt-2 text-xs text-ink-sub">
                     {p.representative}
                   </p>
                 )}
 
                 {p.description ? (
-                  <p className="mt-6 max-w-md text-sm leading-[2.1] text-cyber-text-secondary">
+                  <p className="mt-6 max-w-md text-sm leading-[2.1] text-ink-sub">
                     {p.description}
                   </p>
                 ) : (
-                  <p className="mt-6 max-w-md text-sm leading-[2.1] text-cyber-text-muted">
+                  <p className="mt-6 max-w-md text-sm leading-[2.1] text-ink-sub">
                     事業内容は確認中です。
                   </p>
                 )}
 
                 {p.relationship && (
                   <div className="mt-8">
-                    <p className="font-mono text-[9px] tracking-[0.3em] text-cyber-text-muted">
+                    <p className="text-[9px] tracking-[0.3em] text-ink-sub">
                       協業の形
                     </p>
-                    <p className="mt-4 max-w-md text-sm leading-[2.1] text-cyber-text-secondary">
+                    <p className="mt-4 max-w-md text-sm leading-[2.1] text-ink-sub">
                       {p.relationship}
                     </p>
                   </div>
@@ -76,7 +75,7 @@ export default function PartnersPage() {
                     href={p.url}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="mt-8 inline-block font-mono text-[10px] tracking-[0.2em] text-cyber-text-secondary transition-colors hover:text-cyber-text"
+                    className="mt-8 inline-block text-[10px] tracking-[0.2em] text-ink-sub transition-colors hover:text-ink"
                   >
                     {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
                   </a>
@@ -88,25 +87,25 @@ export default function PartnersPage() {
       </section>
 
       {/* 三層構造 */}
-      <section className="border-b border-cyber-border-dim py-20 md:py-28">
+      <section className="border-b border-rule py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-5 md:px-10">
-          <p className="font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
+          <p className="text-[10px] tracking-[0.4em] text-ink-sub">
             STRUCTURE
           </p>
-          <h2 className="mt-8 font-display text-lg font-light leading-[1.9] tracking-[0.06em] text-cyber-text md:text-xl">
+          <h2 className="mt-8 font-display text-lg font-light leading-[1.9] tracking-[0.06em] text-ink md:text-xl">
             入口から開発まで、役割を分けています。
           </h2>
 
-          <ol className="mt-12 border-t border-cyber-border-dim">
+          <ol className="mt-12 border-t border-rule">
             {LAYERS.map((l) => (
               <li
                 key={l.label}
-                className="grid grid-cols-1 gap-2 border-b border-cyber-border-dim py-7 md:grid-cols-[12rem_minmax(0,1fr)] md:items-baseline md:gap-8"
+                className="grid grid-cols-1 gap-2 border-b border-rule py-7 md:grid-cols-[12rem_minmax(0,1fr)] md:items-baseline md:gap-8"
               >
-                <span className="font-mono text-[11px] tracking-[0.2em] text-cyber-text">
+                <span className="text-[11px] tracking-[0.2em] text-ink">
                   {l.label}
                 </span>
-                <span className="text-sm leading-7 text-cyber-text-secondary">
+                <span className="text-sm leading-7 text-ink-sub">
                   {l.note}
                 </span>
               </li>
@@ -116,7 +115,7 @@ export default function PartnersPage() {
           <div className="mt-12">
             <Link
               href="/contact"
-              className="font-mono text-[10px] tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-text"
+              className="text-[10px] tracking-[0.25em] text-ink-sub transition-colors hover:text-ink"
             >
               相談する →
             </Link>

@@ -29,10 +29,25 @@ type Props = {
   color: LabelColor;
   /** 見出しの id(ページ内アンカー用)。 */
   id?: string;
+  /**
+   * 見出しの階層。下層ページの先頭では h1、セクションでは h2。
+   * 1ページに h1 は1つだけにすること。
+   */
+  level?: "h1" | "h2";
+  /** 見出しの下に置く短い導入文。 */
+  lead?: string;
 };
 
-export default function SectionHeading({ label, heading, color, id }: Props) {
+export default function SectionHeading({
+  label,
+  heading,
+  color,
+  id,
+  level = "h2",
+  lead,
+}: Props) {
   const asset = LABEL_ASSETS[color];
+  const Heading = level;
 
   return (
     <div className="relative">
@@ -64,12 +79,22 @@ export default function SectionHeading({ label, heading, color, id }: Props) {
       </div>
 
       {heading && (
-        <h2
+        <Heading
           id={id}
-          className="relative mt-4 max-w-2xl font-display text-lg font-light leading-[1.85] tracking-[0.04em] text-ink md:text-xl"
+          className={`relative mt-4 max-w-2xl font-display font-light leading-[1.85] tracking-[0.04em] text-ink ${
+            level === "h1"
+              ? "text-xl md:text-2xl"
+              : "text-lg md:text-xl"
+          }`}
         >
           {heading}
-        </h2>
+        </Heading>
+      )}
+
+      {lead && (
+        <p className="relative mt-8 max-w-xl text-sm leading-[2.1] text-ink-sub">
+          {lead}
+        </p>
       )}
     </div>
   );

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { STATUS_TONE } from "@/lib/statusStyle";
 import Link from "next/link";
-import StatusBar from "@/components/StatusBar";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { BRAND } from "@/constants/brand";
 
@@ -90,19 +89,11 @@ export default function HpTrialPage() {
   return (
     <main>
       {/* === Hero === */}
-      <section className="relative overflow-hidden border-b border-cyber-border-dim">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyber-bg/40 to-cyber-bg pointer-events-none" />
+      <section className="relative overflow-hidden border-b border-rule">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ground/40 to-cyber-bg pointer-events-none" />
         <div className="relative mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
-          <StatusBar
-            items={[
-              { label: "HP TRIAL OFFER", pulse: true },
-              { label: "LIMIT:10 SHOPS" },
-              { label: "2026.05 – 12" },
-            ]}
-            className="mb-10"
-          />
 
-          <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-cyber-accent">
+          <p className="text-[10px] tracking-[0.4em] uppercase text-ink-sub">
             無料 / HP お試し公開プラン
           </p>
           <h1 className="mt-6 font-display text-4xl font-normal leading-[1.3] tracking-wide md:text-5xl lg:text-6xl">
@@ -112,19 +103,19 @@ export default function HpTrialPage() {
           </h1>
 
           <div className="mt-10 flex items-baseline gap-4 md:gap-6">
-            <span className="font-mono text-xs tracking-[0.25em] text-cyber-text-muted">
+            <span className="text-xs tracking-[0.25em] text-ink-sub">
               最低
             </span>
-            <span className="font-display text-6xl font-normal text-cyber-text md:text-7xl">
+            <span className="font-display text-6xl font-normal text-ink md:text-7xl">
               ¥0
-              <sup className="ml-1 font-mono text-xs text-cyber-accent">※</sup>
+              <sup className="ml-1 text-xs text-ink-sub">※</sup>
             </span>
-            <span className="font-mono text-xs tracking-[0.25em] text-cyber-text-muted">
+            <span className="text-xs tracking-[0.25em] text-ink-sub">
               から始められます
             </span>
           </div>
 
-          <p className="mt-6 max-w-2xl text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+          <p className="mt-6 max-w-2xl text-sm leading-[2.1] text-ink-sub md:text-base">
             Nebulab合同会社は 2026 年 5 月に成田で設立されたばかり。
             まず「実際に動いている事例」を必要としています。
             事例化のご協力と引き換えに、1 ページの Web ページを無料でお作りします。
@@ -134,7 +125,7 @@ export default function HpTrialPage() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               href="/contact"
-              className="rounded-sm bg-cyber-accent/85 px-7 py-3 font-mono text-xs tracking-[0.25em] text-white"
+              className="rounded-sm bg-accent/85 px-7 py-3 text-xs tracking-[0.25em] text-white"
             >
               申込・相談する →
             </Link>
@@ -142,19 +133,19 @@ export default function HpTrialPage() {
               href="/docs/hp-trial"
               target="_blank"
               rel="noreferrer noopener"
-              className="rounded-sm border border-white/40 bg-white/5 px-7 py-3 font-mono text-xs tracking-[0.25em] text-cyber-text backdrop-blur-sm transition-all hover:border-cyber-accent hover:bg-cyber-accent/15"
+              className="rounded-sm border border-white/40 bg-white/5 px-7 py-3 text-xs tracking-[0.25em] text-ink backdrop-blur-sm transition-all hover:border-accent hover:bg-accent/15"
             >
               詳細資料(PDF 風)↗
             </a>
             <Link
               href="/showcase"
-              className="font-mono text-xs tracking-wider text-cyber-text-secondary transition-colors hover:text-cyber-accent"
+              className="text-xs tracking-wider text-ink-sub transition-colors hover:text-ink-sub"
             >
               事例を見る →
             </Link>
           </div>
 
-          <p className="mt-6 font-mono text-[10px] tracking-[0.2em] text-cyber-text-muted">
+          <p className="mt-6 text-[10px] tracking-[0.2em] text-ink-sub">
             ※ 条件あり(下記の応募条件・対価をご確認ください)
           </p>
         </div>
@@ -164,7 +155,7 @@ export default function HpTrialPage() {
       <section className="section-divider">
         <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Why Free
             </p>
             <h2 className="mt-6 font-display text-3xl leading-[1.4] tracking-wide md:text-4xl">
@@ -172,7 +163,7 @@ export default function HpTrialPage() {
               <br />
               はっきりした理由があります。
             </h2>
-            <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+            <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-ink-sub md:text-base">
               無料で出す以上、その理由を曖昧にせず、3 つの本音をはっきり書きます。
             </p>
           </ScrollReveal>
@@ -180,14 +171,14 @@ export default function HpTrialPage() {
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {reasons.map((r, i) => (
               <ScrollReveal key={r.num} delay={i * 0.08}>
-                <div className="glass-card flex h-full flex-col p-6 md:p-8">
-                  <span className="font-mono text-[10px] tracking-[0.3em] text-cyber-accent">
+                <div className="panel flex h-full flex-col p-6 md:p-8">
+                  <span className="text-[10px] tracking-[0.3em] text-ink-sub">
                     REASON {r.num}
                   </span>
-                  <h3 className="mt-4 font-display text-xl font-normal leading-tight tracking-wide text-cyber-text md:text-2xl">
+                  <h3 className="mt-4 font-display text-xl font-normal leading-tight tracking-wide text-ink md:text-2xl">
                     {r.title}
                   </h3>
-                  <p className="mt-4 text-sm leading-7 text-cyber-text-secondary">
+                  <p className="mt-4 text-sm leading-7 text-ink-sub">
                     {r.body}
                   </p>
                 </div>
@@ -201,30 +192,30 @@ export default function HpTrialPage() {
       <section className="section-divider section-tinted">
         <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               What You Get
             </p>
             <h2 className="mt-6 font-display text-3xl leading-[1.4] tracking-wide md:text-4xl">
               何が、手に入るか。
             </h2>
-            <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+            <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-ink-sub md:text-base">
               制作期間は 2-3 週間(ヒアリングから公開まで)。
               Nebulab 管理のサーバー・サブパスで公開するため、お客様側でのドメイン・サーバー契約は不要です。
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="mt-12 border border-cyber-border bg-cyber-surface p-8 md:p-10">
-              <p className="font-mono text-[10px] tracking-[0.3em] text-cyber-accent mb-6">
+            <div className="mt-12 border border-rule bg-surface p-8 md:p-10">
+              <p className="text-[10px] tracking-[0.3em] text-ink-sub mb-6">
                 含まれるもの(無料)
               </p>
               <ul className="grid gap-3 md:grid-cols-2 md:gap-x-8">
                 {includes.map((item, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-3 text-sm leading-7 text-cyber-text"
+                    className="flex items-start gap-3 text-sm leading-7 text-ink"
                   >
-                    <span className="mt-2 inline-block size-1 shrink-0 rounded-full bg-cyber-accent" />
+                    <span className="mt-2 inline-block size-1 shrink-0 rounded-full bg-accent" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -233,15 +224,15 @@ export default function HpTrialPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.15}>
-            <div className="mt-8 border-l-2 border-cyber-accent bg-cyber-bg/60 p-5 md:p-6">
-              <p className="text-sm leading-7 text-cyber-text-secondary">
-                <strong className="text-cyber-text">
+            <div className="mt-8 border-l-2 border-accent bg-ground/60 p-5 md:p-6">
+              <p className="text-sm leading-7 text-ink-sub">
+                <strong className="text-ink">
                   HP Superlight ¥30,000 との違い:
                 </strong>{" "}
-                Superlight は<strong className="text-cyber-text"> 独自ドメイン</strong>
+                Superlight は<strong className="text-ink"> 独自ドメイン</strong>
                 (例: yourshop.com)での公開、写真も少し多く、修正も 2 回。
                 お試し公開プランは
-                <strong className="text-cyber-text"> nebulab.jp サブパス</strong>
+                <strong className="text-ink"> nebulab.jp サブパス</strong>
                 での公開、つまり「住所が Nebulab 内」になる代わりに無料、というトレードオフです。
               </p>
             </div>
@@ -253,13 +244,13 @@ export default function HpTrialPage() {
       <section className="section-divider">
         <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               In Exchange
             </p>
             <h2 className="mt-6 font-display text-3xl leading-[1.4] tracking-wide md:text-4xl">
               お客様にお願いしたいこと。
             </h2>
-            <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+            <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-ink-sub md:text-base">
               本プランの「対価」として、以下にご協力いただきます。
             </p>
           </ScrollReveal>
@@ -267,21 +258,21 @@ export default function HpTrialPage() {
           <div className="mt-12 space-y-5">
             {requests.map((r, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>
-                <div className="flex flex-col gap-4 border border-cyber-border-dim bg-cyber-surface p-6 md:flex-row md:items-start md:gap-6 md:p-8">
+                <div className="flex flex-col gap-4 border border-rule bg-surface p-6 md:flex-row md:items-start md:gap-6 md:p-8">
                   <span
-                    className={`inline-flex shrink-0 self-start rounded-sm px-3 py-1 font-mono text-[10px] tracking-[0.25em] ${
+                    className={`inline-flex shrink-0 self-start rounded-sm px-3 py-1 text-[10px] tracking-[0.25em] ${
                       r.badge === "REQUIRED"
-                        ? "bg-cyber-accent/85 text-white"
+                        ? "bg-accent/85 text-white"
                         : `border ${STATUS_TONE.live}`
                     }`}
                   >
                     {r.badge}
                   </span>
                   <div className="flex-1">
-                    <h3 className="font-display text-lg font-normal leading-tight tracking-wide text-cyber-text md:text-xl">
+                    <h3 className="font-display text-lg font-normal leading-tight tracking-wide text-ink md:text-xl">
                       {r.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-7 text-cyber-text-secondary">
+                    <p className="mt-3 text-sm leading-7 text-ink-sub">
                       {r.body}
                     </p>
                   </div>
@@ -296,7 +287,7 @@ export default function HpTrialPage() {
       <section className="section-divider section-tinted">
         <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Terms
             </p>
             <h2 className="mt-6 font-display text-3xl leading-[1.4] tracking-wide md:text-4xl">
@@ -305,13 +296,13 @@ export default function HpTrialPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <dl className="mt-12 grid gap-x-10 gap-y-0 border-t border-cyber-border-dim md:grid-cols-[180px_1fr]">
+            <dl className="mt-12 grid gap-x-10 gap-y-0 border-t border-rule md:grid-cols-[180px_1fr]">
               {conditions.map(([label, value], i) => (
                 <div key={i} className="contents">
-                  <dt className="border-b border-cyber-border-dim py-4 font-mono text-[10px] tracking-[0.25em] text-cyber-text-muted md:py-5">
+                  <dt className="border-b border-rule py-4 text-[10px] tracking-[0.25em] text-ink-sub md:py-5">
                     {label}
                   </dt>
-                  <dd className="border-b border-cyber-border-dim py-4 text-sm leading-7 text-cyber-text md:py-5">
+                  <dd className="border-b border-rule py-4 text-sm leading-7 text-ink md:py-5">
                     {value}
                   </dd>
                 </div>
@@ -320,9 +311,9 @@ export default function HpTrialPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.15}>
-            <div className="mt-8 border-l-2 border-cyber-accent bg-cyber-bg/60 p-5 md:p-6">
-              <p className="text-sm leading-7 text-cyber-text-secondary">
-                <strong className="text-cyber-text">採択について:</strong>
+            <div className="mt-8 border-l-2 border-accent bg-ground/60 p-5 md:p-6">
+              <p className="text-sm leading-7 text-ink-sub">
+                <strong className="text-ink">採択について:</strong>
                 先着順を基本としますが、事業内容・地域・公開後の継続可能性などを踏まえ Nebulab 側で最終判断をさせていただきます。お断りする場合もある旨、あらかじめご了承ください。
               </p>
             </div>
@@ -334,7 +325,7 @@ export default function HpTrialPage() {
       <section className="section-divider">
         <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               How to Apply
             </p>
             <h2 className="mt-6 font-display text-3xl leading-[1.4] tracking-wide md:text-4xl">
@@ -345,14 +336,14 @@ export default function HpTrialPage() {
           <div className="mt-12 grid gap-4 md:grid-cols-4 md:gap-6">
             {flow.map((step, i) => (
               <ScrollReveal key={step.num} delay={i * 0.08}>
-                <div className="relative h-full border border-cyber-border-dim bg-cyber-surface p-6 md:p-7">
-                  <span className="font-mono text-[10px] tracking-[0.3em] text-cyber-accent">
+                <div className="relative h-full border border-rule bg-surface p-6 md:p-7">
+                  <span className="text-[10px] tracking-[0.3em] text-ink-sub">
                     STEP {step.num}
                   </span>
-                  <h3 className="mt-3 font-display text-lg font-normal tracking-wide text-cyber-text md:text-xl">
+                  <h3 className="mt-3 font-display text-lg font-normal tracking-wide text-ink md:text-xl">
                     {step.title}
                   </h3>
-                  <p className="mt-3 whitespace-pre-line text-xs leading-6 text-cyber-text-secondary">
+                  <p className="mt-3 whitespace-pre-line text-xs leading-6 text-ink-sub">
                     {step.detail}
                   </p>
                 </div>
@@ -368,19 +359,19 @@ export default function HpTrialPage() {
           <ScrollReveal>
             <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
               <div>
-                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+                <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
                   Showcase
                 </p>
                 <h2 className="mt-6 font-display text-3xl leading-[1.4] tracking-wide md:text-4xl">
                   すでに、公開されている事例。
                 </h2>
-                <p className="mt-8 max-w-xl text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+                <p className="mt-8 max-w-xl text-sm leading-[2.1] text-ink-sub md:text-base">
                   プランで実際に作ったサイトは、Web ページとしてそのままご覧いただけます。
                   デザイン・構成・操作感をご確認のうえ、お申込みをご検討ください。
                 </p>
                 <Link
                   href="/showcase"
-                  className="mt-8 inline-block rounded-sm border border-cyber-border bg-cyber-surface px-7 py-3 font-mono text-xs tracking-[0.25em] text-cyber-text transition-colors hover:border-cyber-accent hover:text-cyber-accent"
+                  className="mt-8 inline-block rounded-sm border border-rule bg-surface px-7 py-3 text-xs tracking-[0.25em] text-ink transition-colors hover:border-accent hover:text-ink-sub"
                 >
                   事例集を見る →
                 </Link>
@@ -394,28 +385,28 @@ export default function HpTrialPage() {
       <section className="section-divider">
         <div className="mx-auto max-w-3xl px-5 py-20 text-center md:px-10 md:py-28">
           <ScrollReveal>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Apply Now
             </p>
-            <h2 className="mt-8 font-display text-2xl leading-10 tracking-wide text-cyber-text md:text-3xl">
+            <h2 className="mt-8 font-display text-2xl leading-10 tracking-wide text-ink md:text-3xl">
               一緒に &ldquo;最初の事例&rdquo; を、
               <br />
               作ってくださる方へ。
             </h2>
-            <p className="mt-8 text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+            <p className="mt-8 text-sm leading-[2.1] text-ink-sub md:text-base">
               このプランが合いそうかどうか、30 分の無料相談で一緒に見極めます。
               「HP お試し公開プランの件」とお伝えください。
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="rounded-sm bg-cyber-accent/85 px-12 py-4 font-mono text-[11px] tracking-[0.3em] text-white"
+                className="rounded-sm bg-accent/85 px-12 py-4 text-[11px] tracking-[0.3em] text-white"
               >
                 申込・相談する →
               </Link>
               <a
                 href={`mailto:${BRAND.email}`}
-                className="font-mono text-xs tracking-wider text-cyber-text-secondary transition-colors hover:text-cyber-accent"
+                className="text-xs tracking-wider text-ink-sub transition-colors hover:text-ink-sub"
               >
                 {BRAND.email}
               </a>

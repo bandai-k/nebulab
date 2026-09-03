@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
+import SectionHeading from "@/components/decor/SectionHeading";
 import Link from "next/link";
-import StatusBar from "@/components/StatusBar";
-import HeroVisual from "@/components/HeroVisual";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { news } from "@/data/news";
 
@@ -29,31 +28,23 @@ export default function NewsPage() {
       {/* ── Page Header ── */}
       <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
         <div>
-          <StatusBar
-            items={[
-              { label: "NEWS:LATEST", pulse: true },
-              { label: `ENTRIES:${news.length}` },
-            ]}
-            className="mb-10"
+          <SectionHeading
+            level="h1"
+            label="NEWS"
+            heading="ニュース"
+            color="teal"
           />
-          <h1 className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl">
-            ニュース
-          </h1>
-          <p className="mt-4 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
-            NEWS
-          </p>
-          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base">
+          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-ink-sub md:text-base">
             Nebulab および各プロジェクトの最新情報をお知らせします。
           </p>
         </div>
         <div className="hidden md:block">
-          <HeroVisual seed={97} className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]" />
         </div>
       </div>      {/* ── News list ── */}
-      <section className="mt-12 border-t border-cyber-border-dim pt-12">
+      <section className="mt-12 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               All Entries
             </span>
           </div>
@@ -65,32 +56,32 @@ export default function NewsPage() {
               <li>
                 <Link
                   href={item.href}
-                  className="group relative flex flex-col overflow-hidden border border-cyber-border-dim bg-cyber-surface p-6 pl-7 transition-all hover:border-cyber-accent/60 hover:bg-[#101820] md:flex-row md:items-start md:gap-10 md:p-8 md:pl-10"
+                  className="group relative flex flex-col overflow-hidden border border-rule bg-surface p-6 pl-7 transition-all hover:border-accent/60 hover:bg-[#101820] md:flex-row md:items-start md:gap-10 md:p-8 md:pl-10"
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute left-0 top-0 h-full w-[3px] bg-cyber-border-dim transition-colors group-hover:bg-cyber-accent"
+                    className="absolute left-0 top-0 h-full w-[3px] bg-rule transition-colors group-hover:bg-accent"
                   />
 
                   <div className="md:w-[160px] md:shrink-0">
-                    <time className="font-mono text-sm tracking-wider text-cyber-text-muted">
+                    <time className="text-sm tracking-wider text-ink-sub">
                       {item.date}
                     </time>
-                    <span className="mt-3 inline-flex items-center rounded-sm border border-cyber-accent/40 bg-cyber-accent/10 px-2 py-0.5 font-mono text-[9px] tracking-[0.3em] uppercase text-cyber-accent">
+                    <span className="mt-3 inline-flex items-center rounded-sm border border-accent/40 bg-accent/10 px-2 py-0.5 text-[9px] tracking-[0.3em] uppercase text-ink-sub">
                       {item.category}
                     </span>
                   </div>
 
                   <div className="mt-5 flex-1 md:mt-0">
-                    <h2 className="text-base leading-7 text-cyber-text transition-colors group-hover:text-cyber-accent md:text-lg">
+                    <h2 className="text-base leading-7 text-ink transition-colors group-hover:text-ink-sub md:text-lg">
                       {item.title}
                     </h2>
                     {item.body && (
-                      <p className="mt-3 text-sm leading-7 text-cyber-text-secondary">
+                      <p className="mt-3 text-sm leading-7 text-ink-sub">
                         {item.body}
                       </p>
                     )}
-                    <span className="mt-4 inline-flex items-center gap-2 font-mono text-[11px] tracking-wider text-cyber-text-muted transition-colors group-hover:text-cyber-accent">
+                    <span className="mt-4 inline-flex items-center gap-2 text-[11px] tracking-wider text-ink-sub transition-colors group-hover:text-ink-sub">
                       READ
                       <span
                         aria-hidden="true"

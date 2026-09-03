@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import SectionHeading from "@/components/decor/SectionHeading";
+import { NUMBER_ASSETS } from "@/components/decor/brushAssets";
 
 export const metadata: Metadata = {
   title: "事業内容",
@@ -123,17 +126,15 @@ const areas: Area[] = [
 export default function ServicesPage() {
   return (
     <main>
-      <section className="relative overflow-hidden border-b border-cyber-border-dim">
-        <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-32 md:px-10 md:pb-24 md:pt-40">
-          <p className="font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
-            SERVICES
-          </p>
-          <h1 className="mt-8 font-display text-[1.4rem] font-light leading-[1.8] tracking-[0.06em] text-cyber-text md:text-[1.7rem]">
-            事業内容
-          </h1>
-          <p className="mt-8 max-w-lg text-sm leading-[2.1] text-cyber-text-secondary">
-            {"4つの事業を、それぞれ独立させつつ相互に補完する形で展開しています。自社でつくって運用した経験を、受託や支援の現場に持ち込むのが基本の考え方です。"}
-          </p>
+      <section className="border-b border-rule">
+        <div className="mx-auto max-w-6xl px-5 pb-20 pt-32 md:px-10 md:pb-24 md:pt-40">
+          <SectionHeading
+            level="h1"
+            label="SERVICES"
+            heading="事業内容"
+            color="amber"
+            lead="4つの事業を、それぞれ独立させつつ相互に補完する形で展開しています。自社でつくって運用した経験を、受託や支援の現場に持ち込むのが基本の考え方です。"
+          />
         </div>
       </section>
 
@@ -141,36 +142,42 @@ export default function ServicesPage() {
         <section
           key={area.code}
           id={area.id}
-          className="border-b border-cyber-border-dim py-20 md:py-28"
+          className="border-b border-rule py-20 md:py-28"
         >
           <div className="mx-auto max-w-6xl px-5 md:px-10">
             <div className="grid gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-16">
-              <span className="font-display text-3xl font-extralight tracking-[0.08em] text-cyber-text-muted md:text-4xl">
-                {area.code}
-              </span>
+              <Image
+                src={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].src}
+                alt=""
+                aria-hidden="true"
+                width={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].width}
+                height={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].height}
+                sizes="96px"
+                className="pointer-events-none h-auto w-16 md:w-20"
+              />
 
               <div>
-                <h2 className="font-display text-lg font-normal tracking-[0.06em] text-cyber-text md:text-xl">
+                <h2 className="font-display text-lg font-normal tracking-[0.04em] text-ink md:text-xl">
                   {area.name}
                 </h2>
-                <p className="mt-3 text-sm leading-7 text-cyber-text-secondary">
+                <p className="mt-3 text-sm leading-7 text-ink-sub">
                   {area.description}
                 </p>
-                <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-cyber-text-secondary">
+                <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-ink-sub">
                   {area.body}
                 </p>
 
                 <div className="mt-12 grid gap-10 md:grid-cols-2">
                   {area.blocks.map((block) => (
                     <div key={block.heading}>
-                      <p className="font-mono text-[9px] tracking-[0.3em] text-cyber-text-muted">
+                      <p className="text-[10px] font-medium tracking-[0.22em] text-ink-sub">
                         {block.heading}
                       </p>
                       <ul className="mt-5 space-y-3">
                         {block.items.map((item) => (
                           <li
                             key={item}
-                            className="flex gap-3 text-sm leading-7 text-cyber-text-secondary"
+                            className="flex gap-3 text-sm leading-7 text-ink-sub"
                           >
                             <span className="mt-[0.85em] block h-px w-3 shrink-0 bg-rule" />
                             <span>{item}</span>
@@ -184,9 +191,9 @@ export default function ServicesPage() {
                 <div className="mt-12">
                   <Link
                     href={area.cta.href}
-                    className="font-mono text-[10px] tracking-[0.25em] text-cyber-text-secondary transition-colors hover:text-cyber-text"
+                    className="btn btn-ghost"
                   >
-                    {area.cta.label} →
+                    {area.cta.label}
                   </Link>
                 </div>
               </div>

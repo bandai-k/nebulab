@@ -20,11 +20,11 @@ const LG_COLS: Record<number, string> = {
 function ShotPlaceholder({ shot, index }: { shot: AppScreenshot; index: number }) {
   return (
     <div
-      className="flex w-full items-center justify-center rounded-sm border border-cyber-border-dim bg-white/[0.02]"
+      className="flex w-full items-center justify-center rounded-sm border border-rule bg-white/[0.02]"
       style={{ aspectRatio: `${shot.width} / ${shot.height}` }}
       aria-hidden="true"
     >
-      <span className="font-mono text-[9px] tracking-[0.25em] text-cyber-text-muted">
+      <span className="text-[9px] tracking-[0.25em] text-ink-sub">
         {String(index + 1).padStart(2, "0")}
       </span>
     </div>
@@ -55,7 +55,7 @@ function ShotThumb({
     <button
       type="button"
       onClick={() => onOpen(index)}
-      className="block w-full cursor-zoom-in overflow-hidden rounded-sm border border-cyber-border-dim bg-white/[0.02] transition-colors hover:border-cyber-accent/50"
+      className="block w-full cursor-zoom-in overflow-hidden rounded-sm border border-rule bg-white/[0.02] transition-colors hover:border-accent/50"
       aria-label={`${shot.alt} を拡大する`}
     >
       <Image
@@ -156,7 +156,7 @@ export default function AppScreenshots({ shots }: AppScreenshotsProps) {
             type="button"
             onClick={close}
             aria-label="閉じる"
-            className="absolute right-4 top-4 z-[1] flex h-10 w-10 items-center justify-center font-mono text-sm text-cyber-text-secondary transition-colors hover:text-ink md:right-8 md:top-8"
+            className="absolute right-4 top-4 z-[1] flex h-10 w-10 items-center justify-center text-sm text-ink-sub transition-colors hover:text-ink md:right-8 md:top-8"
           >
             ✕
           </button>
@@ -170,7 +170,7 @@ export default function AppScreenshots({ shots }: AppScreenshotsProps) {
                   step(-1);
                 }}
                 aria-label="前のスクリーンショット"
-                className="absolute left-2 z-[1] flex h-12 w-12 items-center justify-center font-mono text-lg text-cyber-text-secondary transition-colors hover:text-ink md:left-6"
+                className="absolute left-2 z-[1] flex h-12 w-12 items-center justify-center text-lg text-ink-sub transition-colors hover:text-ink md:left-6"
               >
                 ‹
               </button>
@@ -181,7 +181,7 @@ export default function AppScreenshots({ shots }: AppScreenshotsProps) {
                   step(1);
                 }}
                 aria-label="次のスクリーンショット"
-                className="absolute right-2 z-[1] flex h-12 w-12 items-center justify-center font-mono text-lg text-cyber-text-secondary transition-colors hover:text-ink md:right-6"
+                className="absolute right-2 z-[1] flex h-12 w-12 items-center justify-center text-lg text-ink-sub transition-colors hover:text-ink md:right-6"
               >
                 ›
               </button>
@@ -203,7 +203,7 @@ export default function AppScreenshots({ shots }: AppScreenshotsProps) {
             }}
           />
 
-          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[0.3em] text-cyber-text-muted">
+          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.3em] text-ink-sub">
             {String((openIndex ?? 0) + 1).padStart(2, "0")} /{" "}
             {String(shots.length).padStart(2, "0")}
           </span>

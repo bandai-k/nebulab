@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
+import SectionHeading from "@/components/decor/SectionHeading";
 import Link from "next/link";
-import StatusBar from "@/components/StatusBar";
-import HeroVisual from "@/components/HeroVisual";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { company, history, businessAreas } from "@/data/company";
 
@@ -87,28 +86,23 @@ export default function AboutPage() {
       {/* ── Page Header ── */}
       <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
         <div>
-          <StatusBar
-            items={[{ label: "ABOUT:NEBULAB", pulse: true }]}
-            className="mb-10"
+          <SectionHeading
+            level="h1"
+            label="ABOUT"
+            heading="会社概要"
+            color="teal"
           />
-          <h1 className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl">
-            会社概要
-          </h1>
-          <p className="mt-4 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
-            ABOUT
-          </p>
         </div>
         <div className="hidden md:block">
-          <HeroVisual seed={11} className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]" />
         </div>
       </div>      {/* ── 代表メッセージ ── */}
       <section
         id="message"
-        className="mt-12 border-t border-cyber-border-dim pt-12"
+        className="mt-12 border-t border-rule pt-12"
       >
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Message
             </span>
           </div>
@@ -116,7 +110,7 @@ export default function AboutPage() {
 
         <div className="grid gap-10 md:grid-cols-[280px_1fr] md:gap-14 lg:grid-cols-[340px_1fr]">
           <ScrollReveal>
-            <div className="relative aspect-[4/5] overflow-hidden border border-cyber-border-dim">
+            <div className="relative aspect-[4/5] overflow-hidden border border-rule">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/about/ceo-portrait.svg"
@@ -127,17 +121,17 @@ export default function AboutPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <h2 className="text-xl font-medium tracking-wide text-cyber-text md:text-2xl">
+            <h2 className="text-xl font-medium tracking-wide text-ink md:text-2xl">
               代表メッセージ
             </h2>
-            <div className="mt-8 space-y-6 text-sm leading-[2.1] text-cyber-text-secondary md:text-base">
+            <div className="mt-8 space-y-6 text-sm leading-[2.1] text-ink-sub md:text-base">
               {ceoMessage.map((paragraph, i) => (
                 <p key={i} className="whitespace-pre-line">
                   {paragraph}
                 </p>
               ))}
             </div>
-            <p className="mt-10 font-mono text-xs tracking-wider text-cyber-text-muted">
+            <p className="mt-10 text-xs tracking-wider text-ink-sub">
               {company.name} 代表社員 {company.ceo}
             </p>
           </ScrollReveal>
@@ -147,28 +141,28 @@ export default function AboutPage() {
       {/* ── 事業領域(/services の4分類と対応) ── */}
       <section
         id="business"
-        className="mt-16 border-t border-cyber-border-dim pt-12"
+        className="mt-16 border-t border-rule pt-12"
       >
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Business
             </span>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <ul className="border-t border-cyber-border-dim">
+          <ul className="border-t border-rule">
             {businessAreas.map((area) => (
-              <li key={area.code} className="border-b border-cyber-border-dim">
+              <li key={area.code} className="border-b border-rule">
                 <Link
                   href={`/services#${area.id}`}
                   className="group grid grid-cols-[auto_1fr] items-baseline gap-6 py-6 md:gap-10"
                 >
-                  <span className="font-display text-xl font-extralight tracking-[0.08em] text-cyber-text-muted transition-colors group-hover:text-cyber-text-secondary">
+                  <span className="font-display text-xl font-extralight tracking-[0.08em] text-ink-sub transition-colors group-hover:text-ink-sub">
                     {area.code}
                   </span>
-                  <span className="font-display text-base font-normal tracking-[0.06em] text-cyber-text">
+                  <span className="font-display text-base font-normal tracking-[0.06em] text-ink">
                     {area.nameJa}
                   </span>
                 </Link>
@@ -181,27 +175,27 @@ export default function AboutPage() {
       {/* ── COMPANY INFORMATION ── */}
       <section
         id="company"
-        className="mt-16 border-t border-cyber-border-dim pt-12"
+        className="mt-16 border-t border-rule pt-12"
       >
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Company Information
             </span>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <dl className="divide-y divide-cyber-border-dim">
+          <dl className="divide-y divide-rule">
             {companyInfoRows.map((row) => (
               <div
                 key={row.label}
                 className="grid gap-2 py-5 md:grid-cols-[200px_1fr] md:gap-8"
               >
-                <dt className="font-mono text-[10px] tracking-[0.3em] uppercase text-cyber-text-muted">
+                <dt className="text-[10px] tracking-[0.3em] uppercase text-ink-sub">
                   {row.label}
                 </dt>
-                <dd className="text-sm leading-7 text-cyber-text md:text-base">
+                <dd className="text-sm leading-7 text-ink md:text-base">
                   {row.value}
                 </dd>
               </div>
@@ -211,10 +205,10 @@ export default function AboutPage() {
       </section>
 
       {/* ── HISTORY ── */}
-      <section className="mt-16 border-t border-cyber-border-dim pt-12">
+      <section className="mt-16 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               History
             </span>
           </div>
@@ -227,13 +221,13 @@ export default function AboutPage() {
                 key={i}
                 className="grid gap-2 md:grid-cols-[160px_1fr] md:gap-8"
               >
-                <span className="font-mono text-xs tracking-wider text-cyber-accent">
+                <span className="text-xs tracking-wider text-ink-sub">
                   {entry.year}
                   {entry.month
                     ? `.${String(entry.month).padStart(2, "0")}`
                     : ""}
                 </span>
-                <span className="text-sm leading-7 text-cyber-text-secondary md:text-base">
+                <span className="text-sm leading-7 text-ink-sub md:text-base">
                   {entry.event}
                 </span>
               </li>
@@ -243,10 +237,10 @@ export default function AboutPage() {
       </section>
 
       {/* ── ACCESS ── */}
-      <section className="mt-16 border-t border-cyber-border-dim pt-12">
+      <section className="mt-16 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Access
             </span>
           </div>
@@ -255,22 +249,22 @@ export default function AboutPage() {
         <ScrollReveal delay={0.1}>
           <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-12">
             <div>
-              <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-cyber-text-muted">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-ink-sub">
                 Address
               </p>
-              <p className="mt-3 text-sm leading-7 text-cyber-text md:text-base">
+              <p className="mt-3 text-sm leading-7 text-ink md:text-base">
                 {company.address.full}
               </p>
-              <p className="mt-6 font-mono text-[10px] tracking-[0.3em] uppercase text-cyber-text-muted">
+              <p className="mt-6 text-[10px] tracking-[0.3em] uppercase text-ink-sub">
                 Contact
               </p>
-              <p className="mt-3 font-mono text-sm text-cyber-accent">
+              <p className="mt-3 text-sm text-ink-sub">
                 <a href={`mailto:${company.email}`} className="hover:underline">
                   {company.email}
                 </a>
               </p>
             </div>
-            <div className="relative overflow-hidden border border-cyber-border-dim">
+            <div className="relative overflow-hidden border border-rule">
               <iframe
                 src={mapsEmbedSrc}
                 title="Nebulab合同会社 所在地"

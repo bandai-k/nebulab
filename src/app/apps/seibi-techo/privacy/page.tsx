@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import StatusBar from "@/components/StatusBar";
 import { company } from "@/data/company";
 
 const APP_NAME = "整備手帳";
@@ -25,22 +24,18 @@ export const metadata: Metadata = {
 };
 
 // 法務文書のため、本文は原文のまま掲載する（要約・言い換えを行わない）
-const sectionClass = "border-t border-cyber-border-dim py-10";
+const sectionClass = "border-t border-rule py-10";
 const headingClass =
-  "scroll-mt-24 text-lg font-medium tracking-wide text-cyber-text md:text-xl";
+  "scroll-mt-24 text-lg font-medium tracking-wide text-ink md:text-xl";
 const bodyClass =
-  "mt-5 space-y-5 text-sm leading-[2.1] text-cyber-text-secondary md:text-base";
+  "mt-5 space-y-5 text-sm leading-[2.1] text-ink-sub md:text-base";
 const linkClass =
-  "break-all text-cyber-accent underline underline-offset-4 transition-colors hover:text-white";
+  "break-all text-ink-sub underline underline-offset-4 transition-colors hover:text-accent";
 
 export default function SeibiTechoPrivacyPage() {
   return (
     <main className="mx-auto max-w-5xl px-5 py-24 md:px-10">
       {/* ── Page Header ── */}
-      <StatusBar
-        items={[{ label: "DOC:PRIVACY — APP:SEIBI-TECHO", pulse: true }]}
-        className="mb-10"
-      />
 
       <h1
         id="privacy-policy"
@@ -49,13 +44,13 @@ export default function SeibiTechoPrivacyPage() {
         プライバシーポリシー
       </h1>
 
-      <p className="mt-4 font-mono text-[10px] tracking-[0.3em] text-cyber-text-muted">
+      <p className="mt-4 text-[10px] tracking-[0.3em] text-ink-sub">
         iOSアプリ「{APP_NAME}」／ 最終更新 {LAST_UPDATED}
       </p>
 
       {/* ── 結論（要約ではなく原文） ── */}
-      <div className="glass-card corner-accent mt-12 p-6 md:p-10">
-        <p className="text-sm leading-[2.1] text-cyber-text md:text-base">
+      <div className="panel  mt-12 p-6 md:p-10">
+        <p className="text-sm leading-[2.1] text-ink md:text-base">
           このアプリは、利用者の情報を収集しません。記録した内容や写真はすべて端末の中に保存され、開発者が閲覧することはできません。外部のサーバーへ送信する仕組みも、利用状況を計測する仕組みも組み込んでいません。
         </p>
       </div>
@@ -193,11 +188,11 @@ export default function SeibiTechoPrivacyPage() {
       </div>
 
       {/* ── 運営者情報 ── */}
-      <div className="mt-4 border-t border-cyber-border-dim pt-10">
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-cyber-text-muted">
+      <div className="mt-4 border-t border-rule pt-10">
+        <p className="text-[10px] tracking-[0.3em] uppercase text-ink-sub">
           Operator
         </p>
-        <p className="mt-4 text-sm leading-7 text-cyber-text md:text-base">
+        <p className="mt-4 text-sm leading-7 text-ink md:text-base">
           {company.name}
         </p>
         <p className="mt-1 text-sm leading-7">

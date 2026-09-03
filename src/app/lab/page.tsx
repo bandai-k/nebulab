@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
+import SectionHeading from "@/components/decor/SectionHeading";
 import { STATUS_TONE } from "@/lib/statusStyle";
 import Link from "next/link";
-import StatusBar from "@/components/StatusBar";
-import HeroVisual from "@/components/HeroVisual";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { projects, type Project, type ProjectStatus } from "@/data/projects";
 
@@ -40,26 +39,26 @@ const STATUS_STYLES: Record<ProjectStatus, string> = {
 
 function LabProjectCard({ project }: { project: Project }) {
   return (
-    <article className="glass-card corner-accent flex h-full flex-col p-6 md:p-8">
+    <article className="panel  flex h-full flex-col p-6 md:p-8">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
         <span
-          className={`inline-flex items-center rounded-sm border px-2 py-0.5 font-mono text-[10px] tracking-wider ${STATUS_STYLES[project.status]}`}
+          className={`inline-flex items-center rounded-sm border px-2 py-0.5 text-[10px] tracking-wider ${STATUS_STYLES[project.status]}`}
         >
           {project.status}
         </span>
-        <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-cyber-accent">
+        <span className="text-[10px] tracking-[0.3em] uppercase text-ink-sub">
           {project.category}
         </span>
       </div>
 
-      <h3 className="mt-5 font-display text-2xl font-normal tracking-wide text-cyber-text md:text-3xl">
+      <h3 className="mt-5 font-display text-2xl font-normal tracking-wide text-ink md:text-3xl">
         {project.name}
       </h3>
 
-      <p className="mt-4 text-sm leading-7 text-cyber-text">
+      <p className="mt-4 text-sm leading-7 text-ink">
         {project.tagline}
       </p>
-      <p className="mt-3 text-sm leading-7 text-cyber-text-secondary">
+      <p className="mt-3 text-sm leading-7 text-ink-sub">
         {project.description}
       </p>
 
@@ -67,7 +66,7 @@ function LabProjectCard({ project }: { project: Project }) {
         <div className="mt-6">
           <Link
             href={project.internalUrl}
-            className="font-mono text-xs tracking-wider text-cyber-accent transition-colors hover:text-white"
+            className="text-xs tracking-wider text-ink-sub transition-colors hover:text-accent"
           >
             詳細 →
           </Link>
@@ -85,49 +84,41 @@ export default function LabPage() {
       {/* ── Page Header ── */}
       <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
         <div>
-          <StatusBar
-            items={[
-              { label: "LAB:OPEN", pulse: true },
-              { label: `R&D:${labProjects.length}` },
-            ]}
-            className="mb-10"
+          <SectionHeading
+            level="h1"
+            label="LAB"
+            heading="実験と検証の場"
+            color="teal"
           />
-          <h1 className="font-display text-3xl font-normal leading-[1.3] tracking-wide md:text-4xl lg:text-5xl">
-            実験と検証の場
-          </h1>
-          <p className="mt-4 font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
-            LAB
-          </p>
-          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-cyber-text-secondary md:text-base">
+          <p className="mt-8 max-w-xl text-sm leading-[2.1] tracking-wide text-ink-sub md:text-base">
             Nebulab Lab は、新しい技術・サービスの R&amp;D と
             <br />
             実験・検証を行う部門です。
           </p>
         </div>
         <div className="hidden md:block">
-          <HeroVisual seed={53} className="h-[240px] w-[240px] lg:h-[300px] lg:w-[300px]" />
         </div>
       </div>      {/* ── Lab の活動 ── */}
-      <section id="principles" className="mt-12 border-t border-cyber-border-dim pt-12">
+      <section id="principles" className="mt-12 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Principles
             </span>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <h2 className="text-xl font-medium tracking-wide text-cyber-text md:text-2xl">
+          <h2 className="text-xl font-medium tracking-wide text-ink md:text-2xl">
             Lab の活動方針
           </h2>
           <ol className="mt-8 space-y-5">
             {principles.map((p, i) => (
               <li
                 key={i}
-                className="flex gap-5 text-sm leading-8 text-cyber-text-secondary md:text-base"
+                className="flex gap-5 text-sm leading-8 text-ink-sub md:text-base"
               >
-                <span className="font-mono text-[10px] tracking-[0.3em] text-cyber-accent">
+                <span className="text-[10px] tracking-[0.3em] text-ink-sub">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span>{p}</span>
@@ -138,17 +129,17 @@ export default function LabPage() {
       </section>
 
       {/* ── Active Projects (AI PRODUCT only) ── */}
-      <section id="rd" className="mt-16 border-t border-cyber-border-dim pt-12">
+      <section id="rd" className="mt-16 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Active Projects
             </span>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <h2 className="text-xl font-medium tracking-wide text-cyber-text md:text-2xl">
+          <h2 className="text-xl font-medium tracking-wide text-ink md:text-2xl">
             進行中の R&amp;D プロジェクト
           </h2>
         </ScrollReveal>
@@ -165,7 +156,7 @@ export default function LabPage() {
           <div className="mt-10">
             <Link
               href="/projects"
-              className="font-mono text-xs tracking-wider text-cyber-accent transition-colors hover:text-white"
+              className="text-xs tracking-wider text-ink-sub transition-colors hover:text-accent"
             >
               全プロジェクトを見る →
             </Link>
@@ -174,24 +165,24 @@ export default function LabPage() {
       </section>
 
       {/* ── 技術ブログ ── */}
-      <section id="blog" className="mt-16 border-t border-cyber-border-dim pt-12">
+      <section id="blog" className="mt-16 border-t border-rule pt-12">
         <ScrollReveal>
           <div className="section-eyebrow-line mb-12">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-cyber-accent">
+            <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Tech Blog
             </span>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <div className="glass-card p-8 md:p-10">
-            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-cyber-text-muted">
+          <div className="panel p-8 md:p-10">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-ink-sub">
               Status
             </p>
-            <p className="mt-3 font-display text-2xl tracking-wide text-cyber-text">
+            <p className="mt-3 font-display text-2xl tracking-wide text-ink">
               準備中
             </p>
-            <p className="mt-4 text-sm leading-7 text-cyber-text-secondary md:text-base">
+            <p className="mt-4 text-sm leading-7 text-ink-sub md:text-base">
               開発ログ、設計メモ、検証記録は近日公開予定です。
               <br />
               R&amp;Dの過程を、可能な限り公開していきます。

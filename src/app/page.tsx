@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BrushField from "@/components/decor/BrushField";
+import SideBrushes from "@/components/decor/SideBrushes";
 import { DEPTH } from "@/components/decor/brushAssets";
 import HeroDevices from "@/components/home/HeroDevices";
 import Products from "@/components/home/Products";
@@ -38,6 +39,8 @@ const HERO_BRUSH = [
     // 1段組(lg 未満)では端末が本文の下に来るので、全幅の帯に戻す。
     position:
       "-left-[8%] w-[116%] lg:left-auto lg:-right-[6%] lg:w-[50%]",
+    // 画面表示時にゆっくり落ち着かせる(§4.1 動くのは筆だけ)
+    entrance: true,
   },
 ] as const;
 
@@ -54,25 +57,27 @@ export default function HomePage() {
         側を right に寄せている。端末が右(デスクトップ)/下(モバイル)に
         来るので、下端を基準にすると両方で同じ関係になる。
       */}
-      <section className="relative overflow-hidden border-b border-rule">
+      <section className="relative flex min-h-[86svh] items-center overflow-hidden border-b border-rule md:min-h-[92svh]">
         <BrushField
           priority
           layers={[...HERO_BRUSH]}
           sizes="(min-width: 1024px) 62vw, 108vw"
         />
+        {/* 画面左右の余白に縦の筆を置く(§3.4 を縦方向に読み替えたもの) */}
+        <SideBrushes />
 
-        <div className="relative mx-auto max-w-6xl px-5 md:px-10">
-          <div className="grid items-center gap-16 py-24 md:py-32 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.78fr)] lg:gap-16">
+        <div className="relative mx-auto w-full max-w-6xl px-5 md:px-10">
+          <div className="grid items-center gap-16 py-28 md:py-32 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
             <div>
               <p className="section-label">NEBULAB — NARITA, JP</p>
 
-              <h1 className="mt-10 font-display text-[1.35rem] font-light leading-[1.8] tracking-[0.04em] text-ink md:text-[1.6rem] xl:text-[1.85rem]">
+              <h1 className="mt-10 font-display text-[1.5rem] font-light leading-[1.75] tracking-[0.02em] text-ink md:text-[1.8rem] xl:text-[2.1rem]">
                 自社で開発し、自社で運用している。
                 <br />
                 だから、つくった後の話ができる。
               </h1>
 
-              <p className="mt-8 max-w-md text-sm leading-[2.1] text-ink-sub md:text-[0.95rem]">
+              <p className="mt-10 max-w-lg text-sm leading-[2.1] text-ink-sub md:text-base">
                 {"受託開発と内製化支援に加えて、自分たちのプロダクトをつくり、日々使い、運用しています。設計だけでも実装だけでもなく、運用して初めて分かることまで含めてお渡しします。"}
               </p>
 

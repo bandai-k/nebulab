@@ -36,8 +36,24 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[60] border-b border-rule bg-ground/95 md:backdrop-blur-md">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-[1fr_auto_1fr] items-center px-5 py-4 md:px-10 md:py-5">
+      {/*
+        背景は不透明にする。以前は bg-ground/95 + backdrop-blur だったが、
+        95% 不透明ではぼかしはほとんど見えず、合成レイヤーを1枚増やすだけに
+        なっていた。ヒーローの筆がヘッダーの下を通るため、透けない方が
+        見え方も安定する。
+      */}
+      <header className="fixed inset-x-0 top-0 z-[60] border-b border-rule bg-ground">
+        {/*
+          ロゴは画面左上に密着させる(左の余白を取らない)。
+          grid-cols-[1fr_auto_1fr] にすることで、ロゴと右のボタンの幅に
+          関係なくナビが画面の中央に来る。
+        */}
+        {/*
+          コンテナには左右のパディングを付けない。片側だけに余白を置くと
+          グリッドの中心が画面中心からずれ、ナビが寄って見える。
+          右端の余白は問い合わせボタンとハンバーガー側で取る。
+        */}
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center py-3 md:py-4">
           <Link
             href="/"
             className="justify-self-start transition-opacity hover:opacity-80"
@@ -54,7 +70,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop nav (centered) */}
-          <nav className="col-start-2 hidden items-center justify-self-center gap-8 md:flex">
+          <nav className="col-start-2 hidden items-center justify-self-center gap-8 lg:flex">
             {HEADER_NAV.map((item) => {
               const current = isCurrent(item, pathname);
               return (
@@ -106,7 +122,7 @@ export default function Header() {
           {/* 問い合わせボタン(右)。§5.1 のとおりアクセントの塗り＋メールアイコン。 */}
           <Link
             href="/contact"
-            className="btn btn-primary btn-sm col-start-3 hidden justify-self-end md:inline-flex"
+            className="btn btn-primary btn-sm col-start-3 mr-5 hidden justify-self-end md:mr-10 lg:inline-flex"
           >
             <svg
               aria-hidden="true"
@@ -125,7 +141,7 @@ export default function Header() {
           {/* Mobile hamburger (right) */}
           <button
             type="button"
-            className="col-start-3 flex h-10 w-10 flex-col items-center justify-center gap-1.5 justify-self-end md:hidden"
+            className="col-start-3 mr-3 flex h-10 w-10 flex-col items-center justify-center gap-1.5 justify-self-end lg:hidden"
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
             aria-expanded={menuOpen}
@@ -151,7 +167,7 @@ export default function Header() {
 
       {/* Mobile menu overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-ground pb-12 pt-24 md:hidden">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-ground pb-12 pt-24 lg:hidden">
           <nav className="flex flex-col items-center gap-8 px-5 py-6">
             {HEADER_NAV.map((item) => {
               const current = isCurrent(item, pathname);

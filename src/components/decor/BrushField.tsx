@@ -44,6 +44,11 @@ export type BrushLayerSpec = {
   position?: string;
   /** 滲み出し(§4.3)を掛けるか。1セクションにつき最大2箇所まで。 */
   reveal?: boolean;
+  /**
+   * 画面表示時にゆっくり落ち着かせるか。transform だけを動かすので、
+   * LCP になる要素に掛けても一瞬空にならない。
+   */
+  entrance?: boolean;
 };
 
 /** 素材の最大表示幅(px)。これ以上に拡大しないこと(支給時の指定)。 */
@@ -210,7 +215,7 @@ export default function BrushField({ layers, priority = false, sizes = "120vw" }
                 height={asset.height}
                 priority={priority}
                 sizes={sizes}
-                className="h-auto w-full"
+                className={`h-auto w-full${layer.entrance ? " brush-settle" : ""}`}
               />
             </div>
           </div>

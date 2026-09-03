@@ -91,8 +91,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Products />
       <Services />
+      <Products />
       <CeoMessage />
       <Partners />
       <SisterMedia />

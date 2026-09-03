@@ -34,7 +34,7 @@ const linkClass =
 
 export default function SeibiTechoPrivacyPage() {
   return (
-    <main className="mx-auto max-w-6xl px-5 py-24 md:px-10">
+    <main className="mx-auto max-w-6xl px-6 py-24 md:px-12 lg:px-16">
       {/* ── Page Header ── */}
 
       <h1

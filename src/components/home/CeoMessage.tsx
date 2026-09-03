@@ -16,7 +16,7 @@ export default function CeoMessage() {
       id="message"
       className="border-b border-rule py-24 md:py-32"
     >
-      <div className="mx-auto max-w-6xl px-5 md:px-10">
+      <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
         <SectionHeading label="MESSAGE" color="teal" />
 
         <div className="mt-16 grid gap-12 md:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)] md:gap-16 lg:gap-20">

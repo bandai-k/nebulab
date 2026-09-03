@@ -27,12 +27,16 @@ export type BrushLayerSpec = {
   /** どちらのセクション端に寄せるか。 */
   anchor: "top" | "bottom";
   /**
-   * 端からのずらし量。層自身の高さに対する % で書く。
-   * 素材はストロークが上下 25%〜75% に入っているので、たとえば
-   * anchor:"top" / shift:"-45%" ならストロークの下端がセクション上端から
-   * 層高の 30% の位置に来る。画面幅が変わっても関係が崩れない。
+   * 端からのずらし量。Tailwind の translate クラスで書く。
+   * % は層自身の高さに対する値なので、画面幅が変わっても
+   * ストロークとセクション端の関係が保たれる。
+   *
+   * クラスで持つのは、段組みが変わる幅でずらし量も変えたいため
+   * (例: "translate-y-[22%] lg:translate-y-[71%]")。
+   * transform ではなく translate プロパティを使うので、内側の層に
+   * パララックスが書き込む transform とぶつからない。
    */
-  shift: string;
+  shiftClass: string;
   /**
    * 横方向の置き方を Tailwind で指定する。
    *
@@ -42,6 +46,12 @@ export type BrushLayerSpec = {
    * 回り込ませない ―― "-left-[8%] w-[116%] lg:left-auto lg:-right-[6%] lg:w-[50%]"
    */
   position?: string;
+  /**
+   * この層だけの最大幅(px)。既定は素材の上限。
+   * 幅を % で持つ層は画面が広いほど高くもなる。セクションの高さは
+   * 変わらないので、上限を決めないと広い画面で本文に掛かる。
+   */
+  maxWidth?: number;
   /** 滲み出し(§4.3)を掛けるか。1セクションにつき最大2箇所まで。 */
   reveal?: boolean;
   /**
@@ -192,13 +202,11 @@ export default function BrushField({ layers, priority = false, sizes = "120vw" }
         return (
           <div
             key={`${layer.name}-${i}`}
-            className={`brush-layer ${layer.position ?? "-left-[8%] w-[116%]"}`}
+            className={`brush-layer ${layer.position ?? "-left-[8%] w-[116%]"} ${layer.shiftClass}`}
             style={{
               [layer.anchor]: 0,
-              maxWidth: MAX_ASSET_WIDTH,
+              maxWidth: layer.maxWidth ?? MAX_ASSET_WIDTH,
               opacity: layer.opacity,
-              // 層自身の高さに対するずらし。画面幅が変わっても関係が保たれる。
-              transform: `translate3d(0, ${layer.shift}, 0)`,
             }}
           >
             <div

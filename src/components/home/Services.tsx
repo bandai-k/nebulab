@@ -52,7 +52,7 @@ const services: Service[] = [
 export default function Services() {
   return (
     <section id="services" className="border-b border-rule py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-5 md:px-10">
+      <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
         <SectionHeading
           label="SERVICES"
           heading="つくることと、つくれるようにすること。"

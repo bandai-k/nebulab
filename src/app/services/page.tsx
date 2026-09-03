@@ -127,7 +127,7 @@ export default function ServicesPage() {
   return (
     <main>
       <section className="border-b border-rule">
-        <div className="mx-auto max-w-6xl px-5 pb-20 pt-32 md:px-10 md:pb-24 md:pt-40">
+        <div className="mx-auto max-w-6xl px-6 pb-20 pt-32 md:px-12 lg:px-16 md:pb-24 md:pt-40">
           <SectionHeading
             level="h1"
             label="SERVICES"
@@ -144,7 +144,7 @@ export default function ServicesPage() {
           id={area.id}
           className="border-b border-rule py-20 md:py-28"
         >
-          <div className="mx-auto max-w-6xl px-5 md:px-10">
+          <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
             <div className="grid gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-16">
               <Image
                 src={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].src}

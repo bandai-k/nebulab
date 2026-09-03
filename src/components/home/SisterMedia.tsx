@@ -18,7 +18,7 @@ import { DEPTH } from "@/components/decor/brushAssets";
  * 素材は見出しと同じ label-* を使い回している。専用素材を増やすより、
  * 同じ筆を使い回したほうが画面全体の質感が揃う。
  *
- * shift は層自身の高さに対する割合。素材はストロークが上下 15%〜84% に
+ * shiftClass は層自身の高さに対する割合。素材はストロークが上下 15%〜84% に
  * 入っているので、下の値ならストロークはセクションの上端・下端の余白に
  * 収まり、本文には掛からない。
  * パララックスで層は上下に動く(近い層で層高の約 10%)。その移動ぶんを
@@ -26,13 +26,19 @@ import { DEPTH } from "@/components/decor/brushAssets";
  * 1440px のすべてで、移動後も本文と重ならないことを確認すること。
  */
 const LAYERS = [
-  { name: "label-indigo", depth: DEPTH.far, opacity: 0.5, anchor: "top", shift: "-61%" },
+  {
+    name: "label-indigo",
+    depth: DEPTH.far,
+    opacity: 0.5,
+    anchor: "top",
+    shiftClass: "-translate-y-[61%]",
+  },
   {
     name: "label-pink",
     depth: DEPTH.near,
     opacity: 0.45,
     anchor: "bottom",
-    shift: "70%",
+    shiftClass: "translate-y-[70%]",
     reveal: true,
   },
 ] as const;
@@ -42,7 +48,7 @@ export default function SisterMedia() {
     <section className="relative overflow-hidden border-t border-rule">
       <BrushField layers={[...LAYERS]} sizes="130vw" />
 
-      <div className="relative mx-auto max-w-6xl px-5 py-36 md:px-10 md:py-56">
+      <div className="relative mx-auto max-w-6xl px-6 py-36 md:px-12 lg:px-16 md:py-56">
         <div className="max-w-xl">
           <p className="section-label">SISTER MEDIA</p>
 

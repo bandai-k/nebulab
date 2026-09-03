@@ -24,7 +24,7 @@ function initial(name: string): string {
 export default function Partners() {
   return (
     <section id="partners" className="border-b border-rule py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-5 md:px-10">
+      <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
         <SectionHeading
           label="PARTNERS"
           heading="得意なところを、それぞれが持ち寄る。"

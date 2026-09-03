@@ -101,7 +101,7 @@ export default async function AppDetailPage({
   if (!app) notFound();
 
   return (
-    <main className="mx-auto max-w-6xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
+    <main className="mx-auto max-w-6xl px-6 pb-24 pt-28 md:px-12 lg:px-16 md:pt-32">
       {/* ── Breadcrumb ── */}
       <nav
         aria-label="パンくずリスト"

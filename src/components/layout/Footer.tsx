@@ -77,7 +77,7 @@ const externalSites = [
 export default function Footer() {
   return (
     <footer className="border-t border-rule">
-      <div className="mx-auto max-w-6xl px-5 py-20 md:px-10">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:px-12 lg:px-16">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,2fr)] lg:gap-16">
           {/* 社名と短い説明文 */}
           <div>

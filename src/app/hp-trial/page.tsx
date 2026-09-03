@@ -91,7 +91,7 @@ export default function HpTrialPage() {
       {/* === Hero === */}
       <section className="relative overflow-hidden border-b border-rule">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ground/40 to-cyber-bg pointer-events-none" />
-        <div className="relative mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
+        <div className="relative mx-auto max-w-6xl px-6 py-24 md:px-12 lg:px-16 md:py-32">
 
           <p className="text-[10px] tracking-[0.4em] uppercase text-ink-sub">
             無料 / HP お試し公開プラン
@@ -153,7 +153,7 @@ export default function HpTrialPage() {
 
       {/* === なぜ無料か === */}
       <section className="section-divider">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-12 lg:px-16 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Why Free
@@ -190,7 +190,7 @@ export default function HpTrialPage() {
 
       {/* === 何が手に入るか === */}
       <section className="section-divider section-tinted">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-12 lg:px-16 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               What You Get
@@ -242,7 +242,7 @@ export default function HpTrialPage() {
 
       {/* === お願いしたいこと === */}
       <section className="section-divider">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-12 lg:px-16 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               In Exchange
@@ -285,7 +285,7 @@ export default function HpTrialPage() {
 
       {/* === 応募条件 === */}
       <section className="section-divider section-tinted">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-12 lg:px-16 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Terms
@@ -323,7 +323,7 @@ export default function HpTrialPage() {
 
       {/* === 申込の流れ === */}
       <section className="section-divider">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-12 lg:px-16 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               How to Apply
@@ -355,7 +355,7 @@ export default function HpTrialPage() {
 
       {/* === Showcase 導線 === */}
       <section className="section-divider section-tinted">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-12 lg:px-16 md:py-28">
           <ScrollReveal>
             <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
               <div>
@@ -383,7 +383,7 @@ export default function HpTrialPage() {
 
       {/* === CTA === */}
       <section className="section-divider">
-        <div className="mx-auto max-w-3xl px-5 py-20 text-center md:px-10 md:py-28">
+        <div className="mx-auto max-w-3xl px-6 py-20 text-center md:px-12 lg:px-16 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Apply Now

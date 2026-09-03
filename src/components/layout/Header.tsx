@@ -122,7 +122,7 @@ export default function Header() {
           {/* 問い合わせボタン(右)。§5.1 のとおりアクセントの塗り＋メールアイコン。 */}
           <Link
             href="/contact"
-            className="btn btn-primary btn-sm col-start-3 mr-5 hidden justify-self-end md:mr-10 lg:inline-flex"
+            className="btn btn-primary btn-sm col-start-3 mr-6 hidden justify-self-end md:mr-12 lg:mr-16 lg:inline-flex"
           >
             <svg
               aria-hidden="true"
@@ -141,7 +141,7 @@ export default function Header() {
           {/* Mobile hamburger (right) */}
           <button
             type="button"
-            className="col-start-3 mr-3 flex h-10 w-10 flex-col items-center justify-center gap-1.5 justify-self-end lg:hidden"
+            className="col-start-3 mr-4 flex h-10 w-10 flex-col items-center justify-center gap-1.5 justify-self-end lg:hidden"
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
             aria-expanded={menuOpen}

@@ -23,7 +23,7 @@ export default function PartnersPage() {
   return (
     <main>
       <section className="border-b border-rule">
-        <div className="mx-auto max-w-6xl px-5 pb-20 pt-32 md:px-10 md:pb-24 md:pt-40">
+        <div className="mx-auto max-w-6xl px-6 pb-20 pt-32 md:px-12 lg:px-16 md:pb-24 md:pt-40">
           <SectionHeading
             level="h1"
             label="PARTNERS"
@@ -36,7 +36,7 @@ export default function PartnersPage() {
 
       {/* 各社 */}
       <section className="border-b border-rule py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-5 md:px-10">
+        <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
           <ul className="grid gap-12 md:grid-cols-2 md:gap-16">
             {PARTNERS.map((p) => (
               <li key={p.name} className="border-t border-rule pt-8">
@@ -88,7 +88,7 @@ export default function PartnersPage() {
 
       {/* 三層構造 */}
       <section className="border-b border-rule py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-5 md:px-10">
+        <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
           <p className="text-[10px] tracking-[0.4em] text-ink-sub">
             STRUCTURE
           </p>

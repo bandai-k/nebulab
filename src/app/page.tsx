@@ -27,19 +27,39 @@ export const metadata: Metadata = {
  * 読み込みと競合し、LCP になる要素が一瞬空になるため。
  */
 const HERO_BRUSH = [
+  /*
+   * 右の層。端末の背後を通り、右へ抜ける。
+   * 本文は左半分にあるので、2段組になる lg 以上では右へ寄せて
+   * 文字の裏に回り込ませない(§3.4)。実測で本文の右端から 40px 前後は
+   * 空く。これ以上左へ寄せると本文に掛かる。
+   */
   {
     name: "hero-main",
     depth: DEPTH.mid,
-    // 本文はこの層に重ならない(下の position で右へ逃がしている)ため、
-    // §9 のコントラスト上限に縛られない。端末の周りで見えるだけの濃さを持たせる。
+    // 本文はこの層に重ならないため、§9 のコントラスト上限に縛られない。
     opacity: 0.75,
     anchor: "bottom",
-    shift: "22%",
-    // 2段組になる lg 以上では右へ寄せ、左のコピーの裏に回り込ませない。
-    // 1段組(lg 未満)では端末が本文の下に来るので、全幅の帯に戻す。
-    position:
-      "-left-[8%] w-[116%] lg:left-auto lg:-right-[6%] lg:w-[50%]",
+    position: "-left-[8%] w-[116%] lg:left-auto lg:-right-[6%] lg:w-[50%]",
+    shiftClass: "translate-y-[22%]",
     // 画面表示時にゆっくり落ち着かせる(§4.1 動くのは筆だけ)
+    entrance: true,
+  },
+  /*
+   * 左下の帯。右の層だけだと重心が画面の右隅に寄って見えるため、
+   * 本文の下に抜ける帯を足して左へ振っている。
+   * 層を小さめにしてあるのは、幅なりに高くすると 828px のヒーローに
+   * 収まらず、本文の下に置いた時点でほとんど見えなくなるため。
+   * 1段組(lg 未満)では端末が本文の下に来るので出さない。
+   */
+  {
+    name: "hero-main",
+    depth: DEPTH.far,
+    opacity: 0.5,
+    anchor: "bottom",
+    position: "hidden lg:block lg:-left-[10%] lg:w-[62%]",
+    // 幅の上限を切らないと、広い画面ほど層が高くなって本文に掛かる。
+    maxWidth: 900,
+    shiftClass: "lg:translate-y-[72%]",
     entrance: true,
   },
 ] as const;
@@ -66,12 +86,12 @@ export default function HomePage() {
         {/* 画面左右の余白に縦の筆を置く(§3.4 を縦方向に読み替えたもの) */}
         <SideBrushes />
 
-        <div className="relative mx-auto w-full max-w-6xl px-5 md:px-10">
+        <div className="relative mx-auto w-full max-w-6xl px-6 md:px-12 lg:px-16">
           <div className="grid items-center gap-16 py-28 md:py-32 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
             <div>
               <p className="section-label">NEBULAB — NARITA, JP</p>
 
-              <h1 className="mt-10 font-display text-[1.5rem] font-light leading-[1.75] tracking-[0.02em] text-ink md:text-[1.8rem] xl:text-[2.1rem]">
+              <h1 className="mt-10 font-display text-[1.5rem] font-light leading-[1.75] tracking-[0.02em] text-ink md:text-[1.7rem] xl:text-[1.95rem]">
                 自社で開発し、自社で運用している。
                 <br />
                 だから、つくった後の話ができる。

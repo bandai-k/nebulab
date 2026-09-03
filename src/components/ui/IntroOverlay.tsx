@@ -32,11 +32,11 @@ export default function IntroOverlay() {
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black transition-opacity duration-1000 ease-out"
+      className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-cyber-bg transition-opacity duration-1000 ease-out"
       style={{ opacity: phase === "out" ? 0 : 1 }}
     >
       <p
-        className="font-display text-3xl tracking-wide text-white transition-all duration-1000 ease-out sm:text-5xl"
+        className="font-display text-3xl tracking-wide text-cyber-text transition-all duration-1000 ease-out sm:text-5xl"
         style={{
           opacity: phase === "in" ? 0 : 1,
           transform: phase === "in" ? "translateY(16px)" : "translateY(0)",

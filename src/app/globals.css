@@ -1,28 +1,63 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@400;500;600;700&family=Fragment+Mono&family=Noto+Sans+JP:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&family=Inter:wght@400;500;600;700&family=Fragment+Mono&family=Noto+Sans+JP:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-cyber-bg: #000000;
-  --color-cyber-surface: #0a0a0a;
-  --color-cyber-border: rgba(255, 255, 255, 0.12);
-  --color-cyber-border-dim: rgba(255, 255, 255, 0.06);
-  --color-cyber-text: #ffffff;
-  --color-cyber-text-secondary: #999999;
-  --color-cyber-text-muted: #555555;
-  --color-cyber-accent: #1556a5;
-  --color-cyber-accent-dim: rgba(255, 255, 255, 0.16);
-  --color-cyber-glow: rgba(21, 86, 165, 0.25);
+  /* ── パレット(指示書 §4)。ここが色の唯一の出所 ── */
+  --color-ground: #0e1417; /* 背景 */
+  --color-surface: #161d21; /* 面(カード等) */
+  --color-rule: #252e33; /* 罫線 */
+  --color-ink: #e4e7e6; /* 本文 */
+  --color-ink-sub: #8a9499; /* 補助テキスト */
+  --color-brass: #c9a227; /* アクセント(真鍮)。主ボタンとごく一部のラベルのみ */
+  --color-invert-ground: #f7f6f1; /* 反転ブロック背景 */
+  --color-invert-ink: #2c2c2a; /* 反転ブロック本文 */
 
-  --font-display: "Cormorant Garamond", "Georgia", serif;
+  /*
+   * 旧 cyber-* トークンは既存ページが全面的に参照しているため名前を残し、
+   * 値だけ新パレットに向ける。ページ側の移行は Phase 3 以降で順次行う。
+   * cyber-accent は真鍮ではなく補助色に寄せている。真鍮を全面に散らすと
+   * 「アクセントは多用しない」(§4)に反するため、真鍮は明示的に指定した
+   * 箇所(--color-brass)でのみ使う。
+   */
+  --color-cyber-bg: var(--color-ground);
+  --color-cyber-surface: var(--color-surface);
+  --color-cyber-border: var(--color-rule);
+  --color-cyber-border-dim: #1b2226;
+  --color-cyber-text: var(--color-ink);
+  --color-cyber-text-secondary: var(--color-ink-sub);
+  --color-cyber-text-muted: #5c666b;
+  --color-cyber-accent: var(--color-ink-sub);
+  --color-cyber-glow: rgba(138, 148, 153, 0.16);
+
+  /* 日本語見出し・数字用の細い明朝 */
+  --font-display: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  /* 本文および英字ラベル(グロテスク系サンセリフ) */
   --font-body: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Fragment Mono", ui-monospace, monospace;
 }
 
 @layer base {
   :root {
-    --accent-r: 21;
-    --accent-g: 86;
-    --accent-b: 165;
+    /*
+     * 装飾(グロー・罫線)用の RGB。真鍮ではなく補助色のスレートを使う。
+     * 差し色を増やさないための措置(§4)。
+     */
+    --accent-r: 138;
+    --accent-g: 148;
+    --accent-b: 153;
+
+    /*
+     * 線画の濃さ。サイト全体をこの1つの数値で調整する。
+     * 上限の根拠(背景 #0E1417 / 線は白):
+     *   0.08 → 線の最も濃い画素の上でも 補助テキスト 4.88:1(AA 合格)
+     *   0.10 → 補助テキスト 4.57:1(AA ぎりぎり合格)
+     *   0.12 → 補助テキスト 4.31:1(AA 不合格)
+     * 補助テキストが重なる場所では 0.10 を超えないこと。
+     * 本文(#E4E7E6)しか重ならない場所は 0.20 まで 8:1 以上を保てる。
+     */
+    --lineart-intensity: 0.08;
+    /* 反転ブロック(#F7F6F1)に置く黒線用 */
+    --lineart-intensity-invert: 0.1;
   }
 
   [id] {
@@ -45,6 +80,24 @@
     touch-action: pan-y pinch-zoom;
   }
 
+  /*
+   * 見出しの折り返しをブラウザ任せにしない(§8)。
+   * 日本語は文節で切れるようにし、意図した位置の <br> だけを効かせる。
+   */
+  h1,
+  h2,
+  h3,
+  h4 {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* 暗い背景でもフォーカスリングが見えること(§8) */
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 2px;
+  }
+
   ::selection {
     background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.4);
     color: #ffffff;
@@ -56,7 +109,7 @@
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: var(--color-ground);
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
@@ -73,7 +126,7 @@
     pointer-events: none;
     background: radial-gradient(
       circle,
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.15) 0%,
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.06) 0%,
       transparent 70%
     );
     transition: background 2s ease;
@@ -193,7 +246,7 @@
     z-index: 0;
     background: radial-gradient(
       circle,
-      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.18) 0%,
+      rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.07) 0%,
       transparent 70%
     );
     will-change: transform;

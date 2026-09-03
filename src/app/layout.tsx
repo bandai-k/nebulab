@@ -3,8 +3,6 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AmbientBackground from "@/components/AmbientBackground";
-import FloatingWindows from "@/components/ui/FloatingWindows";
-import ColorCycler from "@/components/ui/ColorCycler";
 import IntroOverlay from "@/components/ui/IntroOverlay";
 
 const SITE_URL = "https://www.nebulab.jp";
@@ -85,10 +83,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className="relative min-h-dvh overflow-x-hidden bg-cyber-bg text-cyber-text antialiased">
         <IntroOverlay />
-        <ColorCycler />
         <AmbientBackground />
-        <FloatingWindows />
-
         <Header />
         <div className="relative z-[1]">
           {children}

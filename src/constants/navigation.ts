@@ -12,7 +12,7 @@ export type HeaderNavItem = {
 };
 
 /**
- * ヘッダーのナビ(指示書 §5.1)。ABOUT / SERVICES / PROJECTS / PARTNERS / CONTACT の5項目。
+ * ヘッダーのナビ(指示書 v2 §5.1)。ABOUT / SERVICES / PRODUCTS / PARTNERS / CONTACT の5項目。
  * ここから外れるページ(Apps / Showcase / News / Lab など)はフッターから辿れる。
 
  */
@@ -40,8 +40,9 @@ export const HEADER_NAV: HeaderNavItem[] = [
   },
   {
     key: "projects",
+    // §5.1 はこの項目を PRODUCTS と表記している。ルートは /projects のまま。
     href: "/projects",
-    label: "Projects",
+    label: "Products",
     children: [
       { key: "proj-all", href: "/projects", label: "すべてのプロジェクト" },
       { key: "proj-apps", href: "/apps", label: "アプリ" },

@@ -170,6 +170,11 @@
   .btn-primary:hover {
     background: #26307a;
   }
+  /* カード内など、行に収めたい場合の小さい版。形は同じ(§3.1)。 */
+  .btn-sm {
+    padding: 0.625rem 1rem;
+    font-size: 0.75rem;
+  }
   .btn-ghost {
     border-color: var(--color-rule);
     color: var(--color-ink);

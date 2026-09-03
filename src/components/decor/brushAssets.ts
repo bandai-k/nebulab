@@ -39,6 +39,32 @@ export const BRUSH: Record<BrushName, BrushAsset> = {
 };
 
 /**
+ * セクション見出しの下敷き(§3.6)。支給素材。
+ *
+ * 画像には細い罫線が含まれており、その位置が4色で揃っていない。
+ * 実測(画像高さに対する比):
+ *   pink 53.4% / amber 53.5% / teal 54.5% / indigo 61.6%
+ * indigo だけ約7%下にあるため、そのままでは下線がずれる。
+ * ruleY を使って層を上下にずらし、見た目の下線位置を揃えている。
+ *
+ * 罫線なし版を支給いただいたら ruleY ごと削除し、下線は CSS で引くこと。
+ */
+export type LabelColor = "pink" | "amber" | "teal" | "indigo";
+
+export const LABEL_ASSETS: Record<
+  LabelColor,
+  { src: string; width: number; height: number; ruleY: number }
+> = {
+  pink: { src: "/brush/label-pink.webp", width: 2172, height: 724, ruleY: 0.534 },
+  amber: { src: "/brush/label-amber.webp", width: 2172, height: 724, ruleY: 0.535 },
+  teal: { src: "/brush/label-teal.webp", width: 2172, height: 724, ruleY: 0.545 },
+  indigo: { src: "/brush/label-indigo.webp", width: 2172, height: 724, ruleY: 0.616 },
+};
+
+/** 下線を揃える基準。pink / amber の実測値。 */
+export const LABEL_RULE_BASE = 0.534;
+
+/**
  * サービスの番号(§5.4)。支給素材 script-text.png(中身は 01〜04)から
  * 実測した位置で切り出したもの。等分割では字間が合わない。
  * 装飾なので aria-hidden を付け、サービス名はテキストで書くこと。

@@ -1,14 +1,19 @@
+import Image from "next/image";
 import Link from "next/link";
+import SectionHeading from "@/components/decor/SectionHeading";
+import { NUMBER_ASSETS } from "@/components/decor/brushAssets";
 
 /**
- * サービス(指示書 §5.4)。4項目を横罫線で区切って縦に並べる。
- * 左に細い番号、中央に名前と説明、右に詳細リンク。アイコンは使わない。
+ * サービス(指示書 v2 §5.4)。4項目を横罫線で区切って縦に並べる。
+ * 左に番号、中央に名前と説明、右に「詳細を見る」。アイコンは使わない。
  *
- * 04「地域のIT支援」は残すが、順序を下げることで優先度を表現する(§5.4)。
- * リンク先は /services の各項目。アンカーは Phase 4 で作成済み。
+ * 番号は筆の画像。装飾なので aria-hidden を付け、サービス名はテキストで書く。
+ * 04「地域のIT支援」は必ず残す。順序を下げることで優先度を表現する(§5.4)。
  */
+type ServiceCode = keyof typeof NUMBER_ASSETS;
+
 type Service = {
-  code: string;
+  code: ServiceCode;
   name: string;
   description: string;
   href: string;
@@ -38,50 +43,56 @@ const services: Service[] = [
   {
     code: "04",
     name: "地域のIT支援",
-    description:
-      "成田市を中心に、中小企業や地域団体のIT活用・DXを支援",
+    description: "成田市を中心に、中小企業や地域団体のIT活用・DXを支援",
     href: "/services#local",
   },
 ];
 
 export default function Services() {
   return (
-    <section
-      id="services"
-      className="border-b border-cyber-border-dim py-24 md:py-32"
-    >
+    <section id="services" className="border-b border-rule py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-10">
-        <p className="font-mono text-[10px] tracking-[0.4em] text-cyber-text-muted">
-          SERVICES
-        </p>
+        <SectionHeading
+          label="SERVICES"
+          heading="つくることと、つくれるようにすること。"
+          color="amber"
+        />
 
-        <ul className="mt-14 border-t border-cyber-border-dim">
-          {services.map((s) => (
-            <li key={s.code} className="border-b border-cyber-border-dim">
-              <Link
-                href={s.href}
-                className="group grid grid-cols-[auto_1fr] items-baseline gap-x-6 py-8 md:grid-cols-[auto_1fr_auto] md:gap-x-12 md:py-10"
-              >
-                {/* 数字は細い明朝で大きめに、暗い面に浮かせる(§タイポグラフィ) */}
-                <span className="font-display text-2xl font-extralight tracking-[0.08em] text-cyber-text-muted transition-colors group-hover:text-cyber-text-secondary md:text-3xl">
-                  {s.code}
-                </span>
+        <ul className="mt-16 border-t border-rule">
+          {services.map((s) => {
+            const num = NUMBER_ASSETS[s.code];
+            return (
+              <li key={s.code} className="border-b border-rule">
+                <Link
+                  href={s.href}
+                  className="group grid grid-cols-[3.5rem_1fr] items-center gap-x-6 py-8 md:grid-cols-[5rem_1fr_auto] md:gap-x-12 md:py-10"
+                >
+                  <Image
+                    src={num.src}
+                    alt=""
+                    aria-hidden="true"
+                    width={num.width}
+                    height={num.height}
+                    sizes="80px"
+                    className="pointer-events-none h-auto w-full max-w-[3.5rem] md:max-w-[4.25rem]"
+                  />
 
-                <div>
-                  <h3 className="font-display text-base font-normal tracking-[0.06em] text-cyber-text md:text-lg">
-                    {s.name}
-                  </h3>
-                  <p className="mt-2 text-xs leading-7 text-cyber-text-secondary md:text-sm">
-                    {s.description}
-                  </p>
-                </div>
+                  <div>
+                    <h3 className="font-display text-base font-normal tracking-[0.04em] text-ink md:text-lg">
+                      {s.name}
+                    </h3>
+                    <p className="mt-2 text-xs leading-7 text-ink-sub md:text-sm">
+                      {s.description}
+                    </p>
+                  </div>
 
-                <span className="col-span-2 mt-4 font-mono text-[10px] tracking-[0.25em] text-cyber-text-muted transition-colors group-hover:text-cyber-text-secondary md:col-span-1 md:mt-0 md:justify-self-end">
-                  詳しく →
-                </span>
-              </Link>
-            </li>
-          ))}
+                  <span className="col-start-2 mt-4 text-xs tracking-[0.12em] text-ink-sub transition-colors group-hover:text-accent md:col-start-3 md:mt-0 md:justify-self-end">
+                    詳細を見る →
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>

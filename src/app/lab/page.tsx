@@ -80,7 +80,7 @@ export default function LabPage() {
   const labProjects = projects.filter((p) => p.category === "AI PRODUCT");
 
   return (
-    <main className="mx-auto max-w-5xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
+    <main className="mx-auto max-w-6xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
       {/* ── Page Header ── */}
       <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
         <div>

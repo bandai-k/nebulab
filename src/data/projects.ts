@@ -31,7 +31,7 @@ export type Project = {
   /** Internal detail route — typically `/projects/${id}`. */
   internalUrl?: string;
   featured?: boolean;
-  /** Path under /public — falls back to procedural ProjectThumb if omitted. */
+  /** /public 配下のパス。省略すると ProjectPlaceholder(名前と分類の面)になる。 */
   imageUrl?: string;
   /** Hero intro paragraphs shown on detail page. */
   body?: string[];
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     externalUrl: "https://www.nrt-loft.jp",
     internalUrl: "/projects/nrt-loft",
     featured: true,
-    // 画像は旧事業の内装写真だったため一旦外し、手続き的サムネイルにフォールバックさせる。
+    // 画像は旧事業の内装写真だったため外している。キャプチャが用意でき次第 imageUrl を足す。
     body: [
       "AIで自分のための道具をつくる。その記録を発信するメディア／ラボです。",
       "非エンジニア向けに、AIを使った小さな仕組みづくりを発信しています。",
@@ -172,7 +172,6 @@ export const projects: Project[] = [
     tagline: "思考の構造可視化AI",
     description: "思考の構造をAIがリアルタイムで可視化・拡張するマインドマップ。",
     internalUrl: "/projects/supermindmap",
-    imageUrl: "/projects/supermindmap.svg",
     body: [
       "思考の断片やメモを入力すると、AI がリアルタイムで構造を解釈し、関係性を持ったマインドマップとして可視化・拡張するツールを R&D しています。",
       "現在は Lab 内で技術検証フェーズ。公開時期・形態は今後決定します。",
@@ -188,7 +187,6 @@ export const projects: Project[] = [
     description:
       "成田・花崎町の一角を起点に、ゲストハウス・カフェ・アウトドアスペースを統合した地域活性化ハブを構想中。",
     internalUrl: "/projects/nebula-place",
-    imageUrl: "/projects/nebula-place.svg",
     body: [
       "成田・花崎町の一角を起点に、ゲストハウス・カフェ・アウトドアスペースを統合した、成田エリアの地域活性化ハブを構想中です。",
       "現在は事業計画と物件選定を並行して進める段階。具体化次第、随時お知らせします。",

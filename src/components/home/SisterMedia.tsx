@@ -59,7 +59,7 @@ export default function SisterMedia() {
             href="https://www.nrt-loft.jp"
             target="_blank"
             rel="noreferrer noopener"
-            className="btn btn-ghost mt-12"
+            className="btn btn-outline mt-12"
           >
             NRT LOFT を見る ↗
           </a>

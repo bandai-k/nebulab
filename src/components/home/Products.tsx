@@ -103,11 +103,15 @@ export default function Products() {
                 {p.summary}
               </p>
 
-              {/* 詳細ボタンと外部リンクボタン(§5.3)。形はサイト共通(§3.1)。 */}
+              {/*
+                詳細ボタンと外部リンクボタン(§5.3)。形はサイト共通(§3.1)。
+                カード内に8個並ぶため、塗りのある副ボタンでは画面が
+                うるさくなる。輪郭だけの btn-outline を使う。
+              */}
               <div className="mt-5 flex flex-wrap items-center gap-2">
                 <Link
                   href={p.detailHref}
-                  className="btn btn-ghost btn-sm"
+                  className="btn btn-outline btn-sm"
                 >
                   {`${p.name} の詳細`}
                 </Link>
@@ -117,7 +121,7 @@ export default function Products() {
                     {...(p.external.href.startsWith("http")
                       ? { target: "_blank", rel: "noreferrer noopener" }
                       : {})}
-                    className="btn btn-ghost btn-sm"
+                    className="btn btn-outline btn-sm"
                   >
                     {p.external.label}
                     {p.external.href.startsWith("http") && " ↗"}

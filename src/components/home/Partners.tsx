@@ -62,7 +62,7 @@ export default function Partners() {
                   href={p.url}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="btn btn-ghost btn-sm mt-6 self-start"
+                  className="btn btn-outline btn-sm mt-6 self-start"
                 >
                   {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
                 </a>

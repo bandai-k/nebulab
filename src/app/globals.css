@@ -193,6 +193,43 @@
     color: #ffffff;
   }
 
+  /*
+   * 3つめのボタン。塗りを持たず、グラデーションの輪郭だけ。
+   * 外部リンクやカード内の小さな操作など、水彩の塗りでは主張が強すぎる
+   * 場所に使う(§3.1「派手な色に対する釣り合いをレイアウトの規律で取る」)。
+   *
+   * 支給素材は幾何学的な pill の輪郭で、水彩の質感を持たない。画像として
+   * 敷くとボタン幅に応じて線の太さと角の丸みが歪む(幅 230px では左右の線が
+   * 上下の約1.8倍になる)ため、素材から採色したグラデーションを CSS で
+   * 再現している。こうすると どの幅でも線が均一になる。
+   * 色は素材 (1) の実測値。
+   */
+  .btn-outline {
+    position: relative;
+    background: transparent;
+    color: var(--color-accent);
+  }
+  .btn-outline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    padding: 2px;
+    background: linear-gradient(90deg, #0031b8 0%, #0065f9 50%, #22c5fc 100%);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .btn-outline:hover {
+    color: #26307a;
+  }
+
   /* 副ボタン。素材の中央が地に近い明度なので、本文色を乗せてよい。 */
   .btn-ghost {
     background-color: var(--color-surface);

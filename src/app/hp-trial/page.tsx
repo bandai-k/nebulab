@@ -91,7 +91,7 @@ export default function HpTrialPage() {
       {/* === Hero === */}
       <section className="relative overflow-hidden border-b border-rule">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ground/40 to-cyber-bg pointer-events-none" />
-        <div className="relative mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
+        <div className="relative mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
 
           <p className="text-[10px] tracking-[0.4em] uppercase text-ink-sub">
             無料 / HP お試し公開プラン
@@ -125,7 +125,7 @@ export default function HpTrialPage() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               href="/contact"
-              className="rounded-sm bg-accent/85 px-7 py-3 text-xs tracking-[0.25em] text-white"
+              className="btn btn-primary"
             >
               申込・相談する →
             </Link>
@@ -133,7 +133,7 @@ export default function HpTrialPage() {
               href="/docs/hp-trial"
               target="_blank"
               rel="noreferrer noopener"
-              className="rounded-sm border border-white/40 bg-white/5 px-7 py-3 text-xs tracking-[0.25em] text-ink backdrop-blur-sm transition-all hover:border-accent hover:bg-accent/15"
+              className="btn btn-ghost"
             >
               詳細資料(PDF 風)↗
             </a>
@@ -153,7 +153,7 @@ export default function HpTrialPage() {
 
       {/* === なぜ無料か === */}
       <section className="section-divider">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Why Free
@@ -190,7 +190,7 @@ export default function HpTrialPage() {
 
       {/* === 何が手に入るか === */}
       <section className="section-divider section-tinted">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               What You Get
@@ -242,7 +242,7 @@ export default function HpTrialPage() {
 
       {/* === お願いしたいこと === */}
       <section className="section-divider">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               In Exchange
@@ -285,7 +285,7 @@ export default function HpTrialPage() {
 
       {/* === 応募条件 === */}
       <section className="section-divider section-tinted">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               Terms
@@ -323,7 +323,7 @@ export default function HpTrialPage() {
 
       {/* === 申込の流れ === */}
       <section className="section-divider">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-ink-sub">
               How to Apply
@@ -355,7 +355,7 @@ export default function HpTrialPage() {
 
       {/* === Showcase 導線 === */}
       <section className="section-divider section-tinted">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
           <ScrollReveal>
             <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
               <div>
@@ -371,7 +371,7 @@ export default function HpTrialPage() {
                 </p>
                 <Link
                   href="/showcase"
-                  className="mt-8 inline-block rounded-sm border border-rule bg-surface px-7 py-3 text-xs tracking-[0.25em] text-ink transition-colors hover:border-accent hover:text-ink-sub"
+                  className="btn btn-ghost mt-8"
                 >
                   事例集を見る →
                 </Link>
@@ -400,7 +400,7 @@ export default function HpTrialPage() {
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="rounded-sm bg-accent/85 px-12 py-4 text-[11px] tracking-[0.3em] text-white"
+                className="btn btn-primary"
               >
                 申込・相談する →
               </Link>

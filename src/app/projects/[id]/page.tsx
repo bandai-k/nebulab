@@ -78,7 +78,7 @@ export default async function ProjectDetailPage({
   const statusClass = STATUS_STYLES[project.status];
 
   return (
-    <main className="mx-auto max-w-5xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
+    <main className="mx-auto max-w-6xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
       {/* ── Breadcrumb ── */}
       <nav
         aria-label="パンくずリスト"

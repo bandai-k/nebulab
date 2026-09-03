@@ -34,7 +34,7 @@ const linkClass =
 
 export default function MidorikkoPrivacyPage() {
   return (
-    <main className="mx-auto max-w-5xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
+    <main className="mx-auto max-w-6xl px-5 pb-24 pt-28 md:px-10 md:pt-32">
       {/* ── Page Header ── */}
 
       <h1

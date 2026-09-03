@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ProjectThumb from "@/components/ProjectThumb";
+import ProjectPlaceholder from "@/components/ProjectPlaceholder";
 import type { Project } from "@/data/projects";
 
 type ProjectImageProps = {
@@ -8,7 +8,7 @@ type ProjectImageProps = {
 
 export default function ProjectImage({ project }: ProjectImageProps) {
   if (!project.imageUrl) {
-    return <ProjectThumb project={project} />;
+    return <ProjectPlaceholder project={project} />;
   }
 
   // SVG: serve as-is via plain img (Next/Image rejects SVG by default for security).

@@ -33,9 +33,21 @@ export type BrushLayerSpec = {
    * 層高の 30% の位置に来る。画面幅が変わっても関係が崩れない。
    */
   shift: string;
+  /**
+   * 横方向の置き方を Tailwind で指定する。
+   *
+   * 既定は左右に -8% ずつはみ出す全幅の帯(§3.4 の基本形)。
+   * 段組みが変わるブレークポイントで置き方を変えたい場合に使う。
+   * 例: 本文が左半分に来る幅では、筆を右へ寄せて文字の裏に
+   * 回り込ませない ―― "-left-[8%] w-[116%] lg:left-auto lg:-right-[6%] lg:w-[50%]"
+   */
+  position?: string;
   /** 滲み出し(§4.3)を掛けるか。1セクションにつき最大2箇所まで。 */
   reveal?: boolean;
 };
+
+/** 素材の最大表示幅(px)。これ以上に拡大しないこと(支給時の指定)。 */
+const MAX_ASSET_WIDTH = 2172;
 
 type Props = {
   layers: BrushLayerSpec[];
@@ -83,7 +95,16 @@ export default function BrushField({ layers, priority = false, sizes = "120vw" }
       { threshold: 0.2 },
     );
     layerRefs.current.forEach((el) => {
-      if (el?.classList.contains("brush-reveal")) drawObserver.observe(el);
+      if (!el?.classList.contains("brush-reveal")) return;
+      // 既に視界にある層は、観測を待たずに最終状態にする。
+      // バックグラウンドタブでは IntersectionObserver が止まるため、
+      // これが無いと筆がマスクされたまま出てこない。
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("is-drawn");
+        return;
+      }
+      drawObserver.observe(el);
     });
 
     // ── パララックス(§4.2)。可視のときだけ rAF を回す ──
@@ -166,9 +187,10 @@ export default function BrushField({ layers, priority = false, sizes = "120vw" }
         return (
           <div
             key={`${layer.name}-${i}`}
-            className="brush-layer"
+            className={`brush-layer ${layer.position ?? "-left-[8%] w-[116%]"}`}
             style={{
               [layer.anchor]: 0,
+              maxWidth: MAX_ASSET_WIDTH,
               opacity: layer.opacity,
               // 層自身の高さに対するずらし。画面幅が変わっても関係が保たれる。
               transform: `translate3d(0, ${layer.shift}, 0)`,

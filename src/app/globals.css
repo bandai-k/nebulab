@@ -236,10 +236,9 @@
    * - 左右に抜けさせて断ち切りにする(枠内に収めると挿絵になる)
    * - パララックスで上下に動くぶん、層はセクションより高く作る
    */
+  /* 位置と幅は BrushField が決める。ここでは共通の性質だけ持たせる。 */
   .brush-layer {
     position: absolute;
-    left: -8%;
-    width: 116%;
     pointer-events: none;
   }
   /*

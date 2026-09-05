@@ -77,7 +77,7 @@
   .hdr .mark__img{height:8.6rem}
 
   /* ---------- header ---------- */
-  .hdr{position:sticky;top:0;z-index:60;background:#000;
+  .hdr{position:sticky;top:0;z-index:90;background:#000;
     border-bottom:1px solid var(--line-soft)}
   .hdr__in{width:100%;padding:10px 1.5rem;
     display:flex;align-items:center;gap:1rem}
@@ -119,9 +119,15 @@
   .hdr__cta:hover span{color:var(--ink)}
   .btn--pill{border-radius:999px}
   .burger{margin-left:auto;background:none;border:0;padding:.4rem;cursor:pointer;
-    color:var(--text);display:grid;gap:5px;justify-items:center}
-  .burger i{display:block;width:26px;height:2px;background:currentColor}
-  .burger u{text-decoration:none;font-size:.56rem;letter-spacing:.2em;color:var(--gold);margin-top:2px}
+    color:var(--text);display:grid;gap:5px;justify-items:center;position:relative;z-index:91}
+  .burger i{display:block;width:26px;height:2px;background:currentColor;
+    transition:transform .2s ease,opacity .2s ease}
+  .burger u{text-decoration:none;font-size:.56rem;letter-spacing:.2em;color:var(--gold);margin-top:2px;
+    transition:opacity .2s ease}
+  .burger[aria-expanded="true"] i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger[aria-expanded="true"] i:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .burger[aria-expanded="true"] u{opacity:0}
   @media(min-width:1080px){
     .hdr .mark{margin-right:0}
     .hdr__tagline{display:block;margin-right:auto}
@@ -131,28 +137,26 @@
   }
 
   /* ---------- mobile drawer ---------- */
-  .drawer{position:fixed;inset:0;z-index:70;background:rgba(18,16,14,.98);
-    padding:calc(var(--pad) + 10px) var(--pad);overflow:auto;display:none}
-  .drawer[data-open="true"]{display:block}
-  .drawer__x{position:absolute;top:14px;right:var(--pad);background:none;border:0;
-    color:var(--text);font-size:1.6rem;line-height:1;cursor:pointer;padding:.3rem}
-  .drawer nav{margin-top:2.5rem;display:grid}
-  .drawer nav a{text-decoration:none;padding:1.05rem 0;border-bottom:1px solid var(--line-soft)}
-  .drawer nav a em{font-style:normal;font-size:1.25rem;letter-spacing:.08em;margin-right:.9rem}
-  .drawer nav a span{font-size:.92rem;color:var(--muted)}
-  .drawer__sub{border-bottom:1px solid var(--line-soft)}
-  .drawer__sub summary{list-style:none;padding:1.05rem 0;cursor:pointer;
+  .drawer{position:fixed;inset:0;z-index:70;background:var(--ink);
+    padding:1.6rem var(--pad) calc(var(--pad) + 10px);overflow:auto;
+    opacity:0;visibility:hidden;transform:translateX(-28px);
+    transition:opacity .3s ease,transform .3s ease,visibility .3s}
+  .drawer[data-open="true"]{opacity:1;visibility:visible;transform:translateX(0)}
+  .drawer nav{margin-top:.5rem;display:grid}
+  .drawer nav a{text-decoration:none;padding:1.1rem 0}
+  .drawer nav a em{display:block;font-style:normal;font-size:1.85rem;letter-spacing:.02em;line-height:1.3}
+  .drawer nav a span{display:block;font-size:.78rem;color:var(--muted);margin-top:.2rem}
+  .drawer__sub summary{list-style:none;padding:1.1rem 0;cursor:pointer;
     display:flex;align-items:center;justify-content:space-between}
   .drawer__sub summary::-webkit-details-marker{display:none}
-  .drawer__sub summary em{font-style:normal;font-size:1.05rem;letter-spacing:.08em}
-  .drawer__sub summary span{font-size:.8rem;color:var(--muted);margin-left:.9rem}
-  .drawer__sub summary::after{content:"+";margin-left:auto;color:var(--gold);font-size:1.2rem}
+  .drawer__sub summary em{font-style:normal;font-size:1.85rem;letter-spacing:.02em}
+  .drawer__sub summary span{display:none}
+  .drawer__sub summary::after{content:"+";margin-left:auto;color:var(--gold);font-size:1.5rem}
   .drawer__sub[open] summary::after{content:"−"}
-  .drawer__sub a{display:flex;align-items:baseline;gap:.7rem;padding:.9rem 0 .9rem 1rem;
-    border-bottom:0;border-top:1px solid var(--line-soft)}
-  .drawer__sub a em{font-size:.92rem}
-  .drawer__sub a span{font-size:.74rem}
-  .drawer .btn{margin-top:2rem;width:100%;text-align:center}
+  .drawer__sub a{display:flex;align-items:baseline;gap:.7rem;padding:.8rem 0 .8rem 1.2rem}
+  .drawer__sub a em{font-size:1.15rem}
+  .drawer__sub a span{font-size:.76rem}
+  .drawer .btn{margin-top:2.6rem;width:100%;text-align:center}
 
   /* ---------- page hero (service pages) ---------- */
   .pagehero{position:relative;border-bottom:1px solid var(--line-soft)}
@@ -380,8 +384,6 @@
 </header>
 
 <div class="drawer" id="drawer" data-open="false">
-  <button class="drawer__x" type="button">×<span class="sr">メニューを閉じる</span></button>
-  <a class="mark" href="/pt/irontales" style="text-align:left"><img class="mark__img" src="/pt/irontales/assets/img/logo.jpg" alt="IRON TALES MOTOR CYCLES"></a>
   <nav>
     <a href="/pt/irontales"><em>HOME</em><span>ホーム</span></a>
     <details class="drawer__sub" open>
@@ -507,15 +509,14 @@
 
   var burger = document.querySelector('.burger');
   var drawer = document.getElementById('drawer');
-  var closeBtn = drawer.querySelector('.drawer__x');
   function setOpen(on){
     drawer.dataset.open = on ? 'true' : 'false';
     burger.setAttribute('aria-expanded', on ? 'true' : 'false');
     document.body.style.overflow = on ? 'hidden' : '';
-    if (!on) burger.focus();
   }
-  burger.addEventListener('click', function(){ setOpen(true); closeBtn.focus(); });
-  closeBtn.addEventListener('click', function(){ setOpen(false); });
+  burger.addEventListener('click', function(){
+    setOpen(burger.getAttribute('aria-expanded') !== 'true');
+  });
   drawer.querySelectorAll('nav > a').forEach(function(a){
     a.addEventListener('click', function(){ setOpen(false); });
   });

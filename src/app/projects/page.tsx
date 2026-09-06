@@ -38,11 +38,14 @@ const COLOR_BY_CATEGORY: Record<string, LabelColor> = {
   "AI PRODUCT": "indigo",
 };
 
-function ProductCard({ entry }: { entry: ProductEntry }) {
+function ProductCard({ entry, index }: { entry: ProductEntry; index: number }) {
   const brush = LABEL_ASSETS[COLOR_BY_CATEGORY[entry.category] ?? "pink"];
 
   return (
-    <li className="panel flex h-full flex-col overflow-hidden">
+    <li
+      className="card-reveal-in panel flex h-full flex-col overflow-hidden"
+      style={{ "--card-delay": `${index * 200}ms` } as React.CSSProperties}
+    >
       <div className="relative aspect-16/10 overflow-hidden bg-surface">
         {entry.imageUrl ? (
           entry.imageIsIcon ? (
@@ -133,9 +136,9 @@ export default function ProductsPage() {
         lead="受託だけでなく、自分たちで課題を見つけてつくったプロダクトです。日々使いながら運用しているので、つくった後に何が起きるかを具体的にお話しできます。"
       />
 
-      <ul className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {productIndex.map((entry) => (
-          <ProductCard key={entry.key} entry={entry} />
+      <ul className="section-reveal-skip mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {productIndex.map((entry, index) => (
+          <ProductCard key={entry.key} entry={entry} index={index} />
         ))}
       </ul>
     </main>

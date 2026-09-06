@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AmbientBackground from "@/components/decor/AmbientBackground";
+import ScrollRevealSections from "@/components/decor/ScrollRevealSections";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
@@ -82,6 +83,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className="relative bg-ground text-ink antialiased">
         <AmbientBackground />
+        <ScrollRevealSections />
         <Header />
         <div className="relative z-[1]">
           {children}

@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import SectionHeading from "@/components/decor/SectionHeading";
 import { NUMBER_ASSETS } from "@/components/decor/brushAssets";
+import ServiceCta, {
+  type ServiceCtaVariant,
+} from "@/components/services/ServiceCta";
+import ServicesHeaderOffset from "@/components/services/ServicesHeaderOffset";
+import ScrollGauge from "@/components/services/ScrollGauge";
 
 export const metadata: Metadata = {
   title: "事業内容",
@@ -115,84 +119,171 @@ const areas: Area[] = [
   },
 ];
 
+/**
+ * セクションごとの水彩背景(依頼により新規追加)。透明PNG。
+ * 01 ピンク/コーラル、02 ゴールド/ボタニカル、03 シアン/湖、
+ * 04 ラベンダー/成田の風景、というテーマ配色。
+ *
+ * 番号素材(NUMBER_ASSETS)は増やさず、既存のものをそのまま使う。
+ * 縦位置(anchor)をセクションごとに変え、4つ並んでも単調にならないようにする。
+ */
+const AREA_BG: Record<
+  string,
+  { src: string; width: number; height: number; anchor: "top" | "center" | "bottom" }
+> = {
+  "01": {
+    src: "/services/services-bg-01.webp",
+    width: 1415,
+    height: 1081,
+    anchor: "top",
+  },
+  "02": {
+    src: "/services/services-bg-02.webp",
+    width: 1448,
+    height: 1066,
+    anchor: "bottom",
+  },
+  "03": {
+    src: "/services/services-bg-03.webp",
+    width: 1448,
+    height: 1067,
+    anchor: "center",
+  },
+  "04": {
+    src: "/services/services-bg-04.webp",
+    width: 1448,
+    height: 1086,
+    anchor: "top",
+  },
+};
+
+/*
+ * 上下の区切り線(border-b)に水彩が触れないよう、セクション端から
+ * 一定の余白(inset)を空けてから anchor する。
+ */
+const ANCHOR_CLASS: Record<string, string> = {
+  top: "top-8 md:top-10",
+  center: "top-1/2 -translate-y-1/2",
+  bottom: "bottom-8 md:bottom-10",
+};
+
 export default function ServicesPage() {
   return (
     <main>
+      <ServicesHeaderOffset />
       <section className="border-b border-rule">
-        <div className="mx-auto max-w-6xl px-6 pb-20 pt-32 md:px-12 lg:px-16 md:pb-24 md:pt-40">
+        <div className="mx-auto max-w-6xl px-6 pb-14 pt-32 md:px-12 lg:px-16 md:pb-16 md:pt-40">
           <SectionHeading
             level="h1"
             label="SERVICES"
             heading="事業内容"
             color="amber"
+            headingSize="lg"
             lead="4つの事業を、それぞれ独立させつつ相互に補完する形で展開しています。自社でつくって運用した経験を、受託や支援の現場に持ち込むのが基本の考え方です。"
           />
+          <div className="mt-6 h-px w-16 bg-rule" />
         </div>
       </section>
 
-      {areas.map((area) => (
-        <section
-          key={area.code}
-          id={area.id}
-          className="border-b border-rule py-20 md:py-28"
-        >
-          <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
-            <div className="grid gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-16">
-              <Image
-                src={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].src}
-                alt=""
-                aria-hidden="true"
-                width={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].width}
-                height={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].height}
-                sizes="96px"
-                className="pointer-events-none h-auto w-16 md:w-20"
-              />
+      {/*
+        スクロールロック(依頼により追加)。.services-scroller が唯一の
+        スナップコンテナで、各セクションはビューポート高さぶん占有する。
+        中身が長ければセクション自身が内側スクロールし、末尾まで来て
+        初めて次のセクションへ移る。詳細は globals.css を参照。
+      */}
+      <div className="services-scroller">
+        {areas.map((area, i) => {
+          const bg = AREA_BG[area.code];
+          const hasNext = i < areas.length - 1;
 
-              <div>
-                <h2 className="font-display text-lg font-normal tracking-[0.04em] text-ink md:text-xl">
-                  {area.name}
-                </h2>
-                <p className="mt-3 text-sm leading-7 text-ink-sub">
-                  {area.description}
-                </p>
-                <p className="mt-8 max-w-2xl text-sm leading-[2.1] text-ink-sub">
-                  {area.body}
-                </p>
-
-                <div className="mt-12 grid gap-10 md:grid-cols-2">
-                  {area.blocks.map((block) => (
-                    <div key={block.heading}>
-                      <p className="text-[10px] font-medium tracking-[0.22em] text-ink-sub">
-                        {block.heading}
-                      </p>
-                      <ul className="mt-5 space-y-3">
-                        {block.items.map((item) => (
-                          <li
-                            key={item}
-                            className="flex gap-3 text-sm leading-7 text-ink-sub"
-                          >
-                            <span className="mt-[0.85em] block h-px w-3 shrink-0 bg-rule" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+          return (
+            <section
+              key={area.code}
+              id={area.id}
+              className="services-section"
+            >
+              {/*
+                セクション固有の水彩背景。sticky + height:0 で画面に対して
+                静止させ(スクロールしない)、本文には重ねず可読性優先で
+                opacity を抑える。モバイルでは非表示。
+              */}
+              <div className="services-section-bg-sticky" aria-hidden="true">
+                <div
+                  className={`pointer-events-none absolute right-0 ${ANCHOR_CLASS[bg.anchor]} hidden aspect-[4/3] w-[46vw] max-w-[680px] opacity-60 md:block`}
+                >
+                  <Image
+                    src={bg.src}
+                    alt=""
+                    fill
+                    loading="eager"
+                    sizes="680px"
+                    className="object-contain object-right"
+                  />
                 </div>
 
-                <div className="mt-12">
-                  <Link
-                    href={area.cta.href}
-                    className="btn btn-ghost"
-                  >
-                    {area.cta.label}
-                  </Link>
+                {hasNext && <ScrollGauge />}
+              </div>
+
+              <div className="services-section-content mx-auto max-w-6xl px-6 pb-16 pt-28 md:px-12 md:pb-20 md:pt-32 lg:px-16">
+                <div className="grid gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-16">
+                  <Image
+                    src={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].src}
+                    alt=""
+                    aria-hidden="true"
+                    width={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].width}
+                    height={NUMBER_ASSETS[area.code as keyof typeof NUMBER_ASSETS].height}
+                    loading="eager"
+                    sizes="96px"
+                    className="pointer-events-none h-auto w-16 md:w-20"
+                  />
+
+                  <div className="md:border-l md:border-rule md:pl-10">
+                    <h2 className="font-display text-lg font-normal tracking-[0.04em] text-ink md:text-xl">
+                      {area.name}
+                    </h2>
+                    <p className="mt-3 max-w-md text-sm leading-7 text-ink md:text-base">
+                      {area.description}
+                    </p>
+                    <p className="mt-8 max-w-xl text-sm leading-[2.2] text-ink-sub">
+                      {area.body}
+                    </p>
+
+                    <div className="mt-12 grid gap-10 md:grid-cols-2">
+                      {area.blocks.map((block) => (
+                        <div key={block.heading}>
+                          <p className="text-[10px] font-medium tracking-[0.22em] text-ink-sub">
+                            {block.heading}
+                          </p>
+                          <ul className="mt-5 space-y-4">
+                            {block.items.map((item) => (
+                              <li
+                                key={item}
+                                className="flex gap-3 text-sm leading-7 text-ink-sub"
+                              >
+                                <span className="mt-[0.85em] block h-px w-3 shrink-0 bg-rule" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-12">
+                      <ServiceCta
+                        href={area.cta.href}
+                        variant={area.code as ServiceCtaVariant}
+                      >
+                        {area.cta.label}
+                      </ServiceCta>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-      ))}
+            </section>
+          );
+        })}
+      </div>
     </main>
   );
 }

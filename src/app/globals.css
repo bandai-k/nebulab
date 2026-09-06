@@ -55,6 +55,32 @@
   --font-display: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
   --font-body: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Fragment Mono", ui-monospace, monospace;
+
+  /*
+   * サイト全体的に文字が小さいという指摘への対応。
+   * text-xs 〜 text-3xl の既定値(Tailwind標準)を、行間の比率は保ったまま
+   * 1段階分だけ底上げする。text-[10px] のような絶対px指定のラベル類は
+   * この上書きの対象外(意図的に小さいバッジ・英字ラベル用のため)。
+   *
+   * 旧 → 新:
+   *   xs   12px → 13px / sm   14px → 15px / base 16px → 17px
+   *   lg   18px → 19px / xl   20px → 21px / 2xl  24px → 26px
+   *   3xl  30px → 32px
+   */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: calc(1.125 / 0.8125);
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: calc(1.375 / 0.9375);
+  --text-base: 1.0625rem;
+  --text-base--line-height: calc(1.625 / 1.0625);
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: calc(1.75 / 1.1875);
+  --text-xl: 1.3125rem;
+  --text-xl--line-height: calc(1.875 / 1.3125);
+  --text-2xl: 1.625rem;
+  --text-2xl--line-height: calc(2.125 / 1.625);
+  --text-3xl: 2rem;
+  --text-3xl--line-height: calc(2.375 / 2);
 }
 
 @layer base {
@@ -396,6 +422,229 @@
   .brush-settle {
     animation: brush-settle 1600ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+
+  /*
+   * ページ冒頭の入場演出(依頼により全ページ共通)。
+   * SectionHeading 自身が持つ3段階: 筆 → 見出し → 導入文。
+   * 続けて main の2番目以降の子要素(見出しブロックの次に来る本文)を
+   * まとめてフェードインさせる(下記 main のルールを参照)。
+   */
+  .heading-brush-in {
+    animation: heading-brush-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .heading-text-in {
+    animation: heading-text-in 950ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 500ms;
+  }
+  .heading-lead-in {
+    animation: heading-lead-in 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 1050ms;
+  }
+
+  /*
+   * トップページ以外の下層ページ、2番目以降のセクション/カードの
+   * スクロールイン(依頼により「後追い型」に変更)。
+   *
+   * 冒頭の見出しブロック(1番目の main 直下要素)は今までどおり
+   * ページ読み込み時に一度だけ再生する heading-*-in のまま。
+   * それより後ろは ScrollRevealSections(クライアントコンポーネント、
+   * src/components/decor/ScrollRevealSections.tsx)が main 直下の
+   * 2番目以降の子要素と .card-reveal-in 要素を IntersectionObserver で
+   * 監視し、画面に入った時点で is-in-scroll を付ける。
+   * data-reveal(下記)と同じ「隠すのは JS 実行後だけ」の考え方に揃えている。
+   */
+  .scroll-reveal-section {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  .scroll-reveal-section.is-in-scroll {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 1400ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /*
+   * 右からスライドインする版(依頼により /services の 01, 02... の
+   * セクションに使用)。呼び出し側が scroll-reveal-section の代わりに
+   * このクラスを直接付ける。ScrollRevealSections は既にこのクラスが
+   * 付いている要素には scroll-reveal-section を重ねない。
+   */
+  .scroll-reveal-right {
+    opacity: 0;
+    transform: translateX(64px);
+  }
+  .scroll-reveal-right.is-in-scroll {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 1400ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /*
+   * カード一覧を1枚ずつフェードインさせる。何番目のカードかは
+   * 呼び出し側が style={{ "--card-delay": "...ms" }} で指定する。
+   *
+   * セクション自体が丸ごとカード一覧の場合(合計 section-reveal-skip)は
+   * ScrollRevealSections がセクション側の scroll-reveal-section 付与を
+   * スキップし、カードだけが個別にスクロールインする(§ 二重フェード回避)。
+   */
+  .card-reveal-in {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  .card-reveal-in.is-in-scroll {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1300ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--card-delay, 0ms);
+  }
+
+  /*
+   * /services 専用の CTA ボタン(依頼により追加)。共通 .btn とは別系統。
+   * 差し替え後の画像は文言と矢印を焼き込み済みのため、HTML テキストは
+   * 見た目上重ねず(sr-only)、画像をそのままボタンとして表示する。
+   * 素材ごとに縦横比が異なる(文言の長さ分だけ横に長い)ため、
+   * 高さを揃えて幅は aspect-ratio で自然に決める。歪ませない。
+   */
+  .service-cta {
+    display: inline-block;
+    height: 52px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    text-decoration: none;
+    transition:
+      transform 200ms ease,
+      filter 200ms ease;
+  }
+  .service-cta:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+  }
+  .service-cta--01 {
+    background-image: url("/images/services/button-bg-01.webp");
+    aspect-ratio: 3.117;
+  }
+  .service-cta--02 {
+    background-image: url("/images/services/button-bg-02.webp");
+    aspect-ratio: 2.993;
+  }
+  .service-cta--03 {
+    background-image: url("/images/services/button-bg-03.webp");
+    aspect-ratio: 3.306;
+  }
+  .service-cta--04 {
+    background-image: url("/images/services/button-bg-04.webp");
+    aspect-ratio: 3.458;
+  }
+
+  /*
+   * /services 専用のスクロールロック(依頼により追加)。他ページには
+   * 一切適用しない(このクラス名を使うのは /services だけ)。
+   *
+   * .services-scroller が唯一のスナップコンテナ。各 .services-section は
+   * ビューポート高さぶん(100dvh)を占め、中身が長ければセクション自身が
+   * overflow-y: auto で内側スクロールする。内側が下端(上端)まで
+   * 来て初めて、スクロールが親のスナップコンテナへ伝わり次(前)の
+   * セクションへ移る(ブラウザ標準のスクロールチェイニング)。
+   *
+   * 右側の水彩画像は position: sticky + height:0 のトリックで、
+   * レイアウト上の高さを持たないまま画面に対して静止させる
+   * (負のmarginで自分の高さぶんだけ次の要素を引き上げる)。
+   */
+  /*
+   * 固定ヘッダーの実際の高さぶんを差し引く(--svc-header-h は
+   * ServicesHeaderOffset が実測して設定する。読み込み直後などまだ
+   * 測れていない場合のフォールバックとして 96px を使う)。
+   * ここがずれると、セクションの下端がその分ビューポートの外に
+   * 出てしまい、上部に前後のセクションが覗く隙間ができたり、
+   * 下端のスクロールガイドが見切れたりする。
+   */
+  .services-scroller {
+    height: calc(100dvh - var(--svc-header-h, 96px));
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+  }
+  .services-section {
+    position: relative;
+    height: calc(100dvh - var(--svc-header-h, 96px));
+    overflow-y: auto;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    /*
+     * サイト共通の [id] { scroll-margin-top: 96px } は固定値なので、
+     * 実測したヘッダー高さとずれると、スナップで止まったときに
+     * ヘッダー下に余計な隙間ができる。ここだけ実測値で上書きする
+     * (@layer components は @layer base より後に評価されるため、
+     * 詳細度に関係なく上書きできる)。
+     */
+    scroll-margin-top: var(--svc-header-h, 96px);
+  }
+  .services-section-bg-sticky {
+    position: sticky;
+    top: 0;
+    height: calc(100dvh - var(--svc-header-h, 96px));
+    margin-bottom: calc(-1 * (100dvh - var(--svc-header-h, 96px)));
+    pointer-events: none;
+  }
+  .services-section-content {
+    position: relative;
+    display: flex;
+    min-height: calc(100dvh - var(--svc-header-h, 96px));
+    align-items: center;
+  }
+
+  /*
+   * スクロールガイド(依頼により明滅する線からゲージへ変更)。
+   * 今のセクションをどれだけスクロールしたかを ScrollGauge が
+   * 計算し、track の中を fill が下から満たしていく。満タンに
+   * なるタイミングで次のセクションへ切り替わる。
+   */
+  .services-scroll-guide {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    display: none;
+    width: fit-content;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transform: translateX(-50%);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    color: var(--color-ink-sub);
+    pointer-events: none;
+  }
+  @media (min-width: 1024px) {
+    .services-scroll-guide {
+      display: flex;
+    }
+  }
+  .services-scroll-guide-track {
+    position: relative;
+    display: block;
+    height: 2.5rem;
+    width: 1px;
+    background: var(--color-rule);
+    overflow: hidden;
+  }
+  .services-scroll-guide-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    background: var(--color-ink-sub);
+    transition: transform 120ms linear;
+  }
 }
 
 @keyframes brush-draw {
@@ -428,6 +677,42 @@
   to {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes heading-brush-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 見出し文字が下から生えてくる。clip-path で下から現れさせる。 */
+@keyframes heading-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.7em);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0% 0);
+  }
+}
+
+@keyframes heading-lead-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -465,6 +750,37 @@
   [data-reveal].is-in {
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
+  }
+
+  /* ページ冒頭の入場演出も同様に止め、最終状態のまま出す。 */
+  .heading-brush-in,
+  .heading-text-in,
+  .heading-lead-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  /*
+   * 2番目以降のセクション・カードのスクロールインも同様に止める。
+   * ScrollRevealSections 自身も matchMedia で判定して即座に
+   * is-in-scroll を付けるが、CSS 側でも二重に保険を掛けておく。
+   */
+  .scroll-reveal-section,
+  .scroll-reveal-section.is-in-scroll,
+  .scroll-reveal-right,
+  .scroll-reveal-right.is-in-scroll,
+  .card-reveal-in,
+  .card-reveal-in.is-in-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* スクロールガイドのゲージも動きだけ止める(表示自体は残す)。 */
+  .services-scroll-guide-fill {
     transition: none !important;
   }
 }

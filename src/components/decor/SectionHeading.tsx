@@ -18,6 +18,11 @@ import { LABEL_ASSETS, type LabelColor } from "./brushAssets";
  * 素材の最も濃い画素に本文色 #1C1A17 を乗せたときのコントラストを実測した値。
  * pink 8.0:1 / amber 9.7:1 / teal 7.3:1 / indigo 5.5:1。
  * 最も厳しい indigo は 0.6 が AA の上限なので、ここを上げるときは測り直すこと。
+ *
+ * 表示時の入場演出(依頼により全ページ共通、globals.css に定義):
+ * 筆(heading-brush-in) → 見出し文字(heading-text-in) → 導入文(heading-lead-in)
+ * の順にずれて現れる。続く本文は各ページの main 側で連動して現れる
+ * (globals.css の `main > :not(:first-child)` を参照)。
  */
 const BRUSH_OPACITY = 0.55;
 
@@ -36,6 +41,11 @@ type Props = {
   level?: "h1" | "h2";
   /** 見出しの下に置く短い導入文。 */
   lead?: string;
+  /**
+   * 見出し文字を既定よりやや大きくしたいページ専用の逃げ道。
+   * 既定値は今までどおりで、渡さない限り他ページの見た目は変わらない。
+   */
+  headingSize?: "default" | "lg";
 };
 
 export default function SectionHeading({
@@ -45,9 +55,16 @@ export default function SectionHeading({
   id,
   level = "h2",
   lead,
+  headingSize = "default",
 }: Props) {
   const asset = LABEL_ASSETS[color];
   const Heading = level;
+  const headingSizeClass =
+    headingSize === "lg"
+      ? "text-2xl md:text-3xl"
+      : level === "h1"
+        ? "text-xl md:text-2xl"
+        : "text-lg md:text-xl";
 
   return (
     <div className="relative">
@@ -56,7 +73,7 @@ export default function SectionHeading({
         左に少しはみ出させて、筆の入りが列の外から始まるようにする。
       */}
       <div
-        className="relative -ml-[4%] w-[min(26rem,92%)]"
+        className="heading-brush-in relative -ml-[4%] w-[min(26rem,92%)]"
         style={{ aspectRatio: `${asset.width} / ${asset.height}` }}
       >
         <Image
@@ -81,18 +98,14 @@ export default function SectionHeading({
       {heading && (
         <Heading
           id={id}
-          className={`relative mt-4 max-w-2xl font-display font-light leading-[1.85] tracking-[0.04em] text-ink ${
-            level === "h1"
-              ? "text-xl md:text-2xl"
-              : "text-lg md:text-xl"
-          }`}
+          className={`heading-text-in relative mt-4 max-w-2xl font-display font-light leading-[1.85] tracking-[0.04em] text-ink ${headingSizeClass}`}
         >
           {heading}
         </Heading>
       )}
 
       {lead && (
-        <p className="relative mt-8 max-w-xl text-sm leading-[2.1] text-ink-sub">
+        <p className="heading-lead-in relative mt-8 max-w-xl text-sm leading-[2.1] text-ink-sub">
           {lead}
         </p>
       )}

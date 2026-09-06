@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
@@ -6,21 +7,7 @@ import { PARTNERS } from "@/data/partners";
 /**
  * パートナー(指示書 v2 §5.6)。2社。ロゴ枠＋社名＋2行程度の説明を横並び。
  * 下に「すべてのパートナーを見る」。詳細版は /partners。
- *
- * 重要: MMPR合同会社の事業内容と掲載可否、AIM の掲載許諾はいずれも
- * 未確認(§12-3 / §12-4)。公開前に必ず確認すること。
- * MMPR は事業内容が確定していないため、事実を作らず社名のみを出している。
  */
-/**
- * ロゴ枠に置く頭文字。「株式会社AIM」がそのままだと「株」になるため、
- * 法人格の表記を落としてから1文字目を取る。
- */
-function initial(name: string): string {
-  const stripped = name
-    .replace(/^(株式会社|合同会社|有限会社|一般社団法人|公益社団法人)/, "")
-    .replace(/(株式会社|合同会社|有限会社)$/, "");
-  return (stripped || name).slice(0, 1);
-}
 
 export default function Partners() {
   return (
@@ -36,16 +23,27 @@ export default function Partners() {
 
         <Reveal as="ul" className="mt-16 grid gap-10 md:grid-cols-2 md:gap-12" delay={120}>
           {PARTNERS.map((p) => (
-            <li key={p.name} className="panel flex flex-col p-8 md:p-10">
-              {/*
-                ロゴ枠(§5.6)。先方のロゴは未入手のため、社名の頭文字を
-                置いた枠にしている。素材が届いたら画像に差し替える。
-              */}
-              <div
-                aria-hidden="true"
-                className="flex h-16 w-16 items-center justify-center border border-rule font-display text-xl font-light text-ink-sub"
-              >
-                {initial(p.name)}
+            <li
+              key={p.name}
+              className="panel flex flex-col p-8 transition-transform duration-300 ease-out hover:-translate-y-1.5 hover:shadow-lg md:p-10"
+            >
+              <div className="flex h-16 items-center">
+                {p.logo ? (
+                  <Image
+                    src={p.logo}
+                    alt={`${p.name}のロゴ`}
+                    width={160}
+                    height={64}
+                    className="h-full w-auto object-contain object-left"
+                  />
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    className="flex h-16 w-16 items-center justify-center border border-rule font-display text-xl font-light text-ink-sub"
+                  >
+                    {p.name.slice(0, 1)}
+                  </div>
+                )}
               </div>
 
               <h3 className="mt-6 font-display text-lg font-normal tracking-[0.04em] text-ink">
@@ -54,6 +52,12 @@ export default function Partners() {
 
               {p.representative && (
                 <p className="mt-2 text-xs text-ink-sub">{p.representative}</p>
+              )}
+
+              {p.catchphrase && (
+                <p className="mt-4 font-display text-sm font-normal tracking-[0.04em] text-ink">
+                  {p.catchphrase}
+                </p>
               )}
 
               <p className="mt-4 grow text-sm leading-[2] text-ink-sub">

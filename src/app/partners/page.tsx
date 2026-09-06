@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import SectionHeading from "@/components/decor/SectionHeading";
-// import { PARTNERS, LAYERS } from "@/data/partners"; // 各社・三層構造セクションを一旦非表示にしているため未使用
+import { BRUSH, type BrushName } from "@/components/decor/brushAssets";
+import { PARTNERS } from "@/data/partners";
 
 export const metadata: Metadata = {
   title: "パートナー",
@@ -18,109 +20,118 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * カード隅にごく薄く敷く水彩(§4)。新規素材は作らず既存の筆ストロークを
+ * 再利用する。ロゴの色調に合わせて選び、MMPR側はモノトーンに近づけるため
+ * grayscale をかける。
+ */
+const CARD_DECOR: Record<string, { asset: BrushName; className: string }> = {
+  "合同会社MMPR": { asset: "label-teal", className: "opacity-[0.10] grayscale" },
+  "株式会社AIM": { asset: "label-indigo", className: "opacity-[0.14]" },
+};
+
 export default function PartnersPage() {
   return (
-    <main>
-      <section className="border-b border-rule">
-        <div className="mx-auto max-w-6xl px-6 pb-20 pt-32 md:px-12 lg:px-16 md:pb-24 md:pt-40">
-          <SectionHeading
-            level="h1"
-            label="PARTNERS"
-            heading="パートナー"
-            color="indigo"
-            lead="相互リンクではなく、実際に案件や役割を分担している相手です。得意な領域が重ならないため、入口から本格的な開発まで途切れずに引き渡せます。"
-          />
-        </div>
-      </section>
+    <main className="relative overflow-hidden">
+      {/* タイトル */}
+      <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-32 md:px-12 lg:px-16 md:pb-24 md:pt-40">
+        <SectionHeading
+          level="h1"
+          label="PARTNERS"
+          heading="パートナー"
+          color="indigo"
+          headingSize="lg"
+          lead="得意なところを、それぞれが持ち寄る。"
+        />
 
-      {/* 各社 */}
-      {/* <section className="border-b border-rule py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
-          <ul className="grid gap-12 md:grid-cols-2 md:gap-16">
-            {PARTNERS.map((p) => (
-              <li key={p.name} className="border-t border-rule pt-8">
-                <h2 className="font-display text-lg font-normal tracking-[0.06em] text-ink md:text-xl">
-                  {p.name}
-                </h2>
-                {p.representative && (
-                  <p className="mt-2 text-xs text-ink-sub">
-                    {p.representative}
-                  </p>
-                )}
+        <div className="relative mt-6 h-px w-16 bg-rule" />
+      </div>
 
-                {p.description ? (
-                  <p className="mt-6 max-w-md text-sm leading-[2.1] text-ink-sub">
-                    {p.description}
-                  </p>
-                ) : (
-                  <p className="mt-6 max-w-md text-sm leading-[2.1] text-ink-sub">
-                    事業内容は確認中です。
-                  </p>
-                )}
+      {/* 各社。カードが1枚ずつ現れるので、セクション自体のフェードは重ねない。 */}
+      <section className="section-reveal-skip relative pb-24 md:pb-32">
+        <div className="relative mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
+          <ul className="grid gap-6 md:grid-cols-2 md:gap-8">
+            {PARTNERS.map((p, i) => {
+              const decor = CARD_DECOR[p.name];
+              return (
+                <li
+                  key={p.name}
+                  className="card-reveal-in panel relative flex flex-col overflow-hidden p-6 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-ink/25 md:p-12"
+                  style={{ "--card-delay": `${i * 200}ms` } as React.CSSProperties}
+                >
+                  {decor && (
+                    <div
+                      aria-hidden="true"
+                      className={`pointer-events-none absolute right-0 top-0 w-2/3 max-w-[19rem] ${decor.className}`}
+                      style={{
+                        aspectRatio: `${BRUSH[decor.asset].width} / ${BRUSH[decor.asset].height}`,
+                      }}
+                    >
+                      <Image
+                        src={BRUSH[decor.asset].src}
+                        alt=""
+                        fill
+                        sizes="320px"
+                        className="object-contain object-right-top"
+                      />
+                    </div>
+                  )}
 
-                {p.relationship && (
-                  <div className="mt-8">
-                    <p className="text-[9px] tracking-[0.3em] text-ink-sub">
-                      協業の形
+                  <div className="relative flex flex-1 flex-col">
+                    {p.logo && (
+                      <div className="mb-8 flex h-14 items-center">
+                        <Image
+                          src={p.logo}
+                          alt={`${p.name}のロゴ`}
+                          width={160}
+                          height={56}
+                          className="h-full w-auto object-contain object-left"
+                        />
+                      </div>
+                    )}
+
+                    <h2 className="font-display text-xl font-medium tracking-[0.05em] text-ink md:text-2xl">
+                      {p.name}
+                    </h2>
+
+                    {p.representative && (
+                      <p className="mt-2 text-xs text-ink-sub">
+                        {p.representative}
+                      </p>
+                    )}
+
+                    {p.catchphrase && (
+                      <p className="mt-5 font-display text-base font-normal tracking-[0.03em] text-ink md:text-lg">
+                        {p.catchphrase}
+                      </p>
+                    )}
+
+                    <p className="mt-6 grow max-w-md text-sm leading-[2.2] text-ink-sub">
+                      {p.description ?? "事業内容は確認中です。"}
                     </p>
-                    <p className="mt-4 max-w-md text-sm leading-[2.1] text-ink-sub">
-                      {p.relationship}
-                    </p>
+
+                    {p.url && (
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="group/link mt-8 inline-flex w-fit items-center self-start text-[11px] tracking-[0.2em] text-ink-sub transition-colors duration-200 hover:text-ink"
+                      >
+                        <span className="border-b border-transparent pb-0.5 transition-[border-color,transform] duration-200 group-hover/link:translate-x-0.5 group-hover/link:border-ink-sub">
+                          {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                        </span>
+                        <span className="ml-1 transition-transform duration-200 group-hover/link:translate-x-0.5">
+                          ↗
+                        </span>
+                      </a>
+                    )}
                   </div>
-                )}
-
-                {p.url && (
-                  <a
-                    href={p.url}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="mt-8 inline-block text-[10px] tracking-[0.2em] text-ink-sub transition-colors hover:text-ink"
-                  >
-                    {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
-                  </a>
-                )}
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </div>
-      </section> */}
-
-      {/* 三層構造 */}
-      {/* <section className="border-b border-rule py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
-          <p className="text-[10px] tracking-[0.4em] text-ink-sub">
-            STRUCTURE
-          </p>
-          <h2 className="mt-8 font-display text-lg font-light leading-[1.9] tracking-[0.06em] text-ink md:text-xl">
-            入口から開発まで、役割を分けています。
-          </h2>
-
-          <ol className="mt-12 border-t border-rule">
-            {LAYERS.map((l) => (
-              <li
-                key={l.label}
-                className="grid grid-cols-1 gap-2 border-b border-rule py-7 md:grid-cols-[12rem_minmax(0,1fr)] md:items-baseline md:gap-8"
-              >
-                <span className="text-[11px] tracking-[0.2em] text-ink">
-                  {l.label}
-                </span>
-                <span className="text-sm leading-7 text-ink-sub">
-                  {l.note}
-                </span>
-              </li>
-            ))}
-          </ol>
-
-          <div className="mt-12">
-            <Link
-              href="/contact"
-              className="text-[10px] tracking-[0.25em] text-ink-sub transition-colors hover:text-ink"
-            >
-              相談する →
-            </Link>
-          </div>
-        </div>
-      </section> */}
+      </section>
     </main>
   );
 }

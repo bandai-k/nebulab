@@ -30,7 +30,7 @@ export const PARTNERS: Partner[] = [
     name: "株式会社AIM",
     url: "https://ai-management.biz/",
     representative: "代表取締役 石井一之 様",
-    catchphrase: "生成AIもっと働きやすく",
+    catchphrase: "生成AIでもっと働きやすく",
     description:
       "生成AI活用の企業研修。初級者向けに、ChatGPTなどの生成AIを業務にどう活かすかを、企業の課題に合わせて設計した研修として提供。",
     logo: "/partners/aim-logo.png",

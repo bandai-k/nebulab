@@ -79,8 +79,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  /*
+   * suppressHydrationWarning は <html> 自身の属性だけに効く(子孫には及ばない)。
+   * Intro(src/components/home/Intro.tsx)が描画前の同期スクリプトで
+   * data-intro="skip" を立てるため、SSR の HTML と一致しなくなる。
+   * 幕のちらつきを消すにはハイドレーション前に決める必要があり、
+   * これは next-themes などと同じ、この用途の定石。
+   */
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning>
       <body className="relative bg-ground text-ink antialiased">
         <AmbientBackground />
         <ScrollRevealSections />

@@ -1,28 +1,29 @@
-import Image from "next/image";
-import { AMBIENT } from "./ambientAssets";
-
 /**
- * 全ページ共通の背景装飾。
+ * 全ページ共通の背景。
  *
  * RootLayout に1回だけ置き、viewport に対して固定(position: fixed)する。
- * ページ内を移動してもスコアケープの壁紙のように同じ位置に留まり、
- * 「全ページ共通」の印象を作る。
+ * ページ内を移動しても壁紙のように同じ位置に留まり、「全ページ共通」の
+ * 印象を作る。pointer-events: none で操作は奪わない。本文コンテナは
+ * layout.tsx 側で z-[1] を持つため、ここは z-0 に留める。
  *
- * 既存の BrushField(セクション単位、パララックスあり)とは役割が違うため
- * 別コンポーネントにしている。ここは動かさない・パララックスも付けない。
+ * 以前は水彩の筆素材9種を画面のあちこちに散らしていたが、依頼により
+ * 1枚の背景画像に差し替えた。素材は四辺に色が寄り、中央が淡く抜けた
+ * 「額縁」の構図なので、本文が来る中央は自然に読みやすい面になる。
  *
- * 本文の可読性を最優先しつつ、BrushField の label-* よりは薄い
- * 0.12〜0.26 で存在感を持たせる。pointer-events: none で操作も奪わない。
- * 本文コンテナは layout.tsx 側で z-[1] を持つため、ここは z-0 に留める。
+ * 縦横で素材を出し分ける理由:
+ *   支給素材は縦長(941x1672 / 比 0.56)。これを横長の画面に cover で
+ *   敷くと、上下が大きく切り取られて中央の淡い部分しか残らず、
+ *   色がまったく見えなくなる(1568x731 で確認済み)。
+ *   横長のときは同じ素材を90度回した版を使う。抽象的な水彩なので、
+ *   回しても額縁としての構図は保たれる。
  *
- * 依頼により、素材(ambientAssets.ts の9種)を全て使い、角度も変えつつ、
- * 数もさらに増やしている(同じ素材を別の場所・縮尺・角度で使い回す)。
+ * next/image ではなく <picture> を使っている。orientation で出し分けるには
+ * ブラウザ側に選ばせるのが確実で、素材はすでに WebP に変換済みのため
+ * 最適化を挟む利点がない。
  *
- * 画面外へ逃がすときの注意(依頼により調整): 筆の素材はどれも縁が
- * 滲んでちぎれたような形をしているが、はみ出させる量が大きすぎると
- * 「まだ色が乗っている途中」で四角く切れてしまい、筆に見えなくなる。
- * ここでは -right-[6%] 程度に留め、素材自身の薄い縁が画面端の
- * 内側に収まるようにしている。
+ * 本文の可読性は不透明度で担保している。素材そのままだと中央の淡い面でも
+ * 本文とのコントラストが落ちるため、地の色(--color-ground)の上に薄く
+ * 重ねている。濃さを変えるときは、本文が乗る中央部で測り直すこと。
  */
 export default function AmbientBackground() {
   return (
@@ -30,121 +31,31 @@ export default function AmbientBackground() {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
-      {/* 左上: 紫のコーナー装飾 */}
-      <Image
-        src={AMBIENT["lavender-corner"].src}
-        alt=""
-        width={AMBIENT["lavender-corner"].width}
-        height={AMBIENT["lavender-corner"].height}
-        className="absolute -left-[8%] -top-[6%] w-[46vw] max-w-[440px] opacity-[0.24]"
-      />
-
-      {/* 右上: ピンクの横帯、大きく傾ける */}
-      <Image
-        src={AMBIENT["pink-band"].src}
-        alt=""
-        width={AMBIENT["pink-band"].width}
-        height={AMBIENT["pink-band"].height}
-        className="absolute -right-[6%] top-[5%] hidden w-[36vw] max-w-[500px] -rotate-12 opacity-[0.20] md:block"
-      />
-
-      {/* 画面上部中央寄り: 淡いピンクの帯を大きく斜めに */}
-      <Image
-        src={AMBIENT["pink-soft"].src}
-        alt=""
-        width={AMBIENT["pink-soft"].width}
-        height={AMBIENT["pink-soft"].height}
-        className="absolute left-[4%] top-[2%] hidden w-[28vw] max-w-[380px] rotate-[16deg] opacity-[0.16] md:block"
-      />
-
-      {/* 左端中央: ターコイズの帯を縦に回して立てる */}
-      <div className="absolute -left-[10%] top-[34%] hidden h-[46vh] w-[22vw] max-w-[320px] lg:block">
-        <Image
-          src={AMBIENT["teal-band"].src}
-          alt=""
-          width={AMBIENT["teal-band"].width}
-          height={AMBIENT["teal-band"].height}
-          className="absolute left-1/2 top-1/2 h-auto w-[62vh] max-w-none -translate-x-1/2 -translate-y-1/2 rotate-90 opacity-[0.18]"
+      <picture>
+        <source
+          media="(orientation: landscape)"
+          srcSet="/assets/watercolor-backdrop-landscape.webp"
         />
-      </div>
-
-      {/* 右側中央よりやや下: 琥珀の帯を強めに傾けて */}
-      <Image
-        src={AMBIENT["amber-band"].src}
-        alt=""
-        width={AMBIENT["amber-band"].width}
-        height={AMBIENT["amber-band"].height}
-        className="absolute -right-[6%] top-[52%] hidden w-[30vw] max-w-[420px] rotate-[-24deg] opacity-[0.16] md:block"
-      />
-
-      {/* 右下: 琥珀の縦長ストローク、少し傾ける */}
-      <Image
-        src={AMBIENT["amber-vertical"].src}
-        alt=""
-        width={AMBIENT["amber-vertical"].width}
-        height={AMBIENT["amber-vertical"].height}
-        className="absolute -right-[4%] bottom-[-4%] w-[22vw] max-w-[280px] rotate-12 opacity-[0.21]"
-      />
-
-      {/* 左下: ターコイズの縦長ストローク、逆向きに傾ける */}
-      <Image
-        src={AMBIENT["teal-vertical"].src}
-        alt=""
-        width={AMBIENT["teal-vertical"].width}
-        height={AMBIENT["teal-vertical"].height}
-        className="absolute -left-[5%] bottom-[1%] hidden w-[19vw] max-w-[250px] -rotate-[10deg] opacity-[0.18] md:block"
-      />
-
-      {/* 画面中央下寄り: 淡いピンクの斜めストローク */}
-      <Image
-        src={AMBIENT["pink-diagonal"].src}
-        alt=""
-        width={AMBIENT["pink-diagonal"].width}
-        height={AMBIENT["pink-diagonal"].height}
-        className="absolute left-1/2 top-[80%] hidden w-[34vw] max-w-[420px] -translate-x-1/2 -rotate-6 opacity-[0.14] lg:block"
-      />
-
-      {/* 右下寄り: 藤色のシミ、大きく傾けて奥行きを足す */}
-      <Image
-        src={AMBIENT["lavender-blotch"].src}
-        alt=""
-        width={AMBIENT["lavender-blotch"].width}
-        height={AMBIENT["lavender-blotch"].height}
-        className="absolute -right-[4%] bottom-[8%] hidden w-[26vw] max-w-[360px] rotate-[28deg] opacity-[0.14] lg:block"
-      />
+        <img
+          src="/assets/watercolor-backdrop.webp"
+          alt=""
+          className="h-full w-full object-cover opacity-[0.28] landscape:opacity-[0.45]"
+          decoding="async"
+        />
+      </picture>
 
       {/*
-        以下は同じ素材の再利用による追加配置(依頼により数を増やす)。
-        既存の配置と重ならない位置・別の角度・縮尺にして単なる繰り返しに
-        見えないようにしている。
+        横長のときだけ、本文が乗る中央を地の色で覆い直す(四辺の色は残す)。
+        素材が額縁の構図なので中央はもともと淡いが、それでも 11px の
+        補助色ラベル(--color-ink-sub)は AA を割る。この色は地の色の上で
+        4.54:1 と、もともと余裕がないため。幕全体を薄くすると四辺の色まで
+        死ぬので、中央だけ抜いている。
+
+        縦長(スマホ)では入れない。本文が画面幅いっぱいに広がるので
+        「色を置ける外側」が無く、この楕円だと画面のほぼ全部を覆って
+        背景が消えてしまう。縦長側は代わりに不透明度を落として調整する。
       */}
-
-      {/* 左上よりさらに下、控えめに: 藤色のシミを小さく */}
-      <Image
-        src={AMBIENT["lavender-blotch"].src}
-        alt=""
-        width={AMBIENT["lavender-blotch"].width}
-        height={AMBIENT["lavender-blotch"].height}
-        className="absolute -left-[6%] top-[16%] hidden w-[18vw] max-w-[240px] rotate-[-14deg] opacity-[0.12] xl:block"
-      />
-
-      {/* 画面右上寄り、ヘッダー付近: 淡いピンクの帯を小さく差し込む */}
-      <Image
-        src={AMBIENT["pink-soft"].src}
-        alt=""
-        width={AMBIENT["pink-soft"].width}
-        height={AMBIENT["pink-soft"].height}
-        className="absolute -right-[5%] top-[24%] hidden w-[20vw] max-w-[280px] -rotate-[30deg] opacity-[0.13] xl:block"
-      />
-
-      {/* 画面中央左寄り下部: 琥珀の帯を大きく寝かせる */}
-      <Image
-        src={AMBIENT["amber-band"].src}
-        alt=""
-        width={AMBIENT["amber-band"].width}
-        height={AMBIENT["amber-band"].height}
-        className="absolute left-[8%] bottom-[4%] hidden w-[24vw] max-w-[320px] rotate-[8deg] opacity-[0.12] xl:block"
-      />
+      <div className="absolute inset-0 hidden landscape:block bg-[radial-gradient(ellipse_78%_72%_at_50%_50%,var(--color-ground)_0%,var(--color-ground)_42%,rgba(255,248,231,0.72)_66%,rgba(255,248,231,0)_88%)]" />
     </div>
   );
 }

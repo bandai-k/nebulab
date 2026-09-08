@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,19 +18,183 @@ function isCurrent(item: HeaderNavItem, pathname: string): boolean {
   );
 }
 
+/** ここより上ではヘッダーを必ず出す(px)。ヘッダーの高さ+少しの余裕。 */
+const ALWAYS_VISIBLE_ABOVE = 96;
+
+/**
+ * これ未満の移動は無視する(px)。指の震えや慣性の揺り戻しで
+ * ヘッダーがちらつくのを防ぐ。
+ */
+const MIN_SCROLL_DELTA = 8;
+
+/**
+ * 「ページ相当」とみなすスクロール領域の高さ(ビューポート比)。
+ * これ以上の高さを持つ縦スクロール領域だけをヘッダーの出し入れに使う。
+ * 小さなリストや横スクロールを拾うと、ちょっと動かしただけで
+ * ヘッダーが出入りしてしまう。
+ */
+const PAGE_LIKE_RATIO = 0.6;
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hiddenByScroll, setHiddenByScroll] = useState(false);
   const pathname = usePathname() ?? "/";
 
-  // Prevent body scroll when menu is open
+  /*
+   * スクロール監視から見るための、メニューの開閉状態。
+   * 監視は一度だけ張って以後張り替えないので、state を直接見ると
+   * 初回の値のまま固まる。ref で今の値を渡す。
+   */
+  const menuOpenRef = useRef(false);
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    menuOpenRef.current = menuOpen;
+  }, [menuOpen]);
+
+  /*
+   * 下へスクロールしたら引っ込め、上へ動かしたら戻す。画面の上端付近
+   * (ALWAYS_VISIBLE_ABOVE より上)では常に出す。
+   *
+   * ページの位置は window.scrollY で見る。globals.css が html に
+   * overflow-x: hidden を置いているためスクロールを持っているのは html 側だが、
+   * その値は scrollingElement = html として window.scrollY にそのまま出る
+   * (実測済み)。
+   *
+   * スクロールの出どころはページだけではない。/services は
+   * .services-scroller(スナップ)と各 .services-section が独自の
+   * スクロール領域を持ち、その中を送っている間は window.scrollY が動かない。
+   * 要素の scroll イベントはバブルしないので、document で capture して拾う。
+   * 位置は領域ごとに WeakMap で覚える。
+   *
+   * 拾うのは「ページ相当の大きさを持つ縦スクロール領域」だけ(PAGE_LIKE_RATIO)。
+   *
+   * 上端付近で常に出す判定だけは、内側の位置ではなくページの位置で見る。
+   * 内側の領域が動いている時点で、ページは既に上端から離れている。
+   *
+   * scroll は連続で飛んでくるので、rAF で1フレーム1回に間引く。
+   *
+   * 動きを減らす設定のときは何もしない。ヘッダーが出たり入ったりすること
+   * 自体が動きなので、止めるのではなく常時表示にする(§4.5 の考え方)。
+   */
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    type Scroller = Document | HTMLElement;
+
+    const lastTops = new WeakMap<Scroller, number>();
+    let ticking = false;
+    let pending: Scroller | null = null;
+
+    /*
+     * ページの基準値だけは監視を始めた時点で入れておく。最初のイベントで
+     * 基準を取る作りにすると、読み込み後の1回目のスクロールが「基準を
+     * 決めるだけ」で終わり、ヘッダーが引っ込まない(実測済み)。
+     * 内側のスクロール領域は数が読めないので、最初のイベントで基準を取る。
+     */
+    lastTops.set(document, window.scrollY);
+
+    const topOf = (target: Scroller) =>
+      target === document ? window.scrollY : (target as HTMLElement).scrollTop;
+
+    const update = () => {
+      ticking = false;
+      const target = pending;
+      pending = null;
+      if (!target) return;
+
+      const y = topOf(target);
+      const delta = y - (lastTops.get(target) ?? y);
+      if (Math.abs(delta) < MIN_SCROLL_DELTA) return;
+      lastTops.set(target, y);
+      setHiddenByScroll(
+        window.scrollY > ALWAYS_VISIBLE_ABOVE && delta > 0,
+      );
+    };
+
+    const onScroll = (event: Event) => {
+      /*
+       * メニューを開いている間は一切反応しない。
+       * メニューのオーバーレイ自身が「ページ相当の縦スクロール領域」の
+       * 条件を満たすため、中身を送っただけで「下へスクロールした」と
+       * 判定されてしまう。表示自体は headerHidden 側で打ち消しているが、
+       * ここで止めておかないと、メニューを閉じた瞬間にヘッダーが消える。
+       */
+      if (menuOpenRef.current) return;
+
+      const node = event.target;
+      let target: Scroller;
+
+      if (node === document) {
+        target = document;
+      } else if (node instanceof HTMLElement) {
+        // 小さな領域・横スクロールは見ない
+        if (node.clientHeight < window.innerHeight * PAGE_LIKE_RATIO) return;
+        if (node.scrollHeight <= node.clientHeight + 4) return;
+        target = node;
+      } else {
+        return;
+      }
+
+      // 最初の1回は基準を覚えるだけ(差分 0 として扱う)
+      if (!lastTops.has(target)) lastTops.set(target, topOf(target));
+
+      pending = target;
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    document.addEventListener("scroll", onScroll, {
+      capture: true,
+      passive: true,
+    });
+    return () =>
+      document.removeEventListener("scroll", onScroll, { capture: true });
+  }, []);
+
+  /*
+   * /services だけはヘッダーを引っ込めない。
+   *
+   * このページはヘッダーの実測高さ(--svc-header-h)を差し引いた
+   * calc(100dvh - var(--svc-header-h)) でスクローラーとセクションの高さを
+   * 決めている。ヘッダーが消えてもその差し引きは残るため、上端にヘッダー
+   * ぶんの空きができ、セクションが画面の高さに収まらなくなる
+   * (実測: ヘッダー(89px)を隠すと上に73pxの空き、下に16pxの余り)。
+   * 高さを動的に変えると今度はスクロール中にセクションが伸縮して跳ねる。
+   */
+  const keepHeaderVisible = pathname === "/services";
+
+  /*
+   * メニューを開いている間は引っ込めない。閉じるボタンごと消えてしまう。
+   * state を書き換えるのではなく、ここで打ち消す(効果の中で setState すると
+   * 連鎖レンダリングになるため)。
+   */
+  const headerHidden = hiddenByScroll && !menuOpen && !keepHeaderVisible;
+
+  /*
+   * メニューを開いている間、背後のページをスクロールさせない。
+   *
+   * 押さえるのは body ではなく html。globals.css が html に
+   * overflow-x: hidden を置いているため、スクロールを持っているのは
+   * html(ビューポート)側で、body に overflow: hidden を付けても
+   * 背後は普通にスクロールしてしまう。
+   *
+   * スクロールバーが消える分の幅は padding で埋める。モバイルの
+   * オーバーレイスクロールバーでは 0 になるので何も起きない。
+   */
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const root = document.documentElement;
+    const prevOverflow = root.style.overflow;
+    const prevPaddingRight = root.style.paddingRight;
+    const scrollbar = window.innerWidth - root.clientWidth;
+
+    root.style.overflow = "hidden";
+    if (scrollbar > 0) root.style.paddingRight = `${scrollbar}px`;
+
     return () => {
-      document.body.style.overflow = "";
+      root.style.overflow = prevOverflow;
+      root.style.paddingRight = prevPaddingRight;
     };
   }, [menuOpen]);
 
@@ -42,7 +206,11 @@ export default function Header() {
         なっていた。ヒーローの筆がヘッダーの下を通るため、透けない方が
         見え方も安定する。
       */}
-      <header className="fixed inset-x-0 top-0 z-[60] border-b border-rule bg-ground">
+      <header
+        className={`fixed inset-x-0 top-0 z-[60] border-b border-rule bg-ground${
+          headerHidden ? " header-hidden" : ""
+        }`}
+      >
         {/*
           ロゴは画面左上に密着させる(左の余白を取らない)。
           grid-cols-[1fr_auto_1fr] にすることで、ロゴと右のボタンの幅に
@@ -167,7 +335,7 @@ export default function Header() {
 
       {/* Mobile menu overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-ground pb-12 pt-24 lg:hidden">
+        <div className="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-ground pb-12 pt-24 lg:hidden">
           <nav className="flex flex-col items-center gap-8 px-5 py-6">
             {HEADER_NAV.map((item) => {
               const current = isCurrent(item, pathname);

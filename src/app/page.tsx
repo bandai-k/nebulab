@@ -4,6 +4,7 @@ import BrushField from "@/components/decor/BrushField";
 import SideBrushes from "@/components/decor/SideBrushes";
 import { DEPTH } from "@/components/decor/brushAssets";
 import HeroDevices from "@/components/home/HeroDevices";
+import Intro from "@/components/home/Intro";
 import Products from "@/components/home/Products";
 import Services from "@/components/home/Services";
 import CeoMessage from "@/components/home/CeoMessage";
@@ -68,6 +69,9 @@ const HERO_BRUSH = [
 export default function HomePage() {
   return (
     <main>
+      {/* オープニング。トップページに来たときだけ、1セッションに1回。 */}
+      <Intro />
+
       {/*
         ── Hero(指示書 v2 §5.2)──
         左にコピーとボタン2つ、右に自社プロダクトの画面を映した端末。

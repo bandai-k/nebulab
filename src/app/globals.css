@@ -10,7 +10,14 @@
   --color-surface: #fffdf7; /* カード面 */
   --color-rule: #e5dfce; /* 罫線 */
   --color-ink: #1c1a17; /* 本文 */
-  --color-ink-sub: #6b655c; /* 補助テキスト */
+  /*
+   * 補助テキスト。地の色の上で 5.96:1。
+   * 以前は #6b655c(地の色の上で 5.45:1)だったが、背景に水彩の画像を
+   * 敷いたことで、11px のラベルが色の濃い所で 4.12:1 まで落ちて AA を
+   * 割った。色相はそのままに 5% 暗くして、背景の上でも 4.51:1 を確保する。
+   * これより明るくすると小さな文字が AA を割る。
+   */
+  --color-ink-sub: #655f57; /* 補助テキスト */
 
   /*
    * UIアクセント。ボタン・リンク・フォーカスリング・アクティブ状態は
@@ -121,13 +128,25 @@
   /*
    * 見出しの折り返しをブラウザ任せにしない(§9)。
    * 日本語は文節で切れるようにし、意図した位置の <br> だけを効かせる。
+   *
+   * word-break: keep-all は使わない。日本語では「どこでも改行しない」の意味に
+   * なり、見出し1本が丸ごと1語として扱われる。すると min-content 幅が
+   * 見出しの全長になり、grid/flex の中で親トラックを押し広げてしまう
+   * (min-width: auto のため)。狭い画面では見出しも隣の画像も右にはみ出し、
+   * html の overflow-x: hidden で切れて見える。
+   *
+   * 代わりに文節で折り返す auto-phrase を使う。未対応ブラウザ(Safari /
+   * Firefox)では宣言ごと無視されて word-break: normal 相当になり、
+   * 日本語は通常どおり文字単位で折り返すので、はみ出しは起きない。
+   * overflow-wrap: anywhere は最後の保険(min-content を1文字幅まで
+   * 縮められるので、grid/flex のトラックを押し広げない)。
    */
   h1,
   h2,
   h3,
   h4 {
-    word-break: keep-all;
-    overflow-wrap: break-word;
+    word-break: auto-phrase;
+    overflow-wrap: anywhere;
   }
 
   /* フォーカスは必ず UIアクセントで示す(§3.2 / §9) */
@@ -565,10 +584,57 @@
    * 出てしまい、上部に前後のセクションが覗く隙間ができたり、
    * 下端のスクロールガイドが見切れたりする。
    */
+  /*
+   * ページ側のスナップ。スクローラーを素通りさせないためのもの。
+   *
+   * このスクローラーはページの中を普通に流れるブロックなので、何もしないと
+   * ページのスクロールがそのまま通り過ぎ、4つのセクションを一度も見ないまま
+   * フッターに着いてしまう(実測: 1回の速いホイールで winY が最下部まで進み、
+   * スクローラーの scrollTop は 0 のままだった)。しかも通り過ぎる途中は
+   * セクションが画面の上端に細い帯として残り、表示が崩れて見える。
+   *
+   * ページの止まり位置を「導入 / 事業内容(スクローラー) / フッター」の3つに
+   * 限り、mandatory で必ずどれかに着地させる。これで、どれだけ速く弾いても
+   * 事業内容を飛び越してフッターへ行くことがなくなる。
+   *
+   * proximity では足りなかった。実測では12ティックのホイールは止められたが、
+   * 15ティックでは素通りしてフッター(winY 1065)まで行ってしまった。
+   * mandatory にすると同じ15ティックでも winY 470 で止まり、スクローラーが
+   * ヘッダー直下にぴたりと収まる。
+   *
+   * 3つとも1画面に収まる高さであることが前提(実測: 導入 559 / スクローラー
+   * 582 / フッター 595、ビューポート 671)。フッターが画面より高くなる
+   * 狭い幅では、スナップ領域が画面より大きい扱いになり、中を自由に
+   * スクロールできる(ブラウザ標準の挙動)。
+   *
+   * :has() で /services にだけ効かせる。html はサイト共通なので、
+   * このページ以外にスナップを持ち込まない。
+   */
+  html:has(.services-scroller) {
+    scroll-snap-type: y mandatory;
+    /* スナップ位置を固定ヘッダーのぶんだけ下げる */
+    scroll-padding-top: var(--svc-header-h, 96px);
+  }
+  html:has(.services-scroller) main > section:first-of-type,
+  html:has(.services-scroller) body > div > footer {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
   .services-scroller {
     height: calc(100dvh - var(--svc-header-h, 96px));
     overflow-y: auto;
     scroll-snap-type: y mandatory;
+    /* ページ側から見たときのスナップ位置。通過させない。 */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    /*
+     * overscroll-behavior: contain は付けないこと。
+     * 内部を最後まで送ったあとフッターへ抜けるのはページ側へのスクロール
+     * チェイニングに頼っている。contain で止めると、スクローラーが画面を
+     * 覆っているぶん逃げ道がなくなり、最後のセクションから先へ進めなくなる。
+     * 素通りの防止はページ側のスナップ(上)だけで足りている。
+     */
   }
   .services-section {
     position: relative;
@@ -717,6 +783,254 @@
 }
 
 /*
+ * ── トップページのイントロ(src/components/home/Intro.tsx)──
+ *
+ * 尺は Intro.tsx の INTRO_DURATION(4350ms)と揃えること。内訳:
+ *    200〜  835ms  1行目「小さく始めて、」を1文字ずつ打つ(7文字 × 75ms)
+ *    835〜 1250ms  読ませるための間(かん)
+ *   1250〜 1885ms  2行目「無限に広がる。」を同じ速さで打つ
+ *   1950〜 2450ms  コピーが画面中央へ縮んで吸い込まれる
+ *   2300〜 4200ms  入れ替わりにロゴマークが同じ中心から回転しながら広がる。
+ *                  広がるほど速度が落ち、同時に色が薄くなる
+ *   3900〜 4350ms  幕が引き、トップページが現れる
+ *
+ * 再生中はヘッダーも隠す(下の :root[data-intro="playing"])。幕は z-100 だが、
+ * layout.tsx の <div class="relative z-[1]"> が重ね合わせ文脈を作るため、
+ * 幕の z-index はその中でしか効かず、z-60 のヘッダーが上に出てしまう。
+ * z-index で解こうとすると層の設計が壊れるので、素直に隠している。
+ *
+ * 2回目以降と prefers-reduced-motion のときは、Intro.tsx が描画前に
+ * html[data-intro="skip"] を立てるので、ここで丸ごと消える。
+ * 確認用ページ(/preview/intro)の幕だけは、何度でも見られるように残す。
+ */
+:root[data-intro="skip"] .intro:not(.intro-preview) {
+  display: none;
+}
+
+/*
+ * 再生中はヘッダーを出さない。
+ *
+ * 隠すほうは transition を切って即座に。フェードで隠すと、その間ヘッダーが
+ * 幕の上に見えてしまう(幕は z-100 だが、layout.tsx の z-[1] の中に閉じて
+ * いるため、z-60 のヘッダーより下に来る)。
+ * 戻すほうは幕が明けたあとなので、ゆっくりフェードインさせる。
+ * transition はヘッダー側に置く。playing 側に書くと、属性が外れた瞬間に
+ * 宣言ごと消えて、ぱっと出てしまう。
+ */
+body > header {
+  transition:
+    opacity 400ms ease,
+    transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+:root[data-intro="playing"] body > header {
+  opacity: 0;
+  pointer-events: none;
+  transition: none;
+}
+
+/*
+ * スクロールで引っ込むヘッダー。下へ動かすと隠れ、上へ動かすと戻る。
+ * 付け外しは Header.tsx(ALWAYS_VISIBLE_ABOVE / MIN_SCROLL_DELTA)。
+ * 動きの定義だけをここに置く。
+ */
+.header-hidden {
+  transform: translateY(-100%);
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100; /* 固定ヘッダー(z-60)より上 */
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--color-ground);
+  animation: intro-curtain-out 450ms cubic-bezier(0.4, 0, 1, 1) 3900ms both;
+}
+
+.intro-copy {
+  /*
+   * 2行を積む。グリッドの同じセルにマークと重なって置かれるので、
+   * 引いたあとに場所を取らないよう、レイヤーとして扱う。
+   */
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  margin: 0;
+  padding: 0 1.5rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.25rem, 5.6vw, 2.25rem);
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  color: var(--color-ink);
+  /*
+   * 縮む中心を要素の中央に固定する。マークと同じグリッドのセル(画面中央)に
+   * 置いているので、これで「画面中央へ吸い込まれる」動きになる。
+   */
+  transform-origin: 50% 50%;
+  animation: intro-copy-collapse 500ms cubic-bezier(0.55, 0, 0.9, 0.4) 1950ms both;
+}
+
+/*
+ * 1文字あたりの打鍵間隔と、1文字が出きるまでの時間。
+ * 間隔を詰めすぎると流し読みになり、空けすぎると尺が伸びる。
+ */
+.intro-copy {
+  --type-step: 75ms;
+  --type-dur: 110ms;
+}
+
+/*
+ * 行そのものは動かさない。高さだけ最初から確保しておき、
+ * 2行目が現れたときに1行目が動かないようにする。
+ */
+.intro-copy-line {
+  display: block;
+  --line-start: 200ms;
+}
+
+/*
+ * 1行目が打ち終わってから間を置いて始める。2行を続けて打つと目が散って、
+ * 「小さく始めて」→「無限に広がる」の順で読ませられない。
+ * 200ms + 7文字 × 75ms = 725ms に、1文字ぶんの表示時間を足したあたりが
+ * 1行目の終わり。そこから約400ms 空けている。
+ */
+.intro-copy-line:nth-child(2) {
+  --line-start: 1250ms;
+}
+
+/*
+ * 1文字ずつ打たれて見えるように、出るのは速く、動きは小さく。
+ * --i(何文字目か)は Intro.tsx が要素ごとに渡す。
+ */
+.intro-copy-char {
+  display: inline-block;
+  /* 「、」「。」の前後で行が詰まらないように、文字送りはそのまま扱う */
+  white-space: pre;
+  animation: intro-type-in var(--type-dur) cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--line-start) + var(--i) * var(--type-step));
+}
+
+.intro-mark {
+  grid-area: 1 / 1;
+  /*
+   * レイアウト上の大きさは大きめに取り、倍率のほうを小さくしている。
+   * 見た目は「46vmin × 0.038 → 46vmin × 6.2」で、22vmin を 16 倍したときと
+   * ほぼ同じだが、ブラウザがラスタライズの基準にするのはレイアウト上の
+   * 大きさなので、拡大時にぼけにくく、描き直しの負荷も小さい。
+   */
+  width: 46vmin;
+  height: auto;
+  /*
+   * 拡大の中心を要素の中央に固定する。画面中央のセルに置いているので、
+   * これで「背景中央から」広がる。
+   */
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+  /*
+   * 拡大と「色が薄くなる」を別のアニメーションに分けている。ひとつに
+   * まとめると、拡大側の緩急が透明度にも掛かってしまい、退色が一定の
+   * 速さにならない。透明度は linear で送る。
+   */
+  animation:
+    intro-mark-bloom 1900ms cubic-bezier(0.34, 0.78, 0.28, 1) 2300ms both,
+    intro-mark-fade 1900ms linear 2300ms both;
+}
+
+@keyframes intro-type-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.18em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+ * 読み終わったコピーを画面中央へ縮めて畳む。次にロゴが同じ中心から
+ * 広がるので、「文字が一点に収束し、そこからロゴが開く」とつながる。
+ * 吸い込まれるように見せたいので、緩急は ease-in(だんだん速く)。
+ */
+@keyframes intro-copy-collapse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  60% {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.08);
+  }
+}
+
+/*
+ * 回転しながら拡大する。終端は 46vmin × 6.2 = 285vmin。画面の対角線は
+ * 縦長のスマホ(390x844)で 238vmin、横長のデスクトップ(3440x1440)で
+ * 259vmin なので、どちらでも覆いきる。
+ *
+ * 緩急は ease-out(依頼により、広がるにつれて遅く。終盤はさらにゆっくり)。
+ * 380x670 の画面で時間を6等分すると、各区間の伸びと速度は
+ *     399 / 372 / 232 / 70 / 17 / 4 px
+ *    1400 /1304 / 610 /184 / 61 /15 px/秒
+ * 最初は開いていくのが分かる速さで、最後の区間は 15px/秒 とほとんど
+ * 止まって見えるところまで落ちる。
+ *
+ * ここを強い ease-out(cubic-bezier(0.1, 0.7, 0.3, 1) など)にすると、
+ * 倍率の幅が 163 倍と大きいため最初の区間だけで 600px 以上開いてしまい、
+ * 「広がる」ではなく「弾ける」動きになる。終盤をもっと遅くしたいときは、
+ * 曲線を強めるのではなく尺(duration)を伸ばすほうが安全。曲線を変えたら、
+ * 区間ごとの伸びが単調に減っているかを必ず確かめること。
+ */
+@keyframes intro-mark-bloom {
+  from {
+    transform: rotate(-40deg) scale(0.038);
+  }
+  to {
+    transform: rotate(230deg) scale(6.2);
+  }
+}
+
+/*
+ * 広がるにつれて色を薄くする。
+ *
+ * 薄くするのは透明度だけで、filter: saturate などは使わない。画面いっぱいの
+ * 大きな面に filter を掛けると合成のたびに掛け直しになり、拡大と重なって
+ * 重くなる。透明度なら GPU の合成だけで済む。
+ */
+@keyframes intro-mark-fade {
+  /* 小さいうちに出しきる */
+  0% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  /* ここから最後まで、一定の速さで薄くしていく */
+  40% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes intro-curtain-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/*
  * §4.5。パララックスと滲み出しを完全に停止し、最終状態を表示する。
  * 停止時にマスクが残ると筆が消えたままになるので、マスク自体を外す。
  */
@@ -782,5 +1096,21 @@
   /* スクロールガイドのゲージも動きだけ止める(表示自体は残す)。 */
   .services-scroll-guide-fill {
     transition: none !important;
+  }
+
+  /*
+   * イントロは動き自体が中身なので、止めるのではなく出さない。
+   * Intro.tsx も描画前に同じ判定をしているが、こちらでも押さえておく。
+   */
+  .intro:not(.intro-preview) {
+    display: none !important;
+  }
+
+  /*
+   * ヘッダーの出し入れも動きなので、常時表示にする。Header.tsx も
+   * matchMedia で判定して監視自体を始めないが、CSS 側でも押さえておく。
+   */
+  .header-hidden {
+    transform: none !important;
   }
 }

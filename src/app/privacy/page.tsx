@@ -63,6 +63,20 @@ export default function PrivacyPage() {
           <p className="mt-3 text-sm leading-7 text-ink-sub">
             当サイトでは、利便性の向上やアクセス解析のためにCookieを使用する場合があります。Cookieの使用を希望されない場合は、ブラウザの設定で無効にすることができます。
           </p>
+          <p className="mt-3 text-sm leading-7 text-ink-sub">
+            当サイトでは、アクセス状況の把握のためGoogle社が提供するアクセス解析ツール「Google
+            アナリティクス」を利用しています。Googleアナリティクスはトラフィックデータの収集のためにCookieを使用しますが、このトラフィックデータは匿名で収集されており、個人を特定するものではありません。この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関して、詳しくは
+            {" "}
+            <a
+              href="https://policies.google.com/technologies/partner-sites?hl=ja"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink-sub underline hover:text-accent"
+            >
+              Google社のポリシーおよび規約ページ
+            </a>
+            をご確認ください。
+          </p>
         </section>
 
         <section className="border-t border-rule py-8">

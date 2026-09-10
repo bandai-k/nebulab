@@ -4,6 +4,7 @@ import AmbientBackground from "@/components/decor/AmbientBackground";
 import ScrollRevealSections from "@/components/decor/ScrollRevealSections";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const SITE_URL = "https://www.nebulab.jp";
 const SITE_NAME = "Nebulab合同会社";
@@ -72,6 +73,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: process.env.GSC_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -89,6 +93,7 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning>
       <body className="relative bg-ground text-ink antialiased">
+        <GoogleAnalytics />
         <AmbientBackground />
         <ScrollRevealSections />
         <Header />

@@ -3,6 +3,9 @@ import SectionHeading from "@/components/decor/SectionHeading";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { news } from "@/data/news";
+import { breadcrumbJsonLd } from "@/lib/breadcrumb";
+
+const breadcrumbLd = breadcrumbJsonLd([{ name: "お知らせ", path: "/news" }]);
 
 export const metadata: Metadata = {
   title: "News",
@@ -25,6 +28,10 @@ export const metadata: Metadata = {
 export default function NewsPage() {
   return (
     <main className="mx-auto max-w-6xl px-6 pb-24 pt-28 md:px-12 lg:px-16 md:pt-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {/* ── Page Header ── */}
       <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
         <div>

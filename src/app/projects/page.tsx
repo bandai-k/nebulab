@@ -4,6 +4,9 @@ import Link from "next/link";
 import SectionHeading from "@/components/decor/SectionHeading";
 import { LABEL_ASSETS, type LabelColor } from "@/components/decor/brushAssets";
 import { productIndex, type ProductEntry } from "@/data/productIndex";
+import { breadcrumbJsonLd } from "@/lib/breadcrumb";
+
+const breadcrumbLd = breadcrumbJsonLd([{ name: "プロダクト", path: "/projects" }]);
 
 export const metadata: Metadata = {
   title: "プロダクト",
@@ -128,6 +131,10 @@ function ProductCard({ entry, index }: { entry: ProductEntry; index: number }) {
 export default function ProductsPage() {
   return (
     <main className="mx-auto max-w-6xl px-6 pb-24 pt-32 md:px-12 lg:px-16 md:pt-40">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <SectionHeading
         level="h1"
         label="SELF PRODUCTS"

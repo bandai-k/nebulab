@@ -5,6 +5,12 @@ import SectionHeading from "@/components/decor/SectionHeading";
 import { LABEL_ASSETS } from "@/components/decor/brushAssets";
 import { MVV_ICONS } from "@/components/decor/mvvIcons";
 import { MVV_TITLES } from "@/components/decor/mvvTitles";
+import { breadcrumbJsonLd } from "@/lib/breadcrumb";
+
+const breadcrumbLd = breadcrumbJsonLd([
+  { name: "会社概要", path: "/about" },
+  { name: "Mission / Vision / Values", path: "/about/mvv" },
+]);
 import HeroDevices from "@/components/home/HeroDevices";
 import Reveal from "@/components/ui/Reveal";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -40,6 +46,10 @@ const VALUE_ICONS = [MVV_ICONS.foresight, MVV_ICONS.people, MVV_ICONS.experiment
 export default function MvvPage() {
   return (
     <main className="mx-auto max-w-6xl px-6 pb-24 pt-28 md:px-12 lg:px-16 md:pt-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {/* ── Breadcrumb ── */}
       <nav
         aria-label="breadcrumb"

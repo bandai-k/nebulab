@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import SectionHeading from "@/components/decor/SectionHeading";
 import { BRAND } from "@/constants/brand";
+import { breadcrumbJsonLd } from "@/lib/breadcrumb";
+
+const breadcrumbLd = breadcrumbJsonLd([{ name: "お問い合わせ", path: "/contact" }]);
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
@@ -19,6 +22,10 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="mx-auto max-w-6xl px-6 pb-24 pt-32 md:px-12 lg:px-16 md:pt-40">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <SectionHeading
         level="h1"
         label="CONTACT"

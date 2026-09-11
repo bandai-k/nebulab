@@ -3,6 +3,9 @@ import Image from "next/image";
 import SectionHeading from "@/components/decor/SectionHeading";
 import { BRUSH, type BrushName } from "@/components/decor/brushAssets";
 import { PARTNERS } from "@/data/partners";
+import { breadcrumbJsonLd } from "@/lib/breadcrumb";
+
+const breadcrumbLd = breadcrumbJsonLd([{ name: "パートナー", path: "/partners" }]);
 
 export const metadata: Metadata = {
   title: "パートナー",
@@ -33,6 +36,10 @@ const CARD_DECOR: Record<string, { asset: BrushName; className: string }> = {
 export default function PartnersPage() {
   return (
     <main className="relative overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {/* タイトル */}
       <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-32 md:px-12 lg:px-16 md:pb-24 md:pt-40">
         <SectionHeading

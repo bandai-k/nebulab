@@ -10,9 +10,18 @@ import Services from "@/components/home/Services";
 import CeoMessage from "@/components/home/CeoMessage";
 // import Partners from "@/components/home/Partners"; // 一旦非表示
 import SisterMedia from "@/components/home/SisterMedia";
+import { company } from "@/data/company";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: company.name,
+  alternateName: [company.nameEn, company.shortName],
+  url: company.website,
 };
 
 /*
@@ -69,6 +78,10 @@ const HERO_BRUSH = [
 export default function HomePage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
       {/* オープニング。トップページに来たときだけ、1セッションに1回。 */}
       <Intro />
 

@@ -4,6 +4,7 @@ import SectionHeading from "@/components/decor/SectionHeading";
 export const metadata: Metadata = {
   title: "プライバシーポリシー — Nebulab",
   description: "Nebulabのプライバシーポリシーです。",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

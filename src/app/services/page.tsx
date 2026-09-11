@@ -7,6 +7,9 @@ import ServiceCta, {
 } from "@/components/services/ServiceCta";
 import ServicesHeaderOffset from "@/components/services/ServicesHeaderOffset";
 import ScrollGauge from "@/components/services/ScrollGauge";
+import { breadcrumbJsonLd } from "@/lib/breadcrumb";
+
+const breadcrumbLd = breadcrumbJsonLd([{ name: "事業内容", path: "/services" }]);
 
 export const metadata: Metadata = {
   title: "事業内容",
@@ -170,6 +173,10 @@ const ANCHOR_CLASS: Record<string, string> = {
 export default function ServicesPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <ServicesHeaderOffset />
       <section className="border-b border-rule">
         <div className="mx-auto max-w-6xl px-6 pb-14 pt-32 md:px-12 lg:px-16 md:pb-16 md:pt-40">

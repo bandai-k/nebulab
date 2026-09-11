@@ -3,6 +3,9 @@ import { STATUS_TONE } from "@/lib/statusStyle";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { BRAND } from "@/constants/brand";
+import { breadcrumbJsonLd } from "@/lib/breadcrumb";
+
+const breadcrumbLd = breadcrumbJsonLd([{ name: "HP お試し公開プラン", path: "/hp-trial" }]);
 
 export const metadata: Metadata = {
   title: "HP お試し公開プラン",
@@ -88,6 +91,10 @@ const flow = [
 export default function HpTrialPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {/* === Hero === */}
       <section className="relative overflow-hidden border-b border-rule">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ground/40 to-cyber-bg pointer-events-none" />

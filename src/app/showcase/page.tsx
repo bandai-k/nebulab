@@ -4,6 +4,9 @@ import { STATUS_TONE } from "@/lib/statusStyle";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { apps, type AppEntry } from "@/data/apps";
+import { breadcrumbJsonLd } from "@/lib/breadcrumb";
+
+const breadcrumbLd = breadcrumbJsonLd([{ name: "実績", path: "/showcase" }]);
 
 export const metadata: Metadata = {
   title: "ショーケース",
@@ -206,6 +209,10 @@ function AppCard({ app }: { app: AppEntry }) {
 export default function ShowcasePage() {
   return (
     <main className="mx-auto max-w-6xl px-6 pb-24 pt-28 md:px-12 lg:px-16 md:pt-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
         <div>
           <SectionHeading

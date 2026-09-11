@@ -5,6 +5,7 @@ import { company } from "@/data/company";
 export const metadata: Metadata = {
   title: "利用規約 — Nebulab",
   description: "Nebulabの利用規約です。",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

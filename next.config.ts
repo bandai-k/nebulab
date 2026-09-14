@@ -1,8 +1,24 @@
 import type { NextConfig } from "next";
 
+// AI の学習目的の利用（TDM）を拒否する方針。規約は /terms に記載。
+const TDM_POLICY_URL = "https://www.nebulab.jp/terms";
+
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
+  },
+  async headers() {
+    return [
+      {
+        // 静的ファイル・画像を含む全ルートに付与する。noindex は付けない。
+        source: "/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noai, noimageai" },
+          { key: "tdm-reservation", value: "1" },
+          { key: "tdm-policy", value: TDM_POLICY_URL },
+        ],
+      },
+    ];
   },
   async redirects() {
     return [

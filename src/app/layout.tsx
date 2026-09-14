@@ -11,6 +11,8 @@ const SITE_NAME = "Nebulab合同会社";
 const SITE_DESCRIPTION =
   "Nebulab合同会社は、成田を拠点に受託開発・内製化支援・自社プロダクト開発を手がける開発会社です。自ら使うプロダクトをつくり、運用まで含めた知見をお客様に還元します。";
 const OG_IMAGE = "/og-image.png";
+// AI の学習目的の利用（TDM）を拒否する方針。規約は /terms に記載。
+const TDM_POLICY_URL = `${SITE_URL}/terms`;
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -76,6 +78,10 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.GSC_VERIFICATION,
   },
+  other: {
+    "tdm-reservation": "1",
+    "tdm-policy": TDM_POLICY_URL,
+  },
 };
 
 export default function RootLayout({
@@ -92,6 +98,10 @@ export default function RootLayout({
    */
   return (
     <html lang="ja" suppressHydrationWarning>
+      <head>
+        {/* index/follow の robots メタとは別タグで、AI の学習目的の利用を拒否する */}
+        <meta name="robots" content="noai, noimageai" />
+      </head>
       <body className="relative bg-ground text-ink antialiased">
         <GoogleAnalytics />
         <AmbientBackground />

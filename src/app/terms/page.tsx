@@ -38,12 +38,32 @@ export default function TermsPage() {
             <li>当社のサービスの運営を妨害する行為</li>
             <li>他のユーザーに関する個人情報を収集する行為</li>
             <li>不正アクセス行為</li>
+            <li>本サイトのコンテンツ（文章、画像、データを含む）を、生成AI・機械学習の学習、ファインチューニング、データセットの作成に利用する行為</li>
+            <li>前号の目的で、クローラー・スクレイピングツール等により本サイトのコンテンツを自動的に収集する行為</li>
             <li>その他、当社が不適切と判断する行為</li>
           </ul>
         </section>
 
         <section className="border-t border-rule py-8">
-          <h2 className="text-sm font-medium text-ink">第3条（サービスの提供の停止等）</h2>
+          <h2 className="text-sm font-medium text-ink">第3条（著作権）</h2>
+          <p className="mt-3 text-sm leading-7 text-ink-sub">
+            本サイトに掲載されている文章、画像、データその他のコンテンツの著作権は、当社または正当な権利者に帰属します。
+          </p>
+          <p className="mt-3 text-sm leading-7 text-ink-sub">
+            当社は、本サイトのコンテンツについて、テキスト・データマイニング（TDM）および生成AI・機械学習の学習データとしての利用を許諾しません（権利を留保します）。この方針は{" "}
+            <a href="/robots.txt" className="underline hover:text-accent">
+              robots.txt
+            </a>
+            、各ページの meta タグ、TDM 権利留保の宣言（
+            <a href="/.well-known/tdmrep.json" className="underline hover:text-accent">
+              TDMRep
+            </a>
+            ）でも示しています。
+          </p>
+        </section>
+
+        <section className="border-t border-rule py-8">
+          <h2 className="text-sm font-medium text-ink">第4条（サービスの提供の停止等）</h2>
           <p className="mt-3 text-sm leading-7 text-ink-sub">
             当社は、以下のいずれかに該当する場合、ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします：
           </p>
@@ -56,21 +76,21 @@ export default function TermsPage() {
         </section>
 
         <section className="border-t border-rule py-8">
-          <h2 className="text-sm font-medium text-ink">第4条（免責事項）</h2>
+          <h2 className="text-sm font-medium text-ink">第5条（免責事項）</h2>
           <p className="mt-3 text-sm leading-7 text-ink-sub">
             当社は、本サービスに関して、ユーザーと他のユーザーまたは第三者との間において生じた取引、連絡または紛争等について一切責任を負いません。
           </p>
         </section>
 
         <section className="border-t border-rule py-8">
-          <h2 className="text-sm font-medium text-ink">第5条（規約の変更）</h2>
+          <h2 className="text-sm font-medium text-ink">第6条（規約の変更）</h2>
           <p className="mt-3 text-sm leading-7 text-ink-sub">
             当社は、必要と判断した場合、ユーザーに通知することなくいつでも本規約を変更することができるものとします。変更後の規約は、当サイトに掲載された時点で効力を生じるものとします。
           </p>
         </section>
 
         <section className="border-t border-rule py-8">
-          <h2 className="text-sm font-medium text-ink">第6条（お問い合わせ）</h2>
+          <h2 className="text-sm font-medium text-ink">第7条（お問い合わせ）</h2>
           <p className="mt-3 text-sm leading-7 text-ink-sub">
             本規約に関するお問い合わせは、以下までご連絡ください。
           </p>
@@ -81,6 +101,12 @@ export default function TermsPage() {
             >
               contact@nebulab.jp
             </a>
+          </p>
+        </section>
+
+        <section className="border-t border-rule py-8">
+          <p className="text-sm leading-7 text-ink-sub">
+            改定日：2026年9月14日（AIの学習目的の利用の禁止を追加）
           </p>
         </section>
       </div>

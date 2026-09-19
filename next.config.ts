@@ -28,6 +28,30 @@ const nextConfig: NextConfig = {
         destination: "/projects",
         permanent: true,
       },
+      {
+        // 2026-09-04 に掲載を停止したプロダクト詳細。一覧へ誘導する。
+        source: "/projects/:id(navi|najimi|supermindmap|nebula-place)",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        // 旧サイトの理念ページ。現在は /about/mvv が後継。
+        source: "/philosophy",
+        destination: "/about/mvv",
+        permanent: true,
+      },
+      {
+        // 旧サイトの沿革ページ。沿革は /about 内のセクションに統合済み。
+        source: "/history",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        // 旧サイトの MEO サービス個別ページ。事業内容ページへ集約。
+        source: "/services/meo",
+        destination: "/services",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

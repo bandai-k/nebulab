@@ -61,9 +61,8 @@ export const projects: Project[] = [
     internalUrl: "/projects/bizrelay",
     featured: true,
     imageUrl: "/projects/bizrelay.png",
-    imageAlt:
-      "BizRelayの朝礼画面。今日の納期、止まっているもの、昨日の動きが1通にまとまっている",
-    imageFit: "contain",
+    imageAlt: "BizRelay のタイトル画像。ロゴと『止まっている案件が、毎朝わかる。』の一言、朝礼の 1 通の見本",
+    imageFit: "cover",
     body: [
       "返信・見積・請求・入金が止まった案件を、Gmail とカレンダーから読み取って毎朝1通にまとめて届けます。",
       "見積書・請求書の作成と送付、入金の消し込みまで同じ画面ででき、やり取りがメールに残る3〜15人の会社(Web制作・システム受託・士業・コンサルティング)向けのSaaSです。",

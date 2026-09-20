@@ -22,6 +22,14 @@ type Product = {
 
 const products: Product[] = [
   {
+    name: "BizRelay",
+    summary: "止まっている案件が、毎朝わかる。",
+    detailHref: "/projects/bizrelay",
+    external: { href: "https://bizrelay.biz", label: "サイト" },
+    image: "/projects/bizrelay.png",
+    imageKind: "site",
+  },
+  {
     name: "みどりっこ",
     summary: "育てている植物との時間を、そのまま残す。",
     detailHref: "/apps/midorikko",

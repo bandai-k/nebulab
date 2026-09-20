@@ -1,4 +1,4 @@
-export type ProjectStatus = "ACTIVE" | "LAUNCHING" | "PROTOTYPE" | "R&D" | "CONCEPT";
+export type ProjectStatus = "ACTIVE" | "BETA" | "LAUNCHING" | "PROTOTYPE" | "R&D" | "CONCEPT";
 export type ProjectCategory = "LOCAL × TECH" | "EC BRAND" | "AI PRODUCT";
 
 export type ProjectStep = {
@@ -33,6 +33,13 @@ export type Project = {
   featured?: boolean;
   /** /public 配下のパス。省略すると ProjectPlaceholder(名前と分類の面)になる。 */
   imageUrl?: string;
+  /** 画像の alt テキスト。省略すると project.name を使う。 */
+  imageAlt?: string;
+  /**
+   * 画像の object-fit。省略すると "cover"(枠いっぱいに拡大・トリミング)。
+   * 画面キャプチャなど、上下左右が切れると意味を失う画像は "contain" にする。
+   */
+  imageFit?: "cover" | "contain";
   /** Hero intro paragraphs shown on detail page. */
   body?: string[];
   sections?: ProjectSection[];
@@ -41,6 +48,41 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: "bizrelay",
+    name: "BizRelay",
+    status: "BETA",
+    statusNote: "2026.09-",
+    category: "AI PRODUCT",
+    tagline: "止まっている案件が、毎朝わかる。",
+    description:
+      "返信・見積・請求・入金が止まった案件を、Gmail とカレンダーから読み取って毎朝1通にまとめて届けます。見積書・請求書の作成と送付、入金の消し込みまで同じ画面で。やり取りがメールに残る3〜15人の会社(Web制作・システム受託・士業・コンサルティング)向けのSaaSです。",
+    externalUrl: "https://bizrelay.biz",
+    internalUrl: "/projects/bizrelay",
+    featured: true,
+    imageUrl: "/projects/bizrelay.png",
+    imageAlt:
+      "BizRelayの朝礼画面。今日の納期、止まっているもの、昨日の動きが1通にまとまっている",
+    imageFit: "contain",
+    body: [
+      "返信・見積・請求・入金が止まった案件を、Gmail とカレンダーから読み取って毎朝1通にまとめて届けます。",
+      "見積書・請求書の作成と送付、入金の消し込みまで同じ画面ででき、やり取りがメールに残る3〜15人の会社(Web制作・システム受託・士業・コンサルティング)向けのSaaSです。",
+      "現在はベータ版公開中で、導入相談を受け付けています。",
+    ],
+    tags: ["AI", "業務効率化", "SaaS", "Gmail連携"],
+    links: [
+      {
+        label: "サイトを見る",
+        href: "https://bizrelay.biz",
+        external: true,
+      },
+      {
+        label: "デモを見る",
+        href: "https://bizrelay.biz/demo",
+        external: true,
+      },
+    ],
+  },
   {
     id: "nrt-loft",
     name: "NRT LOFT",

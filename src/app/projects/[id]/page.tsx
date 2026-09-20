@@ -12,6 +12,7 @@ import {
 
 const STATUS_STYLES: Record<ProjectStatus, string> = {
   ACTIVE: STATUS_TONE.live,
+  BETA: STATUS_TONE.live,
   LAUNCHING: STATUS_TONE.upcoming,
   PROTOTYPE: STATUS_TONE.early,
   "R&D": STATUS_TONE.early,

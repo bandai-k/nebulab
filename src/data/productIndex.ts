@@ -41,15 +41,17 @@ export type ProductEntry = {
  */
 const ORDER: Record<string, number> = {
   公開中: 0,
-  運営中: 1,
-  提供準備中: 2,
-  プロトタイプ: 3,
-  "研究開発": 4,
-  構想中: 5,
+  "ベータ版公開中": 1,
+  運営中: 2,
+  提供準備中: 3,
+  プロトタイプ: 4,
+  "研究開発": 5,
+  構想中: 6,
 };
 
 const PROJECT_STATUS_JA: Record<string, string> = {
   ACTIVE: "運営中",
+  BETA: "ベータ版公開中",
   LAUNCHING: "提供準備中",
   PROTOTYPE: "プロトタイプ",
   "R&D": "研究開発",

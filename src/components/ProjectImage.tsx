@@ -11,14 +11,17 @@ export default function ProjectImage({ project }: ProjectImageProps) {
     return <ProjectPlaceholder project={project} />;
   }
 
+  const alt = project.imageAlt ?? project.name;
+  const fitClass = project.imageFit === "contain" ? "object-contain" : "object-cover";
+
   // SVG: serve as-is via plain img (Next/Image rejects SVG by default for security).
   if (project.imageUrl.endsWith(".svg")) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={project.imageUrl}
-        alt={project.name}
-        className="absolute inset-0 h-full w-full object-cover"
+        alt={alt}
+        className={`absolute inset-0 h-full w-full ${fitClass}`}
       />
     );
   }
@@ -27,10 +30,10 @@ export default function ProjectImage({ project }: ProjectImageProps) {
   return (
     <Image
       src={project.imageUrl}
-      alt={project.name}
+      alt={alt}
       fill
       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-      className="object-cover"
+      className={fitClass}
     />
   );
 }

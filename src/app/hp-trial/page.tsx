@@ -136,14 +136,6 @@ export default function HpTrialPage() {
             >
               申込・相談する →
             </Link>
-            <a
-              href="/docs/hp-trial"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="btn btn-ghost"
-            >
-              詳細資料(PDF 風)↗
-            </a>
             <Link
               href="/showcase"
               className="text-xs tracking-wider text-ink-sub transition-colors hover:text-ink-sub"

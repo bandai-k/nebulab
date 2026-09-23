@@ -173,6 +173,12 @@ export default function Footer() {
             >
               利用規約
             </Link>
+            <Link
+              href="/tokushoho"
+              className="text-xs text-ink-sub transition-colors hover:text-accent"
+            >
+              特定商取引法に基づく表示
+            </Link>
           </div>
         </div>
       </div>

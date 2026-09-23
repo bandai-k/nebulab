@@ -334,6 +334,23 @@
   }
 
   /*
+   * /review（診断LP）専用の配色スコープ。
+   * サイト共通トークン(--color-*)はここでは変えず、このクラスの
+   * 配下だけ上書きする(LP仕様書5章: 白地+紺 #1f3a5f)。
+   * bg-ground / bg-surface / text-ink / text-ink-sub / border-rule /
+   * bg-accent / text-accent 等の Tailwind ユーティリティは
+   * var(--color-*) を参照しているため、ここで上書きすればそのまま効く。
+   */
+  .lp-scope {
+    --color-ground: #ffffff;
+    --color-surface: #e8eef6;
+    --color-ink: #1c2330;
+    --color-ink-sub: #5b6474;
+    --color-accent: #1f3a5f;
+    --color-rule: #dfe3ea;
+  }
+
+  /*
    * 筆のストロークの層(§3.4 / §4.2)。
    *
    * - 本文が乗る面には置かない

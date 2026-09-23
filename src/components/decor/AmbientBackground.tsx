@@ -24,8 +24,17 @@
  * 本文の可読性は不透明度で担保している。素材そのままだと中央の淡い面でも
  * 本文とのコントラストが落ちるため、地の色(--color-ground)の上に薄く
  * 重ねている。濃さを変えるときは、本文が乗る中央部で測り直すこと。
+ *
+ * /review（診断LP）は独立レイアウト(白地+紺)のため、水彩の壁紙は出さない。
  */
+"use client";
+
+import { usePathname } from "next/navigation";
+
 export default function AmbientBackground() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/review")) return null;
+
   return (
     <div
       aria-hidden="true"

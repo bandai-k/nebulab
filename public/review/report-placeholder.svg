@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="820" viewBox="0 0 620 820" role="img" aria-label="診断レポートのイメージ(見本準備中)">
+  <rect width="620" height="820" fill="#ffffff" stroke="#dfe3ea" stroke-width="2"/>
+  <rect x="32" y="32" width="556" height="64" fill="#1f3a5f"/>
+  <text x="56" y="72" font-family="sans-serif" font-size="26" fill="#ffffff">診断レポート</text>
+  <text x="56" y="140" font-family="sans-serif" font-size="15" fill="#5b6474">見本準備中(最初の診断が終わり次第、実物に差し替えます)</text>
+  <g>
+    <rect x="56" y="180" width="160" height="90" fill="#fdeceb" stroke="#c0392b" stroke-width="1.5"/>
+    <text x="136" y="218" font-family="sans-serif" font-size="14" fill="#c0392b" text-anchor="middle">危険</text>
+    <text x="136" y="248" font-family="sans-serif" font-size="26" fill="#c0392b" text-anchor="middle">–</text>
+
+    <rect x="230" y="180" width="160" height="90" fill="#fdf3dc" stroke="#8a5a00" stroke-width="1.5"/>
+    <text x="310" y="218" font-family="sans-serif" font-size="14" fill="#8a5a00" text-anchor="middle">注意</text>
+    <text x="310" y="248" font-family="sans-serif" font-size="26" fill="#8a5a00" text-anchor="middle">–</text>
+
+    <rect x="404" y="180" width="160" height="90" fill="#e6f4ec" stroke="#1e7a4c" stroke-width="1.5"/>
+    <text x="484" y="218" font-family="sans-serif" font-size="14" fill="#1e7a4c" text-anchor="middle">問題なし</text>
+    <text x="484" y="248" font-family="sans-serif" font-size="26" fill="#1e7a4c" text-anchor="middle">–</text>
+  </g>
+  <g stroke="#dfe3ea" stroke-width="1.5">
+    <line x1="56" y1="320" x2="564" y2="320"/>
+    <line x1="56" y1="380" x2="564" y2="380"/>
+    <line x1="56" y1="440" x2="564" y2="440"/>
+    <line x1="56" y1="500" x2="564" y2="500"/>
+    <line x1="56" y1="560" x2="564" y2="560"/>
+    <line x1="56" y1="620" x2="564" y2="620"/>
+    <line x1="56" y1="680" x2="564" y2="680"/>
+  </g>
+  <text x="56" y="760" font-family="sans-serif" font-size="13" fill="#5b6474">Nebulab合同会社 — AIツール安全点検</text>
+</svg>

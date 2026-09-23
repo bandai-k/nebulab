@@ -2,8 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AmbientBackground from "@/components/decor/AmbientBackground";
 import ScrollRevealSections from "@/components/decor/ScrollRevealSections";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteChrome from "@/components/layout/SiteChrome";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const SITE_URL = "https://www.nebulab.jp";
@@ -106,11 +105,7 @@ export default function RootLayout({
         <GoogleAnalytics />
         <AmbientBackground />
         <ScrollRevealSections />
-        <Header />
-        <div className="relative z-[1]">
-          {children}
-          <Footer />
-        </div>
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

@@ -16,7 +16,7 @@ export default function ReviewLayout({ children }: { children: React.ReactNode }
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 md:px-10">
           <Link href="/review" className="flex flex-col leading-tight">
             <span className="text-base font-bold tracking-[0.04em] text-ink md:text-lg">
-              AIツール安全点検
+              ツールカルテ
             </span>
             <span className="text-[11px] tracking-[0.08em] text-ink-sub">
               by Nebulab 合同会社

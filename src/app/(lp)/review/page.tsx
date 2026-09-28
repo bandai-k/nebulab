@@ -6,7 +6,7 @@ import CtaLink from "./CtaLink";
 import ReviewForm from "./ReviewForm";
 
 /**
- * AIで作ったツールの安全点検・申込LP。
+ * ツールカルテ（AIツールの健康診断）・申込LP。
  *
  * 正: `~/company/dev/ai-tool-review/docs/web/lp-spec.html`(要素・状態・遷移)、
  *     `~/company/business/ideas-ai-tool-review-lp-script.md`(文言。機密・Git管理外)。
@@ -17,20 +17,20 @@ import ReviewForm from "./ReviewForm";
  * 他ページへ逃がさないための独立レイアウト)。ここでは本文の節だけを持つ。
  */
 
-const breadcrumbLd = breadcrumbJsonLd([{ name: "AIで作ったツールの安全点検", path: "/review" }]);
+const breadcrumbLd = breadcrumbJsonLd([{ name: "ツールカルテ", path: "/review" }]);
 
 export const metadata: Metadata = {
-  title: "AIで作ったツールの安全点検 — Nebulab",
+  title: "ツールカルテ — AIツールの健康診断",
   description:
     "AIで作った業務ツール、そのまま使って大丈夫ですか。コードが読めなくても大丈夫。8つの観点で点検し、危ないところと直し方の指示文をお渡しします。",
   alternates: { canonical: "/review" },
   openGraph: {
     url: "/review",
-    title: "AIで作ったツールの安全点検 — Nebulab",
+    title: "ツールカルテ — AIツールの健康診断 | Nebulab",
     description: "8つの観点で点検して、危ないところと直し方の指示文をお渡しします。",
   },
   twitter: {
-    title: "AIで作ったツールの安全点検 — Nebulab",
+    title: "ツールカルテ — AIツールの健康診断 | Nebulab",
     description: "8つの観点で点検して、危ないところと直し方の指示文をお渡しします。",
   },
 };

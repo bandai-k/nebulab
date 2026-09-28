@@ -14,7 +14,7 @@ import { company } from "@/data/company";
 
 export const metadata: Metadata = {
   title: "特定商取引法に基づく表示 — Nebulab",
-  description: "AIで作ったツールの安全点検サービスに関する、特定商取引法に基づく表示です。",
+  description: "ツールカルテ（AIツールの健康診断）サービスに関する、特定商取引法に基づく表示です。",
   alternates: { canonical: "/tokushoho" },
   robots: { index: false, follow: true },
 };
@@ -47,7 +47,7 @@ const ROWS: { label: string; value: React.ReactNode }[] = [
   },
   {
     label: "サービス名",
-    value: "AIで作ったツールの安全点検",
+    value: "ツールカルテ（AIツールの健康診断）",
   },
   {
     label: "販売価格",
@@ -103,7 +103,7 @@ export default function TokushohoPage() {
       />
 
       <p className="mt-10 max-w-2xl text-sm leading-7 text-ink-sub">
-        本ページは「AIで作ったツールの安全点検」サービス（
+        本ページは「ツールカルテ（AIツールの健康診断）」サービス（
         <a href="/review" className="underline hover:text-accent">
           /review
         </a>

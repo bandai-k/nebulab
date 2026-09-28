@@ -72,7 +72,7 @@ function buildAutoReplyText(p: InquiryPayload): string {
   return [
     `${p.companyName} ${p.name} 様`,
     "",
-    "このたびは、AIで作ったツールの安全点検にお申込みいただき、ありがとうございます。",
+    "このたびは、ツールカルテ（AIツールの健康診断）にお申込みいただき、ありがとうございます。",
     "以下の内容で承りました。1営業日以内に、担当より折り返しご連絡いたします。",
     "",
     "――――――――――",
@@ -147,7 +147,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from,
       to: payload.email,
-      subject: "【受付】AIで作ったツールの安全点検のお申込みありがとうございます",
+      subject: "【受付】ツールカルテ（AIツールの健康診断）のお申込みありがとうございます",
       text: buildAutoReplyText(payload),
     });
 

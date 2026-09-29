@@ -343,13 +343,74 @@
    */
   .lp-scope {
     --color-ground: #ffffff;
-    --color-surface: #e8eef6;
+    --color-surface: #ffffff;
     --color-ink: #1c2330;
     --color-ink-sub: #5b6474;
     --color-accent: #1f3a5f;
     --color-rule: #dfe3ea;
     /* karte.md 7章・8.1: 本文は BIZ UDPGothic。読み込みは layout.tsx の <link>。 */
     font-family: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
+
+    /*
+     * karte.md 12.1: カルテ用紙の方眼。白〜ごく淡い藍の縦グラデーションに
+     * 薄い方眼(罫線)を敷く。カードは白(bg-surface)で「用紙の上に置いた紙」に
+     * 見せる。文字のコントラストを落とさないよう方眼は極めて薄い濃度にする。
+     */
+    background-color: #ffffff;
+    /* ★ 方眼を上、グラデーションを下に重ねる（CSS は先に書いた層が上。
+       グラデーションを先に書くと不透明なので方眼が隠れる。2026-09-29 に踏んだ） */
+    background-image:
+      linear-gradient(rgba(31, 58, 95, 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31, 58, 95, 0.10) 1px, transparent 1px),
+      linear-gradient(180deg, #f4f7fc 0%, #eaeff8 45%, #e2e8f4 100%);
+    background-size:
+      32px 32px,
+      32px 32px,
+      100% 100%;
+    background-repeat: repeat, repeat, no-repeat;
+  }
+  /*
+   * やわらかい光（karte.md 12.1: 案B から）。ぼかした色の円を、節の後ろに置く。
+   * 文字の下に来るので、色は淡くしてコントラストを落とさない。
+   */
+  .lp-scope .lp-glow {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .lp-scope .lp-glow::before,
+  .lp-scope .lp-glow::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 9999px;
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .lp-scope .lp-glow::before {
+    width: 520px;
+    height: 520px;
+    left: -140px;
+    top: -120px;
+    background: radial-gradient(circle, rgba(120, 160, 230, 0.45), rgba(120, 160, 230, 0) 70%);
+  }
+  .lp-scope .lp-glow::after {
+    width: 560px;
+    height: 560px;
+    right: -160px;
+    bottom: -180px;
+    background:
+      radial-gradient(circle at 35% 40%, rgba(150, 215, 225, 0.45), rgba(150, 215, 225, 0) 60%),
+      radial-gradient(circle at 70% 70%, rgba(255, 226, 150, 0.35), rgba(255, 226, 150, 0) 55%);
+  }
+  .lp-scope .lp-glow-soft::before { opacity: 0.6; }
+  .lp-scope .lp-glow-soft::after { opacity: 0.6; }
+  /* 白い帯: 節ごとに地の色を切り替える（方眼の上に白い紙を一枚置いたように） */
+  .lp-scope .lp-band {
+    background: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid rgba(31, 58, 95, 0.12);
+    border-bottom: 1px solid rgba(31, 58, 95, 0.12);
+    box-shadow: 0 1px 24px rgba(31, 58, 95, 0.06);
   }
   /* 大きな見出し(ヒーロー・各節見出し)だけ Zen Kaku Gothic New 900。 */
   .lp-scope h1,

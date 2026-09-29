@@ -41,42 +41,42 @@ export const metadata: Metadata = {
 const PRIMARY_BUTTON =
   "inline-flex min-h-[56px] w-full items-center justify-center rounded-lg bg-accent px-8 text-base font-semibold tracking-wide text-white transition hover:brightness-110 sm:w-auto";
 
-const OBSERVATIONS = [
-  { num: "01", title: "鍵の置き場所", body: "AIの鍵やパスワードが、見える場所に書かれていないか" },
-  { num: "02", title: "ログインと権限", body: "他の人のデータが見えてしまわないか" },
-  { num: "03", title: "データの公開設定", body: "顧客名簿が、誰でも読める状態になっていないか" },
-  { num: "04", title: "個人情報の扱い", body: "個人情報や社外秘を、どこに置いているか" },
-  { num: "05", title: "お金が膨らむ仕組み", body: "使われすぎて、請求が膨らむ形になっていないか" },
-  { num: "06", title: "入力の悪用", body: "入力欄から、乗っ取られる余地がないか" },
-  { num: "07", title: "止まったときに困らないか", body: "作った人が辞めても、業務が止まらないか" },
-  { num: "08", title: "古い部品", body: "使っている部品に、既に知られた穴がないか" },
+const OBSERVATIONS: { num: string; title: string; body: string; icon: IconName }[] = [
+  { num: "01", title: "鍵の置き場所", body: "AIの鍵やパスワードが、見える場所に書かれていないか", icon: "key" },
+  { num: "02", title: "ログインと権限", body: "他の人のデータが見えてしまわないか", icon: "person" },
+  { num: "03", title: "データの公開設定", body: "顧客名簿が、誰でも読める状態になっていないか", icon: "database" },
+  { num: "04", title: "個人情報の扱い", body: "個人情報や社外秘を、どこに置いているか", icon: "document" },
+  { num: "05", title: "お金が膨らむ仕組み", body: "使われすぎて、請求が膨らむ形になっていないか", icon: "yen" },
+  { num: "06", title: "入力の悪用", body: "入力欄から、乗っ取られる余地がないか", icon: "input" },
+  { num: "07", title: "止まったときに困らないか", body: "作った人が辞めても、業務が止まらないか", icon: "power" },
+  { num: "08", title: "古い部品", body: "使っている部品に、既に知られた穴がないか", icon: "gear" },
 ];
 
-const DELIVERABLES = [
+const DELIVERABLES: { icon: IconName; title: string; example: string }[] = [
   {
-    icon: "所見",
+    icon: "search",
     title: "所見（何が危ないか）",
     example: "例「APIキーがコード内に記載されています」",
   },
   {
-    icon: "処方",
+    icon: "document",
     title: "処方（AIにこう頼めば直ります）",
     example:
       "例「このAPIキーを環境変数に移し、コードからは削除してください、と頼めます」",
   },
   {
-    icon: "再検査",
+    icon: "refresh",
     title: "再検査の案内",
     example: "例「直した内容は、30日以内なら22,000円で再検査できます」",
   },
 ];
 
-const STEPS = [
-  { num: "01", title: "問診票に答える", detail: "所要3分です。" },
-  { num: "02", title: "コードを預ける", detail: "預け方はメールで個別にご案内します。" },
-  { num: "03", title: "カルテが届く", detail: "3〜5営業日でお渡しします。" },
-  { num: "04", title: "直す", detail: "処方（AIにこう頼めば直ります）に従って直します。" },
-  { num: "05", title: "再検査（任意）", detail: "直せているかを確かめられます。" },
+const STEPS: { num: string; title: string; detail: string; icon: IconName }[] = [
+  { num: "01", title: "問診票に答える", detail: "所要3分です。", icon: "input" },
+  { num: "02", title: "コードを預ける", detail: "預け方はメールで個別にご案内します。", icon: "upload" },
+  { num: "03", title: "カルテが届く", detail: "3〜5営業日でお渡しします。", icon: "mail" },
+  { num: "04", title: "直す", detail: "処方（AIにこう頼めば直ります）に従って直します。", icon: "wrench" },
+  { num: "05", title: "再検査（任意）", detail: "直せているかを確かめられます。", icon: "refresh" },
 ];
 
 const PRICING = [
@@ -124,6 +124,141 @@ const FAQ = [
   { q: "支払いはどうなりますか", a: "カルテのお渡し後に請求書をお送りします（銀行振込）。お見積りは無料です。" },
 ];
 
+
+/** 節見出し。左に藍色の短い縦線を添える(karte.md 12.1)。 */
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="relative pl-4 text-2xl tracking-tight text-ink md:text-[32px]">
+      <span
+        aria-hidden
+        className="absolute top-1 bottom-1 left-0 w-1 rounded-full bg-accent"
+      />
+      {children}
+    </h2>
+  );
+}
+
+/**
+ * カードの小さなアイコン(karte.md 12.1・案Bから取り入れ)。
+ * 藍色の丸の中に白い線画。package.json にアイコン部品を追加しないため、
+ * すべてインラインの SVG で描く。8つの観点は観点ごとに意味の合う簡単な形。
+ */
+type IconName =
+  | "key"
+  | "person"
+  | "database"
+  | "document"
+  | "yen"
+  | "input"
+  | "power"
+  | "gear"
+  | "search"
+  | "refresh"
+  | "upload"
+  | "mail"
+  | "wrench";
+
+function CardIcon({ name }: { name: IconName }) {
+  const paths: Record<IconName, React.ReactNode> = {
+    key: (
+      <>
+        <circle cx="8" cy="12" r="3" />
+        <path d="M11 10l9-9M17 2l3 3M14 5l2 2" />
+      </>
+    ),
+    person: (
+      <>
+        <circle cx="12" cy="8" r="3.2" />
+        <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" />
+      </>
+    ),
+    database: (
+      <>
+        <ellipse cx="12" cy="6" rx="7" ry="2.6" />
+        <path d="M5 6v12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6" />
+        <path d="M5 12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6" />
+      </>
+    ),
+    document: (
+      <>
+        <path d="M7 3h7l3 3v15H7z" />
+        <path d="M14 3v3h3" />
+        <path d="M9.5 12h5M9.5 15.5h5" />
+      </>
+    ),
+    yen: (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M8.5 8l3.5 5 3.5-5M12 13v4M9 13.5h6M9 16h6" />
+      </>
+    ),
+    input: (
+      <>
+        <rect x="3.5" y="8" width="17" height="8" rx="1.6" />
+        <path d="M7 12h10" />
+      </>
+    ),
+    power: (
+      <>
+        <path d="M12 3v8" />
+        <path d="M7 6.5a7.2 7.2 0 1 0 10 0" />
+      </>
+    ),
+    gear: (
+      <>
+        <circle cx="12" cy="12" r="3.4" />
+        <path d="M12 2.5v3M12 18.5v3M4.4 6.4l2.1 2.1M17.5 15.5l2.1 2.1M2.5 12h3M18.5 12h3M4.4 17.6l2.1-2.1M17.5 8.5l2.1-2.1" />
+      </>
+    ),
+    search: (
+      <>
+        <circle cx="10.5" cy="10.5" r="6" />
+        <path d="M15.5 15.5L20 20" />
+      </>
+    ),
+    refresh: (
+      <>
+        <path d="M20 11a8 8 0 0 0-14.9-3.2M4 13a8 8 0 0 0 14.9 3.2" />
+        <path d="M4 4v5h5M20 20v-5h-5" />
+      </>
+    ),
+    upload: (
+      <>
+        <path d="M12 15V4M8 8l4-4 4 4" />
+        <path d="M4.5 15v3.5A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5V15" />
+      </>
+    ),
+    mail: (
+      <>
+        <rect x="3.5" y="6" width="17" height="12" rx="1.6" />
+        <path d="M4.5 7.5l7.5 6 7.5-6" />
+      </>
+    ),
+    wrench: (
+      <>
+        <path d="M14.5 6.5a3.5 3.5 0 1 0-4.9 4.9L4 17l3 3 5.6-5.6a3.5 3.5 0 0 0 4.9-4.9l-3-3z" />
+      </>
+    ),
+  };
+
+  return (
+    <span className="mb-2 inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-accent md:size-9">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="size-4.5 md:size-5"
+        aria-hidden
+      >
+        {paths[name]}
+      </svg>
+    </span>
+  );
+}
+
 /**
  * ヒーローに描くカルテ1ページ目の見本(HTML/CSSで描く。画像にしない。karte.md 8.2)。
  *
@@ -165,7 +300,7 @@ function KarteSample() {
 
   return (
     <div>
-      <div className="rounded-lg border border-rule bg-surface p-4 shadow-sm md:p-6">
+      <div className="rounded-lg border border-rule bg-surface p-4 shadow-lg shadow-accent/10 md:p-6">
         <div className="flex items-start justify-between border-b border-rule pb-3">
           <div>
             <p className="text-base font-bold text-ink md:text-lg">ツールカルテ</p>
@@ -249,7 +384,7 @@ export default function ReviewPage() {
       />
 
       {/* === ヒーロー === */}
-      <section className="border-b border-rule">
+      <section className="lp-glow">
         <div className="mx-auto grid max-w-5xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-10 md:py-24">
           <div>
             <h1 className="text-[32px] leading-[1.35] tracking-tight text-ink sm:text-[40px] md:text-[44px]">
@@ -276,17 +411,19 @@ export default function ReviewPage() {
         </div>
       </section>
 
+
       {/* === ある日の出来事 === */}
-      <section className="border-b border-rule bg-surface">
-        <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
+      <section className="lp-band">
+        <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24 [&>*]:max-w-3xl">
           <p className="text-[11px] font-semibold tracking-[0.3em] text-ink-sub">ある日の出来事</p>
           <div className="mt-6 space-y-4 text-base leading-[1.9] text-ink md:text-lg">
-            <p>社員がChatGPTで作った、問い合わせを整理するツール。半年、問題なく動いている。</p>
+            <p>社員がAIで作った、お客さんを管理するツール。半年、問題なく動いている。</p>
             <p>
-              ある朝、AIの利用料の請求が<span className="font-bold text-red-700">いつもの30倍</span>
-              になっていた。
+              ある日、ツールがテスト用に撮っていた画面の画像が
+              <span className="font-bold text-red-700">アドレスを打てば、誰でも見られる状態</span>
+              だとわかった。
             </p>
-            <p>公開ページの中に、AIの鍵がそのまま書かれていた。誰でも見られる場所に。</p>
+            <p>画像には、お客さんの名前と電話番号が写っていた。作った本人も、画像が残っていることを知らなかった。</p>
           </div>
           <p className="mt-6 text-sm leading-7 text-ink-sub">
             作った本人に悪気はありません。AIは「動くもの」は作れますが、「安全に使えるか」は教えてくれません。
@@ -295,14 +432,18 @@ export default function ReviewPage() {
       </section>
 
       {/* === 診るのはこの8つ === */}
-      <section className="border-b border-rule">
+      <section>
         <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">診るのは、この8つ。</h2>
+          <SectionHeading>診るのは、この8つ。</SectionHeading>
           <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
             {OBSERVATIONS.map((o) => (
-              <div key={o.num} className="rounded-lg border border-rule bg-surface p-4 md:p-5">
-                <span className="text-[10px] tracking-[0.2em] text-ink-sub">{o.num}</span>
-                <h3 className="mt-2 text-sm font-semibold text-ink md:text-base">{o.title}</h3>
+              <div
+                key={o.num}
+                className="rounded-lg border border-rule bg-surface p-4 shadow-sm md:p-5"
+              >
+                <CardIcon name={o.icon} />
+                <span className="block text-[10px] tracking-[0.2em] text-ink-sub">{o.num}</span>
+                <h3 className="mt-1 text-sm font-semibold text-ink md:text-base">{o.title}</h3>
                 <p className="mt-2 text-xs leading-6 text-ink-sub">{o.body}</p>
               </div>
             ))}
@@ -313,15 +454,16 @@ export default function ReviewPage() {
         </div>
       </section>
 
+
       {/* === 受け取るもの＝カルテ === */}
-      <section id="deliverables" className="scroll-mt-20 border-b border-rule bg-surface">
+      <section id="deliverables" className="lp-band scroll-mt-20">
         <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">受け取るもの＝カルテ。</h2>
+          <SectionHeading>受け取るもの＝カルテ。</SectionHeading>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {DELIVERABLES.map((d) => (
-              <div key={d.title} className="rounded-lg border border-rule bg-ground p-6">
-                <span className="text-[10px] tracking-[0.2em] text-ink-sub">{d.icon}</span>
-                <h3 className="mt-3 text-base font-semibold text-ink">{d.title}</h3>
+              <div key={d.title} className="rounded-lg border border-rule bg-surface p-6 shadow-sm">
+                <CardIcon name={d.icon} />
+                <h3 className="mt-1 text-base font-semibold text-ink">{d.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-ink-sub">{d.example}</p>
               </div>
             ))}
@@ -329,15 +471,17 @@ export default function ReviewPage() {
         </div>
       </section>
 
+
       {/* === 受け方 === */}
-      <section className="border-b border-rule">
+      <section>
         <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">受け方。</h2>
+          <SectionHeading>受け方。</SectionHeading>
           <div className="mt-12 grid gap-4 md:grid-cols-5">
             {STEPS.map((s) => (
-              <div key={s.num} className="rounded-lg border border-rule bg-surface p-5">
-                <span className="text-[10px] tracking-[0.2em] text-ink-sub">STEP {s.num}</span>
-                <h3 className="mt-3 text-sm font-semibold text-ink">{s.title}</h3>
+              <div key={s.num} className="rounded-lg border border-rule bg-surface p-5 shadow-sm">
+                <CardIcon name={s.icon} />
+                <span className="block text-[10px] tracking-[0.2em] text-ink-sub">STEP {s.num}</span>
+                <h3 className="mt-1 text-sm font-semibold text-ink">{s.title}</h3>
                 <p className="mt-3 text-xs leading-6 text-ink-sub">{s.detail}</p>
               </div>
             ))}
@@ -345,10 +489,11 @@ export default function ReviewPage() {
         </div>
       </section>
 
+
       {/* === 料金 === */}
-      <section id="pricing" className="scroll-mt-20 border-b border-rule bg-surface">
-        <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">料金。</h2>
+      <section id="pricing" className="lp-band scroll-mt-20">
+        <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24 [&>*]:max-w-3xl">
+          <SectionHeading>料金。</SectionHeading>
           <div className="mt-12 overflow-hidden rounded-lg border border-rule">
             <table className="w-full border-collapse text-sm">
               <tbody>
@@ -373,10 +518,11 @@ export default function ReviewPage() {
         </div>
       </section>
 
+
       {/* === 正直に書くこと === */}
-      <section className="border-b border-rule">
-        <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">正直に、書きます。</h2>
+      <section>
+        <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24 [&>*]:max-w-3xl">
+          <SectionHeading>正直に、書きます。</SectionHeading>
           <ul className="mt-10 space-y-4">
             {HONESTY.map((line, i) => (
               <li key={i} className="flex items-start gap-3 text-sm leading-7 text-ink-sub">
@@ -388,10 +534,11 @@ export default function ReviewPage() {
         </div>
       </section>
 
+
       {/* === よくある質問 === */}
-      <section className="border-b border-rule bg-surface">
-        <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">よくある質問。</h2>
+      <section className="lp-band">
+        <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24 [&>*]:max-w-3xl">
+          <SectionHeading>よくある質問。</SectionHeading>
           <div className="mt-10 divide-y divide-rule border-t border-b border-rule">
             {FAQ.map((item, i) => (
               <details key={item.q} className="group py-4" open={i === 0 ? undefined : false}>
@@ -408,12 +555,11 @@ export default function ReviewPage() {
         </div>
       </section>
 
+
       {/* === 問診票 === */}
-      <section id="form" className="scroll-mt-20 border-b border-rule">
-        <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">
-            そのツール、診てもらいませんか。
-          </h2>
+      <section id="form" className="lp-glow lp-glow-soft scroll-mt-20">
+        <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24 [&>*]:max-w-3xl">
+          <SectionHeading>そのツール、診てもらいませんか。</SectionHeading>
           <p className="mt-4 text-sm leading-7 text-ink-sub">
             以下の問診票からお申込みください。1営業日以内にご返信します。
           </p>
@@ -421,8 +567,9 @@ export default function ReviewPage() {
         </div>
       </section>
 
+
       {/* === 末尾 === */}
-      <section className="bg-surface">
+      <section className="lp-band">
         <div className="mx-auto max-w-3xl px-6 py-16 text-center md:px-10 md:py-24">
           <p className="text-sm leading-7 text-ink-sub">ご不明な点は、お気軽にお問い合わせください。</p>
           <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">

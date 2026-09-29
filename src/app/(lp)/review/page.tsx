@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   title: "ツールカルテ — AIツールの健康診断",
   description:
     "AIで作った業務ツール、そのまま使って大丈夫ですか。コードが読めなくても大丈夫。8つの観点で診て、危ないところと直し方を「カルテ」にしてお渡しします。",
+  // ★ 公開の準備（特商法の電話番号・Resend・契約の文面）が揃うまで検索エンジンに載せない。
+  //   揃ったら外して広告を出す（2026-09-29 社長。push が本番へのデプロイになるため、先に入れた）。
+  robots: { index: false, follow: false },
   alternates: { canonical: "/review" },
   openGraph: {
     url: "/review",

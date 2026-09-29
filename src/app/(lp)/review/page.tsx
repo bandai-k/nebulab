@@ -123,15 +123,37 @@ const FAQ = [
 
 /**
  * ヒーローに描くカルテ1ページ目の見本(HTML/CSSで描く。画像にしない。karte.md 8.2)。
- * 中身は架空の見本。TODO(BizRelay): BizRelay の診断が済んだら実物の値に差し替える。
+ *
+ * 中身は実物（自社ツール BizRelay を診たカルテの1ページ目、TK-20260929-54EB）。
+ * 直していない所見（No.2・3・4・5・7）は `masked: true` にし、本当のコメント文は
+ * 持たせていない（ソース・ビルド成果物のどちらにも入らない）。伏せを外すのは、
+ * BizRelay でその所見を直してから（2026-09-28 経営会議: LP に載せる所見は
+ * 直し終えたものか伏せたもの）。直したら該当行の `masked` を外し、`note` に
+ * 実際のコメントを書けば表示される。
  */
+type KarteRow = { num: string; title: string; verdict: "危険" | "注意" | "問題なし" } & (
+  | { masked: true }
+  | { masked: false; note: string }
+);
+
+const KARTE_SAMPLE_ROWS: KarteRow[] = [
+  { num: "1", title: "鍵・パスワードの漏れ", verdict: "問題なし", masked: false, note: "—" },
+  { num: "2", title: "ログインと権限", verdict: "注意", masked: true },
+  { num: "3", title: "データベースの公開設定", verdict: "注意", masked: true },
+  { num: "4", title: "個人情報・社内情報の扱い", verdict: "注意", masked: true },
+  { num: "5", title: "お金が膨らむ仕組み", verdict: "注意", masked: true },
+  {
+    num: "6",
+    title: "入力の悪用",
+    verdict: "注意",
+    masked: false,
+    note: "ログイン画面に、他人が決めた文章を表示させられる（ほか2件）",
+  },
+  { num: "7", title: "止まったときに困らないか", verdict: "注意", masked: true },
+  { num: "8", title: "古い部品", verdict: "問題なし", masked: false, note: "—" },
+];
+
 function KarteSample() {
-  const rows: { num: string; title: string; verdict: "危険" | "注意" | "問題なし"; note: string }[] = [
-    { num: "1", title: "鍵の置き場所", verdict: "危険", note: "APIキーがコード内に記載されています" },
-    { num: "2", title: "ログインと権限", verdict: "注意", note: "管理者権限が広すぎます" },
-    { num: "3", title: "データの公開設定", verdict: "問題なし", note: "適切に設定されています" },
-    { num: "4", title: "個人情報の扱い", verdict: "注意", note: "一部に個人情報らしきデータがあります" },
-  ];
   const badgeClass: Record<string, string> = {
     危険: "bg-red-100 text-red-700",
     注意: "bg-amber-100 text-amber-700",
@@ -142,27 +164,28 @@ function KarteSample() {
     <div>
       <div className="rounded-lg border border-rule bg-surface p-4 shadow-sm md:p-6">
         <div className="flex items-start justify-between border-b border-rule pb-3">
-          <p className="text-base font-bold text-ink md:text-lg">ツールカルテ</p>
+          <div>
+            <p className="text-base font-bold text-ink md:text-lg">ツールカルテ</p>
+            <p className="text-[10px] text-ink-sub">AIツールの健康診断</p>
+          </div>
           <p className="text-right text-[10px] leading-5 text-ink-sub">
-            作成日 2026年6月20日
+            カルテ番号 TK-20260929-54EB
             <br />
-            No. TK-20260620-001
+            診た日 2026年9月29日
+            <br />
+            診たもの BizRelay（業務SaaS）
+            <br />
+            診た人 Nebulab合同会社
           </p>
         </div>
-        <div className="mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[11px] leading-6 text-ink-sub">
-          <span>ツール名</span>
-          <span className="text-ink">問い合わせ整理ツール</span>
-          <span>作成者</span>
-          <span className="text-ink">社内（ChatGPTで作成）</span>
-          <span>主な用途</span>
-          <span className="text-ink">問い合わせの分類・要約</span>
-        </div>
-        <div className="mt-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-center">
-          <p className="text-[10px] font-semibold tracking-widest text-red-700">総合判定</p>
-          <p className="mt-1 text-sm font-bold text-red-700">すぐ直してほしいことがあります</p>
+        <div className="mt-4 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-center">
+          <p className="text-[10px] font-semibold tracking-widest text-amber-700">総合判定</p>
+          <p className="mt-1 text-sm font-bold text-amber-700">
+            近いうちに直したいことがあります
+          </p>
         </div>
         <p className="mt-4 text-center text-xs font-semibold text-ink">
-          危険 2件・注意 3件・問題なし 3観点
+          危険 0件・注意 9件・問題なし 2観点
         </p>
         <div className="mt-3 overflow-hidden rounded-md border border-rule">
           <table className="w-full border-collapse text-[10px] md:text-[11px]">
@@ -170,36 +193,45 @@ function KarteSample() {
               <tr className="bg-ground text-ink-sub">
                 <th className="border-b border-rule px-2 py-1.5 text-left font-medium">No.</th>
                 <th className="border-b border-rule px-2 py-1.5 text-left font-medium">観点</th>
-                <th className="border-b border-rule px-2 py-1.5 text-left font-medium">判定</th>
-                <th className="border-b border-rule px-2 py-1.5 text-left font-medium">主な所見</th>
+                <th className="border-b border-rule px-2 py-1.5 text-left font-medium">結果</th>
+                <th className="border-b border-rule px-2 py-1.5 text-left font-medium">
+                  ひとことコメント
+                </th>
               </tr>
             </thead>
             <tbody>
-              {rows.map((r) => (
+              {KARTE_SAMPLE_ROWS.map((r) => (
                 <tr key={r.num} className="bg-surface">
                   <td className="border-b border-rule px-2 py-1.5 text-ink-sub">{r.num}</td>
-                  <td className="border-b border-rule px-2 py-1.5 text-ink">{r.title}</td>
+                  <td className="min-w-[6.5em] border-b border-rule px-2 py-1.5 text-ink">{r.title}</td>
                   <td className="border-b border-rule px-2 py-1.5">
                     <span
-                      className={`inline-block rounded px-1.5 py-0.5 font-medium ${badgeClass[r.verdict]}`}
+                      className={`inline-block whitespace-nowrap rounded px-1.5 py-0.5 font-medium ${badgeClass[r.verdict]}`}
                     >
                       {r.verdict}
                     </span>
                   </td>
-                  <td className="border-b border-rule px-2 py-1.5 text-ink-sub">{r.note}</td>
+                  <td className="border-b border-rule px-2 py-1.5 text-ink-sub">
+                    {r.masked ? (
+                      <span className="inline-flex items-center gap-1.5">
+                        <span className="h-2.5 w-20 rounded-full bg-ink-sub/20 md:w-28" />
+                        <span className="text-[9px] text-ink-sub/70">
+                          公開前に直すため、伏せています
+                        </span>
+                      </span>
+                    ) : (
+                      r.note
+                    )}
+                  </td>
                 </tr>
               ))}
-              <tr className="bg-surface">
-                <td colSpan={4} className="px-2 py-1 text-center text-ink-sub">
-                  …
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
       </div>
       <p className="mt-3 text-center text-xs text-ink-sub">
-        自社ツールを診たカルテの見本（準備中の仮の内容）
+        当社の自社ツール（BizRelay）を診たカルテの見本（1ページ目）。
+        直していない所見は伏せています
       </p>
     </div>
   );

@@ -3,11 +3,15 @@ import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
+type ApplicantType = "corp" | "sole" | "individual";
+
 type InquiryPayload = {
+  applicantType: ApplicantType | "";
   companyName: string;
   name: string;
   email: string;
   phone: string;
+  toolSummary: string;
   toolType: string;
   builtWith: string;
   toolSize: string;
@@ -15,8 +19,14 @@ type InquiryPayload = {
   agree: boolean;
 };
 
+const APPLICANT_TYPE_LABEL: Record<string, string> = {
+  corp: "法人",
+  sole: "個人事業主",
+  individual: "個人",
+};
+
 const TOOL_TYPE_LABEL: Record<string, string> = {
-  gas: "Google Apps Script",
+  gas: "スプレッドシート＋Google Apps Script",
   webapp: "Webアプリ(ログイン・データベースあり)",
   unknown: "わからない",
 };
@@ -55,24 +65,32 @@ function isRateLimited(ip: string): boolean {
   return last !== undefined && now - last < RATE_LIMIT_WINDOW_MS;
 }
 
+/** 受付メール・通知メールで使う宛名。会社名が無ければ「お名前 様」だけ(karte.md 8.4)。 */
+function buildSalutee(p: InquiryPayload): string {
+  return p.companyName ? `${p.companyName} ${p.name}` : p.name;
+}
+
 function buildNotificationText(p: InquiryPayload): string {
   return [
-    `会社名: ${p.companyName}`,
+    `申し込む方: ${APPLICANT_TYPE_LABEL[p.applicantType] ?? p.applicantType}`,
+    `何のツールか: ${p.toolSummary}`,
+    "",
+    `会社名・屋号: ${p.companyName || "(個人のため未記入)"}`,
     `お名前: ${p.name}`,
     `メール: ${p.email}`,
     `電話番号: ${p.phone || "(未記入)"}`,
-    `ツールの種類: ${TOOL_TYPE_LABEL[p.toolType] ?? p.toolType}`,
-    `何で作ったか: ${p.builtWith || "(未記入)"}`,
-    `ツールの大きさ: ${p.toolSize ? (TOOL_SIZE_LABEL[p.toolSize] ?? p.toolSize) : "(未記入)"}`,
+    `どんな形ですか: ${TOOL_TYPE_LABEL[p.toolType] ?? p.toolType}`,
+    `何で作りましたか: ${p.builtWith || "(未記入)"}`,
+    `大きさ: ${p.toolSize ? (TOOL_SIZE_LABEL[p.toolSize] ?? p.toolSize) : "(未記入)"}`,
     `気になっていること:\n${p.concerns || "(未記入)"}`,
   ].join("\n");
 }
 
 function buildAutoReplyText(p: InquiryPayload): string {
   return [
-    `${p.companyName} ${p.name} 様`,
+    `${buildSalutee(p)} 様`,
     "",
-    "このたびは、ツールカルテ（AIツールの健康診断）にお申込みいただき、ありがとうございます。",
+    "このたびは、ツールカルテ（AIツールの健康診断）の問診票にお答えいただき、ありがとうございます。",
     "以下の内容で承りました。1営業日以内に、担当より折り返しご連絡いたします。",
     "",
     "――――――――――",
@@ -80,7 +98,7 @@ function buildAutoReplyText(p: InquiryPayload): string {
     "――――――――――",
     "",
     "コードや画面の共有方法は、この後のメールで個別にご案内します。",
-    "お心当たりのないお申込みの場合は、恐れ入りますがこのメールを破棄してください。",
+    "お心当たりのない場合は、恐れ入りますがこのメールを破棄してください。",
     "",
     "Nebulab合同会社",
   ].join("\n");
@@ -94,11 +112,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, reason: "invalid" }, { status: 400 });
   }
 
+  const rawApplicantType = String(body.applicantType ?? "");
+  const applicantType: ApplicantType | "" =
+    rawApplicantType === "corp" || rawApplicantType === "sole" || rawApplicantType === "individual"
+      ? rawApplicantType
+      : "";
+
   const payload: InquiryPayload = {
-    companyName: String(body.companyName ?? "").slice(0, 200),
+    applicantType,
+    companyName: applicantType === "individual" ? "" : String(body.companyName ?? "").slice(0, 200),
     name: String(body.name ?? "").slice(0, 200),
     email: String(body.email ?? "").slice(0, 320),
     phone: String(body.phone ?? "").slice(0, 50),
+    toolSummary: String(body.toolSummary ?? "").slice(0, 200),
     toolType: String(body.toolType ?? "").slice(0, 50),
     builtWith: String(body.builtWith ?? "").slice(0, 200),
     toolSize: String(body.toolSize ?? "").slice(0, 50),
@@ -106,11 +132,15 @@ export async function POST(req: NextRequest) {
     agree: Boolean(body.agree),
   };
 
+  const needsCompanyName = payload.applicantType === "corp" || payload.applicantType === "sole";
+
   if (
-    !payload.companyName ||
+    !payload.applicantType ||
+    (needsCompanyName && !payload.companyName) ||
     !payload.name ||
     !payload.email ||
     !EMAIL_RE.test(payload.email) ||
+    !payload.toolSummary ||
     !payload.toolType ||
     !payload.agree
   ) {
@@ -140,14 +170,14 @@ export async function POST(req: NextRequest) {
       from,
       to,
       replyTo: payload.email,
-      subject: `[診断申込] ${payload.companyName} 様`,
+      subject: `[問診票] ${buildSalutee(payload)} 様`,
       text: buildNotificationText(payload),
     });
 
     await resend.emails.send({
       from,
       to: payload.email,
-      subject: "【受付】ツールカルテ（AIツールの健康診断）のお申込みありがとうございます",
+      subject: "【受付】ツールカルテの問診票を受け付けました",
       text: buildAutoReplyText(payload),
     });
 

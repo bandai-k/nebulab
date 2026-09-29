@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BRAND } from "@/constants/brand";
 
 export const metadata: Metadata = {
-  title: "送信ありがとうございます — Nebulab",
+  title: "問診票を受け付けました — ツールカルテ",
   robots: { index: false, follow: false },
   alternates: { canonical: "/review/thanks" },
 };
@@ -12,10 +12,10 @@ export default function ReviewThanksPage() {
   return (
     <main className="mx-auto max-w-2xl px-6 py-20 text-center md:px-10 md:py-28">
       <h1 className="text-2xl font-bold tracking-tight text-ink md:text-[32px]">
-        お申込み、ありがとうございます。
+        問診票を受け付けました。
       </h1>
       <p className="mt-6 text-base leading-[1.9] text-ink-sub">
-        1営業日以内に、担当よりメールでご連絡します。
+        1営業日以内に、担当よりメールでご連絡します。コードの預け方も、そのメールでご案内します。
         ご入力いただいたメールアドレスに、受付の控えもお送りしていますのでご確認ください。
       </p>
       <p className="mt-6 text-sm leading-7 text-ink-sub">
@@ -29,7 +29,7 @@ export default function ReviewThanksPage() {
         href="/review"
         className="mt-10 inline-flex min-h-[52px] items-center justify-center rounded-lg border-2 border-accent px-8 text-sm font-semibold text-accent transition hover:bg-surface"
       >
-        点検の内容ページに戻る
+        ツールカルテのページに戻る
       </Link>
     </main>
   );

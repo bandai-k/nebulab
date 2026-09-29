@@ -8,19 +8,31 @@ import { company } from "@/data/company";
  * サイト共通の Header/Footer は SiteChrome が /review では出さないため、
  * ここでヘッダー(ロゴ＋「料金」＋「申し込む」だけ)とフッター(簡素)を持つ。
  * 広告から来た人を ABOUT / SERVICES などの他ページへ逃がさないための構成。
+ *
+ * フォント(karte.md 7章・8.1): BIZ UDPGothic(本文)・Zen Kaku Gothic New(見出し)。
+ * `next/font/google` は使わず、Google Fonts の css2 API を <link> で読み込む。
+ * 理由: next/font/google の自動サブセットは "japanese" サブセットを持たない
+ * 和文フォントでは latin 系サブセットしか取得できず、日本語グリフが欠落する
+ * (font-data.json 実測で確認)。css2 API はスクリプトごとの unicode-range を
+ * 複数 @font-face で返すため、ブラウザが日本語グリフを正しく取得できる。
+ * globals.css 先頭の共通 @import は全ページが読み込むため、/review だけで
+ * 使うこのフォントはそこに足さず、この layout の <link> でこのルートだけに
+ * 限定する(他ページの読み込みを増やさない)。
  */
 export default function ReviewLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="lp-scope min-h-screen bg-ground text-ink">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Kaku+Gothic+New:wght@900&display=swap"
+      />
       <header className="sticky top-0 z-10 border-b border-rule bg-ground/95 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 md:px-10">
-          <Link href="/review" className="flex flex-col leading-tight">
-            <span className="text-base font-bold tracking-[0.04em] text-ink md:text-lg">
-              ツールカルテ
-            </span>
-            <span className="text-[11px] tracking-[0.08em] text-ink-sub">
-              by Nebulab 合同会社
-            </span>
+          <Link
+            href="/review"
+            className="text-base font-bold tracking-[0.04em] text-ink md:text-lg"
+          >
+            ツールカルテ
           </Link>
           <nav className="flex items-center gap-4 md:gap-6">
             <a

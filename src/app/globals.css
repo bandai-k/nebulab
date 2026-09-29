@@ -348,6 +348,14 @@
     --color-ink-sub: #5b6474;
     --color-accent: #1f3a5f;
     --color-rule: #dfe3ea;
+    /* karte.md 7章・8.1: 本文は BIZ UDPGothic。読み込みは layout.tsx の <link>。 */
+    font-family: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
+  }
+  /* 大きな見出し(ヒーロー・各節見出し)だけ Zen Kaku Gothic New 900。 */
+  .lp-scope h1,
+  .lp-scope h2 {
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-weight: 900;
   }
 
   /*

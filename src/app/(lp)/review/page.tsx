@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { BRAND } from "@/constants/brand";
 import { breadcrumbJsonLd } from "@/lib/breadcrumb";
 import CtaLink from "./CtaLink";
@@ -8,8 +7,8 @@ import ReviewForm from "./ReviewForm";
 /**
  * ツールカルテ（AIツールの健康診断）・申込LP。
  *
- * 正: `~/company/dev/ai-tool-review/docs/web/lp-spec.html`(要素・状態・遷移)、
- *     `~/company/business/ideas-ai-tool-review-lp-script.md`(文言。機密・Git管理外)。
+ * 正: `~/company/dev/ai-tool-review/docs/ui/karte.md` 8章(実装の指示)、2・6・7章。
+ * 画面イメージ: `~/company/dev/ai-tool-review/docs/ui/mockups/K2-lp-1〜3.jpg`。
  * このページは②(2026-09-23 経営会議の順番)。申込はフォームとメールのみで受ける。
  *
  * ヘッダー(ロゴ＋料金＋申し込む)とフッター(簡素)は
@@ -22,16 +21,16 @@ const breadcrumbLd = breadcrumbJsonLd([{ name: "ツールカルテ", path: "/rev
 export const metadata: Metadata = {
   title: "ツールカルテ — AIツールの健康診断",
   description:
-    "AIで作った業務ツール、そのまま使って大丈夫ですか。コードが読めなくても大丈夫。8つの観点で点検し、危ないところと直し方の指示文をお渡しします。",
+    "AIで作った業務ツール、そのまま使って大丈夫ですか。コードが読めなくても大丈夫。8つの観点で診て、危ないところと直し方を「カルテ」にしてお渡しします。",
   alternates: { canonical: "/review" },
   openGraph: {
     url: "/review",
     title: "ツールカルテ — AIツールの健康診断 | Nebulab",
-    description: "8つの観点で点検して、危ないところと直し方の指示文をお渡しします。",
+    description: "8つの観点で診て、危ないところと直し方をカルテにしてお渡しします。",
   },
   twitter: {
     title: "ツールカルテ — AIツールの健康診断 | Nebulab",
-    description: "8つの観点で点検して、危ないところと直し方の指示文をお渡しします。",
+    description: "8つの観点で診て、危ないところと直し方をカルテにしてお渡しします。",
   },
 };
 
@@ -44,42 +43,37 @@ const OBSERVATIONS = [
   { num: "02", title: "ログインと権限", body: "他の人のデータが見えてしまわないか" },
   { num: "03", title: "データの公開設定", body: "顧客名簿が、誰でも読める状態になっていないか" },
   { num: "04", title: "個人情報の扱い", body: "個人情報や社外秘を、どこに置いているか" },
-  { num: "05", title: "料金のふくらみ", body: "使われすぎて、請求が膨らむ形になっていないか" },
+  { num: "05", title: "お金が膨らむ仕組み", body: "使われすぎて、請求が膨らむ形になっていないか" },
   { num: "06", title: "入力の悪用", body: "入力欄から、乗っ取られる余地がないか" },
-  { num: "07", title: "止まったときの備え", body: "作った人が辞めても、業務が止まらないか" },
+  { num: "07", title: "止まったときに困らないか", body: "作った人が辞めても、業務が止まらないか" },
   { num: "08", title: "古い部品", body: "使っている部品に、既に知られた穴がないか" },
 ];
 
 const DELIVERABLES = [
   {
-    num: "01",
-    title: "レポート",
-    body: "危ない・注意・問題なしの3段階でお伝えします。専門用語は使いません。",
+    icon: "所見",
+    title: "所見（何が危ないか）",
+    example: "例「APIキーがコード内に記載されています」",
   },
   {
-    num: "02",
-    title: "直し方の指示文",
-    body: "作ったときに使ったAI（ChatGPT・Claudeなど）に、そのまま貼り付けて頼める文をお渡しします。",
+    icon: "処方",
+    title: "処方（AIにこう頼めば直ります）",
+    example:
+      "例「このAPIキーを環境変数に移し、コードからは削除してください、と頼めます」",
   },
   {
-    num: "03",
-    title: "直した後の確認",
-    body: "再診断（任意）で、直せているかを確かめられます。",
+    icon: "再検査",
+    title: "再検査の案内",
+    example: "例「直した内容は、30日以内なら22,000円で再検査できます」",
   },
 ];
 
 const STEPS = [
-  { num: "01", title: "フォームで申し込む", detail: "所要3分です。" },
-  {
-    num: "02",
-    title: "コードか画面の共有方法をご相談",
-    detail: "メールで個別にご案内します（1営業日以内に返信）。",
-  },
-  {
-    num: "03",
-    title: "レポートをお渡し",
-    detail: "3〜5営業日でお渡しします。30分の説明も可能です（任意）。",
-  },
+  { num: "01", title: "問診票に答える", detail: "所要3分です。" },
+  { num: "02", title: "コードを預ける", detail: "預け方はメールで個別にご案内します。" },
+  { num: "03", title: "カルテが届く", detail: "3〜5営業日でお渡しします。" },
+  { num: "04", title: "直す", detail: "処方（AIにこう頼めば直ります）に従って直します。" },
+  { num: "05", title: "再検査（任意）", detail: "直せているかを確かめられます。" },
 ];
 
 const PRICING = [
@@ -93,16 +87,17 @@ const PRICING = [
     price: "132,000円",
     note: "税込・本体120,000円",
   },
-  { menu: "再診断（直した後・30日以内）", price: "22,000円", note: "税込・本体20,000円" },
+  { menu: "再検査（直した後・30日以内）", price: "22,000円", note: "税込・本体20,000円" },
   { menu: "説明（オンライン30分）", price: "11,000円", note: "税込・本体10,000円" },
 ];
 
 const HONESTY = [
-  "診断は「見た範囲で見つかったことのご報告」です。すべての問題がないことを保証するものではありません",
-  "鍵の漏れや設定の不備の一部は、無料の自動ツールでも見つかります。私たちの値打ちは、どれが本当に危ないかの判断と、直し方まで示すことです",
+  "カルテは「見た範囲で見つかったことのご報告」です。すべての問題がないことを保証するものではありません",
+  "無料の自動ツールでも、鍵の漏れは見つかります。私たちの値打ちは、どれが本当に危ないかの判断と、直し方（処方）まで示すことです",
   "本番の環境に負荷をかける検査（攻撃のまねごと）はしません",
   "お預かりしたコードは、決めた期間で削除します。秘密保持の約束をします",
   "セキュリティ専門会社の監査の代わりになるものではありません。法律の助言も行いません",
+  "見本は、当社の自社ツールを診たカルテです",
 ];
 
 const FAQ = [
@@ -110,17 +105,105 @@ const FAQ = [
     q: "コードがありません（DifyやMakeで作りました）",
     a: "いまはコードのあるものが対象です。ご相談ください。",
   },
-  { q: "何を渡せばいいですか", a: "コード一式、または画面の共有です。フォームの後にご案内します。" },
+  {
+    q: "個人で作ったツールでも申し込めますか？",
+    a: "はい。個人の方も申し込めます。問診票の最初で「個人」を選んでください。",
+  },
+  { q: "何を渡せばいいですか", a: "コード一式、または画面の共有です。問診票の後にご案内します。" },
   {
     q: "社外にコードを出すのが不安です",
     a: "秘密保持の約束と、削除の期限を契約に入れます。AIに読ませる部分も、読むだけで書き換えません。",
   },
   {
     q: "直すところまでお願いできますか",
-    a: "診断は「点検と直し方の提示」までです。直す作業のご相談は別途承ります。",
+    a: "カルテは「所見と処方（直し方）の提示」までです。直す作業のご相談は別途承ります。",
   },
-  { q: "支払いはどうなりますか", a: "診断の後に請求書をお送りします（銀行振込）。お見積りは無料です。" },
+  { q: "支払いはどうなりますか", a: "カルテのお渡し後に請求書をお送りします（銀行振込）。お見積りは無料です。" },
 ];
+
+/**
+ * ヒーローに描くカルテ1ページ目の見本(HTML/CSSで描く。画像にしない。karte.md 8.2)。
+ * 中身は架空の見本。TODO(BizRelay): BizRelay の診断が済んだら実物の値に差し替える。
+ */
+function KarteSample() {
+  const rows: { num: string; title: string; verdict: "危険" | "注意" | "問題なし"; note: string }[] = [
+    { num: "1", title: "鍵の置き場所", verdict: "危険", note: "APIキーがコード内に記載されています" },
+    { num: "2", title: "ログインと権限", verdict: "注意", note: "管理者権限が広すぎます" },
+    { num: "3", title: "データの公開設定", verdict: "問題なし", note: "適切に設定されています" },
+    { num: "4", title: "個人情報の扱い", verdict: "注意", note: "一部に個人情報らしきデータがあります" },
+  ];
+  const badgeClass: Record<string, string> = {
+    危険: "bg-red-100 text-red-700",
+    注意: "bg-amber-100 text-amber-700",
+    問題なし: "bg-emerald-100 text-emerald-700",
+  };
+
+  return (
+    <div>
+      <div className="rounded-lg border border-rule bg-surface p-4 shadow-sm md:p-6">
+        <div className="flex items-start justify-between border-b border-rule pb-3">
+          <p className="text-base font-bold text-ink md:text-lg">ツールカルテ</p>
+          <p className="text-right text-[10px] leading-5 text-ink-sub">
+            作成日 2026年6月20日
+            <br />
+            No. TK-20260620-001
+          </p>
+        </div>
+        <div className="mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[11px] leading-6 text-ink-sub">
+          <span>ツール名</span>
+          <span className="text-ink">問い合わせ整理ツール</span>
+          <span>作成者</span>
+          <span className="text-ink">社内（ChatGPTで作成）</span>
+          <span>主な用途</span>
+          <span className="text-ink">問い合わせの分類・要約</span>
+        </div>
+        <div className="mt-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-center">
+          <p className="text-[10px] font-semibold tracking-widest text-red-700">総合判定</p>
+          <p className="mt-1 text-sm font-bold text-red-700">すぐ直してほしいことがあります</p>
+        </div>
+        <p className="mt-4 text-center text-xs font-semibold text-ink">
+          危険 2件・注意 3件・問題なし 3観点
+        </p>
+        <div className="mt-3 overflow-hidden rounded-md border border-rule">
+          <table className="w-full border-collapse text-[10px] md:text-[11px]">
+            <thead>
+              <tr className="bg-ground text-ink-sub">
+                <th className="border-b border-rule px-2 py-1.5 text-left font-medium">No.</th>
+                <th className="border-b border-rule px-2 py-1.5 text-left font-medium">観点</th>
+                <th className="border-b border-rule px-2 py-1.5 text-left font-medium">判定</th>
+                <th className="border-b border-rule px-2 py-1.5 text-left font-medium">主な所見</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.num} className="bg-surface">
+                  <td className="border-b border-rule px-2 py-1.5 text-ink-sub">{r.num}</td>
+                  <td className="border-b border-rule px-2 py-1.5 text-ink">{r.title}</td>
+                  <td className="border-b border-rule px-2 py-1.5">
+                    <span
+                      className={`inline-block rounded px-1.5 py-0.5 font-medium ${badgeClass[r.verdict]}`}
+                    >
+                      {r.verdict}
+                    </span>
+                  </td>
+                  <td className="border-b border-rule px-2 py-1.5 text-ink-sub">{r.note}</td>
+                </tr>
+              ))}
+              <tr className="bg-surface">
+                <td colSpan={4} className="px-2 py-1 text-center text-ink-sub">
+                  …
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p className="mt-3 text-center text-xs text-ink-sub">
+        自社ツールを診たカルテの見本（準備中の仮の内容）
+      </p>
+    </div>
+  );
+}
 
 export default function ReviewPage() {
   return (
@@ -134,29 +217,26 @@ export default function ReviewPage() {
       <section className="border-b border-rule">
         <div className="mx-auto grid max-w-5xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-10 md:py-24">
           <div>
-            <h1 className="text-[32px] font-bold leading-[1.35] tracking-tight text-ink sm:text-[40px] md:text-[44px]">
+            <h1 className="text-[32px] leading-[1.35] tracking-tight text-ink sm:text-[40px] md:text-[44px]">
               AIで作ったツール、
               <br />
-              そのまま使って大丈夫ですか。
+              健康診断しませんか。
             </h1>
             <p className="mt-6 text-base leading-[1.9] text-ink-sub md:text-lg">
-              コードが読めなくても大丈夫です。8つの観点で点検して、危ないところと、直し方の指示文をお渡しします。
+              コードが読めなくても大丈夫です。8つの観点で診て、危ないところと直し方を
+              「カルテ」にしてお渡しします。
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <CtaLink href="#form" position="hero" className={PRIMARY_BUTTON}>
-                診断を申し込む（所要3分）
+                問診票に答える（3分）
               </CtaLink>
+              <a href="#deliverables" className="text-sm font-medium text-accent hover:underline">
+                カルテの見本を見る
+              </a>
             </div>
           </div>
           <div className="mx-auto w-full max-w-xs md:max-w-sm">
-            <Image
-              src="/review/report-placeholder.svg"
-              alt="診断レポートのイメージ（見本準備中）"
-              width={620}
-              height={820}
-              priority
-              className="h-auto w-full rounded-lg border border-rule shadow-sm"
-            />
+            <KarteSample />
           </div>
         </div>
       </section>
@@ -179,10 +259,10 @@ export default function ReviewPage() {
         </div>
       </section>
 
-      {/* === 見るのはこの8つ === */}
+      {/* === 診るのはこの8つ === */}
       <section className="border-b border-rule">
         <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[32px]">見るのは、この8つ。</h2>
+          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">診るのは、この8つ。</h2>
           <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
             {OBSERVATIONS.map((o) => (
               <div key={o.num} className="rounded-lg border border-rule bg-surface p-4 md:p-5">
@@ -198,32 +278,32 @@ export default function ReviewPage() {
         </div>
       </section>
 
-      {/* === 受け取るもの3つ === */}
-      <section className="border-b border-rule bg-surface">
+      {/* === 受け取るもの＝カルテ === */}
+      <section id="deliverables" className="scroll-mt-20 border-b border-rule bg-surface">
         <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[32px]">受け取るもの、3つ。</h2>
+          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">受け取るもの＝カルテ。</h2>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {DELIVERABLES.map((d) => (
-              <div key={d.num} className="rounded-lg border border-rule bg-ground p-6">
-                <span className="text-[10px] tracking-[0.2em] text-ink-sub">{d.num}</span>
+              <div key={d.title} className="rounded-lg border border-rule bg-ground p-6">
+                <span className="text-[10px] tracking-[0.2em] text-ink-sub">{d.icon}</span>
                 <h3 className="mt-3 text-base font-semibold text-ink">{d.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-ink-sub">{d.body}</p>
+                <p className="mt-3 text-sm leading-7 text-ink-sub">{d.example}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === 進め方 === */}
+      {/* === 受け方 === */}
       <section className="border-b border-rule">
         <div className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[32px]">進め方。</h2>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
+          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">受け方。</h2>
+          <div className="mt-12 grid gap-4 md:grid-cols-5">
             {STEPS.map((s) => (
-              <div key={s.num} className="rounded-lg border border-rule bg-surface p-6">
+              <div key={s.num} className="rounded-lg border border-rule bg-surface p-5">
                 <span className="text-[10px] tracking-[0.2em] text-ink-sub">STEP {s.num}</span>
-                <h3 className="mt-3 text-base font-semibold text-ink">{s.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-ink-sub">{s.detail}</p>
+                <h3 className="mt-3 text-sm font-semibold text-ink">{s.title}</h3>
+                <p className="mt-3 text-xs leading-6 text-ink-sub">{s.detail}</p>
               </div>
             ))}
           </div>
@@ -233,7 +313,7 @@ export default function ReviewPage() {
       {/* === 料金 === */}
       <section id="pricing" className="scroll-mt-20 border-b border-rule bg-surface">
         <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[32px]">料金。</h2>
+          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">料金。</h2>
           <div className="mt-12 overflow-hidden rounded-lg border border-rule">
             <table className="w-full border-collapse text-sm">
               <tbody>
@@ -253,7 +333,7 @@ export default function ReviewPage() {
             </table>
           </div>
           <p className="mt-6 text-sm leading-7 text-ink-sub">
-            お見積りは無料です。大きさが分からない場合は、フォームからご相談ください。
+            お見積りは無料です。大きさが分からない場合は、問診票からご相談ください。
           </p>
         </div>
       </section>
@@ -261,7 +341,7 @@ export default function ReviewPage() {
       {/* === 正直に書くこと === */}
       <section className="border-b border-rule">
         <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[32px]">正直に、書きます。</h2>
+          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">正直に、書きます。</h2>
           <ul className="mt-10 space-y-4">
             {HONESTY.map((line, i) => (
               <li key={i} className="flex items-start gap-3 text-sm leading-7 text-ink-sub">
@@ -276,7 +356,7 @@ export default function ReviewPage() {
       {/* === よくある質問 === */}
       <section className="border-b border-rule bg-surface">
         <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[32px]">よくある質問。</h2>
+          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">よくある質問。</h2>
           <div className="mt-10 divide-y divide-rule border-t border-b border-rule">
             {FAQ.map((item, i) => (
               <details key={item.q} className="group py-4" open={i === 0 ? undefined : false}>
@@ -293,14 +373,14 @@ export default function ReviewPage() {
         </div>
       </section>
 
-      {/* === 申込フォーム === */}
+      {/* === 問診票 === */}
       <section id="form" className="scroll-mt-20 border-b border-rule">
         <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[32px]">
-            そのツール、点検してから使いませんか。
+          <h2 className="text-2xl tracking-tight text-ink md:text-[32px]">
+            そのツール、診てもらいませんか。
           </h2>
           <p className="mt-4 text-sm leading-7 text-ink-sub">
-            以下のフォームからお申込みください。1営業日以内にご返信します。
+            以下の問診票からお申込みください。1営業日以内にご返信します。
           </p>
           <ReviewForm />
         </div>
@@ -312,7 +392,7 @@ export default function ReviewPage() {
           <p className="text-sm leading-7 text-ink-sub">ご不明な点は、お気軽にお問い合わせください。</p>
           <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <CtaLink href="#form" position="footer" className={PRIMARY_BUTTON}>
-              診断を申し込む（所要3分）
+              問診票に答える（3分）
             </CtaLink>
             <a href={BRAND.emailMailto} className="text-xs tracking-wider text-ink-sub hover:text-accent">
               {BRAND.email}

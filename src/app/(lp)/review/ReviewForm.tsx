@@ -6,10 +6,66 @@ import { trackEvent } from "@/lib/gtag";
 import { BRAND } from "@/constants/brand";
 
 type SubmitState = "idle" | "sending" | "fallback" | "rate_limited" | "invalid";
+type ApplicantType = "corp" | "sole" | "individual";
+
+const APPLICANT_TYPES: { value: ApplicantType; label: string }[] = [
+  { value: "corp", label: "法人" },
+  { value: "sole", label: "個人事業主" },
+  { value: "individual", label: "個人" },
+];
+
+const TOOL_TYPES: { value: string; label: string }[] = [
+  { value: "gas", label: "スプレッドシート＋Google Apps Script" },
+  { value: "webapp", label: "Webアプリ（ログイン・データベースあり）" },
+  { value: "unknown", label: "わからない" },
+];
+
+const BUILT_WITH_OPTIONS = ["ChatGPT", "Claude", "Cursor", "その他"];
+
+const TOOL_SIZE_OPTIONS: { value: string; label: string }[] = [
+  { value: "single", label: "画面1つ" },
+  { value: "few", label: "2〜5" },
+  { value: "many", label: "それ以上" },
+  { value: "unknown", label: "わからない" },
+];
+
+/** 番号つきの選択肢ボタン(問診票の3択・単一選択に共通)。 */
+function OptionButton({
+  selected,
+  onClick,
+  children,
+  className = "",
+}: {
+  selected: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={selected}
+      className={`min-h-[48px] rounded-md border px-4 py-3 text-sm font-medium transition ${
+        selected
+          ? "border-accent bg-accent text-white"
+          : "border-rule bg-surface text-ink hover:border-accent"
+      } ${className}`}
+    >
+      {children}
+    </button>
+  );
+}
 
 export default function ReviewForm() {
   const router = useRouter();
   const [state, setState] = useState<SubmitState>("idle");
+  const [applicantType, setApplicantType] = useState<ApplicantType | "">("");
+  const [toolType, setToolType] = useState("");
+  const [builtWith, setBuiltWith] = useState("");
+  const [toolSize, setToolSize] = useState("");
+
+  const needsCompanyName = applicantType === "corp" || applicantType === "sole";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -18,18 +74,28 @@ export default function ReviewForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
     const payload = {
-      companyName: String(data.get("companyName") ?? ""),
+      applicantType,
+      companyName: needsCompanyName ? String(data.get("companyName") ?? "") : "",
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
       phone: String(data.get("phone") ?? ""),
-      toolType: String(data.get("toolType") ?? ""),
-      builtWith: String(data.get("builtWith") ?? ""),
-      toolSize: String(data.get("toolSize") ?? ""),
+      toolSummary: String(data.get("toolSummary") ?? ""),
+      toolType,
+      builtWith,
+      toolSize,
       concerns: String(data.get("concerns") ?? ""),
       agree: data.get("agree") === "on",
     };
 
-    if (!payload.companyName || !payload.name || !payload.email || !payload.toolType || !payload.agree) {
+    if (
+      !payload.applicantType ||
+      (needsCompanyName && !payload.companyName) ||
+      !payload.name ||
+      !payload.email ||
+      !payload.toolSummary ||
+      !payload.toolType ||
+      !payload.agree
+    ) {
       setState("invalid");
       return;
     }
@@ -63,31 +129,54 @@ export default function ReviewForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-10 space-y-6" noValidate>
+    <form onSubmit={handleSubmit} className="mt-10 space-y-8" noValidate>
       <div className="rounded-lg border-2 border-accent bg-surface p-5 text-sm leading-7 text-ink md:p-6">
         <strong className="text-base font-bold text-accent">
           お願い：コードや鍵・パスワード・顧客データを、このフォームには貼らないでください。
         </strong>
         <br />
-        受け渡しは、お申込みの後にメールで個別にご案内します。
+        受け渡しは、問診票の後にメールで個別にご案内します。
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      {/* 1. 申し込む方 */}
+      <div>
+        <p className="text-sm font-semibold text-ink">
+          1. 申し込む方<span className="ml-2 rounded bg-accent px-2 py-0.5 text-[11px] text-white">必須</span>
+        </p>
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          {APPLICANT_TYPES.map((t) => (
+            <OptionButton
+              key={t.value}
+              selected={applicantType === t.value}
+              onClick={() => setApplicantType(t.value)}
+            >
+              {t.label}
+            </OptionButton>
+          ))}
+        </div>
+      </div>
+
+      {/* 2. 会社名・屋号(法人・個人事業主のときだけ) */}
+      {needsCompanyName && (
         <label className="block">
-          <span className="text-xs tracking-[0.15em] text-ink-sub">
-            会社名<span className="ml-1 text-accent">必須</span>
+          <span className="text-sm font-semibold text-ink">
+            2. 会社名・屋号
+            <span className="ml-2 rounded bg-accent px-2 py-0.5 text-[11px] text-white">必須</span>
           </span>
           <input
             name="companyName"
             required
             className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink outline-none focus:border-accent"
-            placeholder="個人事業主の方は屋号かお名前"
+            placeholder="屋号・会社名"
           />
         </label>
+      )}
 
+      <div className="grid gap-6 md:grid-cols-2">
+        {/* 3. お名前 */}
         <label className="block">
-          <span className="text-xs tracking-[0.15em] text-ink-sub">
-            お名前<span className="ml-1 text-accent">必須</span>
+          <span className="text-sm font-semibold text-ink">
+            3. お名前<span className="ml-2 rounded bg-accent px-2 py-0.5 text-[11px] text-white">必須</span>
           </span>
           <input
             name="name"
@@ -96,87 +185,123 @@ export default function ReviewForm() {
           />
         </label>
 
+        {/* 4. メールアドレス */}
         <label className="block">
-          <span className="text-xs tracking-[0.15em] text-ink-sub">
-            メールアドレス<span className="ml-1 text-accent">必須</span>
+          <span className="text-sm font-semibold text-ink">
+            4. メールアドレス
+            <span className="ml-2 rounded bg-accent px-2 py-0.5 text-[11px] text-white">必須</span>
           </span>
           <input
             type="email"
             name="email"
             required
             className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink outline-none focus:border-accent"
-            placeholder="ご返信先です"
+            placeholder="you@example.com"
           />
         </label>
 
+        {/* 5. 電話番号 */}
         <label className="block">
-          <span className="text-xs tracking-[0.15em] text-ink-sub">電話番号（任意）</span>
+          <span className="text-sm font-semibold text-ink">
+            5. 電話番号<span className="ml-2 rounded bg-surface px-2 py-0.5 text-[11px] text-ink-sub">任意</span>
+          </span>
           <input
             type="tel"
             name="phone"
             className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink outline-none focus:border-accent"
           />
         </label>
-
-        <label className="block">
-          <span className="text-xs tracking-[0.15em] text-ink-sub">
-            ツールの種類<span className="ml-1 text-accent">必須</span>
-          </span>
-          <select
-            name="toolType"
-            required
-            defaultValue=""
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink outline-none focus:border-accent"
-          >
-            <option value="" disabled>
-              選択してください
-            </option>
-            <option value="gas">Google Apps Script</option>
-            <option value="webapp">Webアプリ（ログイン・データベースあり）</option>
-            <option value="unknown">わからない</option>
-          </select>
-        </label>
-
-        <label className="block">
-          <span className="text-xs tracking-[0.15em] text-ink-sub">何で作ったか（任意）</span>
-          <input
-            name="builtWith"
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink outline-none focus:border-accent"
-            placeholder="ChatGPT・Claude・Cursor など"
-          />
-        </label>
-
-        <label className="block md:col-span-2">
-          <span className="text-xs tracking-[0.15em] text-ink-sub">ツールの大きさ（任意）</span>
-          <select
-            name="toolSize"
-            defaultValue=""
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink outline-none focus:border-accent"
-          >
-            <option value="">選択してください</option>
-            <option value="single">画面1つ</option>
-            <option value="few">2〜5</option>
-            <option value="many">それ以上</option>
-            <option value="unknown">わからない</option>
-          </select>
-        </label>
-
-        <label className="block md:col-span-2">
-          <span className="text-xs tracking-[0.15em] text-ink-sub">気になっていること（任意）</span>
-          <textarea
-            name="concerns"
-            rows={4}
-            maxLength={600}
-            className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink outline-none focus:border-accent"
-            placeholder="300字程度で。コードや鍵・パスワードは書かないでください"
-          />
-        </label>
       </div>
+
+      {/* 6. 何のツールですか */}
+      <label className="block">
+        <span className="text-sm font-semibold text-ink">
+          6. 何のツールですか
+          <span className="ml-2 rounded bg-accent px-2 py-0.5 text-[11px] text-white">必須</span>
+        </span>
+        <input
+          name="toolSummary"
+          required
+          maxLength={200}
+          className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink outline-none focus:border-accent"
+          placeholder="例：問い合わせを整理するツール"
+        />
+      </label>
+
+      {/* 7. どんな形ですか */}
+      <div>
+        <p className="text-sm font-semibold text-ink">
+          7. どんな形ですか<span className="ml-2 rounded bg-accent px-2 py-0.5 text-[11px] text-white">必須</span>
+        </p>
+        <div className="mt-3 flex flex-col gap-2">
+          {TOOL_TYPES.map((t) => (
+            <OptionButton
+              key={t.value}
+              selected={toolType === t.value}
+              onClick={() => setToolType(t.value)}
+              className="w-full text-left"
+            >
+              {t.label}
+            </OptionButton>
+          ))}
+        </div>
+      </div>
+
+      {/* 8. 何で作りましたか */}
+      <div>
+        <p className="text-sm font-semibold text-ink">
+          8. 何で作りましたか<span className="ml-2 rounded bg-surface px-2 py-0.5 text-[11px] text-ink-sub">任意</span>
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {BUILT_WITH_OPTIONS.map((label) => (
+            <OptionButton
+              key={label}
+              selected={builtWith === label}
+              onClick={() => setBuiltWith(builtWith === label ? "" : label)}
+            >
+              {label}
+            </OptionButton>
+          ))}
+        </div>
+      </div>
+
+      {/* 9. 大きさ */}
+      <div>
+        <p className="text-sm font-semibold text-ink">
+          9. 大きさ<span className="ml-2 rounded bg-surface px-2 py-0.5 text-[11px] text-ink-sub">任意</span>
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {TOOL_SIZE_OPTIONS.map((t) => (
+            <OptionButton
+              key={t.value}
+              selected={toolSize === t.value}
+              onClick={() => setToolSize(toolSize === t.value ? "" : t.value)}
+            >
+              {t.label}
+            </OptionButton>
+          ))}
+        </div>
+      </div>
+
+      {/* 10. 気になっていること */}
+      <label className="block">
+        <span className="text-sm font-semibold text-ink">
+          10. 気になっていること<span className="ml-2 rounded bg-surface px-2 py-0.5 text-[11px] text-ink-sub">任意</span>
+        </span>
+        <textarea
+          name="concerns"
+          rows={4}
+          maxLength={600}
+          className="mt-2 w-full rounded-md border border-rule bg-surface px-4 py-3 text-sm text-ink outline-none focus:border-accent"
+          placeholder="例：鍵の置き場所が不安／社外の人も使っている"
+        />
+        <span className="mt-2 block text-xs text-ink-sub">コードや鍵・パスワードは書かないでください</span>
+      </label>
 
       <label className="flex items-start gap-3 text-sm leading-7 text-ink-sub">
         <input type="checkbox" name="agree" required className="mt-1 size-4 shrink-0 accent-accent" />
         <span>
-          診断は見た範囲の報告であり、安全の保証ではないことに同意します。また、お預かりしたコードの扱い（秘密保持・削除）についてご案内する内容に同意します。
+          見た範囲で見つかったことの報告であり、安全の保証ではないことに同意します。また、お預かりしたコードの扱い（秘密保持・削除）についてご案内する内容に同意します。
           <span className="ml-1 text-accent">必須</span>
         </span>
       </label>
@@ -204,7 +329,7 @@ export default function ReviewForm() {
         disabled={state === "sending"}
         className="inline-flex min-h-[56px] w-full items-center justify-center rounded-lg bg-accent px-8 text-base font-semibold tracking-wide text-white transition hover:brightness-110 disabled:opacity-70 sm:w-auto"
       >
-        {state === "sending" ? "送信しています…" : "診断を申し込む（所要3分）"}
+        {state === "sending" ? "送信しています…" : "問診票を送る"}
       </button>
     </form>
   );

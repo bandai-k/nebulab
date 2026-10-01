@@ -30,8 +30,11 @@ export const metadata: Metadata = {
     url: "/review",
     title: "ツールカルテ — AIツールの健康診断 | Nebulab",
     description: "8つの観点で診て、危ないところと直し方をカルテにしてお渡しします。",
+    images: [{ url: "/review/og.jpg", width: 1200, height: 630, alt: "ツールカルテ AIツールの健康診断" }],
   },
   twitter: {
+    card: "summary_large_image",
+    images: ["/review/og.jpg"],
     title: "ツールカルテ — AIツールの健康診断 | Nebulab",
     description: "8つの観点で診て、危ないところと直し方をカルテにしてお渡しします。",
   },

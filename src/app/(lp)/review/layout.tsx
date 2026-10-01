@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BRAND } from "@/constants/brand";
 import { company } from "@/data/company";
@@ -28,11 +29,16 @@ export default function ReviewLayout({ children }: { children: React.ReactNode }
       />
       <header className="sticky top-0 z-10 border-b border-rule bg-ground/95 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 md:px-10">
-          <Link
-            href="/review"
-            className="text-base font-bold tracking-[0.04em] text-ink md:text-lg"
-          >
-            ツールカルテ
+          <Link href="/review" className="shrink-0">
+            {/* ロゴ(角印＋「ツールカルテ」)。正: ai-tool-review/docs/brand(design.md 20章、2026-10-01 決定) */}
+            <Image
+              src="/review/logo-horizontal.png"
+              alt="ツールカルテ AIツールの健康診断"
+              width={368}
+              height={96}
+              priority
+              className="h-10 w-auto md:h-12"
+            />
           </Link>
           <nav className="flex items-center gap-4 md:gap-6">
             <a

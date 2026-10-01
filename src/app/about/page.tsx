@@ -63,7 +63,7 @@ const organizationJsonLd = {
     name: company.ceo,
     alternateName: company.ceoEn,
   },
-  foundingDate: "2026-05-01",
+  foundingDate: company.foundedDateISO,
   address: {
     "@type": "PostalAddress",
     postalCode: company.address.zip,
